@@ -1,0 +1,38 @@
+name: Sync Wiki to Pages
+
+on:
+  schedule:
+    - cron: "0 * * * *"    # 매 시간마다 실행
+  workflow_dispatch:        # 수동 실행 가능
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Pages repository
+        uses: actions/checkout@v4
+
+      - name: Clone Wiki repository
+        run: |
+          git clone https://github.com/k82022603/k82022603.github.io.wiki.git wiki-source
+
+      - name: Prepare docs/wiki folder
+        run: |
+          rm -rf docs/wiki
+          mkdir -p docs/wiki
+
+      - name: Copy wiki markdown files
+        run: |
+          cp -r wiki-source/* docs/wiki/
+
+      - name: Commit and push changes
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+          git add docs/wiki
+          if git commit -m "Sync wiki → pages"; then
+            git push
+          else
+            echo "No changes."
+          fi
