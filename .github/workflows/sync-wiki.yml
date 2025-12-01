@@ -1,5 +1,4 @@
 name: Sync Wiki to Pages
-
 on:
   schedule:
     - cron: "0 * * * *"    # 매 시간마다 실행
@@ -8,30 +7,36 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-
+    
+    # 🌟 추가된 부분: GITHUB_TOKEN에 쓰기 권한 부여
+    permissions:
+      contents: write
+      
     steps:
       - name: Checkout Pages repository
         uses: actions/checkout@v4
-
+        
       - name: Clone Wiki repository
         run: |
           git clone https://github.com/k82022603/k82022603.github.io.wiki.git wiki-source
-
+          
       - name: Prepare docs/wiki folder
         run: |
           rm -rf docs/wiki
           mkdir -p docs/wiki
-
+          
       - name: Copy wiki markdown files
         run: |
           cp -r wiki-source/* docs/wiki/
-
+          
       - name: Commit and push changes
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
           git add docs/wiki
           if git commit -m "Sync wiki → pages"; then
+            # NOTE: github-actions[bot] 이메일은 github-actions@users.noreply.github.com 이 표준이지만,
+            # 현재 사용하시는 이메일도 작동할 수 있으니 일단 그대로 둡니다.
             git push
           else
             echo "No changes."
