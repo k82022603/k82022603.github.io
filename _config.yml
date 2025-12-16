@@ -16,10 +16,10 @@ timezone: Asia/Seoul
 
 title: BLUEBUG'S GITHUB BLOG #Chirpy # the main title
 
-tagline: AI, DevOps, 인프라 설계, 자동화 기술 블로그 # A text-focused Jekyll theme # it will display as the subtitle
+tagline: AI, DevOps 블로그 # A text-focused Jekyll theme # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed #A minimal, responsive and feature-rich Jekyll theme for technical writing.
-  개발 경험과 기술 지식을 공유하는 푸른애벌레의 기술 블로그
+  Claude가 만들어내는 기술 지식을 공유하는 블로그
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
