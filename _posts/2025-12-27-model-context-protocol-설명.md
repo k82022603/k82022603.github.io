@@ -1,6 +1,6 @@
 ---
 title: "Model Context Protocol 설명"
-date: 2025-12-27 14:10:52 +0900
+date: 2025-12-27 14:20:26 +0900
 categories: []
 tags: []
 ---
