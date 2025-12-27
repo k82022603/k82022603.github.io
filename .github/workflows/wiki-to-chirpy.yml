@@ -63,6 +63,8 @@ jobs:
       run: |
         git config user.name "github-actions"
         git config user.email "actions@github.com"
+        
         git add _posts _drafts
         git commit -m "auto: sync wiki to blog" || echo "No changes"
+        git pull --rebase origin main
         git push
