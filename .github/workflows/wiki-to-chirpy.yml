@@ -22,6 +22,7 @@ jobs:
 
         for file in wiki/*.md; do
           TITLE=$(grep -m 1 "^# " "$file" | sed 's/^# //')
+          [ -z "$TITLE" ] && continue
 
           PUBLISH=$(grep "^@publish:" "$file" | awk '{print $2}')
           [ "$PUBLISH" = "false" ] && continue
