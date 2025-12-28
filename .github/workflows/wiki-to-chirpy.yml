@@ -4,8 +4,8 @@ on:
   push:
     branches: [ main ]
   schedule:
-    - cron: '0 * * * *'  # 매시간 실행
-  workflow_dispatch:  # 수동 실행 가능
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   wiki-to-blog:
@@ -42,21 +42,15 @@ jobs:
         echo "╚════════════════════════════════════════╝"
         echo ""
         
-        # 디렉토리 생성
         mkdir -p _posts _drafts
-        
-        # 타임존 설정
         NOW_TZ="+0900"
         
-        # 통계 변수
         CONVERTED_COUNT=0
         DRAFT_COUNT=0
         SKIPPED_COUNT=0
         ERROR_COUNT=0
         
-        # Wiki 파일 처리
         for file in wiki-temp/*.md; do
-          # 파일 존재 확인
           [ -f "$file" ] || continue
           
           FILENAME=$(basename "$file")
@@ -64,7 +58,7 @@ jobs:
           echo "📄 Processing: $FILENAME"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           
-          # 메타데이터에서 제목 추출 시도
+          # 메타데이터에서 제목 추출
           META_TITLE=$(grep "^@title:" "$file" | cut -d':' -f2- | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
           
           if [ -n "$META_TITLE" ]; then
@@ -97,19 +91,34 @@ jobs:
             continue
           fi
           
-          # Slug 처리
+          # Slug 처리 (개선됨!)
           SLUG=$(grep "^@slug:" "$file" | awk '{print $2}' | tr -d '[:space:]')
+          
           if [ -z "$SLUG" ]; then
-            # 제목에서 slug 자동 생성
+            echo "⚠️  No @slug specified, auto-generating..."
+            
+            # 한글을 유지하면서 slug 생성
             SLUG=$(echo "$TITLE" | \
-              iconv -t ascii//TRANSLIT 2>/dev/null || echo "$TITLE" | \
               tr '[:upper:]' '[:lower:]' | \
               sed 's/[^a-z0-9가-힣]/-/g' | \
               sed 's/--*/-/g' | \
               sed 's/^-//;s/-$//')
-            echo "🔗 Slug (generated): $SLUG"
+            
+            # slug가 비어있거나 하이픈만 있으면 파일명 사용
+            if [ -z "$SLUG" ] || [ "$SLUG" = "-" ]; then
+              SLUG=$(basename "$file" .md | tr '[:upper:]' '[:lower:]')
+              echo "⚠️  Empty slug, using filename: $SLUG"
+            fi
+            
+            # 한글이 포함되어 있으면 경고
+            if echo "$SLUG" | grep -q '[가-힣]'; then
+              echo "⚠️  Korean characters in slug: $SLUG"
+              echo "   💡 Recommendation: Add @slug: your-english-slug to Wiki"
+            else
+              echo "🔗 Slug (auto-generated): $SLUG"
+            fi
           else
-            echo "🔗 Slug (custom): $SLUG"
+            echo "🔗 Slug (from metadata): $SLUG"
           fi
           
           # 날짜 처리
@@ -168,18 +177,15 @@ jobs:
             echo ""
           } > "$TARGET"
           
-          # 본문 내용 추가 (메타데이터 주석과 메타태그 제외)
-          # 첫 번째 # 제목도 제거 (Front Matter의 title로 대체됨)
+          # 본문 내용 추가
           sed '/^<!--/,/^-->/d;/^@/d;1,/^# /d' "$file" >> "$TARGET"
           
           echo "✅ Converted successfully"
           echo ""
         done
         
-        # 임시 폴더 삭제
         rm -rf wiki-temp
         
-        # 변환 결과 요약
         echo ""
         echo "╔════════════════════════════════════════╗"
         echo "║        Conversion Summary              ║"
@@ -205,28 +211,23 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         
-        # 파일 추가
         git add _posts/ _drafts/
         
-        # 상태 확인
         echo "📋 Git Status:"
         echo "─────────────────────────────────────"
         git status --short
         echo ""
         
-        # 변경사항이 있는지 확인
         if git diff --staged --quiet; then
           echo "✓ No changes to commit"
           echo "  Wiki content is already up to date"
           echo ""
         else
-          # 변경된 파일 목록
           echo "📝 Changed Files:"
           echo "─────────────────────────────────────"
           git diff --staged --name-status
           echo ""
           
-          # 커밋 메시지 생성
           COMMIT_MSG="auto: sync wiki to blog [$(date +'%Y-%m-%d %H:%M:%S')]"
           
           echo "💾 Committing changes..."
