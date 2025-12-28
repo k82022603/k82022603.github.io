@@ -3,6 +3,7 @@ name: Publish Wiki to Chirpy (Advanced)
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   wiki-to-blog:
@@ -21,16 +22,22 @@ jobs:
         NOW_TZ="+0900"
 
         for file in wiki/*.md; do
+          # 제목 추출
           TITLE=$(grep -m 1 "^# " "$file" | sed 's/^# //')
+          
+          # 제목이 없는 문서는 건너뛰기
           [ -z "$TITLE" ] && continue
 
-          PUBLISH=$(grep "^@publish:" "$file" | awk '{print $2}')
+          # 공개 여부 확인
+          PUBLISH=$(grep "@publish:" "$file" | awk '{print $2}')
           [ "$PUBLISH" = "false" ] && continue
 
-          SLUG=$(grep "^@slug:" "$file" | awk '{print $2}')
+          # Slug 처리
+          SLUG=$(grep "@slug:" "$file" | awk '{print $2}')
           [ -z "$SLUG" ] && SLUG=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
 
-          WIKI_DATE=$(grep "^@date:" "$file" | awk '{print $2}')
+          # 날짜 처리
+          WIKI_DATE=$(grep "@date:" "$file" | awk '{print $2}')
           if [ -z "$WIKI_DATE" ]; then
             POST_DATE=$(date +"%Y-%m-%d")
             POST_DATETIME=$(date +"%Y-%m-%d %H:%M:%S $NOW_TZ")
@@ -39,16 +46,21 @@ jobs:
             POST_DATETIME="$WIKI_DATE 09:00:00 $NOW_TZ"
           fi
 
-          CATEGORIES=$(grep "^@categories:" "$file" | cut -d':' -f2 | sed 's/,/, /g')
-          TAGS=$(grep "^@tags:" "$file" | cut -d':' -f2 | sed 's/,/, /g')
-          DRAFT=$(grep "^@draft:" "$file" | awk '{print $2}')
+          # 카테고리와 태그 추출
+          CATEGORIES=$(grep "@categories:" "$file" | cut -d':' -f2 | sed 's/,/, /g')
+          TAGS=$(grep "@tags:" "$file" | cut -d':' -f2 | sed 's/,/, /g')
+          
+          # Draft 여부 확인
+          DRAFT=$(grep "@draft:" "$file" | awk '{print $2}')
 
+          # 파일 경로 결정
           if [ "$DRAFT" = "true" ]; then
             TARGET="_drafts/${SLUG}.md"
           else
             TARGET="_posts/${POST_DATE}-${SLUG}.md"
           fi
 
+          # Front Matter 생성
           echo "---" > "$TARGET"
           echo "title: \"$TITLE\"" >> "$TARGET"
           echo "date: $POST_DATETIME" >> "$TARGET"
@@ -57,7 +69,8 @@ jobs:
           echo "---" >> "$TARGET"
           echo "" >> "$TARGET"
 
-          sed '/^@/d;/^#/d' "$file" >> "$TARGET"
+          # 본문 내용 추가 (메타데이터와 제목 제외)
+          sed '/^<!--/,/^-->/d;/^@/d;/^#/d' "$file" >> "$TARGET"
         done
 
     - name: Commit & Push
