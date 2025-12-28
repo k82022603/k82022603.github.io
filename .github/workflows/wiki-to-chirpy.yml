@@ -54,6 +54,14 @@ jobs:
           [ -f "$file" ] || continue
           
           FILENAME=$(basename "$file")
+          
+          # Home.md는 항상 건너뛰기
+          if [ "$FILENAME" = "Home.md" ]; then
+            echo "⊘  Skipped: $FILENAME (Wiki home page)"
+            SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
+            continue
+          fi
+          
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo "📄 Processing: $FILENAME"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
