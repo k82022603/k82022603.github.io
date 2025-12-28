@@ -14,7 +14,7 @@ timezone: Asia/Seoul
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: BLUEBUG'S GITHUB BLOG #Chirpy # the main title
+title: BLUEBUG'S BLOG #Chirpy # the main title
 
 tagline: AI, DevOps 블로그 # A text-focused Jekyll theme # it will display as the subtitle
 
@@ -28,8 +28,8 @@ url: "https://k82022603.github.io"
 github:
   username: k82022603 #github_username # change to your GitHub username
 
-twitter:
-  username: twitter_username # change to your Twitter username
+X(twitter):
+  username: wlsdydqo # change to your Twitter username
 
 social:
   # Change to your full name.
@@ -39,7 +39,7 @@ social:
   links:
     - https://github.com/k82022603
     # The first element serves as the copyright owner's link
-    # - https://twitter.com/username # change to your Twitter homepage
+    - https://twitter.com/username # change to your Twitter homepage
     # - https://github.com/username # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
