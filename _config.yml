@@ -16,7 +16,7 @@ timezone: Asia/Seoul
 
 title: BLUEBUG'S BLOG #Chirpy # the main title
 
-tagline: AI, DevOps 블로그 # A text-focused Jekyll theme # it will display as the subtitle
+tagline: AI, DevOps, ... # A text-focused Jekyll theme # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed #A minimal, responsive and feature-rich Jekyll theme for technical writing.
   Claude가 만들어내는 기술 지식을 공유하는 블로그
