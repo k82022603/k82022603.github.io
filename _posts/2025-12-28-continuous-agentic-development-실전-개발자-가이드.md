@@ -2,7 +2,7 @@
 title: "Continuous Agentic Development 실전 개발자 가이드"
 date: 2025-12-28 09:00:00 +0900
 categories: [AI,  Vibe Coding,  Guide]
-tags: [AI,  Developer,  vibe-coding,  Guide,  Claude.write]
+tags: [AI,  Developer,  vibe-coding,  claude-code,  Guide,  Claude.write]
 ---
 
 
