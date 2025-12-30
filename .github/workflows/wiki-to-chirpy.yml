@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *'  # 매일 1회 (UTC 00:00 = KST 09:00)
   workflow_dispatch:
 
 jobs:
@@ -105,10 +105,13 @@ jobs:
           if [ -z "$SLUG" ]; then
             echo "⚠️  No @slug specified, auto-generating..."
             
+            # LC_ALL 설정으로 한글 처리 보장
+            export LC_ALL=C.UTF-8
+            
             # 한글을 유지하면서 slug 생성
             SLUG=$(echo "$TITLE" | \
               tr '[:upper:]' '[:lower:]' | \
-              sed 's/[^a-z0-9가-힣]/-/g' | \
+              LC_ALL=C.UTF-8 sed 's/[^a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ]/-/g' | \
               sed 's/--*/-/g' | \
               sed 's/^-//;s/-$//')
             
@@ -119,7 +122,7 @@ jobs:
             fi
             
             # 한글이 포함되어 있으면 경고
-            if echo "$SLUG" | grep -q '[가-힣]'; then
+            if echo "$SLUG" | LC_ALL=C.UTF-8 grep -q '[가-힣]'; then
               echo "⚠️  Korean characters in slug: $SLUG"
               echo "   💡 Recommendation: Add @slug: your-english-slug to Wiki"
             else
@@ -175,7 +178,9 @@ jobs:
           # Front Matter 생성
           {
             echo "---"
-            echo "title: \"$TITLE\""
+            # 제목 내부의 따옴표 이스케이프
+            ESCAPED_TITLE=$(echo "$TITLE" | sed 's/"/\\"/g')
+            echo "title: \"$ESCAPED_TITLE\""
             echo "date: $POST_DATETIME"
             echo "categories: [$CATEGORIES]"
             if [ -n "$TAGS" ]; then
