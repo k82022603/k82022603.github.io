@@ -459,9 +459,7 @@ Dario Amodei의 사진과 함께: "현재로서는 Dario가 하늘의 명령을 
 
 
 ---
-# Claude Code의 진화: 2025년 한 해의 여정 [#](https://claude.ai/public/artifacts/482472de-9d0a-4774-afd7-bc5b2f30edff)
-
-## 들어가며
+## Claude Code의 진화: 2025년 한 해의 여정 [#](https://claude.ai/public/artifacts/482472de-9d0a-4774-afd7-bc5b2f30edff)
 
 2025년은 AI 코딩 에이전트의 격동의 해였다. Claude Code는 단순한 CLI 도구를 넘어서 개발자들의 일상적인 워크플로우를 근본적으로 변화시키는 제품으로 발전했다. 이 문서에서는 Claude Code가 어떻게 진화해왔는지, 그리고 왜 현재 CLI 코딩 제품 경험의 정점에 서 있는지를 탐구한다.
 
@@ -574,9 +572,7 @@ Claude Code는 단순한 코딩 도구가 아니라 개발자 경험의 새로�
 
 ---
 
-# Claude Code 기능 심층 분석: 명령어, 서브에이전트, 그리고 그 너머 [#](https://claude.ai/public/artifacts/f3a718f7-8d50-45df-b257-2cbb189b7a3e)
-
-## 들어가며
+## Claude Code 기능 심층 분석: 명령어, 서브에이전트, 그리고 그 너머 [#](https://claude.ai/public/artifacts/f3a718f7-8d50-45df-b257-2cbb189b7a3e)
 
 Claude Code는 표면적으로는 단순한 CLI 도구처럼 보이지만, 그 내부에는 정교하게 설계된 기능들이 층층이 쌓여 있다. 이 문서에서는 Claude Code의 핵심 기능들을 깊이 있게 탐구하고, 이들이 어떻게 작동하며 왜 그렇게 설계되었는지를 살펴본다.
 
@@ -727,9 +723,7 @@ Claude Code의 기능들은 단순히 편의를 위한 것이 아니라, 컨텍�
 
 ---
 
-# Claude Code 워크플로우: 효율적인 개발을 위한 실전 가이드 [#](https://claude.ai/public/artifacts/91b5bbf7-5063-40b9-9eb1-667f1a5d398e)
-
-## 들어가며
+## Claude Code 워크플로우: 효율적인 개발을 위한 실전 가이드 [#](https://claude.ai/public/artifacts/91b5bbf7-5063-40b9-9eb1-667f1a5d398e)
 
 도구는 훌륭하지만, 진정한 마법은 그것을 어떻게 사용하느냐에 있다. 이 문서는 Claude Code를 실제 개발 워크플로우에 통합하는 방법과, 수많은 시행착오를 통해 얻은 실용적인 인사이트를 공유한다.
 
@@ -876,9 +870,7 @@ Claude와 대화하면서 개발하는 접근법:
 
 ---
 
-# 컨텍스트 엔지니어링: AI 에이전트의 메모리 관리 예술 [#](https://claude.ai/public/artifacts/0b1712ef-2f56-4059-af27-1e9989e346ee)
-
-## 들어가며
+## 컨텍스트 엔지니어링: AI 에이전트의 메모리 관리 예술 [#](https://claude.ai/public/artifacts/0b1712ef-2f56-4059-af27-1e9989e346ee)
 
 컨텍스트 엔지니어링은 AI 에이전트의 효율성을 결정짓는 가장 중요한 요소 중 하나다. 이 문서에서는 컨텍스트가 무엇인지, 왜 중요한지, 그리고 Claude Code가 어떻게 정교한 컨텍스트 관리 시스템을 구축했는지 탐구한다.
 
