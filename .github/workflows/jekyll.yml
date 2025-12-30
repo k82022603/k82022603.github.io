@@ -1,27 +1,18 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
+# Deploy Jekyll site to GitHub Pages
 name: Deploy Jekyll site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -31,26 +22,65 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Ruby
-        # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
-        uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4
         with:
-          ruby-version: '3.1' # Not needed with a .ruby-version file
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          cache-version: 0 # Increment this number if you need to re-download cached gems
+          fetch-depth: 0  # 전체 히스토리 (git 기반 플러그인용)
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'  # 최신 안정 버전
+          bundler-cache: true  # 자동 캐싱
+          cache-version: 1     # 캐시 버전
+
+      - name: Verify dependencies
+        run: |
+          echo "=== Verifying Gemfile.lock ==="
+          bundle check || bundle install
+          
+          echo ""
+          echo "=== Checking Jekyll configuration ==="
+          bundle exec jekyll doctor
+          
+          echo ""
+          echo "=== Installed gems ==="
+          bundle list
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+
       - name: Build with Jekyll
-        # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: |
+          echo "=== Building Jekyll site ==="
+          bundle exec jekyll build \
+            --baseurl "${{ steps.pages.outputs.base_path }}" \
+            --verbose
         env:
           JEKYLL_ENV: production
+
+      - name: Test build output
+        run: |
+          echo "=== Checking build output ==="
+          if [ ! -d "_site" ]; then
+            echo "❌ Error: _site directory not found"
+            exit 1
+          fi
+          
+          echo ""
+          echo "📊 Build Statistics:"
+          echo "  Files generated: $(find _site -type f | wc -l)"
+          echo "  Total size: $(du -sh _site | cut -f1)"
+          
+          echo ""
+          echo "📄 Sample files:"
+          find _site -type f -name "*.html" | head -10
+
       - name: Upload artifact
-        # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
 
   # Deployment job
   deploy:
@@ -63,3 +93,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Deployment summary
+        run: |
+          echo ""
+          echo "╔════════════════════════════════════════╗"
+          echo "║     Deployment Successful! 🎉          ║"
+          echo "╚════════════════════════════════════════╝"
+          echo ""
+          echo "  🌐 Site URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "  📅 Deployed: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "  🔗 Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo ""
