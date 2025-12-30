@@ -924,7 +924,7 @@ Claude와 대화하면서 개발하는 접근법:
 
 ## 컨텍스트 엔지니어링의 정의
 
-Anthropic의 [[effective-context-engineering-for-ai-agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)에서 직접 인용:
+Anthropic의 [effective-context-engineering-for-ai-agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)에서 직접 인용:
 
 > 컨텍스트는 대규모 언어 모델(LLM)에서 샘플링할 때 포함되는 토큰 세트를 의미한다. 당면한 엔지니어링 문제는 일관되게 원하는 결과를 달성하기 위해 LLM의 고유한 제약에 대해 이러한 토큰의 유용성을 최적화하는 것이다. LLM을 효과적으로 다루려면 종종 컨텍스트로 생각해야 한다 - 다시 말해서: 주어진 시간에 LLM이 사용할 수 있는 전체적인 상태와 그 상태가 어떤 잠재적 행동을 유발할 수 있는지 고려해야 한다.
 >
@@ -938,7 +938,7 @@ Anthropic의 [[effective-context-engineering-for-ai-agents](https://www.anthropi
 
 GPT-5.2는 400K 입력 토큰의 컨텍스트 윈도우를 가지고 있다. Opus 4.5는 200K다. Gemini 3 Pro는 1M 컨텍스트 윈도우 길이를 가지고 있다. 이제 이러한 컨텍스트 윈도우의 효과는 다를 수 있으며, 길이만이 중요한 것은 아니다. 그렇긴 하지만 900K 길이의 입력에서 무언가를 묻고 싶다면 Gemini 3 Pro로만 가장 안정적으로 할 수 있을 것이다.
 
-[[Chroma의 컨텍스트 부패 논문](https://research.trychroma.com/context-rot)](https://research.trychroma.com/context-rot)은 작업 난이도가 아닌 길이에 따른 성능 저하를 보여주는 일부 실험을 깊이 다룬다.
+[Chroma의 컨텍스트 부패 논문](https://research.trychroma.com/context-rot)은 작업 난이도가 아닌 길이에 따른 성능 저하를 보여주는 일부 실험을 깊이 다룬다.
 
 대략적으로 도출할 수 있는 결론은 효과적인 컨텍스트 윈도우는 아마도 50-60% 또는 그 이하일 것이다. 대화의 중간쯤에 복잡한 작업을 시작하지 마라. 컴팩션을 하거나 새로운 것을 시작하라.
 
@@ -963,7 +963,7 @@ MCP 서버에 연결하려면 MCP 클라이언트를 수용할 수 있는 호스
 
 코드 실행 with MCP의 아이디어가 마음에 든다. 비록 더 많은 토큰 소비를 위한 선전이긴 하지만.
 
-[[Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp)](https://www.anthropic.com/engineering/code-execution-with-mcp)에서 인용:
+[Code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp)에서 인용:
 
 > MCP 사용이 확대됨에 따라 에이전트 비용과 지연을 증가시킬 수 있는 두 가지 일반적인 패턴이 있다:
 >
@@ -976,7 +976,7 @@ MCP Code exec은 직접 도구 호출 대신 **도구 호출 정의보다는 코
 
 ### 시스템 리마인더의 역할
 
-컨텍스트 저하를 방지하는 한 가지 기법은 컨텍스트에 목표를 반복적으로 주입하는 것이다. Manus는 [[Context Engineering 블로그](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)에서 그들의 접근 방식을 공유했다:
+컨텍스트 저하를 방지하는 한 가지 기법은 컨텍스트에 목표를 반복적으로 주입하는 것이다. Manus는 [Context Engineering 블로그](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)에서 그들의 접근 방식을 공유했다:
 
 > **암송을 통한 어텐션 조작**
 >
@@ -996,9 +996,9 @@ Claude Code는 또한 사용자 메시지와 도구 결과에 `<system-reminder>
 
 Claude에게 시스템 프롬프트에 어떤 시스템 리마인더가 있는지 물어봤다. 도구 결과와 사용자 메시지에는 `<system-reminder>` 태그가 포함될 수 있다. 이러한 태그는 유용한 정보와 리마인더를 포함한다. 시스템에 의해 자동으로 추가되며, 나타나는 특정 도구 결과나 사용자 메시지와 직접적인 관련이 없다.
 
-CC 2.0.56의 이전 버전에는 이러한 상세한 리마인더가 있었다. [[system-reminder-plan-mode-is-active](https://github.com/Piebald-AI/claude-code-system-prompts/blob/main/system-prompts/system-reminder-plan-mode-is-active.md)](https://github.com/Piebald-AI/claude-code-system-prompts/blob/main/system-prompts/system-reminder-plan-mode-is-active.md)를 참조.
+CC 2.0.56의 이전 버전에는 이러한 상세한 리마인더가 있었다. [system-reminder-plan-mode-is-active](https://github.com/Piebald-AI/claude-code-system-prompts/blob/main/system-prompts/system-reminder-plan-mode-is-active.md)를 참조.
 
-[[Armin](https://x.com/mitsuhiko)](https://x.com/mitsuhiko)은 자신의 포스트 [[What Actually Is Claude Code's Plan Mode?](https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/)](https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/)에서 `에이전트에게 상기시키는 반복 프롬프트`를 언급할 때 이것에 대해 이야기하는 것으로 생각한다.
+[Armin](https://x.com/mitsuhiko)은 자신의 포스트 [What Actually Is Claude Code's Plan Mode?](https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/)에서 `에이전트에게 상기시키는 반복 프롬프트`를 언급할 때 이것에 대해 이야기하는 것으로 생각한다.
 
 유출된 프롬프트를 보면 플랜 모드에 대해 2-3개의 프롬프트와 ENTRY_PLAN_MODE_TOOL, EXIT_PLAN_MODE_TOOL과 같은 2-3개의 도구 스키마가 있는 것을 알 수 있다. 후자는 출력을 `/plan`을 통해 액세스할 수 있는 마크다운 파일에 작성한다. 모든 것이 마크다운이다.
 
@@ -1006,7 +1006,7 @@ CC 2.0.56의 이전 버전에는 이러한 상세한 리마인더가 있었다. 
 
 ### 스킬: 온디맨드 전문지식
 
-Anthropic은 최근 [[Agent Skills](https://code.claude.com/docs/en/skills)](https://code.claude.com/docs/en/skills)를 도입했고, 이것들은 최근 Codex에도 채택되었다. 스킬은 SKILL.md 파일, 기타 참조 가능한 파일, 그리고 사용자 정의 작업을 수행하는 코드 스크립트를 포함하는 폴더다.
+Anthropic은 최근 [Agent Skills](https://code.claude.com/docs/en/skills)를 도입했고, 이것들은 최근 Codex에도 채택되었다. 스킬은 SKILL.md 파일, 기타 참조 가능한 파일, 그리고 사용자 정의 작업을 수행하는 코드 스크립트를 포함하는 폴더다.
 
 SKILL.md는 LLM이 어떤 스킬이 사용 가능한지 알 수 있는 메타데이터를 포함한다(메타데이터는 시스템 프롬프트에 추가됨). Claude가 스킬이 관련이 있다고 느끼면 스킬의 내용을 읽기 위해 도구 호출을 수행하고 Matrix 1999의 Neo처럼 도메인 전문지식을 다운로드한다. 코드 스크립트는 Claude가 사용할 수 있는 도구를 포함할 수 있다.
 
