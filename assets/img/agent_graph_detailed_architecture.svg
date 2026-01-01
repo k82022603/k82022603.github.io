@@ -1,0 +1,443 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 2000">
+  <!-- 제목 -->
+  <text x="900" y="40" font-size="32" font-weight="bold" text-anchor="middle" fill="#00396B">
+    Salesforce Agent Graph Architecture
+  </text>
+  <text x="900" y="75" font-size="18" text-anchor="middle" fill="#666">
+    그래프 기반 워크플로우 + LLM 지능 + 결정론적 제어
+  </text>
+
+  <!-- 핵심 컨셉 박스 -->
+  <rect x="50" y="100" width="1700" height="120" rx="10" fill="#E8F4F8" stroke="#0070D2" stroke-width="3"/>
+  <text x="900" y="135" font-size="22" font-weight="bold" text-anchor="middle" fill="#00396B">
+    핵심 철학: 그래프 런타임이 "지휘자(Conductor)" 역할
+  </text>
+  <text x="900" y="165" font-size="16" text-anchor="middle" fill="#333">
+    오케스트라 지휘자가 각 악기의 연주 시점을 조율하듯
+  </text>
+  <text x="900" y="190" font-size="16" text-anchor="middle" fill="#333">
+    그래프 런타임은 언제 LLM을 사용하고 언제 규칙을 따를지 조율
+  </text>
+
+  <!-- Section 1: Graph Topology -->
+  <rect x="50" y="250" width="850" height="700" rx="10" fill="#FFF4E6" stroke="#FF9A3C" stroke-width="3"/>
+  <text x="475" y="285" font-size="24" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    1. Graph Topology (그래프 구조)
+  </text>
+
+  <!-- Start Node -->
+  <circle cx="475" cy="350" r="50" fill="#52C41A" stroke="#237804" stroke-width="3"/>
+  <text x="475" y="350" font-size="16" font-weight="bold" text-anchor="middle" fill="#fff">START</text>
+  <text x="475" y="368" font-size="12" text-anchor="middle" fill="#fff">시작</text>
+
+  <!-- Node A: LLM Intent Recognition -->
+  <rect x="360" y="440" width="230" height="100" rx="8" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="3"/>
+  <text x="475" y="465" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Node A: Intent Recognition
+  </text>
+  <text x="475" y="485" font-size="12" text-anchor="middle" fill="#333">Type: LLM</text>
+  <text x="475" y="505" font-size="11" text-anchor="middle" fill="#666">사용자 의도 파악</text>
+  <text x="475" y="523" font-size="11" text-anchor="middle" fill="#666">"환불 요청" → refund_intent</text>
+
+  <!-- Decision Diamond -->
+  <polygon points="475,580 545,630 475,680 405,630" fill="#E6F7FF" stroke="#0070D2" stroke-width="3"/>
+  <text x="475" y="625" font-size="12" font-weight="bold" text-anchor="middle" fill="#00396B">정책</text>
+  <text x="475" y="640" font-size="11" text-anchor="middle" fill="#00396B">확인</text>
+
+  <!-- Node B: Deterministic Policy Check -->
+  <rect x="150" y="730" width="230" height="100" rx="8" fill="#E6F7FF" stroke="#0070D2" stroke-width="3"/>
+  <text x="265" y="755" font-size="14" font-weight="bold" text-anchor="middle" fill="#0070D2">
+    Node B: Policy Check
+  </text>
+  <text x="265" y="775" font-size="12" text-anchor="middle" fill="#333">Type: Deterministic</text>
+  <text x="265" y="795" font-size="11" text-anchor="middle" fill="#666">IF days_since_purchase &lt;= 30</text>
+  <text x="265" y="813" font-size="11" text-anchor="middle" fill="#666">THEN auto_approve</text>
+
+  <!-- Node C: LLM Complex Decision -->
+  <rect x="540" y="730" width="230" height="100" rx="8" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="3"/>
+  <text x="655" y="755" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Node C: Complex Decision
+  </text>
+  <text x="655" y="775" font-size="12" text-anchor="middle" fill="#333">Type: LLM</text>
+  <text x="655" y="795" font-size="11" text-anchor="middle" fill="#666">특수 케이스 평가</text>
+  <text x="655" y="813" font-size="11" text-anchor="middle" fill="#666">VIP, 불량품, 상황 고려</text>
+
+  <!-- Node D: Human Approval -->
+  <rect x="345" y="870" width="260" height="80" rx="8" fill="#CCFFCC" stroke="#52C41A" stroke-width="3"/>
+  <text x="475" y="895" font-size="14" font-weight="bold" text-anchor="middle" fill="#237804">
+    Node D: Human Approval
+  </text>
+  <text x="475" y="915" font-size="12" text-anchor="middle" fill="#333">Type: Human-in-Loop</text>
+  <text x="475" y="935" font-size="11" text-anchor="middle" fill="#666">매니저 승인 대기</text>
+
+  <!-- Arrows -->
+  <path d="M 475 400 L 475 440" stroke="#666" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 475 540 L 475 580" stroke="#666" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <path d="M 405 630 L 265 730" stroke="#52C41A" stroke-width="3" fill="none" marker-end="url(#arrowhead-green)"/>
+  <text x="320" y="670" font-size="11" fill="#237804" font-weight="bold">&lt;= 30일</text>
+  
+  <path d="M 545 630 L 655 730" stroke="#FA541C" stroke-width="3" fill="none" marker-end="url(#arrowhead-red)"/>
+  <text x="610" y="670" font-size="11" fill="#FA541C" font-weight="bold">&gt; 30일</text>
+
+  <path d="M 265 830 L 265 910 L 360 910" stroke="#666" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 655 830 L 655 910 L 605 910" stroke="#666" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Legend for Topology -->
+  <rect x="70" y="870" width="220" height="70" rx="5" fill="#fff" stroke="#999" stroke-width="2"/>
+  <text x="180" y="890" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">노드 타입</text>
+  <circle cx="90" cy="910" r="8" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="105" y="915" font-size="10" fill="#333">LLM 노드 (유연성)</text>
+  <circle cx="90" cy="930" r="8" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="105" y="935" font-size="10" fill="#333">규칙 노드 (확실성)</text>
+
+  <!-- Section 2: Graph Runtime (Conductor) -->
+  <rect x="950" y="250" width="800" height="700" rx="10" fill="#F0F0F0" stroke="#666" stroke-width="3"/>
+  <text x="1350" y="285" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">
+    2. Graph Runtime (지휘자)
+  </text>
+
+  <!-- Conductor Box -->
+  <rect x="1050" y="320" width="600" height="180" rx="8" fill="#4A90E2" stroke="#00396B" stroke-width="3"/>
+  <text x="1350" y="350" font-size="18" font-weight="bold" text-anchor="middle" fill="#fff">
+    Conductor (지휘자)
+  </text>
+  <text x="1350" y="380" font-size="13" text-anchor="middle" fill="#fff">
+    • 그래프 구조에 따라 노드 실행 순서 결정
+  </text>
+  <text x="1350" y="405" font-size="13" text-anchor="middle" fill="#fff">
+    • 각 노드의 타입에 따라 실행 방식 선택
+  </text>
+  <text x="1350" y="430" font-size="13" text-anchor="middle" fill="#fff">
+    • 조건(edge)에 따라 다음 노드로 전환
+  </text>
+  <text x="1350" y="455" font-size="13" text-anchor="middle" fill="#fff">
+    • 실패 시 대안 경로로 재시도
+  </text>
+  <text x="1350" y="480" font-size="13" text-anchor="middle" fill="#fff">
+    • 전체 워크플로우 상태 관리
+  </text>
+
+  <!-- Execution Strategies -->
+  <rect x="980" y="530" width="340" height="220" rx="8" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="1150" y="560" font-size="16" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    LLM 노드 실행
+  </text>
+  <text x="1150" y="590" font-size="12" text-anchor="middle" fill="#333">1. 프롬프트 구성</text>
+  <text x="1150" y="610" font-size="11" text-anchor="middle" fill="#666">컨텍스트 + 사용자 입력</text>
+  <text x="1150" y="635" font-size="12" text-anchor="middle" fill="#333">2. 모델 선택</text>
+  <text x="1150" y="655" font-size="11" text-anchor="middle" fill="#666">복잡도에 따라 동적 라우팅</text>
+  <text x="1150" y="680" font-size="12" text-anchor="middle" fill="#333">3. 신뢰도 평가</text>
+  <text x="1150" y="700" font-size="11" text-anchor="middle" fill="#666">confidence &lt; 0.8 → 재시도</text>
+  <text x="1150" y="725" font-size="12" text-anchor="middle" fill="#333">4. 출력 검증</text>
+  <text x="1150" y="745" font-size="11" text-anchor="middle" fill="#666">Trust Layer 통과</text>
+
+  <rect x="1360" y="530" width="340" height="220" rx="8" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="1530" y="560" font-size="16" font-weight="bold" text-anchor="middle" fill="#0070D2">
+    규칙 노드 실행
+  </text>
+  <text x="1530" y="590" font-size="12" text-anchor="middle" fill="#333">1. 데이터베이스 쿼리</text>
+  <text x="1530" y="610" font-size="11" text-anchor="middle" fill="#666">주문 정보, 고객 정보 조회</text>
+  <text x="1530" y="635" font-size="12" text-anchor="middle" fill="#333">2. IF-THEN 규칙 실행</text>
+  <text x="1530" y="655" font-size="11" text-anchor="middle" fill="#666">정책 엔진으로 확실한 판단</text>
+  <text x="1530" y="680" font-size="12" text-anchor="middle" fill="#333">3. 액션 실행</text>
+  <text x="1530" y="700" font-size="11" text-anchor="middle" fill="#666">API 호출, Flow 트리거</text>
+  <text x="1530" y="725" font-size="12" text-anchor="middle" fill="#333">4. 결과 로깅</text>
+  <text x="1530" y="745" font-size="11" text-anchor="middle" fill="#666">감사 추적 기록</text>
+
+  <!-- State Management -->
+  <rect x="980" y="780" width="720" height="150" rx="8" fill="#FFF1F0" stroke="#FA541C" stroke-width="2"/>
+  <text x="1340" y="810" font-size="16" font-weight="bold" text-anchor="middle" fill="#FA541C">
+    상태 관리 (State Management)
+  </text>
+  <text x="1340" y="840" font-size="13" text-anchor="middle" fill="#333">
+    • 현재 노드: "Node C: Complex Decision"
+  </text>
+  <text x="1340" y="865" font-size="13" text-anchor="middle" fill="#333">
+    • 변수: {customer_tier: "VIP", days_since_purchase: 35, defect_claimed: true}
+  </text>
+  <text x="1340" y="890" font-size="13" text-anchor="middle" fill="#333">
+    • 대화 컨텍스트: 지난 3개월 구매 이력, 고객 만족도 점수
+  </text>
+  <text x="1340" y="915" font-size="13" text-anchor="middle" fill="#333">
+    • 실행 경로: START → Node A → Node C (현재)
+  </text>
+
+  <!-- Section 3: Ensemble RAG Integration -->
+  <rect x="50" y="990" width="1700" height="480" rx="10" fill="#E6F7FF" stroke="#0070D2" stroke-width="3"/>
+  <text x="900" y="1025" font-size="24" font-weight="bold" text-anchor="middle" fill="#0070D2">
+    3. Ensemble RAG (다중 검색 전략)
+  </text>
+
+  <!-- RAG Trigger -->
+  <rect x="100" y="1060" width="280" height="100" rx="8" fill="#fff" stroke="#666" stroke-width="2"/>
+  <text x="240" y="1090" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    RAG 트리거
+  </text>
+  <text x="240" y="1115" font-size="12" text-anchor="middle" fill="#666">LLM 노드 실행 시</text>
+  <text x="240" y="1135" font-size="12" text-anchor="middle" fill="#666">관련 컨텍스트 필요 판단</text>
+
+  <!-- Three Search Strategies -->
+  <rect x="450" y="1060" width="280" height="100" rx="8" fill="#FFF4E6" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="590" y="1085" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    1. 키워드 검색
+  </text>
+  <text x="590" y="1110" font-size="11" text-anchor="middle" fill="#666">"환불", "VIP", "35일"</text>
+  <text x="590" y="1130" font-size="11" text-anchor="middle" fill="#666">정확한 매칭</text>
+  <text x="590" y="1150" font-size="10" text-anchor="middle" fill="#999">속도: 빠름</text>
+
+  <rect x="760" y="1060" width="280" height="100" rx="8" fill="#FFF4E6" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="900" y="1085" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    2. 시맨틱 벡터 검색
+  </text>
+  <text x="900" y="1110" font-size="11" text-anchor="middle" fill="#666">의미적 유사성</text>
+  <text x="900" y="1130" font-size="11" text-anchor="middle" fill="#666">"반품" ≈ "환불"</text>
+  <text x="900" y="1150" font-size="10" text-anchor="middle" fill="#999">정확도: 높음</text>
+
+  <rect x="1070" y="1060" width="280" height="100" rx="8" fill="#FFF4E6" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="1210" y="1085" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    3. 그래프 관계 검색
+  </text>
+  <text x="1210" y="1110" font-size="11" text-anchor="middle" fill="#666">연결된 정보 탐색</text>
+  <text x="1210" y="1130" font-size="11" text-anchor="middle" fill="#666">고객 → 주문 → 제품</text>
+  <text x="1210" y="1150" font-size="10" text-anchor="middle" fill="#999">맥락: 풍부함</text>
+
+  <!-- Integration Engine -->
+  <rect x="450" y="1200" width="900" height="120" rx="8" fill="#4A90E2" stroke="#00396B" stroke-width="3"/>
+  <text x="900" y="1230" font-size="16" font-weight="bold" text-anchor="middle" fill="#fff">
+    통합 및 순위 조정 엔진
+  </text>
+  <text x="900" y="1260" font-size="13" text-anchor="middle" fill="#fff">
+    각 전략의 결과를 점수화 (Scoring) → 중복 제거 (Deduplication)
+  </text>
+  <text x="900" y="1285" font-size="13" text-anchor="middle" fill="#fff">
+    → 최종 순위 결정 (Ranking) → 상위 K개 선택
+  </text>
+
+  <!-- Context Refinement -->
+  <rect x="450" y="1350" width="900" height="100" rx="8" fill="#FFF1F0" stroke="#FA541C" stroke-width="2"/>
+  <text x="900" y="1380" font-size="16" font-weight="bold" text-anchor="middle" fill="#FA541C">
+    컨텍스트 정제 (Context Refinement)
+  </text>
+  <text x="900" y="1410" font-size="13" text-anchor="middle" fill="#333">
+    가장 관련성 높은 정보만 LLM에 전달 • 토큰 사용 최적화
+  </text>
+  <text x="900" y="1435" font-size="13" text-anchor="middle" fill="#333">
+    모순되는 정보 감지 및 해결 • 컨텍스트 압축
+  </text>
+
+  <!-- Arrows for RAG flow -->
+  <path d="M 380 1110 L 450 1110" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 730 1110 L 760 1110" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 1040 1110 L 1070 1110" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <path d="M 590 1160 L 590 1200" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 900 1160 L 900 1200" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 1210 1160 L 1210 1200" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <path d="M 900 1320 L 900 1350" stroke="#666" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Performance Metrics -->
+  <rect x="100" y="1200" width="310" height="250" rx="8" fill="#F0F0F0" stroke="#666" stroke-width="2"/>
+  <text x="255" y="1230" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">
+    성능 개선
+  </text>
+  <text x="255" y="1265" font-size="14" text-anchor="middle" fill="#52C41A" font-weight="bold">
+    ✓ 응답 관련성 2배 향상
+  </text>
+  <text x="255" y="1295" font-size="12" text-anchor="middle" fill="#666">
+    단일 검색 대비
+  </text>
+  <text x="255" y="1330" font-size="14" text-anchor="middle" fill="#52C41A" font-weight="bold">
+    ✓ 정확도 33% 증가
+  </text>
+  <text x="255" y="1360" font-size="12" text-anchor="middle" fill="#666">
+    경쟁사 및 DIY 시스템 대비
+  </text>
+  <text x="255" y="1395" font-size="14" text-anchor="middle" fill="#52C41A" font-weight="bold">
+    ✓ 토큰 사용 40% 절감
+  </text>
+  <text x="255" y="1425" font-size="12" text-anchor="middle" fill="#666">
+    컨텍스트 정제 통해
+  </text>
+
+  <!-- Section 4: Event-Driven Architecture -->
+  <rect x="50" y="1510" width="850" height="460" rx="10" fill="#FFF4E6" stroke="#FF9A3C" stroke-width="3"/>
+  <text x="475" y="1545" font-size="24" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    4. Event-Driven Architecture
+  </text>
+
+  <!-- Event Bus -->
+  <rect x="250" y="1580" width="450" height="80" rx="8" fill="#4A90E2" stroke="#00396B" stroke-width="3"/>
+  <text x="475" y="1610" font-size="18" font-weight="bold" text-anchor="middle" fill="#fff">
+    Event Bus (이벤트 버스)
+  </text>
+  <text x="475" y="1640" font-size="13" text-anchor="middle" fill="#fff">
+    Publish-Subscribe 패턴
+  </text>
+
+  <!-- Publishers -->
+  <rect x="100" y="1710" width="180" height="70" rx="5" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="190" y="1735" font-size="13" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Publisher 1
+  </text>
+  <text x="190" y="1755" font-size="11" text-anchor="middle" fill="#666">노드 완료 이벤트</text>
+
+  <rect x="310" y="1710" width="180" height="70" rx="5" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="400" y="1735" font-size="13" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Publisher 2
+  </text>
+  <text x="400" y="1755" font-size="11" text-anchor="middle" fill="#666">데이터 변경 이벤트</text>
+
+  <rect x="520" y="1710" width="180" height="70" rx="5" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="610" y="1735" font-size="13" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Publisher 3
+  </text>
+  <text x="610" y="1755" font-size="11" text-anchor="middle" fill="#666">외부 시스템 이벤트</text>
+
+  <!-- Subscribers -->
+  <rect x="100" y="1850" width="180" height="70" rx="5" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="190" y="1875" font-size="13" font-weight="bold" text-anchor="middle" fill="#0070D2">
+    Subscriber A
+  </text>
+  <text x="190" y="1895" font-size="11" text-anchor="middle" fill="#666">다음 노드 트리거</text>
+
+  <rect x="310" y="1850" width="180" height="70" rx="5" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="400" y="1875" font-size="13" font-weight="bold" text-anchor="middle" fill="#0070D2">
+    Subscriber B
+  </text>
+  <text x="400" y="1895" font-size="11" text-anchor="middle" fill="#666">로깅 및 모니터링</text>
+
+  <rect x="520" y="1850" width="180" height="70" rx="5" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="610" y="1875" font-size="13" font-weight="bold" text-anchor="middle" fill="#0070D2">
+    Subscriber C
+  </text>
+  <text x="610" y="1895" font-size="11" text-anchor="middle" fill="#666">알림 발송</text>
+
+  <!-- Event flow arrows -->
+  <path d="M 190 1660 L 190 1710" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 400 1660 L 400 1710" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 610 1660 L 610 1710" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <path d="M 190 1780 L 190 1850" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 400 1780 L 400 1850" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 610 1780 L 610 1850" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Benefits Box -->
+  <rect x="750" y="1580" width="130" height="340" rx="5" fill="#F0F0F0" stroke="#666" stroke-width="2"/>
+  <text x="815" y="1610" font-size="13" font-weight="bold" text-anchor="middle" fill="#333">
+    장점
+  </text>
+  <text x="815" y="1645" font-size="11" text-anchor="middle" fill="#52C41A" font-weight="bold">
+    ✓ 디커플링
+  </text>
+  <text x="815" y="1665" font-size="9" text-anchor="middle" fill="#666">
+    구성요소
+  </text>
+  <text x="815" y="1680" font-size="9" text-anchor="middle" fill="#666">
+    독립성
+  </text>
+  <text x="815" y="1715" font-size="11" text-anchor="middle" fill="#52C41A" font-weight="bold">
+    ✓ 확장성
+  </text>
+  <text x="815" y="1735" font-size="9" text-anchor="middle" fill="#666">
+    독립적
+  </text>
+  <text x="815" y="1750" font-size="9" text-anchor="middle" fill="#666">
+    스케일링
+  </text>
+  <text x="815" y="1785" font-size="11" text-anchor="middle" fill="#52C41A" font-weight="bold">
+    ✓ 병렬처리
+  </text>
+  <text x="815" y="1805" font-size="9" text-anchor="middle" fill="#666">
+    5배 속도
+  </text>
+  <text x="815" y="1820" font-size="9" text-anchor="middle" fill="#666">
+    향상
+  </text>
+  <text x="815" y="1855" font-size="11" text-anchor="middle" fill="#52C41A" font-weight="bold">
+    ✓ 복원력
+  </text>
+  <text x="815" y="1875" font-size="9" text-anchor="middle" fill="#666">
+    자동
+  </text>
+  <text x="815" y="1890" font-size="9" text-anchor="middle" fill="#666">
+    재시도
+  </text>
+
+  <!-- Section 5: Multi-Agent Collaboration -->
+  <rect x="950" y="1510" width="800" height="460" rx="10" fill="#F9F0FF" stroke="#722ED1" stroke-width="3"/>
+  <text x="1350" y="1545" font-size="24" font-weight="bold" text-anchor="middle" fill="#722ED1">
+    5. Multi-Agent Collaboration
+  </text>
+
+  <!-- Concierge Orchestrator -->
+  <rect x="1100" y="1580" width="500" height="100" rx="8" fill="#722ED1" stroke="#531DAB" stroke-width="3"/>
+  <text x="1350" y="1615" font-size="18" font-weight="bold" text-anchor="middle" fill="#fff">
+    Concierge Orchestrator (총괄 조율자)
+  </text>
+  <text x="1350" y="1645" font-size="13" text-anchor="middle" fill="#fff">
+    전문 에이전트들을 조율하고 결과 통합
+  </text>
+
+  <!-- Specialist Agents -->
+  <rect x="1000" y="1730" width="220" height="100" rx="5" fill="#FFF1F0" stroke="#FA541C" stroke-width="2"/>
+  <text x="1110" y="1760" font-size="14" font-weight="bold" text-anchor="middle" fill="#FA541C">
+    Data Retrieval Agent
+  </text>
+  <text x="1110" y="1785" font-size="11" text-anchor="middle" fill="#666">CRM 데이터 조회</text>
+  <text x="1110" y="1805" font-size="11" text-anchor="middle" fill="#666">고객/주문 정보</text>
+
+  <rect x="1250" y="1730" width="220" height="100" rx="5" fill="#FFF4E6" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="1360" y="1760" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Analysis Agent
+  </text>
+  <text x="1360" y="1785" font-size="11" text-anchor="middle" fill="#666">복잡한 분석 수행</text>
+  <text x="1360" y="1805" font-size="11" text-anchor="middle" fill="#666">패턴 인식</text>
+
+  <rect x="1500" y="1730" width="220" height="100" rx="5" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="1610" y="1760" font-size="14" font-weight="bold" text-anchor="middle" fill="#0070D2">
+    Communication Agent
+  </text>
+  <text x="1610" y="1785" font-size="11" text-anchor="middle" fill="#666">고객 응답 생성</text>
+  <text x="1610" y="1805" font-size="11" text-anchor="middle" fill="#666">다국어 지원</text>
+
+  <!-- Agent coordination arrows -->
+  <path d="M 1350 1680 L 1110 1730" stroke="#722ED1" stroke-width="3" fill="none" marker-end="url(#arrowhead-purple)"/>
+  <path d="M 1350 1680 L 1360 1730" stroke="#722ED1" stroke-width="3" fill="none" marker-end="url(#arrowhead-purple)"/>
+  <path d="M 1350 1680 L 1610 1730" stroke="#722ED1" stroke-width="3" fill="none" marker-end="url(#arrowhead-purple)"/>
+
+  <text x="1220" y="1710" font-size="11" fill="#722ED1" font-weight="bold">할당</text>
+  <text x="1360" y="1710" font-size="11" fill="#722ED1" font-weight="bold">할당</text>
+  <text x="1500" y="1710" font-size="11" fill="#722ED1" font-weight="bold">할당</text>
+
+  <!-- Result Integration -->
+  <rect x="1100" y="1870" width="500" height="80" rx="8" fill="#F0F0F0" stroke="#666" stroke-width="2"/>
+  <text x="1350" y="1900" font-size="15" font-weight="bold" text-anchor="middle" fill="#333">
+    결과 통합 및 종합
+  </text>
+  <text x="1350" y="1925" font-size="12" text-anchor="middle" fill="#666">
+    각 에이전트 결과 병합 → 일관성 검증 → 최종 응답 생성
+  </text>
+
+  <path d="M 1110 1830 L 1250 1870" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 1360 1830 L 1360 1870" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 1610 1830 L 1450 1870" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#52C41A"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#FA541C"/>
+    </marker>
+    <marker id="arrowhead-purple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#722ED1"/>
+    </marker>
+  </defs>
+
+</svg>
