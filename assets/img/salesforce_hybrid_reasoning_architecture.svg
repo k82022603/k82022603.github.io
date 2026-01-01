@@ -1,0 +1,345 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1400">
+  <!-- 제목 -->
+  <text x="800" y="40" font-size="28" font-weight="bold" text-anchor="middle" fill="#00396B">
+    Salesforce Hybrid Reasoning Architecture
+  </text>
+  <text x="800" y="70" font-size="16" text-anchor="middle" fill="#666">
+    Atlas Reasoning Engine + Agent Graph + Agent Script
+  </text>
+
+  <!-- 배경 레이어 구분 -->
+  <rect x="50" y="100" width="1500" height="350" rx="10" fill="#E8F4F8" stroke="#0070D2" stroke-width="2"/>
+  <rect x="50" y="470" width="1500" height="350" rx="10" fill="#FFF4E6" stroke="#FF9A3C" stroke-width="2"/>
+  <rect x="50" y="840" width="1500" height="480" rx="10" fill="#F0F0F0" stroke="#666" stroke-width="2"/>
+
+  <!-- Layer 1: Atlas Reasoning Engine -->
+  <text x="800" y="130" font-size="22" font-weight="bold" text-anchor="middle" fill="#0070D2">
+    Layer 1: Atlas Reasoning Engine (추론 엔진)
+  </text>
+
+  <!-- ReAct Loop -->
+  <ellipse cx="300" cy="250" rx="180" ry="140" fill="#fff" stroke="#0070D2" stroke-width="3"/>
+  <text x="300" y="200" font-size="18" font-weight="bold" text-anchor="middle" fill="#00396B">
+    ReAct Loop
+  </text>
+  <text x="300" y="230" font-size="14" text-anchor="middle" fill="#333">
+    Reason (추론)
+  </text>
+  <text x="300" y="255" font-size="14" text-anchor="middle" fill="#333">
+    ↓
+  </text>
+  <text x="300" y="280" font-size="14" text-anchor="middle" fill="#333">
+    Act (행동)
+  </text>
+  <text x="300" y="305" font-size="14" text-anchor="middle" fill="#333">
+    ↓
+  </text>
+  <text x="300" y="330" font-size="14" text-anchor="middle" fill="#333">
+    Observe (관찰)
+  </text>
+
+  <!-- Core Components -->
+  <rect x="520" y="160" width="150" height="70" rx="5" fill="#0070D2" stroke="#00396B" stroke-width="2"/>
+  <text x="595" y="190" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+    Planner
+  </text>
+  <text x="595" y="210" font-size="11" text-anchor="middle" fill="#fff">
+    계획 수립
+  </text>
+
+  <rect x="700" y="160" width="150" height="70" rx="5" fill="#0070D2" stroke="#00396B" stroke-width="2"/>
+  <text x="775" y="190" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+    Action Selector
+  </text>
+  <text x="775" y="210" font-size="11" text-anchor="middle" fill="#fff">
+    행동 선택
+  </text>
+
+  <rect x="880" y="160" width="150" height="70" rx="5" fill="#0070D2" stroke="#00396B" stroke-width="2"/>
+  <text x="955" y="190" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+    Tool Executor
+  </text>
+  <text x="955" y="210" font-size="11" text-anchor="middle" fill="#fff">
+    도구 실행
+  </text>
+
+  <rect x="1060" y="160" width="150" height="70" rx="5" fill="#0070D2" stroke="#00396B" stroke-width="2"/>
+  <text x="1135" y="190" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+    Memory Module
+  </text>
+  <text x="1135" y="210" font-size="11" text-anchor="middle" fill="#fff">
+    메모리 관리
+  </text>
+
+  <rect x="1240" y="160" width="150" height="70" rx="5" fill="#0070D2" stroke="#00396B" stroke-width="2"/>
+  <text x="1315" y="190" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+    Reflection
+  </text>
+  <text x="1315" y="210" font-size="11" text-anchor="middle" fill="#fff">
+    자기 성찰
+  </text>
+
+  <!-- System 1 & 2 -->
+  <rect x="520" y="260" width="340" height="60" rx="5" fill="#4A90E2" stroke="#00396B" stroke-width="2"/>
+  <text x="690" y="285" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+    System 1 (빠른 사고) + System 2 (느린 사고)
+  </text>
+  <text x="690" y="305" font-size="11" text-anchor="middle" fill="#fff">
+    직관적 응답 ↔ 깊은 추론
+  </text>
+
+  <!-- Ensemble RAG -->
+  <rect x="890" y="260" width="310" height="60" rx="5" fill="#4A90E2" stroke="#00396B" stroke-width="2"/>
+  <text x="1045" y="285" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+    Ensemble RAG
+  </text>
+  <text x="1045" y="305" font-size="11" text-anchor="middle" fill="#fff">
+    다중 검색 전략 통합
+  </text>
+
+  <!-- Arrows from Atlas to Agent Graph -->
+  <path d="M 800 430 L 800 470" stroke="#666" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="820" y="455" font-size="12" fill="#666">추론 결과</text>
+
+  <!-- Layer 2: Agent Graph -->
+  <text x="800" y="500" font-size="22" font-weight="bold" text-anchor="middle" fill="#FF9A3C">
+    Layer 2: Agent Graph (워크플로우 정의)
+  </text>
+
+  <!-- Graph Topology -->
+  <rect x="100" y="540" width="450" height="240" rx="5" fill="#fff" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="325" y="565" font-size="16" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Graph Topology
+  </text>
+
+  <!-- Nodes in Graph -->
+  <circle cx="180" cy="630" r="40" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="180" y="625" font-size="11" text-anchor="middle" fill="#333">노드 A</text>
+  <text x="180" y="640" font-size="9" text-anchor="middle" fill="#666">(LLM)</text>
+
+  <circle cx="300" cy="630" r="40" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="300" y="625" font-size="11" text-anchor="middle" fill="#333">노드 B</text>
+  <text x="300" y="640" font-size="9" text-anchor="middle" fill="#666">(규칙)</text>
+
+  <circle cx="420" cy="630" r="40" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="420" y="625" font-size="11" text-anchor="middle" fill="#333">노드 C</text>
+  <text x="420" y="640" font-size="9" text-anchor="middle" fill="#666">(LLM)</text>
+
+  <circle cx="240" cy="720" r="40" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="240" y="715" font-size="11" text-anchor="middle" fill="#333">노드 D</text>
+  <text x="240" y="730" font-size="9" text-anchor="middle" fill="#666">(규칙)</text>
+
+  <circle cx="380" cy="720" r="40" fill="#CCFFCC" stroke="#52C41A" stroke-width="2"/>
+  <text x="380" y="715" font-size="11" text-anchor="middle" fill="#333">인간</text>
+  <text x="380" y="730" font-size="9" text-anchor="middle" fill="#666">(개입)</text>
+
+  <!-- Edges -->
+  <path d="M 220 630 L 260 630" stroke="#FF9A3C" stroke-width="2" fill="none" marker-end="url(#arrowhead-orange)"/>
+  <path d="M 340 630 L 380 630" stroke="#FF9A3C" stroke-width="2" fill="none" marker-end="url(#arrowhead-orange)"/>
+  <path d="M 300 670 L 260 680" stroke="#FF9A3C" stroke-width="2" fill="none" marker-end="url(#arrowhead-orange)"/>
+  <path d="M 420 670 L 400 680" stroke="#FF9A3C" stroke-width="2" fill="none" marker-end="url(#arrowhead-orange)"/>
+
+  <!-- Event-Driven Architecture -->
+  <rect x="600" y="540" width="300" height="240" rx="5" fill="#fff" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="750" y="565" font-size="16" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Event-Driven
+  </text>
+
+  <rect x="640" y="590" width="220" height="50" rx="3" fill="#FFF4E6" stroke="#FF9A3C" stroke-width="1"/>
+  <text x="750" y="610" font-size="12" text-anchor="middle" fill="#333">Event Bus</text>
+  <text x="750" y="628" font-size="10" text-anchor="middle" fill="#666">Publish-Subscribe</text>
+
+  <rect x="620" y="660" width="100" height="40" rx="3" fill="#E6F7FF" stroke="#0070D2" stroke-width="1"/>
+  <text x="670" y="685" font-size="11" text-anchor="middle" fill="#333">Publisher</text>
+
+  <rect x="780" y="660" width="100" height="40" rx="3" fill="#E6F7FF" stroke="#0070D2" stroke-width="1"/>
+  <text x="830" y="685" font-size="11" text-anchor="middle" fill="#333">Subscriber</text>
+
+  <path d="M 720 680 L 780 680" stroke="#FF9A3C" stroke-width="2" fill="none" marker-end="url(#arrowhead-orange)"/>
+
+  <text x="750" y="735" font-size="10" text-anchor="middle" fill="#666">병렬 처리</text>
+  <text x="750" y="750" font-size="10" text-anchor="middle" fill="#666">동적 확장</text>
+
+  <!-- Multi-Agent Orchestration -->
+  <rect x="950" y="540" width="580" height="240" rx="5" fill="#fff" stroke="#FF9A3C" stroke-width="2"/>
+  <text x="1240" y="565" font-size="16" font-weight="bold" text-anchor="middle" fill="#FF6B00">
+    Multi-Agent Orchestration
+  </text>
+
+  <rect x="1090" y="590" width="300" height="50" rx="3" fill="#4A90E2" stroke="#0070D2" stroke-width="2"/>
+  <text x="1240" y="610" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">
+    Concierge Orchestrator
+  </text>
+  <text x="1240" y="628" font-size="10" text-anchor="middle" fill="#fff">전체 조율</text>
+
+  <rect x="990" y="670" width="130" height="50" rx="3" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="1"/>
+  <text x="1055" y="690" font-size="11" text-anchor="middle" fill="#333">Data Agent</text>
+  <text x="1055" y="705" font-size="9" text-anchor="middle" fill="#666">데이터 검색</text>
+
+  <rect x="1155" y="670" width="130" height="50" rx="3" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="1"/>
+  <text x="1220" y="690" font-size="11" text-anchor="middle" fill="#333">Analysis Agent</text>
+  <text x="1220" y="705" font-size="9" text-anchor="middle" fill="#666">분석</text>
+
+  <rect x="1320" y="670" width="130" height="50" rx="3" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="1"/>
+  <text x="1385" y="690" font-size="11" text-anchor="middle" fill="#333">Comm Agent</text>
+  <text x="1385" y="705" font-size="9" text-anchor="middle" fill="#666">커뮤니케이션</text>
+
+  <path d="M 1190 640 L 1055 670" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 1240 640 L 1220 670" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 1290 640 L 1385 670" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Arrows from Agent Graph to Foundation -->
+  <path d="M 800 800 L 800 840" stroke="#666" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="820" y="825" font-size="12" fill="#666">실행</text>
+
+  <!-- Layer 3: Foundation and Security -->
+  <text x="800" y="870" font-size="22" font-weight="bold" text-anchor="middle" fill="#666">
+    Layer 3: Foundation and Security (기반 인프라)
+  </text>
+
+  <!-- Agent Script -->
+  <rect x="80" y="910" width="340" height="180" rx="5" fill="#fff" stroke="#52C41A" stroke-width="2"/>
+  <text x="250" y="935" font-size="16" font-weight="bold" text-anchor="middle" fill="#52C41A">
+    Agent Script
+  </text>
+  <text x="250" y="960" font-size="12" text-anchor="middle" fill="#333">
+    agent RefundProcessor {
+  </text>
+  <text x="250" y="980" font-size="12" text-anchor="middle" fill="#333">
+    when customer_asks("환불") {
+  </text>
+  <text x="250" y="1000" font-size="12" text-anchor="middle" fill="#333">
+    if days &lt;= 30 { approve() }
+  </text>
+  <text x="250" y="1020" font-size="12" text-anchor="middle" fill="#333">
+    else { ask_llm(...) }
+  </text>
+  <text x="250" y="1040" font-size="12" text-anchor="middle" fill="#333">
+    }
+  </text>
+  <text x="250" y="1060" font-size="12" text-anchor="middle" fill="#333">
+    }
+  </text>
+
+  <!-- Trust Layer -->
+  <rect x="460" y="910" width="340" height="180" rx="5" fill="#fff" stroke="#FA541C" stroke-width="2"/>
+  <text x="630" y="935" font-size="16" font-weight="bold" text-anchor="middle" fill="#FA541C">
+    Einstein Trust Layer
+  </text>
+  
+  <rect x="490" y="955" width="280" height="30" rx="3" fill="#FFF1F0" stroke="#FA541C" stroke-width="1"/>
+  <text x="630" y="975" font-size="12" text-anchor="middle" fill="#333">독성 감지 (Toxicity Detection)</text>
+
+  <rect x="490" y="995" width="280" height="30" rx="3" fill="#FFF1F0" stroke="#FA541C" stroke-width="1"/>
+  <text x="630" y="1015" font-size="12" text-anchor="middle" fill="#333">PII 자동 편집 (PII Redaction)</text>
+
+  <rect x="490" y="1035" width="280" height="30" rx="3" fill="#FFF1F0" stroke="#FA541C" stroke-width="1"/>
+  <text x="630" y="1055" font-size="12" text-anchor="middle" fill="#333">프롬프트 인젝션 방어</text>
+
+  <!-- Guardrails -->
+  <rect x="840" y="910" width="340" height="180" rx="5" fill="#fff" stroke="#722ED1" stroke-width="2"/>
+  <text x="1010" y="935" font-size="16" font-weight="bold" text-anchor="middle" fill="#722ED1">
+    Guardrails
+  </text>
+  
+  <rect x="870" y="955" width="280" height="30" rx="3" fill="#F9F0FF" stroke="#722ED1" stroke-width="1"/>
+  <text x="1010" y="975" font-size="12" text-anchor="middle" fill="#333">입력 검증 (Input Validation)</text>
+
+  <rect x="870" y="995" width="280" height="30" rx="3" fill="#F9F0FF" stroke="#722ED1" stroke-width="1"/>
+  <text x="1010" y="1015" font-size="12" text-anchor="middle" fill="#333">출력 필터링 (Output Filtering)</text>
+
+  <rect x="870" y="1035" width="280" height="30" rx="3" fill="#F9F0FF" stroke="#722ED1" stroke-width="1"/>
+  <text x="1010" y="1055" font-size="12" text-anchor="middle" fill="#333">행동 제약 (Action Constraints)</text>
+
+  <!-- Observability -->
+  <rect x="1220" y="910" width="310" height="180" rx="5" fill="#fff" stroke="#1890FF" stroke-width="2"/>
+  <text x="1375" y="935" font-size="16" font-weight="bold" text-anchor="middle" fill="#1890FF">
+    Observability
+  </text>
+  
+  <rect x="1245" y="955" width="260" height="30" rx="3" fill="#E6F7FF" stroke="#1890FF" stroke-width="1"/>
+  <text x="1375" y="975" font-size="12" text-anchor="middle" fill="#333">추론 추적 (Reasoning Trace)</text>
+
+  <rect x="1245" y="995" width="260" height="30" rx="3" fill="#E6F7FF" stroke="#1890FF" stroke-width="1"/>
+  <text x="1375" y="1015" font-size="12" text-anchor="middle" fill="#333">성능 메트릭 (Performance)</text>
+
+  <rect x="1245" y="1035" width="260" height="30" rx="3" fill="#E6F7FF" stroke="#1890FF" stroke-width="1"/>
+  <text x="1375" y="1055" font-size="12" text-anchor="middle" fill="#333">비용 추적 (Cost Tracking)</text>
+
+  <!-- Hyperforce Platform -->
+  <rect x="80" y="1130" width="1450" height="80" rx="5" fill="#00396B" stroke="#0070D2" stroke-width="2"/>
+  <text x="805" y="1160" font-size="18" font-weight="bold" text-anchor="middle" fill="#fff">
+    Salesforce Hyperforce Platform
+  </text>
+  <text x="805" y="1185" font-size="13" text-anchor="middle" fill="#E8F4F8">
+    글로벌 인프라 · 보안 · 인증/권한 · 데이터 암호화 · 컴플라이언스
+  </text>
+
+  <!-- Data Sources -->
+  <rect x="80" y="1240" width="270" height="120" rx="5" fill="#F5F5F5" stroke="#999" stroke-width="2"/>
+  <text x="215" y="1265" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    데이터 소스
+  </text>
+  <text x="215" y="1290" font-size="12" text-anchor="middle" fill="#666">Salesforce CRM</text>
+  <text x="215" y="1310" font-size="12" text-anchor="middle" fill="#666">Data Cloud (구조화/비구조화)</text>
+  <text x="215" y="1330" font-size="12" text-anchor="middle" fill="#666">외부 시스템 (MuleSoft)</text>
+
+  <!-- LLM Models -->
+  <rect x="390" y="1240" width="270" height="120" rx="5" fill="#F5F5F5" stroke="#999" stroke-width="2"/>
+  <text x="525" y="1265" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    LLM 모델
+  </text>
+  <text x="525" y="1290" font-size="12" text-anchor="middle" fill="#666">Claude Sonnet 4</text>
+  <text x="525" y="1310" font-size="12" text-anchor="middle" fill="#666">GPT-4, GPT-3.5</text>
+  <text x="525" y="1330" font-size="12" text-anchor="middle" fill="#666">Model Agnostic (교체 가능)</text>
+
+  <!-- Actions and Tools -->
+  <rect x="700" y="1240" width="270" height="120" rx="5" fill="#F5F5F5" stroke="#999" stroke-width="2"/>
+  <text x="835" y="1265" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    액션 및 도구
+  </text>
+  <text x="835" y="1290" font-size="12" text-anchor="middle" fill="#666">Salesforce Flow</text>
+  <text x="835" y="1310" font-size="12" text-anchor="middle" fill="#666">Apex Functions</text>
+  <text x="835" y="1330" font-size="12" text-anchor="middle" fill="#666">APIs and Integrations</text>
+
+  <!-- Output Channels -->
+  <rect x="1010" y="1240" width="270" height="120" rx="5" fill="#F5F5F5" stroke="#999" stroke-width="2"/>
+  <text x="1145" y="1265" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    출력 채널
+  </text>
+  <text x="1145" y="1290" font-size="12" text-anchor="middle" fill="#666">Web, Mobile, Voice</text>
+  <text x="1145" y="1310" font-size="12" text-anchor="middle" fill="#666">Email, SMS, WhatsApp</text>
+  <text x="1145" y="1330" font-size="12" text-anchor="middle" fill="#666">Slack, Teams</text>
+
+  <!-- Key Principles -->
+  <rect x="1320" y="1240" width="210" height="120" rx="5" fill="#E6F7FF" stroke="#0070D2" stroke-width="2"/>
+  <text x="1425" y="1265" font-size="14" font-weight="bold" text-anchor="middle" fill="#00396B">
+    핵심 원칙
+  </text>
+  <text x="1425" y="1290" font-size="11" text-anchor="middle" fill="#333">✓ LLM + 규칙 결합</text>
+  <text x="1425" y="1310" font-size="11" text-anchor="middle" fill="#333">✓ 신뢰성 우선</text>
+  <text x="1425" y="1330" font-size="11" text-anchor="middle" fill="#333">✓ 관찰 가능성</text>
+  <text x="1425" y="1350" font-size="11" text-anchor="middle" fill="#333">✓ 인간 협업</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+    <marker id="arrowhead-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#FF9A3C"/>
+    </marker>
+  </defs>
+
+  <!-- Legend -->
+  <text x="50" y="1395" font-size="11" fill="#666">범례:</text>
+  <circle cx="120" cy="1390" r="8" fill="#FFE5CC" stroke="#FF9A3C" stroke-width="1"/>
+  <text x="135" y="1395" font-size="10" fill="#666">LLM 노드</text>
+  
+  <circle cx="230" cy="1390" r="8" fill="#E6F7FF" stroke="#0070D2" stroke-width="1"/>
+  <text x="245" y="1395" font-size="10" fill="#666">결정론적 노드</text>
+  
+  <circle cx="360" cy="1390" r="8" fill="#CCFFCC" stroke="#52C41A" stroke-width="1"/>
+  <text x="375" y="1395" font-size="10" fill="#666">인간 개입</text>
+
+</svg>
