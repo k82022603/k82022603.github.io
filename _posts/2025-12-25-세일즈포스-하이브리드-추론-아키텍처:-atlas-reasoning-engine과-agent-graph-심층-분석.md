@@ -6,7 +6,7 @@ tags: [AI,  Salesforce,  reasoning-engine,  agent-graph,  Claude.write]
 ---
 
 
-![salesforce_hybrid_reasoning_architecture](https://github.com/k82022603/k82022603.github.io/blob/2bcbb8775bb73763b7fff182954d7a2adf7441ee/assets/img/salesforce_hybrid_reasoning_architecture.png)
+![salesforce_hybrid_reasoning_architecture](https://github.com/k82022603/k82022603.github.io/blob/2bcbb8775bb73763b7fff182954d7a2adf7441ee/assets/img/salesforce_hybrid_reasoning_architecture.png?raw=true)
 
 
 ## 목차
