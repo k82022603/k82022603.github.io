@@ -5,9 +5,10 @@ categories: [AI,  Architecture]
 tags: [AI,  Salesforce,  agent-graph,  ai-agent,  Claude.write]
 ---
 
-## 서론: AI 에이전트의 새로운 패러다임
 
 ![agent_graph_detailed_architecture](https://raw.githubusercontent.com/k82022603/k82022603.github.io/refs/heads/main/assets/img/agent_graph_detailed_architecture.svg)
+
+## 서론: AI 에이전트의 새로운 패러다임
 
 엔터프라이즈 AI의 가장 큰 아이러니는 바로 여기에 있다. AI가 강력해질수록 예측 불가능해지고, 예측 가능하게 만들수록 AI의 장점이 사라진다는 것이다. 이 딜레마는 단순히 기술적 문제가 아니라 비즈니스의 근본적인 질문을 제기한다. "우리는 정말로 AI를 신뢰할 수 있는가?"
 
