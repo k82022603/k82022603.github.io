@@ -6,6 +6,9 @@ tags: [AI,  Salesforce,  reasoning-engine,  agent-graph,  Claude.write]
 ---
 
 
+![salesforce_hybrid_reasoning_architecture](https://github.com/k82022603/k82022603.github.io/blob/e898ae24b62338f33c5db331e36cb4d155962744/assets/img/salesforce_hybrid_reasoning_architecture.svg)
+
+
 ## 목차
 1. [서론: 왜 하이브리드 추론인가](#서론-왜-하이브리드-추론인가)
 2. [Atlas Reasoning Engine: 에이전트의 두뇌](#atlas-reasoning-engine-에이전트의-두뇌)
