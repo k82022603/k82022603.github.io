@@ -6,8 +6,6 @@ tags: [AI,  Salesforce,  reasoning-engine,  agent-graph,  Claude.write]
 ---
 
 
-![salesforce_hybrid_reasoning_architecture](https://raw.githubusercontent.com/k82022603/k82022603.github.io/refs/heads/main/assets/img/salesforce_hybrid_reasoning_architecture.svg?raw=true)
-
 ![salesforce_hybrid_reasoning_architecture](https://github.com/k82022603/k82022603.github.io/blob/main/assets/img/salesforce_hybrid_reasoning_architecture.png?raw=true)
 
 
