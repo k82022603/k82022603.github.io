@@ -6,8 +6,7 @@ tags: [AI,  Salesforce,  agent-graph,  ai-agent,  Claude.write]
 ---
 
 
-![agent_graph_detailed_architecture](https://raw.githubusercontent.com/k82022603/k82022603.github.io/refs/heads/main/assets/img/agent_graph_detailed_architecture.svg)
-
+![agent_graph_detailed_architecture](https://raw.githubusercontent.com/k82022603/k82022603.github.io/43073a44ada955a7fbc5eaa0de71171af73eb499/assets/img/agent_graph_detailed_architecture.png)
 
 ## 서론: AI 에이전트의 새로운 패러다임
 
