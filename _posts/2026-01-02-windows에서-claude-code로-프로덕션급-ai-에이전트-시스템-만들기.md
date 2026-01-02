@@ -2008,13 +2008,1135 @@ Terraform 코드로 작성해줘.
 
 ---
 
+## Hour 5: 프로덕션 준비 (1시간)
+
+### Step 5.1: 보안 강화 (20분)
+
+지금까지 만든 시스템은 작동하지만, 프로덕션에 바로 올리기엔 보안이 부족합니다.
+
+**💬 You:**
+```
+현재 시스템의 보안을 프로덕션 수준으로 강화해줘:
+
+1. 환경 변수 검증
+   - .env 파일의 모든 필수 값 체크
+   - 시작 시 validation
+   - 누락되면 명확한 에러 메시지
+
+2. API 키 보안
+   - .env 파일이 .gitignore에 있는지 확인
+   - .env.example 업데이트 (실제 값 제거)
+   - Dockerfile에서 ARG vs ENV 올바르게 사용
+
+3. SQL Injection 방어 재점검
+   - 모든 쿼리에서 파라미터화 확인
+   - 원시 SQL 사용하는 곳 체크
+
+4. CORS 설정 강화
+   - 개발: localhost만 허용
+   - 프로덕션: 실제 도메인만
+
+5. Rate Limiting 세분화
+   - 엔드포인트별 다른 제한
+   - 인증 API: 5/hour
+   - 채팅 API: 20/minute
+   - 헬스체크: unlimited
+
+6. 비밀번호 정책
+   - 최소 8자
+   - 대소문자, 숫자, 특수문자 포함
+   - Pydantic validator 추가
+
+app/core/security/validators.py 파일 생성해서
+모든 검증 로직 모아줘.
+```
+
+**🤖 Claude:**
+```python
+# app/core/security/validators.py
+
+import re
+from typing import Optional
+from pydantic import validator
+from fastapi import HTTPException, status
+
+class PasswordValidator:
+    """비밀번호 검증"""
+    
+    @staticmethod
+    def validate(password: str) -> str:
+        if len(password) < 8:
+            raise ValueError("비밀번호는 최소 8자 이상이어야 합니다")
+        
+        if not re.search(r"[a-z]", password):
+            raise ValueError("소문자를 포함해야 합니다")
+        
+        if not re.search(r"[A-Z]", password):
+            raise ValueError("대문자를 포함해야 합니다")
+        
+        if not re.search(r"\d", password):
+            raise ValueError("숫자를 포함해야 합니다")
+        
+        if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+            raise ValueError("특수문자를 포함해야 합니다")
+        
+        return password
+
+class EnvironmentValidator:
+    """환경 변수 검증"""
+    
+    REQUIRED_VARS = [
+        "POSTGRES_USER",
+        "POSTGRES_PASSWORD",
+        "POSTGRES_DB",
+        "ANTHROPIC_API_KEY",
+        "JWT_SECRET_KEY",
+    ]
+    
+    @staticmethod
+    def validate() -> None:
+        """필수 환경 변수 체크"""
+        from app.core.config import settings
+        
+        missing = []
+        
+        # 필수 값 체크
+        if not settings.POSTGRES_USER:
+            missing.append("POSTGRES_USER")
+        
+        if not settings.POSTGRES_PASSWORD.get_secret_value():
+            missing.append("POSTGRES_PASSWORD")
+        
+        if not settings.ANTHROPIC_API_KEY.get_secret_value():
+            missing.append("ANTHROPIC_API_KEY")
+        
+        if not settings.JWT_SECRET_KEY.get_secret_value():
+            missing.append("JWT_SECRET_KEY")
+        
+        if missing:
+            raise ValueError(
+                f"필수 환경 변수가 누락되었습니다: {', '.join(missing)}\n"
+                f".env 파일을 확인하세요."
+            )
+        
+        # 기본값 경고
+        if settings.JWT_SECRET_KEY.get_secret_value() == "change-this-in-production":
+            raise ValueError(
+                "JWT_SECRET_KEY가 기본값입니다. "
+                "프로덕션 환경에서는 반드시 변경하세요!"
+            )
+
+# app/core/config.py 업데이트
+
+from app.core.security.validators import EnvironmentValidator
+
+class Settings(BaseSettings):
+    # ... 기존 코드 ...
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        
+        # 프로덕션 체크
+        if self.ENVIRONMENT == Environment.PRODUCTION:
+            if self.DEBUG:
+                raise ValueError("프로덕션에서 DEBUG=True는 위험합니다")
+            
+            # 환경 변수 검증
+            EnvironmentValidator.validate()
+
+# app/main.py CORS 업데이트
+
+from app.core.config import settings
+
+# CORS 설정
+allowed_origins = []
+
+if settings.ENVIRONMENT == Environment.DEVELOPMENT:
+    allowed_origins = [
+        "http://localhost:3000",
+        "http://localhost:3001",
+    ]
+else:
+    # 프로덕션: 실제 도메인만
+    allowed_origins = [
+        "https://yourdomain.com",
+        "https://www.yourdomain.com",
+    ]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
+# app/api/v1/auth.py Rate Limiting 업데이트
+
+async def register(request: Request, user_data: UserCreate):
+    # 비밀번호 검증
+    try:
+        PasswordValidator.validate(user_data.password)
+    except ValueError as e:
+        raise HTTPException(400, detail=str(e))
+    
+    # ... 나머지 코드
+
+async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
+    # ... 코드
+
+# app/api/v1/chatbot.py
+
+async def chat(request: Request, chat_request: ChatRequest):
+    # ... 코드
+```
+
+---
+
+### Step 5.2: 성능 테스트 (20분)
+
+**💬 You:**
+```
+성능 테스트 환경을 만들어줘:
+
+1. tests/performance/load_test.py
+   - locust 또는 aiohttp 사용
+   - 동시 사용자 10명 시뮬레이션
+   - 채팅 API 호출
+   - 평균 응답 시간, p95, p99 측정
+
+2. tests/performance/benchmark.py
+   - 각 계층별 성능 측정
+   - DB 쿼리 시간
+   - LLM 호출 시간
+   - 전체 응답 시간
+   - 결과를 JSON으로 저장
+
+3. scripts/performance_report.py
+   - 벤치마크 결과 시각화
+   - matplotlib로 그래프 생성
+   - 병목 지점 자동 탐지
+
+실행 방법도 README에 추가해줘.
+```
+
+**🤖 Claude:**
+```python
+# tests/performance/load_test.py
+
+import asyncio
+import aiohttp
+import time
+from typing import List
+import statistics
+
+class LoadTester:
+    """부하 테스트"""
+    
+    def __init__(self, base_url: str, concurrent_users: int = 10):
+        self.base_url = base_url
+        self.concurrent_users = concurrent_users
+        self.results = []
+    
+    async def login(self, session: aiohttp.ClientSession) -> str:
+        """로그인해서 토큰 받기"""
+        async with session.post(
+            f"{self.base_url}/api/v1/auth/login",
+            data={
+                "username": "test@example.com",
+                "password": "Test1234!@#$"
+            }
+        ) as response:
+            data = await response.json()
+            return data["access_token"]
+    
+    async def chat_request(
+        self,
+        session: aiohttp.ClientSession,
+        token: str,
+        message: str
+    ) -> float:
+        """채팅 요청하고 시간 측정"""
+        start = time.time()
+        
+        headers = {"Authorization": f"Bearer {token}"}
+        
+        async with session.post(
+            f"{self.base_url}/api/v1/chatbot/chat",
+            json={
+                "session_id": "test-session",
+                "message": message
+            },
+            headers=headers
+        ) as response:
+            await response.json()
+            elapsed = time.time() - start
+            return elapsed
+    
+    async def user_session(self, user_id: int):
+        """한 사용자의 세션"""
+        async with aiohttp.ClientSession() as session:
+            # 로그인
+            token = await self.login(session)
+            
+            # 10번 채팅
+            for i in range(10):
+                elapsed = await self.chat_request(
+                    session,
+                    token,
+                    f"User {user_id} message {i}: What is AI?"
+                )
+                self.results.append(elapsed)
+                
+                # 3초 대기
+                await asyncio.sleep(3)
+    
+    async def run(self):
+        """부하 테스트 실행"""
+        print(f"부하 테스트 시작: {self.concurrent_users}명 동시 사용자")
+        
+        # 동시 실행
+        tasks = [
+            self.user_session(i)
+            for i in range(self.concurrent_users)
+        ]
+        
+        await asyncio.gather(*tasks)
+        
+        # 결과 분석
+        self.analyze_results()
+    
+    def analyze_results(self):
+        """결과 분석"""
+        if not self.results:
+            print("결과 없음")
+            return
+        
+        avg = statistics.mean(self.results)
+        p50 = statistics.median(self.results)
+        p95 = statistics.quantiles(self.results, n=20)[18]  # 95th percentile
+        p99 = statistics.quantiles(self.results, n=100)[98]  # 99th percentile
+        
+        print("\n=== 성능 테스트 결과 ===")
+        print(f"총 요청: {len(self.results)}")
+        print(f"평균: {avg:.2f}s")
+        print(f"중앙값 (p50): {p50:.2f}s")
+        print(f"p95: {p95:.2f}s")
+        print(f"p99: {p99:.2f}s")
+        print(f"최소: {min(self.results):.2f}s")
+        print(f"최대: {max(self.results):.2f}s")
+        
+        # 병목 판단
+        if p95 > 5.0:
+            print("\n⚠️  경고: p95가 5초를 초과합니다. 최적화 필요!")
+        elif p95 > 3.0:
+            print("\n⚠️  주의: p95가 3초를 초과합니다.")
+        else:
+            print("\n✅ 성능 양호")
+
+# 실행
+if __name__ == "__main__":
+    tester = LoadTester(
+        base_url="http://localhost:8000",
+        concurrent_users=10
+    )
+    asyncio.run(tester.run())
+
+# tests/performance/benchmark.py
+
+import time
+import asyncio
+from app.core.services.database import db_service
+from app.core.services.llm import llm_service
+from app.core.langgraph.graph import agent
+
+async def benchmark_database():
+    """데이터베이스 성능 측정"""
+    times = []
+    
+    for _ in range(100):
+        start = time.time()
+        await db_service.get_user_by_email("test@example.com")
+        times.append(time.time() - start)
+    
+    avg = sum(times) / len(times)
+    return {"operation": "DB Query", "avg_ms": avg * 1000}
+
+async def benchmark_llm():
+    """LLM 호출 성능 측정"""
+    times = []
+    
+    for _ in range(10):  # LLM은 비싸니까 10번만
+        start = time.time()
+        await llm_service.call([
+            {"role": "user", "content": "Hello"}
+        ])
+        times.append(time.time() - start)
+    
+    avg = sum(times) / len(times)
+    return {"operation": "LLM Call", "avg_ms": avg * 1000}
+
+async def benchmark_agent():
+    """전체 에이전트 성능 측정"""
+    times = []
+    
+    for _ in range(10):
+        start = time.time()
+        await agent.get_response(
+            messages=[{"role": "user", "content": "What is 2+2?"}],
+            user_id=1,
+            session_id="test"
+        )
+        times.append(time.time() - start)
+    
+    avg = sum(times) / len(times)
+    return {"operation": "Full Agent", "avg_ms": avg * 1000}
+
+async def main():
+    results = []
+    
+    print("벤치마크 시작...")
+    
+    results.append(await benchmark_database())
+    print(f"✓ DB: {results[-1]['avg_ms']:.2f}ms")
+    
+    results.append(await benchmark_llm())
+    print(f"✓ LLM: {results[-1]['avg_ms']:.2f}ms")
+    
+    results.append(await benchmark_agent())
+    print(f"✓ Agent: {results[-1]['avg_ms']:.2f}ms")
+    
+    # JSON 저장
+    import json
+    with open("benchmark_results.json", "w") as f:
+        json.dump(results, f, indent=2)
+    
+    print("\n결과 저장: benchmark_results.json")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+---
+
+### Step 5.3: 모니터링 대시보드 설정 (20분)
+
+**💬 You:**
+```
+Grafana 대시보드를 만들어줘:
+
+1. monitoring/grafana/dashboards/api-metrics.json
+   - 요청 수 (시간별)
+   - 응답 시간 (p50, p95, p99)
+   - 에러율
+   - Rate limit 히트 수
+
+2. monitoring/grafana/dashboards/llm-metrics.json
+   - LLM 호출 수
+   - 모델별 사용 분포
+   - 평균 토큰 수
+   - 비용 추정
+
+3. monitoring/prometheus/alerts.yml
+   - 높은 에러율 (>5%)
+   - 느린 응답 (p95 > 5s)
+   - LLM 비용 급증
+   - 데이터베이스 연결 실패
+
+4. docker-compose.yml 업데이트
+   - Grafana 컨테이너 추가
+   - 볼륨 마운트 (대시보드)
+   - 환경 변수 설정
+```
+
+**🤖 Claude:**
+```yaml
+# docker-compose.yml 업데이트
+
+version: '3.8'
+
+services:
+  db:
+    # ... 기존 코드
+  
+  app:
+    # ... 기존 코드
+  
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+  
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+volumes:
+  db-data:
+  prometheus-data:
+  grafana-data:
+
+# monitoring/prometheus/alerts.yml
+
+groups:
+  - name: api_alerts
+    interval: 30s
+    rules:
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+        for: 5m
+        annotations:
+          summary: "높은 에러율 감지"
+          description: "5분간 에러율이 5%를 초과했습니다"
+      
+      - alert: SlowResponse
+        expr: http_request_duration_seconds{quantile="0.95"} > 5
+        for: 10m
+        annotations:
+          summary: "느린 응답 시간"
+          description: "p95 응답 시간이 5초를 초과했습니다"
+      
+      - alert: LLMCostSpike
+        expr: rate(llm_calls_total[1h]) > 1000
+        for: 1h
+        annotations:
+          summary: "LLM 비용 급증"
+          description: "시간당 LLM 호출이 1000회를 초과했습니다"
+
+# monitoring/grafana/datasources/prometheus.yml
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+
+# monitoring/grafana/dashboards/dashboard.yml
+
+apiVersion: 1
+
+providers:
+  - name: 'default'
+    folder: ''
+    type: file
+    options:
+      path: /etc/grafana/provisioning/dashboards
+
+# monitoring/grafana/dashboards/api-metrics.json
+# (Grafana JSON은 복잡하므로 수동 생성 가이드 제공)
+```
+
+**접속 방법:**
+```
+Grafana: http://localhost:3000
+  - ID: admin
+  - PW: admin
+
+Prometheus: http://localhost:9090
+```
+
+---
+
+## 트러블슈팅 가이드
+
+Claude Code 사용 중 자주 발생하는 문제와 해결 방법입니다.
+
+### 문제 1: Claude가 생성한 코드가 작동하지 않음
+
+**증상:**
+```python
+ImportError: cannot import name 'AsyncMemory' from 'mem0'
+```
+
+**원인:** 패키지 버전 불일치
+
+**해결:**
+```powershell
+# 1. 정확한 버전 확인
+pip show mem0ai
+
+# 2. pyproject.toml 수정
+dependencies = [
+    "mem0ai==1.0.0",  # 정확한 버전 명시
+]
+
+# 3. 재설치
+pip install -e . --force-reinstall
+```
+
+**프롬프트로 해결:**
+```
+에러가 났어:
+[에러 메시지 붙여넣기]
+
+이 에러의 원인을 분석하고 수정해줘.
+관련 파일도 같이 고쳐줘.
+```
+
+---
+
+### 문제 2: 파일이 너무 많이 생성됨
+
+**증상:** Claude가 한 번에 50개 파일 생성
+
+**원인:** 프롬프트가 너무 포괄적
+
+**해결:**
+```
+❌ 나쁜 프롬프트:
+"전체 프로젝트 만들어줘"
+
+✅ 좋은 프롬프트:
+"먼저 데이터베이스 모델만 만들자.
+User, Session, Message 3개 모델만.
+다른 건 나중에."
+```
+
+**점진적 접근:**
+1. 구조만 먼저 → 확인
+2. 모델 → 확인
+3. 서비스 → 확인
+4. API → 확인
+
+---
+
+### 문제 3: 생성된 코드의 품질이 낮음
+
+**증상:** 주석 없음, 타입 힌트 없음, 테스트 없음
+
+**해결 프롬프트:**
+```
+코드 품질을 높여줘:
+
+1. 모든 함수에 docstring 추가 (Google 스타일)
+2. 100% 타입 힌트
+3. 에러 핸들링 (try-except)
+4. 입력 검증 (Pydantic)
+5. 주요 함수마다 pytest 테스트
+
+기존 코드를 리팩토링해줘.
+```
+
+---
+
+### 문제 4: Docker 컨테이너가 안 뜸
+
+**증상:**
+```
+Error: Cannot connect to Docker daemon
+```
+
+**해결:**
+```powershell
+# 1. Docker Desktop 실행 확인
+# 작업 관리자에서 Docker Desktop 프로세스 확인
+
+# 2. WSL 2 확인
+wsl --status
+
+# 3. Docker 재시작
+# Docker Desktop 우클릭 → Quit
+# 다시 실행
+
+# 4. 테스트
+docker run hello-world
+```
+
+---
+
+### 문제 5: API 키가 작동하지 않음
+
+**증상:**
+```
+AuthenticationError: Invalid API key
+```
+
+**해결:**
+```powershell
+# 1. .env 파일 확인
+cat .env | grep ANTHROPIC_API_KEY
+
+# 2. 공백 제거
+ANTHROPIC_API_KEY=sk-ant-xxx  # ✅
+ANTHROPIC_API_KEY = sk-ant-xxx  # ❌ (공백 때문에 에러)
+
+# 3. 따옴표 제거
+ANTHROPIC_API_KEY=sk-ant-xxx  # ✅
+ANTHROPIC_API_KEY="sk-ant-xxx"  # ❌
+
+# 4. 키 유효성 확인
+# Anthropic 콘솔에서 키 상태 확인
+```
+
+---
+
+### 문제 6: PostgreSQL 연결 실패
+
+**증상:**
+```
+psycopg.OperationalError: connection refused
+```
+
+**해결:**
+```powershell
+# 1. 컨테이너 상태 확인
+docker ps | grep postgres
+
+# 2. 없으면 실행
+docker-compose up -d db
+
+# 3. 로그 확인
+docker-compose logs db
+
+# 4. 연결 테스트
+docker exec -it production-ai-agent-db-1 psql -U aiagent -d aiagent_db
+```
+
+---
+
+### 문제 7: Rate Limiting에 자꾸 걸림
+
+**증상:**
+```
+429 Too Many Requests
+```
+
+**해결:**
+```python
+# app/core/security/limiter.py
+
+# 개발 중에는 제한 완화
+limiter = Limiter(
+    key_func=get_remote_address,
+    default_limits=["1000/minute"] if settings.DEBUG else ["10/minute"]
+)
+```
+
+---
+
+### 문제 8: 메모리 부족으로 컨테이너 재시작
+
+**증상:** 컨테이너가 갑자기 종료됨
+
+**해결:**
+```yaml
+# docker-compose.yml
+
+services:
+  app:
+    deploy:
+      resources:
+        limits:
+          memory: 2G  # 메모리 제한 증가
+        reservations:
+          memory: 1G
+```
+
+---
+
+### 문제 9: LLM 응답이 너무 느림
+
+**증상:** 채팅 응답에 10초 이상 걸림
+
+**해결:**
+```
+프롬프트:
+"LLM 호출을 최적화해줘:
+
+1. 스트리밍 응답 구현 (SSE)
+2. 대화 히스토리 요약 (10턴 이상 시)
+3. 캐싱 추가 (같은 질문 5분간 캐시)
+4. 타임아웃 설정 (30초)
+
+app/api/v1/chatbot.py를 수정해줘."
+```
+
+---
+
+### 문제 10: Git에 .env 파일이 올라감!
+
+**증상:** GitHub에 비밀번호 노출
+
+**긴급 해결:**
+```powershell
+# 1. Git history에서 제거
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch .env" \
+  --prune-empty --tag-name-filter cat -- --all
+
+# 2. 강제 푸시
+git push origin --force --all
+
+# 3. API 키 즉시 재발급
+# Anthropic 콘솔에서 기존 키 삭제 + 새 키 생성
+
+# 4. .gitignore 확인
+cat .gitignore | grep .env
+```
+
+---
+
+## 프롬프트 최적화 팁
+
+Claude로부터 더 나은 코드를 얻는 방법입니다.
+
+### 팁 1: 구체적으로 요청하기
+
+**❌ 나쁜 예:**
+```
+API 만들어줘
+```
+
+**✅ 좋은 예:**
+```
+FastAPI로 사용자 관리 API 만들어줘:
+
+엔드포인트:
+- POST /users (회원가입)
+- POST /users/login (로그인, JWT 반환)
+- GET /users/me (내 정보, 인증 필요)
+- PUT /users/me (정보 수정)
+- DELETE /users/me (탈퇴)
+
+응답 형식:
+- 성공: {"data": {...}, "message": "..."}
+- 실패: {"error": "...", "detail": "..."}
+
+보안:
+- 비밀번호: bcrypt
+- JWT 만료: 7일
+- Rate limit: 10/minute
+
+파일: app/api/v1/users.py
+```
+
+---
+
+### 팁 2: 예제 제공하기
+
+**❌ 나쁜 예:**
+```
+Pydantic 스키마 만들어줘
+```
+
+**✅ 좋은 예:**
+```
+이런 JSON을 검증하는 Pydantic 스키마 만들어줘:
+
+{
+  "title": "My Post",
+  "content": "Hello world",
+  "tags": ["python", "fastapi"],
+  "published": true
+}
+
+검증 규칙:
+- title: 1-100자, 필수
+- content: 1-10000자, 필수
+- tags: 최대 5개, 각 태그 1-20자
+- published: boolean, 기본값 false
+```
+
+---
+
+### 팁 3: 컨텍스트 제공하기
+
+**❌ 나쁜 예:**
+```
+에러 고쳐줘
+```
+
+**✅ 좋은 예:**
+```
+이 에러를 고쳐줘:
+
+[에러 메시지 전체 복사]
+
+관련 파일:
+[app/services/user.py 내용 붙여넣기]
+
+상황:
+- User 생성 시 발생
+- 테스트는 통과했는데 실제 실행에서만 에러
+- Python 3.13, FastAPI 0.104
+
+원인 분석하고 수정해줘.
+```
+
+---
+
+### 팁 4: 제약사항 명시하기
+
+```
+채팅 기능 만들어줘:
+
+제약사항:
+- 외부 라이브러리 최소화 (FastAPI 기본 기능 위주)
+- 파일은 3개 이하
+- 코드는 파일당 100줄 이하
+- 주석 필수
+
+먼저 설계를 보여주고, 내가 승인하면 구현해줘.
+```
+
+---
+
+### 팁 5: 단계적 요청하기
+
+```
+1단계: 먼저 데이터 모델만 설계해줘
+→ [확인]
+
+2단계: 이제 CRUD 함수 만들어줘
+→ [확인]
+
+3단계: API 엔드포인트 추가해줘
+→ [확인]
+
+4단계: 테스트 작성해줘
+→ [완료]
+```
+
+---
+
+## 비용 절감 전략
+
+LLM API 비용을 최소화하는 방법입니다.
+
+### 전략 1: 프롬프트 캐싱 활용
+
+Claude는 프롬프트 캐싱을 지원합니다.
+
+```python
+# app/core/services/llm.py
+
+from anthropic import Anthropic
+
+client = Anthropic(api_key=settings.ANTHROPIC_API_KEY.get_secret_value())
+
+# 시스템 프롬프트를 캐싱 (5분간 재사용)
+response = client.messages.create(
+    model="claude-sonnet-4-5-20250929",
+    max_tokens=1024,
+    system=[
+        {
+            "type": "text",
+            "text": "긴 시스템 프롬프트...",
+            "cache_control": {"type": "ephemeral"}  # 캐싱!
+        }
+    ],
+    messages=[
+        {"role": "user", "content": "질문"}
+    ]
+)
+```
+
+**비용 절감:**
+- 캐시 미스: $3/1M 토큰
+- 캐시 히트: $0.3/1M 토큰 (10배 저렴!)
+
+---
+
+### 전략 2: 모델 선택 최적화
+
+```python
+# 작업별로 다른 모델 사용
+
+# 간단한 분류: Haiku (저렴)
+if task == "classify":
+    model = "claude-haiku-4-5-20251001"
+
+# 복잡한 추론: Sonnet (중간)
+elif task == "reasoning":
+    model = "claude-sonnet-4-5-20250929"
+
+# 창의적 작업: Opus (비쌈)
+elif task == "creative":
+    model = "claude-opus-4-1-20241129"
+```
+
+**비용 차이:**
+- Haiku: $1/$5 (입력/출력)
+- Sonnet: $3/$15
+- Opus: $15/$75
+
+간단한 작업에 Opus 쓰면 15배 낭비!
+
+---
+
+### 전략 3: 토큰 수 제한
+
+```python
+# 대화 히스토리 요약
+
+async def summarize_history(messages: list) -> list:
+    """10턴 이상이면 요약"""
+    if len(messages) <= 20:  # 10턴
+        return messages
+    
+    # 최근 10턴만 유지
+    recent = messages[-20:]
+    
+    # 이전 대화 요약 (Haiku 사용)
+    old = messages[:-20]
+    summary = await llm_service.call(
+        [{"role": "user", "content": f"다음 대화를 3문장으로 요약: {old}"}],
+        model="claude-haiku-4-5-20251001",
+        max_tokens=100
+    )
+    
+    return [
+        {"role": "system", "content": f"이전 대화 요약: {summary}"}
+    ] + recent
+```
+
+---
+
+### 전략 4: 비용 모니터링
+
+```python
+# app/core/services/cost_tracker.py
+
+class CostTracker:
+    """LLM 비용 추적"""
+    
+    PRICING = {
+        "claude-sonnet-4-5-20250929": {
+            "input": 3.0 / 1_000_000,
+            "output": 15.0 / 1_000_000,
+        },
+        "claude-haiku-4-5-20251001": {
+            "input": 1.0 / 1_000_000,
+            "output": 5.0 / 1_000_000,
+        },
+    }
+    
+    def __init__(self):
+        self.total_cost = 0.0
+        self.calls = []
+    
+    def track(self, model: str, input_tokens: int, output_tokens: int):
+        """비용 계산"""
+        pricing = self.PRICING[model]
+        cost = (
+            input_tokens * pricing["input"] +
+            output_tokens * pricing["output"]
+        )
+        
+        self.total_cost += cost
+        self.calls.append({
+            "model": model,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+            "cost": cost,
+            "timestamp": datetime.now()
+        })
+        
+        # 경고
+        if cost > 1.0:  # $1 초과
+            print(f"⚠️  비싼 호출: ${cost:.2f}")
+    
+    def daily_report(self) -> dict:
+        """일일 리포트"""
+        today = datetime.now().date()
+        today_calls = [
+            c for c in self.calls
+            if c["timestamp"].date() == today
+        ]
+        
+        total = sum(c["cost"] for c in today_calls)
+        
+        return {
+            "date": today,
+            "calls": len(today_calls),
+            "total_cost": total,
+            "avg_cost": total / len(today_calls) if today_calls else 0
+        }
+
+tracker = CostTracker()
+```
+
+---
+
+### 전략 5: 불필요한 호출 제거
+
+**캐싱:**
+```python
+# 같은 질문 5분간 캐시
+cache_service.set(user_id, message, response, ttl=300)
+```
+
+**배치 처리:**
+```python
+# 10개씩 모아서 한 번에
+batch = []
+for item in items:
+    batch.append(item)
+    if len(batch) >= 10:
+        results = await llm_service.batch_call(batch)
+        batch = []
+```
+
+**조건부 호출:**
+```python
+# 간단한 질문은 LLM 호출 안 함
+if is_simple_question(message):
+    return predefined_answer(message)
+else:
+    return await llm_service.call(message)
+```
+
+---
+
+## 비용 예상
+
+### 개발 단계 (이 가이드 따라하기)
+- 프로젝트 생성: 10K 토큰 ≈ $0.03
+- Hour 1-4 구현: 100K 토큰 ≈ $1.50
+- 디버깅: 50K 토큰 ≈ $0.75
+**총 약 $2.28**
+
+### 운영 단계 (월간 예상)
+**소규모** (100명 사용자, 1000 대화/월):
+- LLM 호출: 500만 토큰 ≈ $75
+- 캐싱 효과 (30%): -$22.5
+**월 $52.5**
+
+**중규모** (1000명, 10000 대화/월):
+- LLM 호출: 5000만 토큰 ≈ $750
+- 캐싱 + Haiku 활용: -$375
+**월 $375**
+
+---
+
+**함께 읽을 문서**: [7계층 아키텍처 상세 분석](https://k82022603.github.io/posts/%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%EA%B8%89-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-7%EA%B3%84%EC%B8%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B6%84%EC%84%9D/)
+
 **작성일**: 2026-01-02  
 **프로젝트**: production-ai-agent  
 **난이도**: 중급-고급  
 **학습 효과**: ⭐⭐⭐⭐⭐  
 **실용성**: ⭐⭐⭐⭐⭐
-
-**함께 읽을 문서**: [7계층 아키텍처 상세 분석](https://k82022603.github.io/posts/%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%EA%B8%89-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-7%EA%B3%84%EC%B8%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B6%84%EC%84%9D/)
 
 **지금 바로 시작하세요!**
 
@@ -2026,4 +3148,3 @@ code .
 # VSCode에서 Claude Code 실행 (Ctrl + Shift + P)
 # 이 문서의 첫 프롬프트를 복사해서 붙여넣으세요!
 ```
-
