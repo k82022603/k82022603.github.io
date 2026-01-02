@@ -3130,8 +3130,6 @@ else:
 
 ---
 
-**함께 읽을 문서**: [7계층 아키텍처 상세 분석](https://k82022603.github.io/posts/%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%EA%B8%89-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-7%EA%B3%84%EC%B8%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B6%84%EC%84%9D/)
-
 **작성일**: 2026-01-02  
 **프로젝트**: production-ai-agent  
 **난이도**: 중급-고급  
@@ -3148,3 +3146,5 @@ code .
 # VSCode에서 Claude Code 실행 (Ctrl + Shift + P)
 # 이 문서의 첫 프롬프트를 복사해서 붙여넣으세요!
 ```
+
+**함께 읽을 문서**: [7계층 아키텍처 상세 분석](https://k82022603.github.io/posts/%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%EA%B8%89-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-7%EA%B3%84%EC%B8%B5-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B6%84%EC%84%9D/)
