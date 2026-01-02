@@ -13,7 +13,7 @@ tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Claude.write]
 
 ## 이 가이드를 읽어야 하는 이유
 
-제가 작성한 "개발자 가이드"를 읽으신 분들은 이런 의문을 가질 수 있습니다:
+제가 작성한 "[손코딩으로 배우는 프로덕션급 AI 에이전트 개발 가이드](https://k82022603.github.io/posts/%EC%86%90%EC%BD%94%EB%94%A9%EC%9C%BC%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%EA%B8%89-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EA%B0%9C%EB%B0%9C-%EA%B0%80%EC%9D%B4%EB%93%9C/)"를 읽으신 분들은 이런 의문을 가질 수 있습니다:
 
 **"이거 그냥 일반 Python 개발 가이드 아닌가? Claude Code 없이도 만들 수 있잖아?"**
 
@@ -1497,4 +1497,4 @@ Claude Code는 코드와 함께 문서를 생성합니다.
 **경험 기반**: 실제 7개 프로젝트 비교 분석
 
 **다음에 읽을 문서**: 
-- 바이브 코딩 워크플로우 최적화
+- [바이브 코딩 워크플로우 최적화](https://k82022603.github.io/posts/%EB%B0%94%EC%9D%B4%EB%B8%8C-%EC%BD%94%EB%94%A9-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0-%EC%B5%9C%EC%A0%81%ED%99%94-%EA%B0%80%EC%9D%B4%EB%93%9C/)
