@@ -461,7 +461,7 @@ Claude Code: Fixed! Running again...
 
 ### Deepagents 소개
 
-![deepagents_architecture](https://raw.githubusercontent.com/k82022603/k82022603.github.io/76bfe52b2f40d7355238f6a314d2008e9d42d218/assets/img/deepagents-architecture.svg)
+![deepagents_architecture](https://raw.githubusercontent.com/k82022603/k82022603.github.io/76bfe52b2f40d7355238f6a314d2008e9d42d218/assets/img/deepagents-architecture.svg){: style="width:1200px; height:auto;" }
 
 Deepagents는 LangChain과 LangGraph 위에 구축된 오픈소스 에이전트 하네스입니다. Deep Agents는 계획 도구, 파일 시스템 백엔드, 서브에이전트 생성 능력을 갖추고 있어 복잡한 에이전트 작업을 처리하는 데 적합합니다.
 
@@ -583,7 +583,7 @@ Harbor 평가 프레임워크 통합을 제공하여 에이전트를 벤치마�
 
 Deepagents 0.2의 핵심 혁신은 플러깅 가능한 Backend 추상화입니다. 이를 통해 파일이 저장되는 위치와 셸 명령 실행 방식을 제어할 수 있습니다.
 
-![deepagents_backend_system](https://raw.githubusercontent.com/k82022603/k82022603.github.io/76bfe52b2f40d7355238f6a314d2008e9d42d218/assets/img/deepagents-backend-system.svg){: style="width:1200px; height:auto; background-color: transparent;" }
+![deepagents_backend_system](https://raw.githubusercontent.com/k82022603/k82022603.github.io/76bfe52b2f40d7355238f6a314d2008e9d42d218/assets/img/deepagents-backend-system.svg){: style="width:1200px; height:auto;" }
 
 **StateBackend (기본값)**
 임시 상태에 파일을 저장합니다. LangGraph의 대화 상태를 사용하며, 세션이 끝나면 파일이 사라집니다. `execute` 도구는 오류를 반환합니다.
@@ -696,7 +696,7 @@ asyncio.run(main())
 
 이 세 프레임워크는 서로 다른 목적을 가지며, 계층적으로 구축되어 있습니다.
 
-![langchain_ecosystem_comparison](https://raw.githubusercontent.com/k82022603/k82022603.github.io/c4810f2f71b71b6002563d77c2656c8673e7b640/assets/img/langchain_ecosystem_comparison_fixed.svg)
+![langchain_ecosystem_comparison](https://raw.githubusercontent.com/k82022603/k82022603.github.io/c4810f2f71b71b6002563d77c2656c8673e7b640/assets/img/langchain_ecosystem_comparison_fixed.svg){: style="width:1200px; height:auto;" }
 
 **LangGraph: Agent Runtime**
 저수준 런타임으로, 워크플로우와 에이전트를 조합한 것을 구축할 때 적합합니다. 완전한 제어가 필요하고, 결정론적 워크플로우와 에이전틱 행동을 혼합하려는 경우에 사용합니다.
