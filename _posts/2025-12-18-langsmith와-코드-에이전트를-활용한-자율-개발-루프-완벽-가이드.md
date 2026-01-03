@@ -583,7 +583,7 @@ Harbor 평가 프레임워크 통합을 제공하여 에이전트를 벤치마�
 
 Deepagents 0.2의 핵심 혁신은 플러깅 가능한 Backend 추상화입니다. 이를 통해 파일이 저장되는 위치와 셸 명령 실행 방식을 제어할 수 있습니다.
 
-![deepagents_backend_system](https://raw.githubusercontent.com/k82022603/k82022603.github.io/76bfe52b2f40d7355238f6a314d2008e9d42d218/assets/img/deepagents-backend-system.svg){: style="width:100%; max-width:3000px;" }
+![deepagents_backend_system](https://raw.githubusercontent.com/k82022603/k82022603.github.io/76bfe52b2f40d7355238f6a314d2008e9d42d218/assets/img/deepagents-backend-system.svg){: style="width:1200px; height:auto;" }
 
 **StateBackend (기본값)**
 임시 상태에 파일을 저장합니다. LangGraph의 대화 상태를 사용하며, 세션이 끝나면 파일이 사라집니다. `execute` 도구는 오류를 반환합니다.
