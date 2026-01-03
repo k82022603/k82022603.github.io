@@ -461,7 +461,7 @@ Claude Code: Fixed! Running again...
 
 ### Deepagents 소개
 
-![deepagents_architecture](https://raw.githubusercontent.com/k82022603/k82022603.github.io/76bfe52b2f40d7355238f6a314d2008e9d42d218/assets/img/deepagents-architecture.svg)
+![deepagents_architecture](https://raw.githubusercontent.com/k82022603/k82022603.github.io/76bfe52b2f40d7355238f6a314d2008e9d42d218/assets/img/deepagents-architecture.svg){: width="700" height="400" }
 
 Deepagents는 LangChain과 LangGraph 위에 구축된 오픈소스 에이전트 하네스입니다. Deep Agents는 계획 도구, 파일 시스템 백엔드, 서브에이전트 생성 능력을 갖추고 있어 복잡한 에이전트 작업을 처리하는 데 적합합니다.
 
