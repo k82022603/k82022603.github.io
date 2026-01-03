@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 32px; font-weight: bold; fill: #1a1a1a; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; }
+      .label { font-family: Arial, sans-serif; font-size: 16px; fill: #34495e; }
+      .small-label { font-family: Arial, sans-serif; font-size: 14px; fill: #555; }
+      .code { font-family: 'Courier New', monospace; font-size: 13px; fill: #2c3e50; }
+      .box { fill: #ffffff; stroke: #2c3e50; stroke-width: 2; }
+      .core-box { fill: #3498db; stroke: #2980b9; stroke-width: 3; }
+      .cli-box { fill: #2ecc71; stroke: #27ae60; stroke-width: 3; }
+      .harbor-box { fill: #e74c3c; stroke: #c0392b; stroke-width: 3; }
+      .backend-box { fill: #f39c12; stroke: #e67e22; stroke-width: 2; }
+      .middleware-box { fill: #9b59b6; stroke: #8e44ad; stroke-width: 2; }
+      .arrow { stroke: #34495e; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .thick-arrow { stroke: #2c3e50; stroke-width: 3; fill: none; marker-end: url(#arrowhead-thick); }
+      .white-text { fill: white; font-weight: bold; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#34495e" />
+    </marker>
+    <marker id="arrowhead-thick" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2c3e50" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="700" y="40" text-anchor="middle" class="title">Deepagents 아키텍처</text>
+  <text x="700" y="65" text-anchor="middle" class="small-label">모노레포 구조 및 계층적 의존성</text>
+  
+  <!-- 세 가지 패키지 -->
+  <g id="packages">
+    <!-- Core Package -->
+    <rect x="50" y="100" width="350" height="200" rx="10" class="core-box"/>
+    <text x="225" y="130" text-anchor="middle" class="subtitle white-text">deepagents (Core)</text>
+    <text x="225" y="155" text-anchor="middle" class="small-label white-text">프로그래밍 방식 에이전트 생성</text>
+    
+    <text x="70" y="185" class="code white-text">pip install deepagents</text>
+    <text x="70" y="210" class="small-label white-text">• create_deep_agent() 핵심 함수</text>
+    <text x="70" y="230" class="small-label white-text">• Claude Sonnet 4.5 기본 모델</text>
+    <text x="70" y="250" class="small-label white-text">• Planning, Filesystem, Subagents</text>
+    <text x="70" y="270" class="small-label white-text">• Python 3.11+</text>
+    
+    <!-- CLI Package -->
+    <rect x="450" y="100" width="350" height="200" rx="10" class="cli-box"/>
+    <text x="625" y="130" text-anchor="middle" class="subtitle white-text">deepagents-cli</text>
+    <text x="625" y="155" text-anchor="middle" class="small-label white-text">대화형 CLI 도구</text>
+    
+    <text x="470" y="185" class="code white-text">pip install deepagents-cli</text>
+    <text x="470" y="210" class="small-label white-text">• 터미널 상호작용</text>
+    <text x="470" y="230" class="small-label white-text">• Skill 관리</text>
+    <text x="470" y="250" class="small-label white-text">• 메모리 관리</text>
+    <text x="470" y="270" class="small-label white-text">• Sandbox 제공자 통합</text>
+    
+    <!-- Harbor Package -->
+    <rect x="850" y="100" width="350" height="200" rx="10" class="harbor-box"/>
+    <text x="1025" y="130" text-anchor="middle" class="subtitle white-text">deepagents-harbor</text>
+    <text x="1025" y="155" text-anchor="middle" class="small-label white-text">벤치마크 평가</text>
+    
+    <text x="870" y="185" class="code white-text">pip install deepagents-harbor</text>
+    <text x="870" y="210" class="small-label white-text">• Harbor 프레임워크 통합</text>
+    <text x="870" y="230" class="small-label white-text">• LangSmith 트레이싱</text>
+    <text x="870" y="250" class="small-label white-text">• 벤치마크 실행</text>
+    <text x="870" y="270" class="small-label white-text">• 성능 평가</text>
+  </g>
+  
+  <!-- 의존성 화살표 -->
+  <path d="M 400 200 L 450 200" class="thick-arrow"/>
+  <path d="M 800 200 L 850 200" class="thick-arrow"/>
+  <text x="425" y="190" class="small-label">의존</text>
+  <text x="825" y="190" class="small-label">의존</text>
+  
+  <!-- Backend 시스템 -->
+  <g id="backends">
+    <text x="100" y="350" class="subtitle">Backend 시스템 (플러그인 방식)</text>
+    
+    <!-- StateBackend -->
+    <rect x="50" y="370" width="250" height="120" rx="8" class="backend-box"/>
+    <text x="175" y="395" text-anchor="middle" class="label white-text">StateBackend</text>
+    <text x="175" y="415" text-anchor="middle" class="small-label white-text">(기본값)</text>
+    <text x="70" y="440" class="small-label white-text">• 임시 메모리 저장</text>
+    <text x="70" y="460" class="small-label white-text">• LangGraph 상태 사용</text>
+    <text x="70" y="480" class="small-label white-text">• 세션 종료 시 삭제</text>
+    
+    <!-- FilesystemBackend -->
+    <rect x="320" y="370" width="250" height="120" rx="8" class="backend-box"/>
+    <text x="445" y="395" text-anchor="middle" class="label white-text">FilesystemBackend</text>
+    <text x="70" y="440" class="small-label"></text>
+    <text x="340" y="440" class="small-label white-text">• 실제 디스크 저장</text>
+    <text x="340" y="460" class="small-label white-text">• 셸 명령 실행 가능</text>
+    <text x="340" y="480" class="small-label white-text">• root_dir 설정</text>
+    
+    <!-- StoreBackend -->
+    <rect x="590" y="370" width="250" height="120" rx="8" class="backend-box"/>
+    <text x="715" y="395" text-anchor="middle" class="label white-text">StoreBackend</text>
+    <text x="70" y="440" class="small-label"></text>
+    <text x="610" y="440" class="small-label white-text">• 영구 저장소</text>
+    <text x="610" y="460" class="small-label white-text">• LangGraph Store 사용</text>
+    <text x="610" y="480" class="small-label white-text">• 세션 간 지속</text>
+    
+    <!-- CompositeBackend -->
+    <rect x="860" y="370" width="280" height="120" rx="8" class="backend-box"/>
+    <text x="1000" y="395" text-anchor="middle" class="label white-text">CompositeBackend</text>
+    <text x="70" y="440" class="small-label"></text>
+    <text x="880" y="440" class="small-label white-text">• 여러 Backend 조합</text>
+    <text x="880" y="460" class="small-label white-text">• 경로별 라우팅</text>
+    <text x="880" y="480" class="small-label white-text">• 예: /memories/ → Store</text>
+  </g>
+  
+  <!-- Middleware 시스템 -->
+  <g id="middleware">
+    <text x="100" y="550" class="subtitle">Middleware 스택</text>
+    
+    <rect x="50" y="570" width="320" height="100" rx="8" class="middleware-box"/>
+    <text x="210" y="595" text-anchor="middle" class="label white-text">FilesystemMiddleware</text>
+    <text x="70" y="620" class="small-label white-text">ls, read_file, write_file, edit_file</text>
+    <text x="70" y="640" class="small-label white-text">자동 컨텍스트 관리</text>
+    <text x="70" y="660" class="small-label white-text">컨텍스트 윈도우 오버플로우 방지</text>
+    
+    <rect x="390" y="570" width="320" height="100" rx="8" class="middleware-box"/>
+    <text x="550" y="595" text-anchor="middle" class="label white-text">SubagentsMiddleware</text>
+    <text x="410" y="620" class="small-label white-text">서브에이전트 생성 및 관리</text>
+    <text x="410" y="640" class="small-label white-text">작업 격리</text>
+    <text x="410" y="660" class="small-label white-text">전문화된 에이전트 위임</text>
+    
+    <rect x="730" y="570" width="320" height="100" rx="8" class="middleware-box"/>
+    <text x="890" y="595" text-anchor="middle" class="label white-text">TodoMiddleware</text>
+    <text x="750" y="620" class="small-label white-text">write_todos 도구</text>
+    <text x="750" y="640" class="small-label white-text">작업 분해 및 추적</text>
+    <text x="750" y="660" class="small-label white-text">계획 적응</text>
+  </g>
+  
+  <!-- 계층 구조 -->
+  <g id="hierarchy">
+    <text x="1100" y="550" class="subtitle">계층 구조</text>
+    
+    <rect x="1100" y="570" width="250" height="60" rx="8" class="box" style="fill: #e8f4f8;"/>
+    <text x="1225" y="595" text-anchor="middle" class="label" style="font-weight: bold;">Deepagents</text>
+    <text x="1225" y="615" text-anchor="middle" class="small-label">Agent Harness</text>
+    
+    <path d="M 1225 630 L 1225 650" class="arrow"/>
+    <text x="1240" y="645" class="small-label">기반</text>
+    
+    <rect x="1100" y="650" width="250" height="60" rx="8" class="box" style="fill: #fef5e7;"/>
+    <text x="1225" y="675" text-anchor="middle" class="label" style="font-weight: bold;">LangChain</text>
+    <text x="1225" y="695" text-anchor="middle" class="small-label">Agent Framework</text>
+    
+    <path d="M 1225 710 L 1225 730" class="arrow"/>
+    <text x="1240" y="725" class="small-label">기반</text>
+    
+    <rect x="1100" y="730" width="250" height="60" rx="8" class="box" style="fill: #f4ecf7;"/>
+    <text x="1225" y="755" text-anchor="middle" class="label" style="font-weight: bold;">LangGraph</text>
+    <text x="1225" y="775" text-anchor="middle" class="small-label">Agent Runtime</text>
+  </g>
+  
+  <!-- 주요 기능 -->
+  <g id="features">
+    <text x="100" y="730" class="subtitle">주요 기능</text>
+    
+    <rect x="50" y="750" width="230" height="200" rx="8" class="box" style="fill: #ecf0f1;"/>
+    <text x="165" y="775" text-anchor="middle" class="label" style="font-weight: bold;">Planning</text>
+    <text x="70" y="800" class="small-label">• TODO 리스트 관리</text>
+    <text x="70" y="820" class="small-label">• 작업 분해</text>
+    <text x="70" y="840" class="small-label">• 진행 상황 추적</text>
+    <text x="70" y="860" class="small-label">• 계획 적응</text>
+    <text x="70" y="890" class="code">write_todos()</text>
+    <text x="70" y="920" class="small-label" style="font-style: italic;">복잡한 작업을</text>
+    <text x="70" y="940" class="small-label" style="font-style: italic;">단계별로 분해</text>
+    
+    <rect x="300" y="750" width="230" height="200" rx="8" class="box" style="fill: #ecf0f1;"/>
+    <text x="415" y="775" text-anchor="middle" class="label" style="font-weight: bold;">File System</text>
+    <text x="320" y="800" class="small-label">• 파일 읽기/쓰기</text>
+    <text x="320" y="820" class="small-label">• 디렉토리 탐색</text>
+    <text x="320" y="840" class="small-label">• 컨텍스트 오프로드</text>
+    <text x="320" y="860" class="small-label">• 가변 길이 처리</text>
+    <text x="320" y="890" class="code">ls, read_file,</text>
+    <text x="320" y="910" class="code">write_file, edit_file</text>
+    <text x="320" y="940" class="small-label" style="font-style: italic;">대용량 컨텍스트 관리</text>
+    
+    <rect x="550" y="750" width="230" height="200" rx="8" class="box" style="fill: #ecf0f1;"/>
+    <text x="665" y="775" text-anchor="middle" class="label" style="font-weight: bold;">Sub-agents</text>
+    <text x="570" y="800" class="small-label">• 전문화된 에이전트</text>
+    <text x="570" y="820" class="small-label">• 작업 격리</text>
+    <text x="570" y="840" class="small-label">• 병렬 실행</text>
+    <text x="570" y="860" class="small-label">• 커스텀 도구/프롬프트</text>
+    <text x="570" y="890" class="code">task(name, task)</text>
+    <text x="570" y="920" class="small-label" style="font-style: italic;">복잡한 작업을</text>
+    <text x="570" y="940" class="small-label" style="font-style: italic;">전문가에게 위임</text>
+    
+    <rect x="800" y="750" width="230" height="200" rx="8" class="box" style="fill: #ecf0f1;"/>
+    <text x="915" y="775" text-anchor="middle" class="label" style="font-weight: bold;">Detailed Prompts</text>
+    <text x="820" y="800" class="small-label">• Claude Code 영감</text>
+    <text x="820" y="820" class="small-label">• 상세한 지침</text>
+    <text x="820" y="840" class="small-label">• 예제 포함</text>
+    <text x="820" y="860" class="small-label">• 커스터마이징 가능</text>
+    <text x="820" y="890" class="code">system_prompt=</text>
+    <text x="820" y="910" class="code">"Custom instructions"</text>
+    <text x="820" y="940" class="small-label" style="font-style: italic;">효과적인 도구 사용</text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="700" y="985" text-anchor="middle" class="small-label" style="font-style: italic;">
+    Deepagents는 Claude Code, Deep Research, Manus의 성공적인 패턴을 일반화한 오픈소스 프레임워크입니다
+  </text>
+</svg>
