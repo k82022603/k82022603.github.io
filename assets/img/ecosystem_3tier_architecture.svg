@@ -1,0 +1,323 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1600">
+  <defs>
+    <style>
+      .main-title { font-family: Arial, sans-serif; font-size: 36px; font-weight: bold; fill: #1a1a1a; }
+      .tier-title { font-family: Arial, sans-serif; font-size: 28px; font-weight: bold; fill: #2c3e50; }
+      .section-title { font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; fill: #34495e; }
+      .component-title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #4a5568; }
+      .text { font-family: Arial, sans-serif; font-size: 16px; fill: #2c3e50; }
+      .small-text { font-family: Arial, sans-serif; font-size: 14px; fill: #555; }
+      .tiny-text { font-family: Arial, sans-serif; font-size: 12px; fill: #666; }
+      
+      .harness-box { fill: #fff7ed; stroke: #f59e0b; stroke-width: 3; }
+      .runtime-box { fill: #f0f9ff; stroke: #0ea5e9; stroke-width: 3; }
+      .framework-box { fill: #f5f3ff; stroke: #8b5cf6; stroke-width: 3; }
+      .mcp-box { fill: #ecfdf5; stroke: #10b981; stroke-width: 3; }
+      
+      .claude-accent { fill: #eff6ff; stroke: #3b82f6; stroke-width: 2; }
+      .deepagents-accent { fill: #f0fdf4; stroke: #10b981; stroke-width: 2; }
+      .langsmith-accent { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; }
+      
+      .connector { stroke: #9ca3af; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .strong-connector { stroke: #4b5563; stroke-width: 3; fill: none; marker-end: url(#arrow-strong); }
+      .bidirectional { stroke: #6366f1; stroke-width: 2; fill: none; marker-end: url(#arrow-bi); marker-start: url(#arrow-bi); }
+    </style>
+    
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#9ca3af" />
+    </marker>
+    <marker id="arrow-strong" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4b5563" />
+    </marker>
+    <marker id="arrow-bi" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6366f1" />
+    </marker>
+  </defs>
+
+  <!-- Main Title -->
+  <text x="900" y="50" text-anchor="middle" class="main-title">AI 에이전트 생태계: 3-Tier 아키텍처 (2025)</text>
+  <text x="900" y="85" text-anchor="middle" class="text" style="fill: #6b7280;">Framework → Runtime → Harness</text>
+
+  <!-- ======================== -->
+  <!-- TIER 1: Framework Layer  -->
+  <!-- ======================== -->
+  <g id="framework-tier">
+    <rect x="50" y="120" width="1700" height="380" class="framework-box" rx="15"/>
+    <text x="900" y="155" text-anchor="middle" class="tier-title">Tier 1: Framework Layer - 기초 구성 요소</text>
+    
+    <!-- LangChain 1.1 -->
+    <rect x="100" y="180" width="500" height="280" fill="#faf5ff" stroke="#8b5cf6" stroke-width="2" rx="10"/>
+    <text x="350" y="215" text-anchor="middle" class="section-title">LangChain 1.1</text>
+    
+    <rect x="120" y="235" width="460" height="70" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1" rx="5"/>
+    <text x="350" y="260" text-anchor="middle" class="component-title">표준화된 추상화</text>
+    <text x="350" y="280" text-anchor="middle" class="small-text">• 1000+ 통합 (OpenAI, Anthropic, Google...)</text>
+    <text x="350" y="298" text-anchor="middle" class="small-text">• 모델 프로파일: .profile 속성</text>
+    
+    <rect x="120" y="315" width="220" height="60" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1" rx="5"/>
+    <text x="230" y="340" text-anchor="middle" class="small-text">표준 메시지 콘텐츠</text>
+    <text x="230" y="358" text-anchor="middle" class="tiny-text">추론, 인용, 도구 호출</text>
+    <text x="230" y="372" text-anchor="middle" class="tiny-text">제공업체 무관</text>
+    
+    <rect x="360" y="315" width="220" height="60" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1" rx="5"/>
+    <text x="470" y="340" text-anchor="middle" class="small-text">create_agent()</text>
+    <text x="470" y="358" text-anchor="middle" class="tiny-text">LangGraph 기반</text>
+    <text x="470" y="372" text-anchor="middle" class="tiny-text">ReAct 패턴</text>
+    
+    <rect x="120" y="385" width="460" height="60" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1" rx="5"/>
+    <text x="350" y="410" text-anchor="middle" class="component-title">langchain-core (1.0)</text>
+    <text x="350" y="430" text-anchor="middle" class="tiny-text">모든 통합의 기반, 호환성 유지</text>
+    
+    <!-- LangChain 특징 박스 -->
+    <rect x="620" y="180" width="520" height="130" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="10"/>
+    <text x="880" y="210" text-anchor="middle" class="section-title">주요 특징 (2025)</text>
+    <text x="880" y="235" text-anchor="middle" class="small-text">✓ 벤더 락인 방지: 모델 간 쉬운 전환</text>
+    <text x="880" y="255" text-anchor="middle" class="small-text">✓ 프로덕션 준비: 스트리밍, 배칭, 비동기</text>
+    <text x="880" y="275" text-anchor="middle" class="small-text">✓ 비용 최적화: 캐싱, 효율적 토큰 사용</text>
+    <text x="880" y="295" text-anchor="middle" class="small-text">✓ 레거시 지원: langchain-legacy 패키지</text>
+    
+    <!-- 새로운 기능 -->
+    <rect x="620" y="320" width="520" height="140" fill="#dbeafe" stroke="#0ea5e9" stroke-width="2" rx="10"/>
+    <text x="880" y="350" text-anchor="middle" class="section-title">2025년 신규 기능</text>
+    <text x="880" y="375" text-anchor="middle" class="small-text">• LangChain Sandbox: WebAssembly 기반 안전한 Python 실행</text>
+    <text x="880" y="395" text-anchor="middle" class="small-text">• 향상된 구조화 출력: ProviderStrategy 지원</text>
+    <text x="880" y="415" text-anchor="middle" class="small-text">• SystemMessage 고급 기능: 캐시 제어, 구조화 블록</text>
+    <text x="880" y="435" text-anchor="middle" class="small-text">• Google GenAI 통합 재작성: Gemini + Vertex AI 통합</text>
+    
+    <!-- 통합 플랫폼 -->
+    <rect x="1160" y="180" width="550" height="280" fill="#f0fdfa" stroke="#14b8a6" stroke-width="2" rx="10"/>
+    <text x="1435" y="215" text-anchor="middle" class="section-title">통합 플랫폼 생태계</text>
+    
+    <rect x="1180" y="235" width="250" height="80" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1" rx="5"/>
+    <text x="1305" y="260" text-anchor="middle" class="component-title">LLM 제공업체</text>
+    <text x="1305" y="280" text-anchor="middle" class="tiny-text">OpenAI, Anthropic</text>
+    <text x="1305" y="295" text-anchor="middle" class="tiny-text">Google, Cohere, Ollama</text>
+    <text x="1305" y="310" text-anchor="middle" class="tiny-text">HuggingFace, Mistral...</text>
+    
+    <rect x="1450" y="235" width="240" height="80" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1" rx="5"/>
+    <text x="1570" y="260" text-anchor="middle" class="component-title">데이터 소스</text>
+    <text x="1570" y="280" text-anchor="middle" class="tiny-text">벡터 스토어, 데이터베이스</text>
+    <text x="1570" y="295" text-anchor="middle" class="tiny-text">파일 시스템, 웹 API</text>
+    <text x="1570" y="310" text-anchor="middle" class="tiny-text">문서 로더 (PDF, CSV...)</text>
+    
+    <rect x="1180" y="325" width="510" height="125" fill="#e0f2fe" stroke="#0284c7" stroke-width="1" rx="5"/>
+    <text x="1435" y="350" text-anchor="middle" class="component-title">MCP (Model Context Protocol)</text>
+    <text x="1435" y="370" text-anchor="middle" class="tiny-text">• Anthropic 개발, Linux Foundation 관리</text>
+    <text x="1435" y="385" text-anchor="middle" class="tiny-text">• OpenAI, Google, Microsoft 공식 채택</text>
+    <text x="1435" y="400" text-anchor="middle" class="tiny-text">• Google 관리형 MCP 서버: Maps, BigQuery, GCE, GKE</text>
+    <text x="1435" y="415" text-anchor="middle" class="tiny-text">• 표준화된 도구 연결: langchain-mcp-adapters</text>
+    <text x="1435" y="430" text-anchor="middle" class="tiny-text">• 보안 주의: 프롬프트 인젝션, 도구 권한 관리 필요</text>
+  </g>
+
+  <!-- ======================== -->
+  <!-- TIER 2: Runtime Layer    -->
+  <!-- ======================== -->
+  <g id="runtime-tier">
+    <rect x="50" y="530" width="1700" height="380" class="runtime-box" rx="15"/>
+    <text x="900" y="565" text-anchor="middle" class="tier-title">Tier 2: Runtime Layer - 실행 환경 및 오케스트레이션</text>
+    
+    <!-- LangGraph 1.0 -->
+    <rect x="100" y="590" width="1640" height="280" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2" rx="10"/>
+    <text x="920" y="625" text-anchor="middle" class="section-title">LangGraph 1.0 - 저수준 에이전트 오케스트레이션</text>
+    
+    <!-- 핵심 런타임 기능 -->
+    <rect x="120" y="650" width="380" height="200" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" rx="8"/>
+    <text x="310" y="680" text-anchor="middle" class="component-title">내장 에이전트 런타임</text>
+    <text x="310" y="705" text-anchor="middle" class="small-text">• 영구 실행 (Durable Execution)</text>
+    <text x="310" y="725" text-anchor="middle" class="small-text">• 단기 메모리 관리</text>
+    <text x="310" y="745" text-anchor="middle" class="small-text">• Human-in-the-Loop 패턴</text>
+    <text x="310" y="765" text-anchor="middle" class="small-text">• 스트리밍 지원</text>
+    <text x="310" y="785" text-anchor="middle" class="small-text">• 시간 여행 (Time Travel)</text>
+    <text x="310" y="805" text-anchor="middle" class="small-text">• 체크포인트 시스템</text>
+    <text x="310" y="825" text-anchor="middle" class="tiny-text" style="font-weight: bold;">✓ Uber, LinkedIn, Klarna 프로덕션 사용</text>
+    
+    <!-- 2025년 신규 기능 -->
+    <rect x="520" y="650" width="380" height="200" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="8"/>
+    <text x="710" y="680" text-anchor="middle" class="component-title">2025년 신규 기능</text>
+    <text x="710" y="705" text-anchor="middle" class="small-text">• 노드 레벨 캐싱 (6월)</text>
+    <text x="710" y="725" text-anchor="middle" class="small-text">• 지연 노드 (Deferred Nodes)</text>
+    <text x="710" y="745" text-anchor="middle" class="small-text">• Pre/Post 모델 훅</text>
+    <text x="710" y="765" text-anchor="middle" class="small-text">• React 통합 (단일 훅)</text>
+    <text x="710" y="785" text-anchor="middle" class="small-text">• JavaScript 완전 타입 안전성</text>
+    <text x="710" y="805" text-anchor="middle" class="small-text">• reconnectOnMount (페이지 새로고침 복원)</text>
+    <text x="710" y="825" text-anchor="middle" class="tiny-text">• .addNode(), .addSequence() 편의 메서드</text>
+    
+    <!-- 확장 라이브러리 -->
+    <rect x="920" y="650" width="380" height="200" fill="#f0fdf4" stroke="#10b981" stroke-width="2" rx="8"/>
+    <text x="1110" y="680" text-anchor="middle" class="component-title">확장 라이브러리</text>
+    <text x="1110" y="705" text-anchor="middle" class="small-text">• LangGraph Supervisor (2월)</text>
+    <text x="1110" y="722" text-anchor="middle" class="tiny-text">  계층적 멀티 에이전트</text>
+    <text x="1110" y="745" text-anchor="middle" class="small-text">• LangMem SDK (2월)</text>
+    <text x="1110" y="762" text-anchor="middle" class="tiny-text">  장기 메모리 학습</text>
+    <text x="1110" y="785" text-anchor="middle" class="small-text">• LangGraph-bigtool (3월)</text>
+    <text x="1110" y="802" text-anchor="middle" class="tiny-text">  대규모 도구 접근</text>
+    <text x="1110" y="825" text-anchor="middle" class="small-text">• Checkpoint (SQLite/Postgres)</text>
+    
+    <!-- 개발 도구 -->
+    <rect x="1320" y="650" width="380" height="200" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
+    <text x="1510" y="680" text-anchor="middle" class="component-title">개발 및 디버깅 도구</text>
+    <text x="1510" y="705" text-anchor="middle" class="small-text">• LangGraph Studio</text>
+    <text x="1510" y="722" text-anchor="middle" class="tiny-text">  시각적 디버깅 IDE</text>
+    <text x="1510" y="745" text-anchor="middle" class="small-text">• LangSmith 통합</text>
+    <text x="1510" y="762" text-anchor="middle" class="tiny-text">  트레이싱, 평가, 모니터링</text>
+    <text x="1510" y="785" text-anchor="middle" class="small-text">• 비용 추적 (6월)</text>
+    <text x="1510" y="802" text-anchor="middle" class="tiny-text">  동적 리소스 사용량 추적</text>
+    <text x="1510" y="825" text-anchor="middle" class="small-text">• 멀티턴 평가</text>
+    <text x="1510" y="842" text-anchor="middle" class="tiny-text">  엔드투엔드 성능 측정</text>
+  </g>
+
+  <!-- ======================== -->
+  <!-- TIER 3: Harness Layer    -->
+  <!-- ======================== -->
+  <g id="harness-tier">
+    <rect x="50" y="940" width="1700" height="580" class="harness-box" rx="15"/>
+    <text x="900" y="975" text-anchor="middle" class="tier-title">Tier 3: Harness Layer - 고수준 에이전트 구현</text>
+    
+    <!-- Claude Code -->
+    <rect x="100" y="1000" width="500" height="490" class="claude-accent" rx="10"/>
+    <text x="350" y="1035" text-anchor="middle" class="section-title">Claude Code</text>
+    <text x="350" y="1060" text-anchor="middle" class="small-text" style="font-style: italic;">(Anthropic 상용 제품)</text>
+    
+    <rect x="120" y="1080" width="460" height="80" fill="#dbeafe" stroke="#3b82f6" stroke-width="1" rx="5"/>
+    <text x="350" y="1105" text-anchor="middle" class="component-title">철학: 극단적 단순성</text>
+    <text x="350" y="1125" text-anchor="middle" class="small-text">• 단일 메인 스레드</text>
+    <text x="350" y="1142" text-anchor="middle" class="small-text">• 최대 1개 서브에이전트</text>
+    <text x="350" y="1159" text-anchor="middle" class="tiny-text">예측 가능, 디버깅 용이</text>
+    
+    <rect x="120" y="1170" width="220" height="130" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1" rx="5"/>
+    <text x="230" y="1195" text-anchor="middle" class="component-title">핵심 구성</text>
+    <text x="230" y="1215" text-anchor="middle" class="tiny-text">시스템 프롬프트: 2,800토큰</text>
+    <text x="230" y="1230" text-anchor="middle" class="tiny-text">도구 설명: 9,400토큰</text>
+    <text x="230" y="1245" text-anchor="middle" class="tiny-text">CLAUDE.md: 1-2K토큰</text>
+    <text x="230" y="1260" text-anchor="middle" class="tiny-text">Haiku 50%+ 사용</text>
+    <text x="230" y="1275" text-anchor="middle" class="tiny-text">TODO + 파일시스템</text>
+    <text x="230" y="1290" text-anchor="middle" class="tiny-text">+ Bash + 서브에이전트</text>
+    
+    <rect x="360" y="1170" width="220" height="130" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1" rx="5"/>
+    <text x="470" y="1195" text-anchor="middle" class="component-title">Agent Skills</text>
+    <text x="470" y="1215" text-anchor="middle" class="tiny-text">Progressive Disclosure</text>
+    <text x="470" y="1230" text-anchor="middle" class="tiny-text">SKILL.md 메타데이터</text>
+    <text x="470" y="1245" text-anchor="middle" class="tiny-text">→ 필요시 상세 로드</text>
+    <text x="470" y="1260" text-anchor="middle" class="tiny-text">무제한 컨텍스트</text>
+    <text x="470" y="1275" text-anchor="middle" class="tiny-text">커뮤니티 스킬</text>
+    <text x="470" y="1290" text-anchor="middle" class="tiny-text">(docx, pptx, pdf...)</text>
+    
+    <rect x="120" y="1310" width="460" height="80" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" rx="5"/>
+    <text x="350" y="1335" text-anchor="middle" class="component-title" style="font-weight: bold;">장점</text>
+    <text x="350" y="1355" text-anchor="middle" class="tiny-text">✓ 즉시 사용 가능 (설정 최소)</text>
+    <text x="350" y="1370" text-anchor="middle" class="tiny-text">✓ 코딩 작업 최적화</text>
+    <text x="350" y="1385" text-anchor="middle" class="tiny-text">✓ 최신 Claude 모델</text>
+    
+    <rect x="120" y="1400" width="460" height="80" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="5"/>
+    <text x="350" y="1425" text-anchor="middle" class="component-title" style="font-weight: bold;">제약</text>
+    <text x="350" y="1445" text-anchor="middle" class="tiny-text">✗ 폐쇄 소스 (수정 불가)</text>
+    <text x="350" y="1460" text-anchor="middle" class="tiny-text">✗ Anthropic API 종속</text>
+    <text x="350" y="1475" text-anchor="middle" class="tiny-text">✗ 코딩 외 작업에 덜 적합</text>
+    
+    <!-- DeepAgents -->
+    <rect x="630" y="1000" width="500" height="490" class="deepagents-accent" rx="10"/>
+    <text x="880" y="1035" text-anchor="middle" class="section-title">DeepAgents</text>
+    <text x="880" y="1060" text-anchor="middle" class="small-text" style="font-style: italic;">(LangChain 오픈소스)</text>
+    
+    <rect x="650" y="1080" width="460" height="80" fill="#dcfce7" stroke="#10b981" stroke-width="1" rx="5"/>
+    <text x="880" y="1105" text-anchor="middle" class="component-title">철학: 일반화와 확장성</text>
+    <text x="880" y="1125" text-anchor="middle" class="small-text">• 모듈화 아키텍처</text>
+    <text x="880" y="1142" text-anchor="middle" class="small-text">• 플러그인 Backend 시스템</text>
+    <text x="880" y="1159" text-anchor="middle" class="tiny-text">완전한 커스터마이징 가능</text>
+    
+    <rect x="650" y="1170" width="220" height="130" fill="#86efac" stroke="#10b981" stroke-width="1" rx="5"/>
+    <text x="760" y="1195" text-anchor="middle" class="component-title">미들웨어 스택</text>
+    <text x="760" y="1215" text-anchor="middle" class="tiny-text">1. FilesystemMiddleware</text>
+    <text x="760" y="1230" text-anchor="middle" class="tiny-text">2. SubagentsMiddleware</text>
+    <text x="760" y="1245" text-anchor="middle" class="tiny-text">3. TodoMiddleware</text>
+    <text x="760" y="1260" text-anchor="middle" class="tiny-text">4. 커스텀 미들웨어</text>
+    <text x="760" y="1275" text-anchor="middle" class="tiny-text">→ 순서대로 실행</text>
+    <text x="760" y="1290" text-anchor="middle" class="tiny-text">→ 확장 가능</text>
+    
+    <rect x="890" y="1170" width="220" height="130" fill="#86efac" stroke="#10b981" stroke-width="1" rx="5"/>
+    <text x="1000" y="1195" text-anchor="middle" class="component-title">Backend 옵션</text>
+    <text x="1000" y="1215" text-anchor="middle" class="tiny-text">State (메모리)</text>
+    <text x="1000" y="1230" text-anchor="middle" class="tiny-text">Filesystem (디스크)</text>
+    <text x="1000" y="1245" text-anchor="middle" class="tiny-text">Store (영구 저장)</text>
+    <text x="1000" y="1260" text-anchor="middle" class="tiny-text">Composite (하이브리드)</text>
+    <text x="1000" y="1275" text-anchor="middle" class="tiny-text">MCP 통합 강화</text>
+    <text x="1000" y="1290" text-anchor="middle" class="tiny-text">Remote Sandbox</text>
+    
+    <rect x="650" y="1310" width="460" height="80" fill="#f0fdf4" stroke="#10b981" stroke-width="2" rx="5"/>
+    <text x="880" y="1335" text-anchor="middle" class="component-title" style="font-weight: bold;">장점</text>
+    <text x="880" y="1355" text-anchor="middle" class="tiny-text">✓ 완전한 제어 (모든 수정 가능)</text>
+    <text x="880" y="1370" text-anchor="middle" class="tiny-text">✓ 벤더 중립 (다양한 LLM)</text>
+    <text x="880" y="1385" text-anchor="middle" class="tiny-text">✓ 오픈소스 (투명성, 커뮤니티)</text>
+    
+    <rect x="650" y="1400" width="460" height="80" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="5"/>
+    <text x="880" y="1425" text-anchor="middle" class="component-title" style="font-weight: bold;">트레이드오프</text>
+    <text x="880" y="1445" text-anchor="middle" class="tiny-text">△ 더 많은 초기 설정</text>
+    <text x="880" y="1460" text-anchor="middle" class="tiny-text">△ 학습 곡선</text>
+    <text x="880" y="1475" text-anchor="middle" class="tiny-text">△ 직접 유지보수</text>
+    
+    <!-- LangSmith Agent Builder -->
+    <rect x="1160" y="1000" width="550" height="490" class="langsmith-accent" rx="10"/>
+    <text x="1435" y="1035" text-anchor="middle" class="section-title">LangSmith Agent Builder</text>
+    <text x="1435" y="1060" text-anchor="middle" class="small-text" style="font-style: italic;">(노코드 플랫폼, 공개 베타)</text>
+    
+    <rect x="1180" y="1080" width="510" height="80" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" rx="5"/>
+    <text x="1435" y="1105" text-anchor="middle" class="component-title">철학: 에이전트 민주화</text>
+    <text x="1435" y="1125" text-anchor="middle" class="small-text">• 대화형 설정 (코드 없음)</text>
+    <text x="1435" y="1142" text-anchor="middle" class="small-text">• DeepAgents 기반 구축</text>
+    <text x="1435" y="1159" text-anchor="middle" class="tiny-text">비개발자도 프로덕션 에이전트 생성</text>
+    
+    <rect x="1180" y="1170" width="240" height="130" fill="#fde68a" stroke="#f59e0b" stroke-width="1" rx="5"/>
+    <text x="1300" y="1195" text-anchor="middle" class="component-title">핵심 기능</text>
+    <text x="1300" y="1215" text-anchor="middle" class="tiny-text">• 자동 프롬프트 생성</text>
+    <text x="1300" y="1230" text-anchor="middle" class="tiny-text">• 도구 자동 연결</text>
+    <text x="1300" y="1245" text-anchor="middle" class="tiny-text">• 트리거 설정</text>
+    <text x="1300" y="1260" text-anchor="middle" class="tiny-text">• 내장 메모리</text>
+    <text x="1300" y="1275" text-anchor="middle" class="tiny-text">• Human-in-the-Loop</text>
+    <text x="1300" y="1290" text-anchor="middle" class="tiny-text">• 서브에이전트 구성</text>
+    
+    <rect x="1440" y="1170" width="250" height="130" fill="#fde68a" stroke="#f59e0b" stroke-width="1" rx="5"/>
+    <text x="1565" y="1195" text-anchor="middle" class="component-title">통합 및 협업</text>
+    <text x="1565" y="1215" text-anchor="middle" class="tiny-text">• MCP 서버 연결</text>
+    <text x="1565" y="1230" text-anchor="middle" class="tiny-text">  (Gmail, Slack, Linear...)</text>
+    <text x="1565" y="1247" text-anchor="middle" class="tiny-text">• 워크스페이스 공유</text>
+    <text x="1565" y="1262" text-anchor="middle" class="tiny-text">• 1-클릭 복제</text>
+    <text x="1565" y="1277" text-anchor="middle" class="tiny-text">• API 호출 가능</text>
+    <text x="1565" y="1292" text-anchor="middle" class="tiny-text">• 멀티 모델 지원</text>
+    
+    <rect x="1180" y="1310" width="510" height="80" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="5"/>
+    <text x="1435" y="1335" text-anchor="middle" class="component-title" style="font-weight: bold;">장점</text>
+    <text x="1435" y="1355" text-anchor="middle" class="tiny-text">✓ 노코드 (비개발자도 사용)</text>
+    <text x="1435" y="1370" text-anchor="middle" class="tiny-text">✓ 빠른 프로토타이핑</text>
+    <text x="1435" y="1385" text-anchor="middle" class="tiny-text">✓ 팀 협업 및 거버넌스</text>
+    
+    <rect x="1180" y="1400" width="510" height="80" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="5"/>
+    <text x="1435" y="1425" text-anchor="middle" class="component-title" style="font-weight: bold;">제약</text>
+    <text x="1435" y="1445" text-anchor="middle" class="tiny-text">△ 복잡한 로직 구현 제한</text>
+    <text x="1435" y="1460" text-anchor="middle" class="tiny-text">△ 베타 단계 (안정성)</text>
+    <text x="1435" y="1475" text-anchor="middle" class="tiny-text">△ 가격 정책 미정</text>
+  </g>
+
+  <!-- Connections between layers -->
+  <path d="M 900 500 L 900 530" class="strong-connector"/>
+  <path d="M 900 910 L 900 940" class="strong-connector"/>
+  
+  <!-- Framework to Runtime connections -->
+  <path d="M 350 460 L 310 590" class="connector"/>
+  <path d="M 880 460 L 920 590" class="connector"/>
+  
+  <!-- Runtime to Harness connections -->
+  <path d="M 310 870 L 350 1000" class="connector"/>
+  <path d="M 710 870 L 880 1000" class="connector"/>
+  <path d="M 1110 870 L 1435 1000" class="connector"/>
+  
+  <!-- Cross connections showing architecture relationships -->
+  <path d="M 600 1245 L 630 1245" class="bidirectional"/>
+  <path d="M 1130 1245 L 1160 1245" class="bidirectional"/>
+  
+  <!-- Bottom summary -->
+  <rect x="100" y="1540" width="1600" height="50" fill="#f9fafb" stroke="#6b7280" stroke-width="2" rx="8"/>
+  <text x="900" y="1570" text-anchor="middle" class="text" style="font-weight: bold; fill: #1f2937;">
+    권장 워크플로우: LangSmith Agent Builder (프로토타입) → Claude Code (개발) → DeepAgents (프로덕션)
+  </text>
+
+</svg>

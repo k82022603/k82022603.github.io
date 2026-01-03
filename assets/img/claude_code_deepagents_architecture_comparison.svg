@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1400">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 32px; font-weight: bold; fill: #1a1a1a; }
+      .section-title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #2c3e50; }
+      .component-title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #34495e; }
+      .text { font-family: Arial, sans-serif; font-size: 16px; fill: #2c3e50; }
+      .small-text { font-family: Arial, sans-serif; font-size: 14px; fill: #555; }
+      .claude-box { fill: #f0f7ff; stroke: #3b82f6; stroke-width: 3; }
+      .deepagents-box { fill: #f0fdf4; stroke: #10b981; stroke-width: 3; }
+      .highlight-box { fill: #fff7ed; stroke: #f59e0b; stroke-width: 2; }
+      .flow-arrow { stroke: #6b7280; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .emphasis-arrow { stroke: #ef4444; stroke-width: 3; fill: none; marker-end: url(#arrowhead-red); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6b7280" />
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#ef4444" />
+    </marker>
+  </defs>
+
+  <!-- Main Title -->
+  <text x="800" y="40" text-anchor="middle" class="title">Claude Code vs DeepAgents 아키텍처 비교</text>
+  
+  <!-- Dividing Line -->
+  <line x1="800" y1="70" x2="800" y2="1380" stroke="#d1d5db" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- Claude Code Section -->
+  <g id="claude-section">
+    <!-- Section Title -->
+    <rect x="50" y="80" width="700" height="60" class="claude-box" rx="10"/>
+    <text x="400" y="120" text-anchor="middle" class="section-title">Claude Code 아키텍처</text>
+    
+    <!-- Philosophy Box -->
+    <rect x="70" y="160" width="660" height="100" class="highlight-box" rx="8"/>
+    <text x="400" y="190" text-anchor="middle" class="component-title">핵심 철학: 극단적 단순성</text>
+    <text x="400" y="215" text-anchor="middle" class="small-text">"Architectural simplicity at every juncture"</text>
+    <text x="400" y="240" text-anchor="middle" class="small-text">단일 메인 스레드 + 최대 1개의 서브에이전트 브랜치</text>
+    
+    <!-- Main Agent Loop -->
+    <rect x="100" y="290" width="600" height="450" class="claude-box" rx="10"/>
+    <text x="400" y="320" text-anchor="middle" class="component-title">메인 에이전트 루프</text>
+    
+    <!-- System Prompt -->
+    <rect x="130" y="340" width="540" height="80" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="5"/>
+    <text x="400" y="365" text-anchor="middle" class="text">시스템 프롬프트 (2,800 토큰)</text>
+    <text x="400" y="390" text-anchor="middle" class="small-text">+ 도구 설명 (9,400 토큰)</text>
+    <text x="400" y="410" text-anchor="middle" class="small-text">+ CLAUDE.md (1,000-2,000 토큰)</text>
+    
+    <!-- Tools -->
+    <rect x="130" y="440" width="260" height="120" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="5"/>
+    <text x="260" y="465" text-anchor="middle" class="text">핵심 도구</text>
+    <text x="260" y="490" text-anchor="middle" class="small-text">• TODO 리스트</text>
+    <text x="260" y="510" text-anchor="middle" class="small-text">• 파일시스템 접근</text>
+    <text x="260" y="530" text-anchor="middle" class="small-text">• Bash 터미널</text>
+    <text x="260" y="550" text-anchor="middle" class="small-text">• 서브에이전트 생성</text>
+    
+    <!-- Model Strategy -->
+    <rect x="410" y="440" width="260" height="120" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="5"/>
+    <text x="540" y="465" text-anchor="middle" class="text">모델 전략</text>
+    <text x="540" y="490" text-anchor="middle" class="small-text">• Sonnet 4: 복잡한 작업</text>
+    <text x="540" y="510" text-anchor="middle" class="small-text">• Haiku: 50%+ 호출</text>
+    <text x="540" y="530" text-anchor="middle" class="small-text">  (파일 읽기, 요약 등)</text>
+    <text x="540" y="550" text-anchor="middle" class="small-text">• 프롬프트 캐싱 활용</text>
+    
+    <!-- Message History -->
+    <rect x="130" y="580" width="540" height="60" fill="#93c5fd" stroke="#3b82f6" stroke-width="2" rx="5"/>
+    <text x="400" y="610" text-anchor="middle" class="text">단일 메시지 히스토리 (모든 컨텍스트 통합)</text>
+    <text x="400" y="630" text-anchor="middle" class="small-text">서브에이전트 결과도 여기에 병합됨</text>
+    
+    <!-- Subagent (if needed) -->
+    <rect x="130" y="660" width="540" height="60" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="5" stroke-dasharray="5,5"/>
+    <text x="400" y="685" text-anchor="middle" class="text">서브에이전트 (최대 1개, 선택적)</text>
+    <text x="400" y="705" text-anchor="middle" class="small-text">메인 에이전트의 클론 - 서브에이전트 생성 불가</text>
+    
+    <!-- Agent Skills -->
+    <rect x="100" y="760" width="600" height="100" class="highlight-box" rx="8"/>
+    <text x="400" y="790" text-anchor="middle" class="component-title">Agent Skills (Progressive Disclosure)</text>
+    <text x="400" y="815" text-anchor="middle" class="small-text">SKILL.md 메타데이터 → 필요시 상세 파일 로드</text>
+    <text x="400" y="840" text-anchor="middle" class="small-text">사실상 무제한 컨텍스트 가능</text>
+    
+    <!-- Key Characteristics -->
+    <rect x="70" y="880" width="660" height="120" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" rx="8"/>
+    <text x="400" y="910" text-anchor="middle" class="component-title">주요 특징</text>
+    <text x="400" y="935" text-anchor="middle" class="small-text">✓ 예측 가능한 실행 흐름 (디버깅 용이)</text>
+    <text x="400" y="960" text-anchor="middle" class="small-text">✓ 사용자 통제감 유지 (불안감 최소화)</text>
+    <text x="400" y="985" text-anchor="middle" class="small-text">✓ 최적화된 비용 (Haiku 적극 활용)</text>
+  </g>
+
+  <!-- DeepAgents Section -->
+  <g id="deepagents-section">
+    <!-- Section Title -->
+    <rect x="850" y="80" width="700" height="60" class="deepagents-box" rx="10"/>
+    <text x="1200" y="120" text-anchor="middle" class="section-title">DeepAgents 아키텍처</text>
+    
+    <!-- Philosophy Box -->
+    <rect x="870" y="160" width="660" height="100" class="highlight-box" rx="8"/>
+    <text x="1200" y="190" text-anchor="middle" class="component-title">핵심 철학: 일반화와 확장성</text>
+    <text x="1200" y="215" text-anchor="middle" class="small-text">성공적인 에이전트 패턴의 범용 구현</text>
+    <text x="1200" y="240" text-anchor="middle" class="small-text">모듈화 + 플러그인 아키텍처</text>
+    
+    <!-- LangGraph Foundation -->
+    <rect x="900" y="290" width="600" height="80" class="deepagents-box" rx="10"/>
+    <text x="1200" y="320" text-anchor="middle" class="component-title">LangGraph StateGraph 기반</text>
+    <text x="1200" y="345" text-anchor="middle" class="small-text">create_deep_agent() → 컴파일된 그래프 반환</text>
+    
+    <!-- Middleware Stack -->
+    <rect x="920" y="390" width="560" height="200" fill="#dcfce7" stroke="#10b981" stroke-width="2" rx="8"/>
+    <text x="1200" y="420" text-anchor="middle" class="component-title">미들웨어 스택 (순서대로 적용)</text>
+    
+    <rect x="940" y="440" width="520" height="35" fill="#86efac" stroke="#10b981" stroke-width="1" rx="3"/>
+    <text x="1200" y="463" text-anchor="middle" class="small-text">1. FilesystemMiddleware (ls, read, write, edit)</text>
+    
+    <rect x="940" y="485" width="520" height="35" fill="#86efac" stroke="#10b981" stroke-width="1" rx="3"/>
+    <text x="1200" y="508" text-anchor="middle" class="small-text">2. SubagentsMiddleware (task 도구)</text>
+    
+    <rect x="940" y="530" width="520" height="35" fill="#86efac" stroke="#10b981" stroke-width="1" rx="3"/>
+    <text x="1200" y="553" text-anchor="middle" class="small-text">3. TodoMiddleware (write_todos)</text>
+    
+    <!-- Backend System -->
+    <rect x="920" y="610" width="560" height="180" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="8"/>
+    <text x="1200" y="640" text-anchor="middle" class="component-title">Backend 시스템 (플러그인 방식)</text>
+    
+    <rect x="940" y="660" width="250" height="60" fill="#fde68a" stroke="#f59e0b" stroke-width="1" rx="3"/>
+    <text x="1065" y="680" text-anchor="middle" class="small-text">StateBackend</text>
+    <text x="1065" y="700" text-anchor="middle" class="small-text" style="font-size: 12px;">메모리, 셸 X</text>
+    
+    <rect x="1210" y="660" width="250" height="60" fill="#fde68a" stroke="#f59e0b" stroke-width="1" rx="3"/>
+    <text x="1335" y="680" text-anchor="middle" class="small-text">FilesystemBackend</text>
+    <text x="1335" y="700" text-anchor="middle" class="small-text" style="font-size: 12px;">디스크, 셸 O</text>
+    
+    <rect x="1075" y="730" width="250" height="50" fill="#fde68a" stroke="#f59e0b" stroke-width="1" rx="3"/>
+    <text x="1200" y="750" text-anchor="middle" class="small-text">StoreBackend / CompositeBackend</text>
+    <text x="1200" y="768" text-anchor="middle" class="small-text" style="font-size: 12px;">영구 저장 / 하이브리드</text>
+    
+    <!-- Subagents -->
+    <rect x="920" y="810" width="560" height="120" fill="#dcfce7" stroke="#10b981" stroke-width="2" rx="8"/>
+    <text x="1200" y="840" text-anchor="middle" class="component-title">유연한 서브에이전트</text>
+    <text x="1200" y="865" text-anchor="middle" class="small-text">• 고유한 이름, 설명, 프롬프트</text>
+    <text x="1200" y="890" text-anchor="middle" class="small-text">• 독립적인 도구 세트</text>
+    <text x="1200" y="915" text-anchor="middle" class="small-text">• 다른 모델 사용 가능 (예: 메인 Claude, 서브 GPT-4o)</text>
+    
+    <!-- MCP Integration -->
+    <rect x="920" y="950" width="560" height="100" class="highlight-box" rx="8"/>
+    <text x="1200" y="980" text-anchor="middle" class="component-title">MCP 통합 (2025년 강화)</text>
+    <text x="1200" y="1005" text-anchor="middle" class="small-text">langchain-mcp-adapters로 MCP 도구 연결</text>
+    <text x="1200" y="1030" text-anchor="middle" class="small-text">Google, OpenAI, Microsoft 서비스 원활한 통합</text>
+    
+    <!-- Key Characteristics -->
+    <rect x="870" y="1070" width="660" height="140" fill="#f0fdf4" stroke="#10b981" stroke-width="2" rx="8"/>
+    <text x="1200" y="1100" text-anchor="middle" class="component-title">주요 특징</text>
+    <text x="1200" y="1125" text-anchor="middle" class="small-text">✓ 완전한 커스터마이징 (모든 구성 요소 수정 가능)</text>
+    <text x="1200" y="1150" text-anchor="middle" class="small-text">✓ 벤더 중립 (다양한 LLM 제공업체 지원)</text>
+    <text x="1200" y="1175" text-anchor="middle" class="small-text">✓ 오픈소스 (투명성, 커뮤니티 기여)</text>
+    <text x="1200" y="1200" text-anchor="middle" class="small-text">✓ 프로덕션 기능 (LangSmith 통합, 평가, 모니터링)</text>
+  </g>
+
+  <!-- Comparison Summary -->
+  <rect x="50" y="1040" width="700" height="170" fill="#fef2f2" stroke="#ef4444" stroke-width="3" rx="10"/>
+  <text x="400" y="1070" text-anchor="middle" class="component-title" style="fill: #dc2626;">Claude Code 트레이드오프</text>
+  <text x="400" y="1095" text-anchor="middle" class="small-text">단순성 → 빠른 시작, 예측 가능</text>
+  <text x="400" y="1120" text-anchor="middle" class="small-text">제한 → 내부 로직 수정 불가</text>
+  <text x="400" y="1145" text-anchor="middle" class="small-text">최적화 → 코딩 작업에 특화</text>
+  <text x="400" y="1170" text-anchor="middle" class="small-text">종속성 → Anthropic API</text>
+  <text x="400" y="1195" text-anchor="middle" class="small-text" style="font-weight: bold;">💡 사용 사례: 즉시 사용 가능한 코딩 도구</text>
+  
+  <rect x="850" y="1230" width="700" height="170" fill="#f0fdf4" stroke="#10b981" stroke-width="3" rx="10"/>
+  <text x="1200" y="1260" text-anchor="middle" class="component-title" style="fill: #059669;">DeepAgents 트레이드오프</text>
+  <text x="1200" y="1285" text-anchor="middle" class="small-text">복잡성 → 더 많은 설정 필요</text>
+  <text x="1200" y="1310" text-anchor="middle" class="small-text">유연성 → 모든 측면 제어 가능</text>
+  <text x="1200" y="1335" text-anchor="middle" class="small-text">확장성 → 커스텀 워크플로우 구축</text>
+  <text x="1200" y="1360" text-anchor="middle" class="small-text">독립성 → 오픈소스, 벤더 중립</text>
+  <text x="1200" y="1385" text-anchor="middle" class="small-text" style="font-weight: bold;">💡 사용 사례: 프로덕션 에이전트 시스템</text>
+
+  <!-- Connection Arrows -->
+  <path d="M 400 560 L 400 580" class="flow-arrow"/>
+  <path d="M 400 640 L 400 660" class="flow-arrow" stroke-dasharray="5,5"/>
+  <path d="M 1200 370 L 1200 390" class="flow-arrow"/>
+  <path d="M 1200 590 L 1200 610" class="flow-arrow"/>
+  <path d="M 1200 790 L 1200 810" class="flow-arrow"/>
+  <path d="M 1200 930 L 1200 950" class="flow-arrow"/>
+  
+  <!-- Emphasis on key differences -->
+  <text x="800" y="1420" text-anchor="middle" class="small-text" style="font-weight: bold; fill: #6b7280;">두 시스템 모두 MCP를 지원하여 동일한 도구와 통합 공유 가능</text>
+
+</svg>
