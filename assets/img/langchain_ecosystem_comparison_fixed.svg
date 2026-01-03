@@ -1,0 +1,267 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1400">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 36px; font-weight: bold; fill: #1a1a1a; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; fill: #2c3e50; }
+      .label { font-family: Arial, sans-serif; font-size: 16px; fill: #34495e; }
+      .small-label { font-family: Arial, sans-serif; font-size: 14px; fill: #555; }
+      .tiny-label { font-family: Arial, sans-serif; font-size: 12px; fill: #666; }
+      .code { font-family: 'Courier New', monospace; font-size: 13px; fill: #2c3e50; }
+      .box { fill: #ffffff; stroke: #2c3e50; stroke-width: 2; }
+      .langgraph-box { fill: #9b59b6; stroke: #8e44ad; stroke-width: 3; }
+      .langchain-box { fill: #3498db; stroke: #2980b9; stroke-width: 3; }
+      .deepagents-box { fill: #e74c3c; stroke: #c0392b; stroke-width: 3; }
+      .langsmith-box { fill: #f39c12; stroke: #d68910; stroke-width: 3; }
+      .arrow { stroke: #34495e; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .white-text { fill: white; font-weight: bold; }
+      .highlight { fill: #fffacd; }
+      .decision-box { fill: #ecf0f1; stroke: #34495e; stroke-width: 2; }
+      .yes-arrow { stroke: #27ae60; stroke-width: 3; fill: none; marker-end: url(#arrowhead-green); }
+      .no-arrow { stroke: #e74c3c; stroke-width: 3; fill: none; marker-end: url(#arrowhead-red); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#34495e" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#27ae60" />
+    </marker>
+    <marker id="arrowhead-red" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#e74c3c" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="900" y="45" text-anchor="middle" class="title">LangChain 생태계 비교 (2025)</text>
+  <text x="900" y="75" text-anchor="middle" class="small-label">언제 무엇을 사용해야 하는가?</text>
+
+  <!-- 계층 구조 -->
+  <g id="hierarchy">
+    <text x="100" y="130" class="subtitle">계층적 구조</text>
+    
+    <!-- LangSmith Agent Builder (최상단 추가) -->
+    <rect x="500" y="150" width="400" height="90" rx="10" class="langsmith-box"/>
+    <text x="700" y="180" text-anchor="middle" class="subtitle white-text">LangSmith Agent Builder</text>
+    <text x="700" y="205" text-anchor="middle" class="label white-text">노코드 플랫폼</text>
+    <text x="700" y="228" text-anchor="middle" class="small-label white-text">대화형 에이전트 생성 (베타)</text>
+
+    <path d="M 700 240 L 700 270" class="arrow"/>
+    <text x="720" y="260" class="label">기반</text>
+
+    <!-- Deepagents -->
+    <rect x="500" y="270" width="400" height="90" rx="10" class="deepagents-box"/>
+    <text x="700" y="300" text-anchor="middle" class="subtitle white-text">DeepAgents</text>
+    <text x="700" y="325" text-anchor="middle" class="label white-text">Agent Harness</text>
+    <text x="700" y="348" text-anchor="middle" class="small-label white-text">자율적, 장기 실행 에이전트</text>
+
+    <path d="M 700 360 L 700 390" class="arrow"/>
+    <text x="720" y="380" class="label">기반</text>
+
+    <!-- LangChain -->
+    <rect x="500" y="390" width="400" height="90" rx="10" class="langchain-box"/>
+    <text x="700" y="420" text-anchor="middle" class="subtitle white-text">LangChain 1.1</text>
+    <text x="700" y="445" text-anchor="middle" class="label white-text">Agent Framework</text>
+    <text x="700" y="468" text-anchor="middle" class="small-label white-text">고수준 추상화, 빠른 프로토타입</text>
+
+    <path d="M 700 480 L 700 510" class="arrow"/>
+    <text x="720" y="500" class="label">기반</text>
+
+    <!-- LangGraph -->
+    <rect x="500" y="510" width="400" height="90" rx="10" class="langgraph-box"/>
+    <text x="700" y="540" text-anchor="middle" class="subtitle white-text">LangGraph 1.0</text>
+    <text x="700" y="565" text-anchor="middle" class="label white-text">Agent Runtime</text>
+    <text x="700" y="588" text-anchor="middle" class="small-label white-text">저수준 제어, 워크플로우 + 에이전트</text>
+  </g>
+
+  <!-- 상세 비교 -->
+  <g id="comparison">
+    <text x="100" y="660" class="subtitle">주요 특징 비교</text>
+    
+    <!-- LangGraph -->
+    <rect x="50" y="680" width="360" height="470" rx="10" class="box" style="fill: #f4ecf7;"/>
+    <rect x="50" y="680" width="360" height="50" rx="10" class="langgraph-box"/>
+    <text x="230" y="710" text-anchor="middle" class="subtitle white-text">LangGraph 1.0</text>
+
+    <text x="70" y="755" class="label" style="font-weight: bold;">추상화 수준</text>
+    <text x="70" y="775" class="small-label">• 저수준 런타임</text>
+    <text x="70" y="795" class="small-label">• 완전한 제어</text>
+
+    <text x="70" y="825" class="label" style="font-weight: bold;">주요 기능</text>
+    <text x="70" y="845" class="small-label">• 그래프 기반 실행</text>
+    <text x="70" y="865" class="small-label">• 사이클 &amp; 조건부 분기</text>
+    <text x="70" y="885" class="small-label">• 상태 지속성</text>
+    <text x="70" y="905" class="small-label">• Human-in-the-Loop</text>
+    <text x="70" y="925" class="small-label">• 체크포인팅</text>
+    <text x="70" y="945" class="small-label">• 노드 레벨 캐싱 (2025)</text>
+
+    <text x="70" y="975" class="label" style="font-weight: bold;">사용 시나리오</text>
+    <text x="70" y="995" class="small-label">• 복잡한 워크플로우</text>
+    <text x="70" y="1015" class="small-label">• 결정론 + 에이전트 혼합</text>
+    <text x="70" y="1035" class="small-label">• 세밀한 제어 필요</text>
+
+    <text x="70" y="1065" class="label" style="font-weight: bold;">사용자</text>
+    <text x="70" y="1085" class="small-label">• 숙련된 개발자</text>
+    <text x="70" y="1105" class="small-label">• Uber, LinkedIn, Klarna</text>
+
+    <rect x="70" y="1120" width="320" height="20" rx="3" style="fill: #2c3e50;"/>
+    <text x="230" y="1135" text-anchor="middle" class="code" style="fill: #ecf0f1;">workflow = StateGraph(State)</text>
+
+    <!-- LangChain -->
+    <rect x="440" y="680" width="360" height="470" rx="10" class="box" style="fill: #e8f4f8;"/>
+    <rect x="440" y="680" width="360" height="50" rx="10" class="langchain-box"/>
+    <text x="620" y="710" text-anchor="middle" class="subtitle white-text">LangChain 1.1</text>
+
+    <text x="460" y="755" class="label" style="font-weight: bold;">추상화 수준</text>
+    <text x="460" y="775" class="small-label">• 고수준 프레임워크</text>
+    <text x="460" y="795" class="small-label">• 10줄 이하 코드</text>
+
+    <text x="460" y="825" class="label" style="font-weight: bold;">주요 기능</text>
+    <text x="460" y="845" class="small-label">• ReAct 패턴</text>
+    <text x="460" y="865" class="small-label">• 모델 독립적 (1000+ 통합)</text>
+    <text x="460" y="885" class="small-label">• 미들웨어 커스터마이징</text>
+    <text x="460" y="905" class="small-label">• 표준 메시지 블록 (2025)</text>
+    <text x="460" y="925" class="small-label">• 모델 프로파일</text>
+    <text x="460" y="945" class="small-label">• 빠른 시작</text>
+
+    <text x="460" y="975" class="label" style="font-weight: bold;">사용 시나리오</text>
+    <text x="460" y="995" class="small-label">• 표준 에이전트 패턴</text>
+    <text x="460" y="1015" class="small-label">• 빠른 프로토타입</text>
+    <text x="460" y="1035" class="small-label">• 벤더 중립성</text>
+
+    <text x="460" y="1065" class="label" style="font-weight: bold;">사용자</text>
+    <text x="460" y="1085" class="small-label">• 모든 개발자</text>
+    <text x="460" y="1105" class="small-label">• 빠른 시작 원하는 팀</text>
+
+    <rect x="460" y="1120" width="320" height="20" rx="3" style="fill: #2c3e50;"/>
+    <text x="620" y="1135" text-anchor="middle" class="code" style="fill: #ecf0f1;">agent = create_agent(model, tools)</text>
+
+    <!-- Deepagents -->
+    <rect x="830" y="680" width="360" height="470" rx="10" class="box" style="fill: #fdeaea;"/>
+    <rect x="830" y="680" width="360" height="50" rx="10" class="deepagents-box"/>
+    <text x="1010" y="710" text-anchor="middle" class="subtitle white-text">DeepAgents</text>
+
+    <text x="850" y="755" class="label" style="font-weight: bold;">추상화 수준</text>
+    <text x="850" y="775" class="small-label">• 에이전트 하네스</text>
+    <text x="850" y="795" class="small-label">• 내장 기능 활용</text>
+
+    <text x="850" y="825" class="label" style="font-weight: bold;">주요 기능</text>
+    <text x="850" y="845" class="small-label">• Planning (TODO)</text>
+    <text x="850" y="865" class="small-label">• Filesystem 접근</text>
+    <text x="850" y="885" class="small-label">• Sub-agents 생성</text>
+    <text x="850" y="905" class="small-label">• 상세한 프롬프트</text>
+    <text x="850" y="925" class="small-label">• 플러그인 Backend</text>
+    <text x="850" y="945" class="small-label">• MCP 통합 (2025)</text>
+
+    <text x="850" y="975" class="label" style="font-weight: bold;">사용 시나리오</text>
+    <text x="850" y="995" class="small-label">• 복잡한 장기 작업</text>
+    <text x="850" y="1015" class="small-label">• 수십 개 도구 호출</text>
+    <text x="850" y="1035" class="small-label">• 자율 실행</text>
+
+    <text x="850" y="1065" class="label" style="font-weight: bold;">사용자</text>
+    <text x="850" y="1085" class="small-label">• 프로덕션 시스템 개발</text>
+    <text x="850" y="1105" class="small-label">• 오픈소스 선호</text>
+
+    <rect x="850" y="1120" width="320" height="20" rx="3" style="fill: #2c3e50;"/>
+    <text x="1010" y="1135" text-anchor="middle" class="code" style="fill: #ecf0f1;">agent = create_deep_agent(tools)</text>
+
+    <!-- LangSmith Agent Builder -->
+    <rect x="1220" y="680" width="360" height="470" rx="10" class="box" style="fill: #fef5e7;"/>
+    <rect x="1220" y="680" width="360" height="50" rx="10" class="langsmith-box"/>
+    <text x="1400" y="710" text-anchor="middle" class="subtitle white-text">Agent Builder</text>
+
+    <text x="1240" y="755" class="label" style="font-weight: bold;">추상화 수준</text>
+    <text x="1240" y="775" class="small-label">• 최고 수준 (노코드)</text>
+    <text x="1240" y="795" class="small-label">• 대화형 생성</text>
+
+    <text x="1240" y="825" class="label" style="font-weight: bold;">주요 기능</text>
+    <text x="1240" y="845" class="small-label">• 자동 프롬프트 생성</text>
+    <text x="1240" y="865" class="small-label">• 도구 자동 연결</text>
+    <text x="1240" y="885" class="small-label">• 내장 메모리</text>
+    <text x="1240" y="905" class="small-label">• Human-in-the-Loop</text>
+    <text x="1240" y="925" class="small-label">• MCP 통합</text>
+    <text x="1240" y="945" class="small-label">• 워크스페이스 공유</text>
+
+    <text x="1240" y="975" class="label" style="font-weight: bold;">사용 시나리오</text>
+    <text x="1240" y="995" class="small-label">• 빠른 프로토타이핑</text>
+    <text x="1240" y="1015" class="small-label">• 내부 생산성 도구</text>
+    <text x="1240" y="1035" class="small-label">• 팀 협업</text>
+
+    <text x="1240" y="1065" class="label" style="font-weight: bold;">사용자</text>
+    <text x="1240" y="1085" class="small-label">• 비개발자</text>
+    <text x="1240" y="1105" class="small-label">• 비즈니스 사용자</text>
+
+    <rect x="1240" y="1120" width="320" height="20" rx="3" style="fill: #2c3e50;"/>
+    <text x="1400" y="1135" text-anchor="middle" class="code" style="fill: #ecf0f1;">[대화형으로 에이전트 생성]</text>
+  </g>
+
+  <!-- 의사결정 플로우 -->
+  <g id="decision-flow">
+    <text x="100" y="1210" class="subtitle">의사결정 플로우차트</text>
+    
+    <!-- 시작 -->
+    <rect x="700" y="1240" width="200" height="60" rx="10" class="decision-box"/>
+    <text x="800" y="1265" text-anchor="middle" class="label" style="font-weight: bold;">에이전트가</text>
+    <text x="800" y="1285" text-anchor="middle" class="label" style="font-weight: bold;">필요한가?</text>
+
+    <!-- 코드 작성 가능? -->
+    <path d="M 800 1300 L 800 1330" class="yes-arrow"/>
+    <text x="820" y="1320" class="small-label" style="fill: #27ae60; font-weight: bold;">YES</text>
+    
+    <rect x="700" y="1330" width="200" height="60" rx="10" class="decision-box"/>
+    <text x="800" y="1355" text-anchor="middle" class="label" style="font-weight: bold;">코드 작성</text>
+    <text x="800" y="1375" text-anchor="middle" class="label" style="font-weight: bold;">가능한가?</text>
+
+    <!-- NO -> LangSmith Agent Builder -->
+    <path d="M 700 1360 L 200 1360 L 200 1270" class="no-arrow"/>
+    <text x="450" y="1355" class="small-label" style="fill: #e74c3c; font-weight: bold;">NO</text>
+    
+    <rect x="100" y="1240" width="200" height="60" rx="10" class="langsmith-box"/>
+    <text x="200" y="1265" text-anchor="middle" class="label white-text" style="font-weight: bold;">LangSmith</text>
+    <text x="200" y="1285" text-anchor="middle" class="label white-text" style="font-weight: bold;">Agent Builder</text>
+
+    <!-- YES -> 세밀한 제어? -->
+    <path d="M 800 1390 L 800 1420" class="yes-arrow"/>
+    <text x="820" y="1410" class="small-label" style="fill: #27ae60; font-weight: bold;">YES</text>
+    
+    <rect x="700" y="1420" width="200" height="60" rx="10" class="decision-box"/>
+    <text x="800" y="1445" text-anchor="middle" class="label" style="font-weight: bold;">세밀한 제어</text>
+    <text x="800" y="1465" text-anchor="middle" class="label" style="font-weight: bold;">필요한가?</text>
+
+    <!-- NO -> LangChain -->
+    <path d="M 700 1450 L 500 1450 L 500 1270" class="no-arrow"/>
+    <text x="600" y="1445" class="small-label" style="fill: #e74c3c; font-weight: bold;">NO</text>
+    
+    <rect x="400" y="1240" width="200" height="60" rx="10" class="langchain-box"/>
+    <text x="500" y="1265" text-anchor="middle" class="label white-text" style="font-weight: bold;">LangChain 1.1</text>
+    <text x="500" y="1285" text-anchor="middle" class="label white-text" style="font-weight: bold;">create_agent()</text>
+
+    <!-- YES -> 장기 작업? -->
+    <path d="M 900 1450 L 1100 1450 L 1100 1360" class="yes-arrow"/>
+    <text x="1000" y="1445" class="small-label" style="fill: #27ae60; font-weight: bold;">YES</text>
+    
+    <rect x="1000" y="1330" width="200" height="60" rx="10" class="decision-box"/>
+    <text x="1100" y="1355" text-anchor="middle" class="label" style="font-weight: bold;">장기 작업 /</text>
+    <text x="1100" y="1375" text-anchor="middle" class="label" style="font-weight: bold;">복잡한 계획?</text>
+
+    <!-- NO -> LangGraph -->
+    <path d="M 1000 1360 L 800 1360 L 800 1270" class="no-arrow"/>
+    <text x="900" y="1355" class="small-label" style="fill: #e74c3c; font-weight: bold;">NO</text>
+    
+    <rect x="700" y="1240" width="200" height="60" rx="10" class="langgraph-box"/>
+    <text x="800" y="1265" text-anchor="middle" class="label white-text" style="font-weight: bold;">LangGraph 1.0</text>
+    <text x="800" y="1285" text-anchor="middle" class="label white-text" style="font-weight: bold;">StateGraph</text>
+
+    <!-- YES -> DeepAgents -->
+    <path d="M 1200 1360 L 1400 1360 L 1400 1270" class="yes-arrow"/>
+    <text x="1300" y="1355" class="small-label" style="fill: #27ae60; font-weight: bold;">YES</text>
+    
+    <rect x="1300" y="1240" width="200" height="60" rx="10" class="deepagents-box"/>
+    <text x="1400" y="1265" text-anchor="middle" class="label white-text" style="font-weight: bold;">DeepAgents</text>
+    <text x="1400" y="1285" text-anchor="middle" class="label white-text" style="font-weight: bold;">create_deep_agent()</text>
+  </g>
+
+  <!-- 하단 요약 -->
+  <rect x="50" y="1510" width="1500" height="60" rx="10" style="fill: #ecf0f1; stroke: #34495e; stroke-width: 2;"/>
+  <text x="800" y="1535" text-anchor="middle" class="label" style="font-weight: bold;">💡 권장 워크플로우</text>
+  <text x="800" y="1560" text-anchor="middle" class="small-label">Agent Builder (프로토타입) → LangChain (빠른 시작) → LangGraph (세밀한 제어) → DeepAgents (프로덕션)</text>
+
+</svg>
