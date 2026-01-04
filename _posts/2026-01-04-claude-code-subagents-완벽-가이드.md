@@ -8,7 +8,6 @@ tags: [AI,  claude-code,  sub-agents,  vibe-coding,  Developer,  Claude.write,  
 
 > **17가지 전문 AI 개발 에이전트로 나만의 개발팀 구축하기**  
 > From 일반 AI 코딩 도우미 to 전문화된 개발 조직
-
 ## 목차
 - [Part 1: Subagent 혁명의 이해](#part-1-subagent-혁명의-이해)
 - [Part 2: 17가지 Subagent 템플릿](#part-2-17가지-subagent-템플릿)
