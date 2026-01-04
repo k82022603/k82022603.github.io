@@ -90,7 +90,9 @@ pageviews:
 #     dark — Use the dark color scheme
 #
 theme_mode: dark # [light | dark]
-
+mermaid:
+  enable: true
+  
 # The CDN endpoint for media resources.
 # Notice that once it is assigned, the CDN url
 # will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
