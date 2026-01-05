@@ -1,7 +1,8 @@
 ---
 title: "📝 DevLog 프로젝트 회고"
-date: 2025-12-31 09:00:00 +0900
+date: 2025-12-31
 categories: [AI,  Vibe Coding]
+mermaid: [True]
 tags: [AI,  vibe-coding,  Retrospective,  Claude.write]
 ---
 

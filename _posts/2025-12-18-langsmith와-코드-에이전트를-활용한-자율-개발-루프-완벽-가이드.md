@@ -1,7 +1,8 @@
 ---
 title: "LangSmith와 코드 에이전트를 활용한 자율 개발 루프 완벽 가이드"
-date: 2025-12-18 09:00:00 +0900
+date: 2025-12-18
 categories: [AI,  Platform & Framework]
+mermaid: [True]
 tags: [AI,  engineering-platform,   development-framework,  coding-agents,  deep-agents,  claude-code,  agentic-development-loop,  Developer,  LangChain,  LangGraph,  LangSmith,  Claude.write]
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: "Claude Code 프롬프트 마스터 가이드"
-date: 2026-01-03 09:00:00 +0900
+date: 2026-01-03
 categories: [AI,  Vibe Coding]
+mermaid: [True]
 tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Guide,  Claude.write]
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: "Cursor와 Claude Code로 만드는 완벽한 개발 워크플로우"
-date: 2025-12-27 09:00:00 +0900
+date: 2025-12-27
 categories: [AI,  Vibe Coding,  Guide]
+mermaid: [True]
 tags: [AI,  Developer,  vibe-coding,  claude-code,  Cursor,  Guide,  Claude.write]
 ---
 

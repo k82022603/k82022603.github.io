@@ -1,7 +1,8 @@
 ---
 title: "Claude Code 바이브 코딩 실전 워크플로우"
-date: 2025-12-27 09:00:00 +0900
+date: 2025-12-27
 categories: [AI,  Vibe Coding,  Guide]
+mermaid: [True]
 tags: [AI,  Developer,  vibe-coding,  claude-code,  Guide,  Claude.write]
 ---
 
