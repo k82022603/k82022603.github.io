@@ -24,15 +24,12 @@
             POST_DATETIME=$(date +"%Y-%m-%d %H:%M:%S $NOW_TZ")
           else
             POST_DATE="$WIKI_DATE"
-            POST_DATETIME="$WIKI_DATE 09:00:00 $NOW_TZ"
+            POST_DATETIME="$WIKI_DATE"
+            # POST_DATETIME="$WIKI_DATE 09:00:00 $NOW_TZ"
           fi
 
           # 3. Mermaid 감지 로직
-          if grep -q "```mermaid" "$file"; then
-            MERMAID_FLAG="mermaid: true"
-          else
-            MERMAID_FLAG="mermaid: false"
-          fi
+          MERMAID=$(grep "@mermaid:" "$file" | awk '{print $2}')
 
           # 4. 카테고리/태그 및 경로 결정
           CATEGORIES=$(grep "@categories:" "$file" | cut -d':' -f2 | sed 's/,/, /g')
@@ -52,7 +49,7 @@
             echo "date: $POST_DATETIME"
             echo "categories: [${CATEGORIES:-Wiki}]"
             echo "tags: [${TAGS:-Wiki}]"
-            echo "$MERMAID_FLAG"
+            echo "mermaid: $MERMAID"
             echo "---"
             echo ""
           } > "$TARGET"
