@@ -1,6 +1,6 @@
 ---
 title: "Andrej Karpathy의 LLM Council 프로젝트"
-date: 2025-12-27
+date: 2025-12-27 09:10:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
 tags: [AI,  AndrejKarpathy,  skill-issue,  llm-council,  Claude.write]

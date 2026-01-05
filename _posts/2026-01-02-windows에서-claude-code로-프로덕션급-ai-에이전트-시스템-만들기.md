@@ -1,6 +1,6 @@
 ---
 title: "Windows에서 Claude Code로 프로덕션급 AI 에이전트 시스템 만들기"
-date: 2026-01-02
+date: 2026-01-02 18:45:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [True]
 tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Claude.write]

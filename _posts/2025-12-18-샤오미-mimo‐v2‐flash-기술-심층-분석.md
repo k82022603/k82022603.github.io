@@ -1,6 +1,6 @@
 ---
 title: "샤오미 MiMo-V2-Flash 기술 심층 분석"
-date: 2025-12-18
+date: 2025-12-18 11:00:00 +0900
 categories: [AI,  Model]
 mermaid: [True]
 tags: [AI,  Model,  LLM,  open-source-model,  MiMo,  Xiaomi,  Claude.write]

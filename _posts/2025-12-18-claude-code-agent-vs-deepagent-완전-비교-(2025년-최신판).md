@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Agent vs DeepAgent 완전 비교 (2025년 최신판)"
-date: 2025-12-18
+date: 2025-12-18 14:00:00 +0900
 categories: [AI,  Platform & Framework]
 mermaid: [True]
 tags: [AI,  engineering-platform,   development-framework,  coding-agents,  claude-code-agent,  deep-agents,  claude-code,  LangChain,  LangGraph,  LangSmith,  agent-builder,  Claude.write]

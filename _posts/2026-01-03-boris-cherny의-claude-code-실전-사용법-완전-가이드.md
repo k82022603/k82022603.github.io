@@ -1,6 +1,6 @@
 ---
 title: "Boris Cherny의 Claude Code 실전 사용법 완전 가이드"
-date: 2026-01-03
+date: 2026-01-03 20:00:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [True]
 tags: [AI,  claude-code,  vibe-coding,  Developer,  Guide,  Claude.write]
