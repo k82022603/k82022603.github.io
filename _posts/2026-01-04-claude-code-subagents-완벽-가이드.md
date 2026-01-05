@@ -3,7 +3,7 @@ title: "Claude Code Subagents 완벽 가이드"
 date: 2026-01-04 09:20:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [true]
-tags: [AI,  claude-code,  sub-agents,  vibe-coding,  Developer,  Claude.write,  Gemini.write]
+tags: [AI,  claude-code,  sub-agents,  vibe-coding,  Developer,  Medium,  Claude.write,  Gemini.write]
 ---
 
 
@@ -6112,5 +6112,26 @@ Frontend와 Backend가 만든 코드를
 ### Q: 성능이 느려요
 
 **A**: 모델 변경
+**파일명**: `~/.claude/agents/your-agent.md`
 
 ```markdown
+---
+name: your-agent
+model: haiku  # sonnet → haiku로 변경 (빠르지만 품질 약간 낮음)
+---
+```
+
+---
+
+## 📚 추가 학습 자료
+
+- **공식 문서**: https://docs.anthropic.com/claude-code
+- **커뮤니티**: Claude Code Discord
+
+---
+
+**작성 일자**: 2026-01-04  
+**버전**: 2.0 (완전 한글화)  
+**출처**: [Joe Njenga's "17 Claude Code Subagents Examples"](https://medium.com/@joe.njenga/17-claude-code-subagents-examples-with-templates-you-can-use-immediately-c70ef5567308)
+
+
