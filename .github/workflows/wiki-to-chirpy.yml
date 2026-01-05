@@ -1,59 +1,271 @@
-- name: Convert Wiki to Chirpy posts
+name: Sync Wiki to Chirpy Blog
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *'  # 매일 1회 (UTC 00:00 = KST 09:00)
+  workflow_dispatch:
+
+jobs:
+  wiki-to-blog:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout blog repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Clone Wiki repository
       run: |
+        echo "=== Cloning Wiki repository ==="
+        git clone https://github.com/${{ github.repository }}.wiki.git wiki-temp
+        
+        if [ -d "wiki-temp" ]; then
+          echo "✓ Wiki repository cloned successfully"
+          echo ""
+          echo "Wiki files found:"
+          ls -la wiki-temp/*.md 2>/dev/null || echo "No markdown files found"
+        else
+          echo "✗ Failed to clone wiki repository"
+          echo "Please check if Wiki is enabled in repository settings"
+          exit 1
+        fi
+
+    - name: Convert Wiki to Chirpy posts
+      run: |
+        echo ""
+        echo "╔════════════════════════════════════════╗"
+        echo "║   Wiki to Chirpy Blog Conversion      ║"
+        echo "╚════════════════════════════════════════╝"
+        echo ""
+        
         mkdir -p _posts _drafts
         NOW_TZ="+0900"
-
-        for file in wiki/*.md; do
-          # 1. 제목 추출 (첫 번째 # 헤더)
-          TITLE=$(grep -m 1 "^# " "$file" | sed 's/^# //' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-          [ -z "$TITLE" ] && continue
-
-          # 2. 메타데이터 추출
-          PUBLISH=$(grep "@publish:" "$file" | awk '{print $2}')
-          [ "$PUBLISH" = "false" ] && continue
-
-          SLUG=$(grep "@slug:" "$file" | awk '{print $2}' | tr -d '[:space:]')
-          if [ -z "$SLUG" ]; then
-            # [파일명 최적화] 소문자 변환 후 알파벳, 숫자, 한글을 제외한 모든 특수문자를 하이픈(-)으로 변경
-            SLUG=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ]/-/g' | sed 's/--*/-/g' | sed 's/^-//;s/-$//')
+        
+        CONVERTED_COUNT=0
+        DRAFT_COUNT=0
+        SKIPPED_COUNT=0
+        ERROR_COUNT=0
+        
+        for file in wiki-temp/*.md; do
+          [ -f "$file" ] || continue
+          
+          FILENAME=$(basename "$file")
+          
+          # Home.md는 항상 건너뛰기
+          if [ "$FILENAME" = "Home.md" ]; then
+            echo "⊘  Skipped: $FILENAME (Wiki home page)"
+            SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
+            continue
           fi
-
-          WIKI_DATE=$(grep "@date:" "$file" | awk '{print $2}')
+          
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📄 Processing: $FILENAME"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          
+          # 메타데이터에서 제목 추출
+          META_TITLE=$(grep "^@title:" "$file" | cut -d':' -f2- | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          
+          if [ -n "$META_TITLE" ]; then
+            TITLE="$META_TITLE"
+            echo "📌 Title (from metadata): $TITLE"
+          else
+            # 첫 번째 # 헤더에서 제목 추출 (링크 제거)
+            TITLE=$(grep -m 1 "^# " "$file" | \
+              sed 's/^# //' | \
+              sed 's/\[#\]([^)]*)//g' | \
+              sed 's/\[\[.*\]\]//g' | \
+              sed 's/\[.*\]([^)]*)//g' | \
+              sed 's/  */ /g' | \
+              sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+            
+            if [ -z "$TITLE" ]; then
+              TITLE=$(basename "$file" .md)
+              echo "⚠️  No title found, using filename: $TITLE"
+            else
+              echo "📌 Title (extracted): $TITLE"
+            fi
+          fi
+          
+          # 공개 여부 확인
+          PUBLISH=$(grep "^@publish:" "$file" | awk '{print $2}' | tr -d '[:space:]')
+          if [ "$PUBLISH" = "false" ]; then
+            echo "⊘  Skipped (publish: false)"
+            echo ""
+            SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
+            continue
+          fi
+          
+          # Slug 처리 (개선됨!)
+          SLUG=$(grep "^@slug:" "$file" | awk '{print $2}' | tr -d '[:space:]')
+          
+          if [ -z "$SLUG" ]; then
+            echo "⚠️  No @slug specified, auto-generating..."
+            
+            # LC_ALL 설정으로 한글 처리 보장
+            export LC_ALL=C.UTF-8
+            
+            # 한글을 유지하면서 slug 생성
+            SLUG=$(echo "$TITLE" | \
+              tr '[:upper:]' '[:lower:]' | \
+              LC_ALL=C.UTF-8 sed 's/[^a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ]/-/g' | \
+              sed 's/--*/-/g' | \
+              sed 's/^-//;s/-$//')
+            
+            # slug가 비어있거나 하이픈만 있으면 파일명 사용
+            if [ -z "$SLUG" ] || [ "$SLUG" = "-" ]; then
+              SLUG=$(basename "$file" .md | tr '[:upper:]' '[:lower:]')
+              echo "⚠️  Empty slug, using filename: $SLUG"
+            fi
+            
+            # 한글이 포함되어 있으면 경고
+            if echo "$SLUG" | LC_ALL=C.UTF-8 grep -q '[가-힣]'; then
+              echo "⚠️  Korean characters in slug: $SLUG"
+              echo "   💡 Recommendation: Add @slug: your-english-slug to Wiki"
+            else
+              echo "🔗 Slug (auto-generated): $SLUG"
+            fi
+          else
+            echo "🔗 Slug (from metadata): $SLUG"
+          fi
+          
+          # 날짜 처리
+          WIKI_DATE=$(grep "^@date:" "$file" | awk '{print $2}')
           if [ -z "$WIKI_DATE" ]; then
             POST_DATE=$(date +"%Y-%m-%d")
             POST_DATETIME=$(date +"%Y-%m-%d %H:%M:%S $NOW_TZ")
+            echo "📅 Date (current): $POST_DATE"
           else
             POST_DATE="$WIKI_DATE"
-            POST_DATETIME="$WIKI_DATE"
-            # POST_DATETIME="$WIKI_DATE 09:00:00 $NOW_TZ"
+            POST_DATETIME="$WIKI_DATE 09:00:00 $NOW_TZ"
+            echo "📅 Date (from wiki): $POST_DATE"
           fi
-
-          # 3. Mermaid 감지 로직
-          MERMAID=$(grep "@mermaid:" "$file" | awk '{print $2}')
-
-          # 4. 카테고리/태그 및 경로 결정
-          CATEGORIES=$(grep "@categories:" "$file" | cut -d':' -f2 | sed 's/,/, /g')
-          TAGS=$(grep "@tags:" "$file" | cut -d':' -f2 | sed 's/,/, /g')
-          DRAFT=$(grep "@draft:" "$file" | awk '{print $2}')
           
+          # 카테고리 추출
+          CATEGORIES=$(grep "^@categories:" "$file" | cut -d':' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed 's/,/, /g')
+          if [ -z "$CATEGORIES" ]; then
+            CATEGORIES="Wiki"
+            echo "📁 Categories (default): $CATEGORIES"
+          else
+            echo "📁 Categories: $CATEGORIES"
+          fi
+          
+          # 태그 추출
+          TAGS=$(grep "^@tags:" "$file" | cut -d':' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed 's/,/, /g')
+          if [ -n "$TAGS" ]; then
+            echo "🏷️  Tags: $TAGS"
+          fi
+          
+          # Draft 여부 확인
+          DRAFT=$(grep "^@draft:" "$file" | awk '{print $2}' | tr -d '[:space:]')
+          
+          # 파일 경로 결정
           if [ "$DRAFT" = "true" ]; then
             TARGET="_drafts/${SLUG}.md"
+            echo "📝 Type: Draft"
+            echo "💾 Output: $TARGET"
+            DRAFT_COUNT=$((DRAFT_COUNT + 1))
           else
             TARGET="_posts/${POST_DATE}-${SLUG}.md"
+            echo "📝 Type: Post"
+            echo "💾 Output: $TARGET"
+            CONVERTED_COUNT=$((CONVERTED_COUNT + 1))
           fi
-
-          # 5. 파일 생성 (Front Matter 주입)
+          
+          # Front Matter 생성
           {
             echo "---"
-            echo "title: \"$(echo "$TITLE" | sed 's/"/\\"/g')\""
+            # 제목 내부의 따옴표 이스케이프
+            ESCAPED_TITLE=$(echo "$TITLE" | sed 's/"/\\"/g')
+            echo "title: \"$ESCAPED_TITLE\""
             echo "date: $POST_DATETIME"
-            echo "categories: [${CATEGORIES:-Wiki}]"
-            echo "tags: [${TAGS:-Wiki}]"
-            echo "mermaid: $MERMAID"
+            echo "categories: [$CATEGORIES]"
+            if [ -n "$TAGS" ]; then
+              echo "tags: [$TAGS]"
+            fi
             echo "---"
             echo ""
           } > "$TARGET"
-
-          # 6. 본문 주입 (메타데이터 및 첫 번째 제목 제외)
-          sed '/^/d;/^@/d;1,/^# /d' "$file" >> "$TARGET"
+          
+          # 본문 내용 추가
+          sed '/^<!--/,/^-->/d;/^@/d;1,/^# /d' "$file" >> "$TARGET"
+          
+          echo "✅ Converted successfully"
+          echo ""
         done
+        
+        rm -rf wiki-temp
+        
+        echo ""
+        echo "╔════════════════════════════════════════╗"
+        echo "║        Conversion Summary              ║"
+        echo "╚════════════════════════════════════════╝"
+        echo ""
+        echo "  📊 Statistics:"
+        echo "  ─────────────────────────────────────"
+        echo "  ✅ Posts created    : $CONVERTED_COUNT"
+        echo "  📝 Drafts created   : $DRAFT_COUNT"
+        echo "  ⊘  Files skipped    : $SKIPPED_COUNT"
+        echo "  ❌ Errors           : $ERROR_COUNT"
+        echo "  ─────────────────────────────────────"
+        echo "  📈 Total processed  : $((CONVERTED_COUNT + DRAFT_COUNT + SKIPPED_COUNT + ERROR_COUNT))"
+        echo ""
+
+    - name: Commit and push changes
+      run: |
+        echo "╔════════════════════════════════════════╗"
+        echo "║         Git Operations                 ║"
+        echo "╚════════════════════════════════════════╝"
+        echo ""
+        
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        
+        git add _posts/ _drafts/
+        
+        echo "📋 Git Status:"
+        echo "─────────────────────────────────────"
+        git status --short
+        echo ""
+        
+        if git diff --staged --quiet; then
+          echo "✓ No changes to commit"
+          echo "  Wiki content is already up to date"
+          echo ""
+        else
+          echo "📝 Changed Files:"
+          echo "─────────────────────────────────────"
+          git diff --staged --name-status
+          echo ""
+          
+          COMMIT_MSG="auto: sync wiki to blog [$(date +'%Y-%m-%d %H:%M:%S')]"
+          
+          echo "💾 Committing changes..."
+          git commit -m "$COMMIT_MSG"
+          
+          echo "🚀 Pushing to repository..."
+          git push origin main
+          
+          echo ""
+          echo "✅ Wiki sync completed successfully!"
+        fi
+
+    - name: Workflow Summary
+      if: always()
+      run: |
+        echo ""
+        echo "╔════════════════════════════════════════╗"
+        echo "║          Workflow Complete             ║"
+        echo "╚════════════════════════════════════════╝"
+        echo ""
+        echo "  Repository  : ${{ github.repository }}"
+        echo "  Workflow    : ${{ github.workflow }}"
+        echo "  Run ID      : ${{ github.run_id }}"
+        echo "  Triggered by: ${{ github.event_name }}"
+        echo "  Status      : ${{ job.status }}"
+        echo ""
+        echo "  📅 Completed at: $(date +'%Y-%m-%d %H:%M:%S')"
+        echo ""
