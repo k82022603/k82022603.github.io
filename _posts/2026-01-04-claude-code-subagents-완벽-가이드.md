@@ -4543,7 +4543,7 @@ AI: "완료! 변경사항 기반으로 자동 생성했습니다."
 
 ### 추가 리소스
 
-- [Claude Code 공식 문서](https://docs.claude.com/code)
+- [Claude Code 공식 문서](https://code.claude.com/docs/en/sub-agents)
 
 ### 최종 조언
 
