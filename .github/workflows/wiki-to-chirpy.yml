@@ -3,8 +3,6 @@ name: Sync Wiki to Chirpy Blog
 on:
   push:
     branches: [ main ]
-  schedule:
-    - cron: '0 0 * * *'  # 매일 1회 (UTC 00:00 = KST 09:00)
   workflow_dispatch:
 
 jobs:
@@ -140,9 +138,20 @@ jobs:
             echo "📅 Date (current): $POST_DATE"
           else
             POST_DATE="$WIKI_DATE"
-            POST_DATETIME="$WIKI_DATE 09:00:00 $NOW_TZ"
+            POST_DATETIME="$WIKI_DATE"
             echo "📅 Date (from wiki): $POST_DATE"
           fi
+
+          # MERMAID 처리
+          MERMAID=$(grep "^@mermaid:" "$file" | awk '{print $2}')
+          if [ -z "$MERMAID" ]; then
+            MERMAID="True"
+            echo "Mermaid: $MERMAID"
+          else
+            MERMAID="$MERMAID"
+            echo "Mermaid(from wiki): $MERMAID"
+          fi
+
           
           # 카테고리 추출
           CATEGORIES=$(grep "^@categories:" "$file" | cut -d':' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed 's/,/, /g')
@@ -183,6 +192,7 @@ jobs:
             echo "title: \"$ESCAPED_TITLE\""
             echo "date: $POST_DATETIME"
             echo "categories: [$CATEGORIES]"
+            echo "mermaid: [$MERMAID]"
             if [ -n "$TAGS" ]; then
               echo "tags: [$TAGS]"
             fi
