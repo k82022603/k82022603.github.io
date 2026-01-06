@@ -17,7 +17,6 @@ tags: [AI,  claude-code,  claude.ai,  Developer,  Claude.write]
 6. [제한사항 및 주의사항](#제한사항-및-주의사항)
 
 ---
-
 ## 개요
 
 Claude Code는 웹 인터페이스와 로컬 CLI 간의 원활한 작업 전환을 지원하여 개발자의 생산성을 극대화합니다. 이 가이드에서는 세션 전환 및 백그라운드 작업 관리 기능을 상세히 다룹니다.
