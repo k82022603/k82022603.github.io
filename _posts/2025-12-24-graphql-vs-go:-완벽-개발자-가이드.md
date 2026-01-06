@@ -1,7 +1,7 @@
 ---
 title: "GraphQL vs Go: 완벽 개발자 가이드"
 date: 2025-12-24 08:00:00 +0900
-categories: [Architecture,  Backend Architecture]
+categories: [TechStack,  Backend Architecture]
 mermaid: [True]
 tags: [GraphQL,  Go,  Golang,  TypeSafe,  api-design,  tech-stack,  Developer,  Guide,  Claude.write]
 ---
@@ -31,7 +31,6 @@ tags: [GraphQL,  Go,  Golang,  TypeSafe,  api-design,  tech-stack,  Developer,  
 - [참고 자료](#참고-자료)
 
 ---
-
 ## 개요
 
 GraphQL과 Go(Golang)는 현대 소프트웨어 개발 생태계에서 중요한 역할을 하는 기술이지만, 근본적으로 서로 다른 카테고리에 속합니다. GraphQL은 API를 설계하고 쿼리하기 위한 쿼리 언어이자 런타임인 반면, Go는 시스템 및 서버 개발을 위한 범용 프로그래밍 언어입니다.
