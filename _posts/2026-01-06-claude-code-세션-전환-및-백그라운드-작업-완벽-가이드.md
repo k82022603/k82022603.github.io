@@ -3,7 +3,7 @@ title: "Claude Code 세션 전환 및 백그라운드 작업 완벽 가이드"
 date: 2026-01-06 14:10:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [True]
-tags: [AI,  claude-code,  Claude.ai,  Developer,  Claude.write]
+tags: [AI,  claude-code,  Claude.ai,  Developer,  Guide,  Claude.write]
 ---
 
 
