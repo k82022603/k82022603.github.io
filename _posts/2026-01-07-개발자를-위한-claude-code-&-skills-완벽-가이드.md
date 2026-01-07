@@ -1700,10 +1700,11 @@ jobs:
 
 ### Git 워크플로우
 
-~~~markdown
+~~~
 # 팀 Git 워크플로우
 
 ## 브랜치 전략
+
 **main**: 프로덕션 코드
 **develop**: 개발 통합 브랜치
 **feature/***: 새 기능
@@ -1711,13 +1712,13 @@ jobs:
 **release/***: 릴리스 준비
 
 ## 규칙
+
 1. **main과 develop는 보호됨** - 직접 푸시 불가
 2. **모든 변경은 PR을 통해** - 최소 1명의 리뷰 필요
 3. **PR에는 Claude 검증 통과 필수**
 4. **CLAUDE.md 업데이트는 별도 커밋**
 
 ## PR 템플릿
-
 `.github/pull_request_template.md`:
 
 ```markdown
