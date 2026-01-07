@@ -9,7 +9,6 @@ tags: [AI,  claude-code,  claude-skills,  agent-skills,  Claude.write]
 ## Claude Code & Skills 실전 활용 매뉴얼
 
 ---
-
 ## 목차
 
 1. [환경 설정](#1-환경-설정)
