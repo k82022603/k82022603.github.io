@@ -1718,3 +1718,257 @@ jobs:
 
 ```markdown
 ## 변경 사항
+무엇을 변경했는지 
+
+## 동기
+왜 이 변경이 필요한지 
+
+## 테스트
+- [ ] 단위 테스트 추가/통과
+- [ ] 타입 체크 통과
+- [ ] 린트 통과
+- [ ] 수동 테스트 완료
+
+## Claude 검증
+- [ ] `/verify-changes` 실행 완료
+- [ ] CLAUDE.md 업데이트 (필요 시)
+
+## 스크린샷
+UI 변경이 있는 경우
+
+## 관련 이슈
+Closes #
+
+## 체크리스트
+- [ ] 커밋 메시지가 Conventional Commits 형식
+- [ ] 문서 업데이트
+- [ ] 브레이킹 체인지 여부 표시
+```
+
+### 팀원이 CLAUDE.md 업데이트 제안
+**PR 코멘트에서**:
+```markdown
+nit: 여기서 enum 대신 type을 사용하는 게 좋겠습니다
+```
+
+**GitHub Action이 자동으로**:
+1. CLAUDE.md에 규칙 추가
+2. 커밋 생성
+3. PR에 푸시
+
+---
+
+## 10. 프로젝트별 설정
+
+### 프론트엔드 프로젝트 (React + TypeScript)
+
+~~~markdown
+# CLAUDE.md for React Project
+
+## 기술 스택
+- React 18 + TypeScript
+- Vite
+- TailwindCSS
+- React Query
+- Zustand
+
+## 컴포넌트 구조
+```
+src/
+├── components/
+│   ├── ui/           # 기본 UI 컴포넌트
+│   ├── features/     # 기능별 컴포넌트
+│   └── layouts/      # 레이아웃 컴포넌트
+├── hooks/            # 커스텀 훅
+├── store/            # Zustand 스토어
+├── api/              # API 클라이언트
+└── utils/            # 유틸리티
+```
+
+## 컴포넌트 작성 규칙
+
+```typescript
+// 표준 템플릿
+import { FC } from 'react';
+
+interface Props {
+  title: string;
+  onAction: () => void;
+}
+
+export const MyComponent: FC<Props> = ({ title, onAction }) => {
+  return (
+    <div className="p-4">
+      <h2>{title}</h2>
+      <button onClick={onAction}>Action</button>
+    </div>
+  );
+};
+```
+
+## 상태 관리
+- 로컬 상태: useState
+- 서버 상태: React Query
+- 전역 상태: Zustand
+
+## 스타일링
+- TailwindCSS 유틸리티 클래스 우선
+- 재사용 가능한 스타일은 컴포넌트로
+- 인라인 스타일 금지
+~~~
+
+### 백엔드 프로젝트 (Node.js + Express)
+
+~~~markdown
+# CLAUDE.md for Backend Project
+
+## 기술 스택
+- Node.js 20
+- Express
+- Prisma (PostgreSQL)
+- TypeScript
+
+## 아키텍처
+```
+src/
+├── api/
+│   ├── routes/       # 라우터
+│   ├── controllers/  # 컨트롤러
+│   ├── services/     # 비즈니스 로직
+│   └── middleware/   # 미들웨어
+├── db/               # 데이터베이스
+├── utils/            # 유틸리티
+└── types/            # 타입 정의
+```
+
+## 레이어 규칙
+
+**Routes**: HTTP 요청/응답만
+**Controllers**: 입력 검증, 서비스 호출
+**Services**: 비즈니스 로직
+**DB**: 데이터 접근
+
+## 에러 처리
+
+```typescript
+// 커스텀 에러 클래스
+export class ApiError extends Error {
+  constructor(
+    public statusCode: number,
+    message: string,
+    public code: string
+  ) {
+    super(message);
+  }
+}
+
+// 글로벌 에러 핸들러
+app.use((err, req, res, next) => {
+  if (err instanceof ApiError) {
+    return res.status(err.statusCode).json({
+      error: {
+        code: err.code,
+        message: err.message
+      }
+    });
+  }
+  
+  // 예상치 못한 에러
+  console.error(err);
+  res.status(500).json({
+    error: {
+      code: 'INTERNAL_ERROR',
+      message: 'An unexpected error occurred'
+    }
+  });
+});
+```
+~~~
+
+### 풀스택 프로젝트 (Monorepo)
+
+~~~markdown
+# CLAUDE.md for Monorepo
+
+## 프로젝트 구조
+```
+packages/
+├── web/              # React 프론트엔드
+├── api/              # Express 백엔드
+├── shared/           # 공유 타입/유틸
+└── mobile/           # React Native (선택)
+```
+
+## 워크스페이스 명령어
+
+```bash
+# 전체 빌드
+bun run build
+
+# 특정 패키지
+bun run --filter web dev
+bun run --filter api dev
+
+# 모든 테스트
+bun test
+
+# 특정 패키지 테스트
+bun test --filter api
+```
+
+## 공유 타입 관리
+
+`packages/shared/types/`에 모든 공유 타입:
+```typescript
+// packages/shared/types/user.ts
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+}
+
+// packages/web에서
+import type { User } from '@myapp/shared';
+
+// packages/api에서
+import type { User } from '@myapp/shared';
+```
+
+## 의존성 관리
+- 루트 package.json: 개발 의존성 (TypeScript, ESLint 등)
+- 각 패키지: 런타임 의존성
+~~~
+
+---
+
+## 결론
+
+이 가이드는 Claude Code와 Skills를 실전에서 활용하기 위한 완벽한 레퍼런스입니다.
+
+### 시작하기 체크리스트
+
+- [ ] Claude Code 설치
+- [ ] `.claude/` 디렉토리 생성
+- [ ] CLAUDE.md 작성 (최소한의 내용으로)
+- [ ] 첫 슬래시 명령어 생성 (`/commit-push-pr`)
+- [ ] Plan Mode 사용 습관화
+- [ ] Opus 4.5 모델 설정
+- [ ] 권한 사전 승인
+- [ ] PostToolUse 훅 설정 (자동 포매팅)
+
+### 다음 단계
+
+1. **1주차**: 기본 워크플로우 익히기
+2. **2주차**: CLAUDE.md 고도화
+3. **3주차**: Skills 개발 시작
+4. **4주차**: 병렬 실행 실험
+
+### 추가 리소스
+
+- Claude Code 공식 문서: https://code.claude.com/docs
+- Skills 라이브러리: https://github.com/anthropics/skills
+- 커뮤니티: https://community.anthropic.com
+
+---
+
+**이 문서는 계속 진화합니다. 새로운 팁이나 개선사항을 발견하면 CLAUDE.md처럼 이 가이드도 업데이트하세요!**
