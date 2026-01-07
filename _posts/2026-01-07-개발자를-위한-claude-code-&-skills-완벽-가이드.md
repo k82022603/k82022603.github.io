@@ -1,5 +1,5 @@
 ---
-title: "개발자를 위한 Claude 완벽 가이드"
+title: "개발자를 위한 Claude Code & Skills 완벽 가이드"
 date: 2026-01-07 23:05:00 +0900
 categories: [AI,  Claude Skills]
 mermaid: [True]
