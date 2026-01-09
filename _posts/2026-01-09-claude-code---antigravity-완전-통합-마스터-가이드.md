@@ -8,7 +8,6 @@ tags: [AI,  claude-code,  google-antigravity,  vibe-coding,  coding-agents,  Dev
 
 
 **2026년 최고의 AI 개발 환경 구축 완전판**
-
 ---
 
 ## 목차
@@ -1404,7 +1403,7 @@ claude "Create Prisma schema for products"
 
 **Generated: `prisma/schema.prisma`**
 
-```prisma
+```
 model Product {
   id          String   @id @default(uuid())
   name        String
