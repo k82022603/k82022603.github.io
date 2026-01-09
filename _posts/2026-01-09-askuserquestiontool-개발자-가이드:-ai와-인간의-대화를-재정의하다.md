@@ -1,11 +1,10 @@
 ---
 title: "AskUserQuestionTool 개발자 가이드: AI와 인간의 대화를 재정의하다"
 date: 2026-01-09 22:00:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  claude-code,   claude-code-tools,  Developers,  Claude.write,  Gemini.write]
 ---
-
 
 ## AskUserQuestionTool 개요
 
