@@ -1,7 +1,7 @@
 ---
 title: "Claude Code Subagents 완벽 가이드"
 date: 2026-01-04 09:20:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code]
 mermaid: [true]
 tags: [AI,  claude-code,  sub-agents,  vibe-coding,  Developer,  Medium,  Claude.write,  Gemini.write]
 ---
