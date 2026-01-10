@@ -1,7 +1,7 @@
 ---
 title: "세일즈포스 하이브리드 추론 아키텍처: Atlas Reasoning Engine과 Agent Graph 심층 분석"
 date: 2025-12-25 10:10:00 +0900
-categories: [AI,  Architecture]
+categories: [AI,  AI Architecture]
 mermaid: [True]
 tags: [AI,  Salesforce,  reasoning-engine,  agent-graph,  Claude.write]
 ---
