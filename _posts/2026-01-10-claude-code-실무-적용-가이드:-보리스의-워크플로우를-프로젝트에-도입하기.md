@@ -3,11 +3,12 @@ title: "Claude Code 실무 적용 가이드: 보리스의 워크플로우를 프
 date: 2026-01-10 07:00:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  claude-code,   ,  Developer,  Claude.write,  Gemini.write]
+tags: [AI,  claude-code,  Developer,  Claude.write,  Gemini.write]
 ---
 
 
 보리스가 제시한 Claude Code 활용법을 실제 프로젝트에 적용하려면 단순히 개념을 이해하는 것을 넘어, 구체적인 설정과 파일 구조, 그리고 팀 내 프로세스를 체계화해야 합니다. 이 문서에서는 즉시 실행 가능한 구체적인 전략들을 단계별로 살펴보겠습니다.
+
 
 ## claude.md 파일: 프로젝트의 DNA 설계하기
 
