@@ -224,7 +224,7 @@ PM과 함께 앉아서 요구사항을 정리한다. 하지만 전통적인 상�
 
 Jason Fried의 [Obvious-Easy-Possible 프레임워크](https://medium.com/signal-v-noise/the-obvious-the-easy-and-the-possible-a09387ad3652)를 적용한다. 회원가입/로그인은 Obvious(항상 하는 것), 주문 내역 조회는 Easy(자주 하는 것), 리뷰 작성은 Possible(가끔 하는 것)이다. UI와 API 설계에서 이 차이를 반영한다.
 
-- **참고영상** : [Why work doesn't happen at work | Jason Fried](https://www.youtube.com/watch?v=5XD2kNopsUs)
+> **참고영상** : [Why work doesn't happen at work - Jason Fried](https://www.youtube.com/watch?v=5XD2kNopsUs)
 
 ### 2.2 아키텍처 결정 기록 (ADR)
 
