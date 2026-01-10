@@ -3,13 +3,12 @@ title: "SpringBoot React 4일 완성 프로젝트: Claude Code 활용 실무 가
 date: 2026-01-10 20:30:00 +0900
 categories: [AI,  Guide]
 mermaid: [True]
-tags: [AI,   claude-code,  vibe-coding,  Developer,  Claude.write]
+tags: [AI,   claude-code,  vibe-coding,  Developer,  Guide,  Claude.write]
 ---
 
 ## 4일 만에 프로덕션 시스템 구축하기
 
 ---
-
 ## 프롤로그: 바이브 코딩이 실제로 작동하는 방법
 
 "바이브 코딩"이라는 용어를 처음 들었을 때 많은 개발자들은 회의적이다. 코드를 제대로 이해하지도 못한 채 AI가 생성한 것을 무작정 복사-붙여넣기하는 것처럼 들리기 때문이다. 하지만 [Obie Fernandez가 Nexus 프로젝트](https://obie.medium.com/what-used-to-take-months-now-takes-days-cc8883cc21e9)에서 보여준 것은 전혀 다른 차원이다. 4일 만에 13,000줄의 프로덕션 준비 시스템을 만든 것은 마법이 아니라 **체계적인 접근법, 명확한 원칙, 그리고 AI를 전략적으로 활용한 결과**다.
