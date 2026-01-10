@@ -3,9 +3,8 @@ title: "Code-Simplifier 개발자 가이드: Claude Code 팀의 리팩토링 비
 date: 2026-01-09 22:10:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  claude-code,   sub-agents,  code-refactoring,  Developers,  Claude.write]
+tags: [AI,  claude-code,   sub-agents,  code-refactoring,  Developer,  Claude.write]
 ---
-
 
 ## 들어가며: Claude Code 창시자가 매일 사용하는 도구
 
