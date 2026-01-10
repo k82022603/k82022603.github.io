@@ -3,12 +3,11 @@ title: "세일즈포스 하이브리드 추론 아키텍처: Atlas Reasoning Eng
 date: 2025-12-25 10:10:00 +0900
 categories: [AI,  AI Architecture]
 mermaid: [True]
-tags: [AI,  Salesforce,  reasoning-engine,  agent-graph,  Claude.write]
+tags: [AI,  Architecture,  Salesforce,  reasoning-engine,  agent-graph,  Claude.write]
 ---
 
 
 ![salesforce_hybrid_reasoning_architecture](https://github.com/k82022603/k82022603.github.io/blob/main/assets/img/salesforce_hybrid_reasoning_architecture.png?raw=true)
-
 
 ## 목차
 1. [서론: 왜 하이브리드 추론인가](#서론-왜-하이브리드-추론인가)
