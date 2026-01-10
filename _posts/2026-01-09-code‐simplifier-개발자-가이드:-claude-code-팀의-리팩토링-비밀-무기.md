@@ -9,6 +9,17 @@ tags: [AI,  claude-code,   sub-agents,  code-refactoring,  Developers,  Claude.w
 
 ## 들어가며: Claude Code 창시자가 매일 사용하는 도구
 
+```
+We just open sourced the code-simplifier agent we use on the Claude Code team.
+Try it: claude plugin install code-simplifier
+Or from within a session:
+/plugin marketplace update claude-plugins-official
+/plugin install code-simplifier
+Ask Claude to use the code simplifier agent at the end of a long coding session, or to clean up complex PRs. Let us know what you think!  
+
+https://www.threads.com/@boris_cherny/post/DTRejvBkZCy
+```
+
 2026년 1월 초, Claude Code의 창시자이자 Anthropic의 Staff Engineer인 Boris Cherny가 자신의 개발 워크플로우를 공개했습니다. 이 공개는 개발자 커뮤니티에 충격을 주었습니다. "Claude Code 베스트 프랙티스를 창시자로부터 직접 배우지 않는다면 프로그래머로서 뒤처지는 것"이라는 평가가 나올 정도였습니다.
 
 그의 워크플로우에서 가장 주목받은 요소 중 하나가 바로 code-simplifier 서브에이전트입니다. Boris는 "메인 작업이 끝난 후 아키텍처를 정리하기 위해" 이 에이전트를 사용한다고 밝혔습니다. 그리고 놀랍게도 Anthropic은 이 도구를 오픈소스로 공개했습니다. Claude Code 팀이 내부적으로 사용하던 실전 도구를 이제 누구나 사용할 수 있게 된 것입니다.
