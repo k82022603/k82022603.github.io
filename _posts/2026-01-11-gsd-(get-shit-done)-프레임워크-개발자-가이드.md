@@ -6,6 +6,91 @@ mermaid: [True]
 tags: [AI,  Guide,  Claude,  claude-code,  context-rot,  context-engineering,  GSD,  Framework,  claude-code-plugin,  Claude.write]
 ---
 
+
+## 목차
+1. [GSD란 무엇인가](#gsd란-무엇인가)
+2. [설치 및 초기 설정](#설치-및-초기-설정)
+3. [핵심 개념과 작동 원리](#핵심-개념과-작동-원리)
+4. [신규 프로젝트 시작하기](#신규-프로젝트-시작하기)
+5. [기존 프로젝트에 적용하기](#기존-프로젝트에-적용하기)
+6. [실전 사용 가이드](#실전-사용-가이드)
+7. [고급 활용법](#고급-활용법)
+8. [문제 해결 및 팁](#문제-해결-및-팁)
+
+**별첨** : [GSD = Context Engineering Framework인 이유](#gsd--context-engineering-framework인-이유)
+
+---
+
+## GSD란 무엇인가
+GSD(Get Shit Done)는 Claude Code를 위해 설계된 메타 프롬프팅, 컨텍스트 엔지니어링, 그리고 스펙 기반 개발 시스템입니다. 이 프레임워크는 AI 도구가 가진 고질적인 문제들을 해결하고, 개발자가 아이디어를 실제 배포 가능한 애플리케이션으로 체계적이고 반복 가능하게 변환할 수 있도록 돕습니다.
+
+**핵심 해결 과제: 컨텍스트 부패 (Context Rot)**
+- 대규모 언어 모델(LLM)은 대화가 길어질수록(컨텍스트 창이 채워질수록) 효율성이 떨어지는 '컨텍스트 부패' 현상이 발생합니다
+- GSD는 각 작업을 개별 서브 에이전트(Sub-agent) 컨텍스트에서 실행하여, 매번 신선한 컨텍스트 창(약 20만 토큰)을 활용함으로써 이 문제를 해결합니다
+
+- GSD (Get Shit Done) is a context engineering framework that sits on top of Claude Code and solves the biggest problems solo developers face when building full products — context degradation, shoddy memory between sessions, and Claude having to guess your intent.  
+- 참고 동영상 : [**The New Claude Code Meta**](https://www.youtube.com/watch?v=SqmXS8q_2BM)
+
+
+### GSD의 핵심 가치
+
+전통적인 AI 코딩 도구들은 "바이브코딩(vibecoding)" 방식으로 작동합니다. 원하는 것을 설명하면 AI가 코드를 생성하지만, 결과물은 일관성이 없고 규모가 커질수록 무너지는 경향이 있습니다. GSD는 이러한 문제를 근본적으로 해결합니다.
+
+GSD는 단순히 코드를 생성하는 도구가 아닙니다. 프로젝트 전체를 관리하고, AI가 필요로 하는 모든 컨텍스트를 체계적으로 제공하며, 작업을 원자 단위로 분해하여 각각을 독립적인 서브 에이전트에서 실행함으로써 일관되고 고품질의 결과물을 보장합니다.
+
+### 누구를 위한 도구인가
+
+GSD는 다음과 같은 개발자들에게 적합합니다:
+
+- **1인 개발자**: 직접 코드를 작성하지 않고 AI에게 위임하면서도 전문가 수준의 결과물을 얻고 싶은 개발자
+- **기술 지식이 제한적인 창작자**: 아이디어는 있지만 코딩 기술이 부족한 사람들
+- **빠른 프로토타이핑이 필요한 팀**: MVP를 신속하게 구축하고 반복적으로 개선해야 하는 스타트업이나 프로덕트 팀
+- **레거시 코드베이스를 다루는 개발자**: 기존 프로젝트에 새로운 기능을 추가하거나 리팩토링이 필요한 경우
+
+중요한 점은 GSD가 엔터프라이즈급 복잡성을 요구하지 않는다는 것입니다. 스프린트 세레모니, 스토리 포인트, 이해관계자 동기화 회의 같은 것들은 필요 없습니다. 50명 규모의 소프트웨어 회사를 흉내 낼 필요가 없습니다. 그저 훌륭한 작품을 만들고 싶은 창작자를 위한 도구입니다.
+
+---
+
+## 설치 및 초기 설정
+
+### 사전 요구사항
+
+GSD를 사용하기 전에 다음 환경이 준비되어 있어야 합니다:
+
+**필수 요구사항:**
+- **Node.js**: 16.7.0 이상의 버전 (최신 LTS 버전 권장)
+- **Claude Code CLI**: Anthropic의 공식 Claude Code 커맨드라인 도구
+- **Git**: 버전 관리를 위해 필수 (GSD는 자동 커밋 기능을 제공)
+
+**선택 사항:**
+- 선호하는 코드 에디터 (VS Code, Cursor 등)
+- 터미널 멀티플렉서 (tmux, screen 등) - 여러 Claude Code 세션을 동시에 관리하는 경우 유용
+
+### 설치 방법
+
+GSD의 설치는 매우 간단합니다. npx를 통해 최신 버전을 직접 실행할 수 있습니다.
+
+#### 방법 1: 대화형 설치 (권장)
+
+터미널에서 다음 명령어를 실행하면 대화형 설치 프로세스가 시작됩니다:
+
+```bash
+npx get-shit-done-cc
+
+```
+
+설치 프로그램이 실행되면 다음 중 하나를 선택할 수 있습니다:
+- **전역 설치 (Global)**: `~/.claude/` 디렉토리에 설치되어 모든 프로젝트에서 사용 가능
+- **로컬 설치 (Local)**: `./.claude/` 디렉토리에 설치되어 현재 프로젝트에만 적용
+
+대부분의 경우 전역 설치를 권장합니다. 이렇게 하면 모든 프로젝트에서 동일한 GSD 시스템을 사용할 수 있습니다.
+
+#### 방법 2: 비대화형 설치
+
+Docker 컨테이너, CI/CD 파이프라인, 자동화 스크립트에서 사용할 때는 비대화형 설치 옵션을 사용합니다:
+
+```bash
+# 전역 설치
 npx get-shit-done-cc --global
 # 또는
 npx get-shit-done-cc -g
@@ -14,6 +99,7 @@ npx get-shit-done-cc -g
 npx get-shit-done-cc --local
 # 또는
 npx get-shit-done-cc -l
+
 ```
 
 #### 방법 3: GitHub에서 직접 클론 (개발자용)
@@ -24,6 +110,7 @@ GSD의 소스 코드를 수정하거나 기여하고 싶다면 GitHub에서 직�
 git clone https://github.com/glittercowboy/get-shit-done.git
 cd get-shit-done
 node bin/install.js --local
+
 ```
 
 이 방법은 `./.claude/` 디렉토리에 설치되며, 기여하기 전에 수정 사항을 테스트하는 데 유용합니다.
@@ -34,6 +121,7 @@ node bin/install.js --local
 
 ```bash
 /gsd:help
+
 ```
 
 GSD의 모든 명령어 목록과 사용법이 표시되면 설치가 성공적으로 완료된 것입니다.
@@ -48,6 +136,7 @@ Claude Code를 실행할 때 다음 플래그를 사용합니다:
 
 ```bash
 claude --dangerously-skip-permissions
+
 ```
 
 이 방법은 모든 명령어를 자동으로 승인하므로 GSD가 중단 없이 작동합니다.
