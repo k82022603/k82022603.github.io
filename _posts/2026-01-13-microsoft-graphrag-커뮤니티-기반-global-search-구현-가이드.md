@@ -369,11 +369,12 @@ COMMUNITY_SUMMARY_PROMPT = """당신은 지식 그래프 커뮤니티 분석 전
 
 5. **findings**: 5-10개의 핵심 인사이트
    각 인사이트는 다음 형식:
+{% raw %}
    {{
        "summary": "인사이트 요약 (1문장)",
        "explanation": "상세 설명 (2-3문장, 데이터 참조 포함)"
    }}
-
+{% endraw %}
 # 데이터 참조 규칙
 
 설명 시 반드시 데이터 출처를 명시하세요:
@@ -386,7 +387,7 @@ COMMUNITY_SUMMARY_PROMPT = """당신은 지식 그래프 커뮤니티 분석 전
 # 출력 형식
 
 반드시 다음 JSON 구조로만 응답하세요 (코드 블록 없이):
-
+{% raw %}
 {{
     "title": "...",
     "summary": "...",
@@ -400,7 +401,7 @@ COMMUNITY_SUMMARY_PROMPT = """당신은 지식 그래프 커뮤니티 분석 전
     ]
 }}
 """
-
+{% endraw %}
 def generate_community_summary(llm_client, entities, relationships):
     """단일 커뮤니티에 대한 LLM 요약 생성"""
     
@@ -595,7 +596,7 @@ MAP_PROMPT_TEMPLATE = """당신은 데이터 분석 전문가입니다.
 이 커뮤니티 관점에서 질문과 관련된 핵심 포인트들을 추출하세요.
 
 다음 JSON 형식으로 응답하세요:
-
+{% raw %}
 {{
     "points": [
         {{
@@ -604,7 +605,7 @@ MAP_PROMPT_TEMPLATE = """당신은 데이터 분석 전문가입니다.
         }}
     ]
 }}
-
+{% endraw %}
 - 질문과 무관하면 빈 리스트 반환
 - 각 포인트는 간결하되 구체적으로 (1-2문장)
 - 데이터 참조 반드시 포함
