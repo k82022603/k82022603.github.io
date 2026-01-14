@@ -1,10 +1,11 @@
 ---
 title: "Kent Beck의 TDD와 Tidy First 원칙 완벽 가이드"
 date: 2025-12-24 19:00:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [TechStack,  Software Architecture]
 mermaid: [True]
-tags: [AI,  vibe-coding,  KentBeck,  TDD,  tidy-first,  Guide,  Claude.write]
+tags: [software-methodology,  software-design,  KentBeck,  TDD,  tidy-first,  Guide,  Claude.write]
 ---
+
 
 ## 들어가며
 
