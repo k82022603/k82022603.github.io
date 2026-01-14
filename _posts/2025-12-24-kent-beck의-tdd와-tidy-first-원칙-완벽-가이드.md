@@ -3,9 +3,453 @@ title: "Kent Beck의 TDD와 Tidy First 원칙 완벽 가이드"
 date: 2025-12-24 19:00:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [True]
-tags: [AI,   vibe-coding,  KentBeck,  TDD,  tidy-first,  Developer,  Guide,  Claude.write]
+tags: [AI,  vibe-coding,  KentBeck,  TDD,  tidy-first,  Guide,  Claude.write]
 ---
 
+## 들어가며
+
+Kent Beck은 소프트웨어 개발 방법론의 선구자입니다. 그가 만든 **Test-Driven Development(TDD)** 와 **Tidy First** 원칙은 단순히 코드를 작성하는 방법이 아니라, 코드의 품질과 유지보수성을 근본적으로 향상시키는 철학입니다.
+
+이 문서는 "구조/기능을 절대 섞지 않는다"는 규칙이 정확히 무엇을 의미하는지, 왜 중요한지, 그리고 실제로 어떻게 적용하는지를 처음부터 끝까지 상세하게 설명합니다.
+
+---
+
+## 목차
+
+1. [TDD (Test-Driven Development)란?](#tdd-test-driven-development란)
+2. [Tidy First 원칙이란?](#tidy-first-원칙이란)
+3. [구조 변경 vs 기능 변경](#구조-변경-vs-기능-변경)
+4. [왜 절대 섞으면 안 되는가?](#왜-절대-섞으면-안-되는가)
+5. [실전 예시: Todo 앱 개발](#실전-예시-todo-앱-개발)
+6. [커밋 전략 상세 가이드](#커밋-전략-상세-가이드)
+7. [Red-Green-Refactor 사이클](#red-green-refactor-사이클)
+8. [실무 적용 시나리오](#실무-적용-시나리오)
+9. [자주 묻는 질문](#자주-묻는-질문)
+10. [연습 문제](#연습-문제)
+
+---
+
+## TDD (Test-Driven Development)란?
+
+### 기본 개념
+
+TDD는 "테스트 주도 개발"이라는 의미입니다. 코드를 먼저 작성하는 것이 아니라, **테스트를 먼저 작성**합니다.
+
+전통적인 개발 방식:
+```
+1. 기능 구현
+2. 테스트 작성
+3. 버그 발견
+4. 수정
+5. 다시 테스트
+```
+
+TDD 방식:
+```
+1. 테스트 작성 (실패하는 테스트)
+2. 최소한의 코드로 테스트 통과
+3. 코드 개선
+4. 다음 테스트로 이동
+```
+
+### 왜 테스트를 먼저 작성할까?
+
+일반적으로 우리는 이렇게 생각합니다:
+- "기능을 먼저 만들고, 잘 돌아가면 테스트를 작성하자"
+- "테스트는 나중에 시간 나면 추가하자"
+
+하지만 현실은:
+- 나중에 시간이 안 남
+- 테스트 작성이 귀찮아짐
+- 기능은 동작하는데 왜 테스트를 작성해야 하는지 의문
+- 결국 테스트 없이 개발
+
+TDD는 이 순서를 뒤집습니다. 테스트를 먼저 작성하면:
+- **요구사항이 명확해집니다** - "이 함수는 정확히 무엇을 해야 하는가?"
+- **설계가 개선됩니다** - "이 함수를 어떻게 사용하면 편할까?"
+- **버그가 줄어듭니다** - "모든 경우를 테스트했으니 안전하다"
+- **리팩토링이 안전해집니다** - "코드를 바꿔도 테스트가 보장해줌"
+
+### TDD의 세 가지 법칙
+
+Kent Beck이 정의한 TDD의 법칙:
+
+**법칙 1: 실패하는 테스트 없이는 제품 코드를 작성하지 않는다**
+- 먼저 "이것이 동작해야 한다"는 테스트를 작성
+- 당연히 테스트는 실패함 (코드가 아직 없으니까)
+
+**법칙 2: 실패를 증명하는 데 충분한 만큼만 테스트를 작성한다**
+- 거대한 테스트를 작성하지 않음
+- 하나의 작은 기능만 테스트
+
+**법칙 3: 테스트를 통과시키는 데 충분한 만큼만 코드를 작성한다**
+- 완벽한 코드를 작성하지 않음
+- 테스트만 통과하면 OK
+- 나중에 리팩토링으로 개선
+
+### 구체적인 예시
+
+예를 들어, "두 숫자를 더하는 함수"를 만든다고 가정합시다.
+
+**전통적인 방식:**
+```typescript
+// 1. 함수부터 구현
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// 2. 나중에 테스트 작성 (아마도 안 함)
+```
+
+**TDD 방식:**
+```typescript
+// 1. 테스트 먼저 작성
+test('should add two numbers', () => {
+  expect(add(2, 3)).toBe(5);
+});
+
+// 2. 함수 구현 (테스트를 통과시키기 위해)
+function add(a: number, b: number): number {
+  return a + b;
+}
+```
+
+단순해 보이지만, 이 순서의 차이가 엄청난 결과를 만듭니다.
+
+---
+
+## Tidy First 원칙이란?
+
+### 기본 개념
+
+"Tidy First"는 직역하면 "먼저 정리하라"입니다. Kent Beck의 책 제목이기도 합니다.
+
+핵심 아이디어: **코드 구조를 개선하는 것과 기능을 추가하는 것을 절대 섞지 마라**
+
+### 농사 비유로 이해하기
+
+Kent Beck은 "씨앗 옥수수" 비유를 사용합니다.
+
+농부가 옥수수를 수확할 때:
+- 대부분은 먹거나 팔기 위해 수확
+- 하지만 일부는 **다음 시즌을 위한 씨앗**으로 남겨둠
+- 만약 씨앗까지 다 먹어버리면? → 다음 시즌에 심을 게 없음
+
+소프트웨어 개발에서:
+- "수확하는 것" = 새로운 기능 추가
+- "씨앗 남기기" = 코드 구조 유지/개선
+- 씨앗까지 먹어버림 = 구조 무시하고 기능만 추가
+
+**결과:**
+- 단기적으로는 빠름 (씨앗까지 다 먹으니까)
+- 장기적으로는 재앙 (다음 시즌에 심을 게 없음)
+
+### 두 가지 종류의 변경
+
+모든 코드 변경은 두 가지 중 하나입니다:
+
+**1. 구조적 변경 (Structural Change)**
+- 코드의 **동작**은 바꾸지 않음
+- 코드의 **구조**만 개선
+- 예시: 변수 이름 바꾸기, 함수 추출하기, 파일 이동하기
+
+**2. 기능적 변경 (Behavioral Change)**
+- 실제로 **동작**이 바뀜
+- 새로운 기능 추가, 버그 수정 등
+- 예시: 새로운 버튼 추가, 검증 로직 추가
+
+### Tidy First의 핵심 규칙
+
+**규칙 1: 구조와 기능을 절대 섞지 않는다**
+- 하나의 커밋에는 구조 변경만, 또는 기능 변경만
+- 절대 둘을 함께 넣지 않음
+
+**규칙 2: 구조 변경을 먼저 한다 (Tidy First)**
+- 기능을 추가하기 전에
+- 먼저 코드 구조를 정리
+- 그 다음 기능 추가
+
+**규칙 3: 각 변경 후 테스트를 실행한다**
+- 구조 변경 후 → 테스트 실행 → 통과 확인
+- 기능 변경 후 → 테스트 실행 → 통과 확인
+
+### 왜 이것이 중요한가?
+
+코드는 두 가지 목적을 가집니다:
+1. **지금 동작하게 만들기** (기능)
+2. **나중에 쉽게 바꿀 수 있게 하기** (구조)
+
+대부분의 개발자는 1번만 신경 씁니다. Tidy First는 2번의 중요성을 강조합니다.
+
+---
+
+## 구조 변경 vs 기능 변경
+
+### 구조 변경 (Structural Change)의 예시
+
+**동작은 그대로, 코드만 개선:**
+
+**예시 1: 변수 이름 바꾸기**
+```typescript
+// BEFORE
+function calc(x: number, y: number): number {
+  return x + y;
+}
+
+// AFTER
+function calculateTotal(price: number, tax: number): number {
+  return price + tax;
+}
+```
+- 동작은 완전히 동일
+- 이름만 명확해짐
+- 이것은 **구조 변경**
+
+**예시 2: 함수 추출하기**
+```typescript
+// BEFORE
+function processOrder(order: Order) {
+  // 검증 로직
+  if (!order.customerId) throw new Error('Invalid customer');
+  if (order.items.length === 0) throw new Error('Empty order');
+  
+  // 가격 계산
+  const total = order.items.reduce((sum, item) => sum + item.price, 0);
+  
+  // 저장
+  database.save(order);
+}
+
+// AFTER - 구조 개선
+function processOrder(order: Order) {
+  validateOrder(order);
+  const total = calculateTotal(order);
+  saveOrder(order);
+}
+
+function validateOrder(order: Order) {
+  if (!order.customerId) throw new Error('Invalid customer');
+  if (order.items.length === 0) throw new Error('Empty order');
+}
+
+function calculateTotal(order: Order): number {
+  return order.items.reduce((sum, item) => sum + item.price, 0);
+}
+
+function saveOrder(order: Order) {
+  database.save(order);
+}
+```
+- 동작은 완전히 동일
+- 코드가 읽기 쉬워짐
+- 이것은 **구조 변경**
+
+**예시 3: 파일 이동**
+```
+// BEFORE
+src/
+  components/
+    TodoInput.tsx
+    TodoList.tsx
+    Stats.tsx
+    FilterButtons.tsx
+
+// AFTER
+src/
+  components/
+    todo/
+      TodoInput.tsx
+      TodoList.tsx
+    stats/
+      Stats.tsx
+    filters/
+      FilterButtons.tsx
+```
+- 기능은 그대로
+- 파일 구조만 정리
+- 이것은 **구조 변경**
+
+**예시 4: 중복 코드 제거**
+```typescript
+// BEFORE
+function formatUserName(user: User): string {
+  return user.firstName + ' ' + user.lastName;
+}
+
+function displayUserName(user: User): string {
+  return user.firstName + ' ' + user.lastName;
+}
+
+// AFTER
+function formatUserName(user: User): string {
+  return user.firstName + ' ' + user.lastName;
+}
+
+function displayUserName(user: User): string {
+  return formatUserName(user);
+}
+```
+- 동작은 동일
+- 중복 제거
+- 이것은 **구조 변경**
+
+### 기능 변경 (Behavioral Change)의 예시
+
+**실제 동작이 바뀜:**
+
+**예시 1: 새로운 기능 추가**
+```typescript
+// BEFORE - 할 일만 추가 가능
+function addTodo(text: string) {
+  todos.push({ text, completed: false });
+}
+
+// AFTER - 우선순위 추가
+function addTodo(text: string, priority: 'high' | 'medium' | 'low') {
+  todos.push({ text, completed: false, priority });
+}
+```
+- 기능이 추가됨
+- 이것은 **기능 변경**
+
+**예시 2: 검증 로직 추가**
+```typescript
+// BEFORE - 검증 없음
+function addTodo(text: string) {
+  todos.push({ text });
+}
+
+// AFTER - 검증 추가
+function addTodo(text: string) {
+  if (text.trim() === '') {
+    throw new Error('Todo cannot be empty');
+  }
+  if (text.length > 200) {
+    throw new Error('Todo is too long');
+  }
+  todos.push({ text });
+}
+```
+- 동작이 바뀜 (에러를 던지게 됨)
+- 이것은 **기능 변경**
+
+**예시 3: 버그 수정**
+```typescript
+// BEFORE - 버그 있음
+function calculateTotal(items: Item[]): number {
+  return items.reduce((sum, item) => sum + item.price, 0);
+}
+
+// AFTER - 버그 수정 (세금 포함)
+function calculateTotal(items: Item[]): number {
+  const subtotal = items.reduce((sum, item) => sum + item.price, 0);
+  const tax = subtotal * 0.1;
+  return subtotal + tax;
+}
+```
+- 계산 결과가 바뀜
+- 이것은 **기능 변경**
+
+### 헷갈리는 경우들
+
+**케이스 1: 성능 개선**
+```typescript
+// BEFORE
+function findUser(id: string): User | undefined {
+  return users.find(u => u.id === id); // O(n)
+}
+
+// AFTER
+const userMap = new Map(users.map(u => [u.id, u]));
+function findUser(id: string): User | undefined {
+  return userMap.get(id); // O(1)
+}
+```
+**질문:** 이것은 구조 변경? 기능 변경?
+**답:** **구조 변경**
+- 결과는 동일 (같은 User 반환)
+- 내부 구현만 바뀜
+- 성능 개선은 구조 변경
+
+**케이스 2: 에러 메시지 개선**
+```typescript
+// BEFORE
+throw new Error('Error');
+
+// AFTER
+throw new Error('Todo text cannot be empty');
+```
+**질문:** 이것은 구조 변경? 기능 변경?
+**답:** **기능 변경**
+- 에러 메시지가 바뀌면 사용자에게 보이는 것이 바뀜
+- 동작이 변경된 것
+
+**케이스 3: 타입 추가**
+```typescript
+// BEFORE
+function add(a, b) {
+  return a + b;
+}
+
+// AFTER
+function add(a: number, b: number): number {
+  return a + b;
+}
+```
+**질문:** 이것은 구조 변경? 기능 변경?
+**답:** **구조 변경**
+- 런타임 동작은 동일
+- 타입은 컴파일 타임에만 영향
+- 단, 타입 오류를 강제하면 기능 변경
+
+---
+
+## 왜 절대 섞으면 안 되는가?
+
+### 문제 상황: 섞었을 때
+
+실제 개발에서 이런 일이 자주 발생합니다:
+
+```typescript
+// 한 커밋에서 여러 가지를 동시에 함
+
+// 1. 변수 이름 변경 (구조)
+// 2. 함수 추출 (구조)
+// 3. 새로운 검증 로직 추가 (기능)
+// 4. 버그 수정 (기능)
+
+// Commit: "Update todo validation and refactor code"
+```
+
+**이렇게 하면 무슨 문제가?**
+
+**문제 1: 버그가 생겼을 때 원인 파악 어려움**
+- 버그가 발생했다고 가정
+- 이 커밋을 되돌려야 하나?
+- 근데 구조 개선도 함께 되돌려지는데...
+- 어느 부분 때문에 버그가 생긴 거지?
+
+**문제 2: 코드 리뷰가 어려움**
+- 리뷰어: "이 변경은 왜 한 거죠?"
+- 개발자: "음... 변수 이름 바꾸다가 버그를 발견해서 수정하고, 그러다 보니 검증도 추가하고..."
+- 리뷰어: "그래서 정확히 무엇을 테스트해야 하죠?"
+
+**문제 3: 테스트 실패 시 문제 위치 불명확**
+- 테스트가 실패함
+- 구조 변경 때문? 기능 변경 때문?
+- 전체를 다시 봐야 함
+
+**문제 4: 협업이 어려움**
+- 다른 팀원이 같은 파일 수정 중
+- Merge conflict 발생
+- 어느 부분이 중요한 변경인지 알 수 없음
+
+### 해결책: 완전히 분리
+
+**올바른 방법:**
+
+```bash
+# Commit 1: [STRUCTURAL] Extract validation logic
 # - validateTodoText 함수 추출
 # - 테스트 실행 → 통과
 
