@@ -1,11 +1,10 @@
 ---
 title: "Medium 콘텐츠 수집 및 GitHub 자동 업로드 시스템"
 date: 2025-12-24 20:20:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  MCP]
 mermaid: [True]
 tags: [AI,  Claude,  claude-code,  MCP,  claude-skills,  playwright-mcp,  Claude.write]
 ---
-
 
 ## 목차
 1. [프로젝트 개요](#프로젝트-개요)

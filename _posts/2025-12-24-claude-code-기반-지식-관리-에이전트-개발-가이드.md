@@ -1,10 +1,11 @@
 ---
 title: "Claude Code 기반 지식 관리 에이전트 개발 가이드"
 date: 2025-12-24 20:00:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  MCP]
 mermaid: [True]
 tags: [AI,  Claude,  claude-code,  MCP,  claude-skills,  playwright-mcp,  Claude.write]
 ---
+
 
 ## 개요
 

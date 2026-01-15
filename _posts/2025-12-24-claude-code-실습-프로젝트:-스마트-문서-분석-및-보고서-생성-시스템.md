@@ -1,11 +1,10 @@
 ---
 title: "Claude Code 실습 프로젝트: 스마트 문서 분석 및 보고서 생성 시스템"
 date: 2025-12-24 20:10:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  MCP]
 mermaid: [True]
 tags: [AI,  Claude,  claude-code,  MCP,  claude-skills,  playwright-mcp,  Claude.write]
 ---
-
 
 ## 목차
 1. [프로젝트 개요](#프로젝트-개요)
