@@ -1,6 +1,6 @@
 ---
 title: "Claude Code 실습 프로젝트: 스마트 문서 분석 및 보고서 생성 시스템"
-date: 2025-12-24 19:10:00 +0900
+date: 2025-12-24 20:10:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  Claude,  claude-code,  MCP,  claude-skills,  playwright-mcp,  Claude.write]
@@ -20,6 +20,9 @@ tags: [AI,  Claude,  claude-code,  MCP,  claude-skills,  playwright-mcp,  Claude
 10. [트러블슈팅](#트러블슈팅)
 
 ---
+
+## 관련문서
+[Claude Code 기반 지식 관리 에이전트 개발 가이드](https://k82022603.github.io/posts/claude-code-%EA%B8%B0%EB%B0%98-%EC%A7%80%EC%8B%9D-%EA%B4%80%EB%A6%AC-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EA%B0%9C%EB%B0%9C-%EA%B0%80%EC%9D%B4%EB%93%9C/)
 
 ## 프로젝트 개요
 
