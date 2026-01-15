@@ -3,7 +3,7 @@ title: "Claude Code를 활용한 에이전트 오케스트레이션 완벽 가�
 date: 2026-01-12 20:00:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  claude-code,  agent-orchestration,  orchestration-agents,  sub-agents,  claude-skills,  Claude.write]
+tags: [AI,  claude-code,  agent-orchestration,  orchestration-agents,  sub-agents,  claude-skills,  headless-mode,  Claude.write]
 ---
 
 
