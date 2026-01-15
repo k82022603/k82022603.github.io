@@ -1,11 +1,10 @@
 ---
 title: "웹기획자를 위한 Claude Skills 샘플 모음집"
 date: 2026-01-08 20:00:00 +0900
-categories: [AI,  Claude Skills]
+categories: [AI,  Agent Skills]
 mermaid: [True]
 tags: [AI,  claude-code,  claude-skills,  Claude.write]
 ---
-
 
 ## 바로 사용 가능한 실전 Skills
 ---

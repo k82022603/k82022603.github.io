@@ -1,10 +1,11 @@
 ---
 title: "Claude Code 토큰 최적화 완벽 가이드"
 date: 2026-01-12 19:00:00 +0900
-categories: [AI,  Claude Skills]
+categories: [AI,  Agent Skills]
 mermaid: [True]
 tags: [AI,  claude-code,  claude-skills,  agent-skills,  Claude.write]
 ---
+
 
 ## invoke-opencode-acp 스킬을 활용한 효율적인 개발 워크플로우
 

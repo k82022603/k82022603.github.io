@@ -1,10 +1,11 @@
 ---
 title: "웹기획자를 위한 Claude Skills 완벽 가이드"
 date: 2026-01-08 21:00:00 +0900
-categories: [AI,  Claude Skills]
+categories: [AI,  Agent Skills]
 mermaid: [True]
 tags: [AI,  claude-code,  claude-skills,  Claude.write]
 ---
+
 
 ## 기획 업무를 혁신하는 AI 활용법
 

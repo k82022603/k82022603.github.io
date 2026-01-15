@@ -1,10 +1,11 @@
 ---
 title: "개발자를 위한 Claude Code & Skills 완벽 가이드"
 date: 2026-01-07 23:05:00 +0900
-categories: [AI,  Claude Skills]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  claude-code,  claude-skills,  agent-skills,  Claude.write]
 ---
+
 
 ## Claude Code & Skills 실전 활용 매뉴얼
 

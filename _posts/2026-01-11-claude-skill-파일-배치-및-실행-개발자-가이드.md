@@ -1,11 +1,10 @@
 ---
 title: "Claude SKILL 파일 배치 및 실행 개발자 가이드"
 date: 2026-01-11 19:00:00 +0900
-categories: [AI,  Claude Skills]
+categories: [AI,  Agent Skills]
 mermaid: [True]
 tags: [AI,  Guide,  claude-skills,  Developer,  Claude.write]
 ---
-
 
 ## 목차
 - [SKILL 시스템 개요](#skill-시스템-개요)
