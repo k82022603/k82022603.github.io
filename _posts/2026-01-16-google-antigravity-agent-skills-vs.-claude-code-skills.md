@@ -208,6 +208,7 @@ React TypeScript application...
 **목적**: 3단계 계층 구조 (Rules < Workflows < Skills)
 
 **비교**:
+
 | 기능 | Claude Code | Antigravity |
 |------|-------------|-------------|
 | 프로젝트 컨텍스트 | CLAUDE.md | Rules |
