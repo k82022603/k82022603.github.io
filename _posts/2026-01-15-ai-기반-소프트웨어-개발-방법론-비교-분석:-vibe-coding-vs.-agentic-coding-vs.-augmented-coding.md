@@ -6,7 +6,6 @@ mermaid: [True]
 tags: [AI,  Material,  vibe-coding,  agentic-coding,  augmented-coding,  Claude.write]
 ---
 
-
 ## 서론
 
 2025년은 AI가 소프트웨어 개발 분야에서 단순한 보조 도구를 넘어 개발 프로세스 전체를 재정의한 획기적인 해였다. 이 과정에서 세 가지 뚜렷한 개발 방법론이 등장하여 각각 다른 철학과 적용 영역을 가지고 자리 잡았다. 바로 Vibe Coding, Agentic Coding, 그리고 Augmented Coding이다. 이 세 가지 접근법은 AI를 활용하는 방식, 개발자의 역할, 그리고 최종 코드의 품질에 대한 관점에서 근본적으로 다른 특성을 보인다.
