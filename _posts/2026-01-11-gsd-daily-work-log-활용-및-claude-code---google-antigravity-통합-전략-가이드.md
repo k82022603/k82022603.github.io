@@ -1,10 +1,11 @@
 ---
 title: "GSD Daily Work Log 활용 및 Claude Code + Google Antigravity 통합 전략 가이드"
 date: 2026-01-11 13:00:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  Guide]
 mermaid: [True]
 tags: [AI,  Guide,  Claude,  claude-code,  Antigravity,  GSD,  MCP,  Guide,  Claude.write]
 ---
+
 
 
 ## 목차

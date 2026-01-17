@@ -1,11 +1,10 @@
 ---
 title: "Claude Pro Max 플랜 완벽 활용 가이드"
 date: 2026-01-15 07:30:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  Claude]
 mermaid: [True]
 tags: [AI,  Claude,  claude-code,  Claude.write]
 ---
-
 
 ## 개요
 

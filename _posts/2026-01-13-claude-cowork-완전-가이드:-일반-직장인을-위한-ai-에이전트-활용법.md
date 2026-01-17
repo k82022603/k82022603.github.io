@@ -1,11 +1,10 @@
 ---
 title: "Claude Cowork 완전 가이드: 일반 직장인을 위한 AI 에이전트 활용법"
 date: 2026-01-13 19:30:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  Claude]
 mermaid: [True]
 tags: [AI,  claude-code,  Cowork,  claude-desktop,  Claude.write]
 ---
-
 
 ## 서론: 코딩 도구에서 업무 도구로의 진화
 
