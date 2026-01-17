@@ -1,10 +1,11 @@
 ---
 title: "Claude Code 2.0 완전 가이드: AI 코딩 에이전트를 마스터하는 여정"
 date: 2025-12-29 09:00:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  Developer,  vibe-coding,  claude-code,  coding-agents,  Guide,  Claude.write]
 ---
+
 
 
 [A Guide to Claude Code 2.0 and getting better at using coding agents](https://sankalp.bearblog.dev/my-experience-with-claude-code-20-and-how-to-get-better-at-using-coding-agents/)

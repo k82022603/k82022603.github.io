@@ -1,7 +1,7 @@
 ---
 title: "Claude Code 실전 가치 가이드: 손코딩 vs 바이브코딩"
 date: 2026-01-02 20:00:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Claude.write]
 ---
@@ -11,7 +11,6 @@ tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Claude.write]
 > 실제 시나리오로 보는 [손코딩](https://k82022603.github.io/posts/%EC%86%90%EC%BD%94%EB%94%A9%EC%9C%BC%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%EA%B8%89-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EA%B0%9C%EB%B0%9C-%EA%B0%80%EC%9D%B4%EB%93%9C/)과 [바이브코딩](https://k82022603.github.io/posts/windows%EC%97%90%EC%84%9C-claude-code%EB%A1%9C-%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%EA%B8%89-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0/)의 결정적 차이
 
 ---
-
 ## 이 가이드를 읽어야 하는 이유
 
 제가 작성한 "[손코딩으로 배우는 프로덕션급 AI 에이전트 개발 가이드](https://k82022603.github.io/posts/%EC%86%90%EC%BD%94%EB%94%A9%EC%9C%BC%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98%EA%B8%89-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-%EA%B0%9C%EB%B0%9C-%EA%B0%80%EC%9D%B4%EB%93%9C/)"를 읽으신 분들은 이런 의문을 가질 수 있습니다:

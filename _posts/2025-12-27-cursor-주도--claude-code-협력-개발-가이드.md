@@ -1,13 +1,15 @@
 ---
 title: "Cursor 주도 Claude Code 협력 개발 가이드"
 date: 2025-12-27 09:20:00 +0900
-categories: [AI,  Vibe Coding,  Guide]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  Developer,  vibe-coding,  claude-code,  Cursor,  Guide,  Claude.write]
 ---
 
 
+
 **두 AI의 강점을 결합한 최적의 개발 워크플로우**
+
 
 ## 서론: 왜 두 가지 도구를 함께 사용하는가
 

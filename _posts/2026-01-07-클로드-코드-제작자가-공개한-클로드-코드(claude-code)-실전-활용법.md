@@ -1,10 +1,11 @@
 ---
 title: "클로드 코드 제작자가 공개한 클로드 코드(Claude Code) 실전 활용법"
 date: 2026-01-07 16:15:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  claude-code,  vibe-coding,  Developer,  Guide,  Claude.write]
 ---
+
 
 ## AI 코딩 에이전트를 인간 노동력처럼 활용하는 방법
 

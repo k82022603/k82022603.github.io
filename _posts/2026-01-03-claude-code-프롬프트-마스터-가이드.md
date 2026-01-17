@@ -1,7 +1,7 @@
 ---
 title: "Claude Code 프롬프트 마스터 가이드"
 date: 2026-01-03 10:00:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Guide,  Claude.write]
 ---
@@ -11,7 +11,6 @@ tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Guide,  Claude.w
 > 20배 더 나은 코드를 얻는 실전 프롬프트 패턴 완전 정복
 
 ---
-
 ## 왜 프롬프트가 중요한가?
 
 개발자 A와 개발자 B가 있습니다. 둘 다 Claude Code를 사용합니다. 똑같은 AI, 똑같은 모델, 똑같은 과제입니다. 하지만 결과는 천지 차이입니다. A는 10줄짜리 샘플 코드를 받습니다. 실전에서는 쓸 수 없습니다. B는 500줄의 프로덕션급 코드를 받습니다. 테스트까지 포함되어 있습니다. 무엇이 다를까요? 바로 프롬프트입니다.

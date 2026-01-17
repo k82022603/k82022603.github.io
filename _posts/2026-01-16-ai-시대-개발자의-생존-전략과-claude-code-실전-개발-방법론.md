@@ -1,11 +1,10 @@
 ---
 title: "AI 시대 개발자의 생존 전략과 Claude Code 실전 개발 방법론"
 date: 2026-01-16 08:30:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  Material,  vibe-coding,  agentic-coding,  claude-code,  Claude.write]
 ---
-
 
 ## 관련 영상
 

@@ -1,7 +1,7 @@
 ---
 title: "Windows에서 Claude Code로 프로덕션급 AI 에이전트 시스템 만들기"
 date: 2026-01-02 18:45:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Claude.write]
 ---
@@ -11,7 +11,6 @@ tags: [AI,  vibe-coding,  claude-code,  ai-agent-architecture,  Claude.write]
 > 4시간 만에 7계층 아키텍처 완성하는 실전 가이드
 
 ---
-
 ## 프로젝트 개요
 
 ### 무엇을 만드는가?

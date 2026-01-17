@@ -1,11 +1,10 @@
 ---
 title: "Claude Code 바이브 코딩 실전 가이드"
 date: 2025-12-28 10:00:00 +0900
-categories: [AI,  Vibe Coding,  Guide]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  Developer,  vibe-coding,  claude-code,  Guide,  Claude.write]
 ---
-
 
 ## Continuous Agentic Development로 가는 여정
 
