@@ -7,7 +7,6 @@ tags: [AI,  claude-agent-sdk,  claude-code,  sub-agents,  Claude.write]
 ---
 
 멀티 에이전트 개인 비서 만들기
-
 ---
 
 ## 📋 목차
