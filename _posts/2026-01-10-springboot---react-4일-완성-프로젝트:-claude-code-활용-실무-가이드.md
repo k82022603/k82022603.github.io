@@ -1,10 +1,11 @@
 ---
 title: "SpringBoot React 4일 완성 프로젝트: Claude Code 활용 실무 가이드"
 date: 2026-01-10 20:30:00 +0900
-categories: [AI,  Guide]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,   claude-code,  vibe-coding,  Developer,  Guide,  Claude.write]
 ---
+
 
 ## 4일 만에 프로덕션 시스템 구축하기
 

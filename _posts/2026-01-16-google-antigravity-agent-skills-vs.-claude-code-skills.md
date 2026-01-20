@@ -1,10 +1,11 @@
 ---
 title: "Google Antigravity Agent Skills vs. Claude Code Skills"
 date: 2026-01-16 04:00:00 +0900
-categories: [AI,  Agent Skills]
+categories: [AI,  Claude Code & Google Antigravity]
 mermaid: [True]
 tags: [AI,  Material,  Antigravity,  claude-code,  agent-skills,  Claude.write]
 ---
+
 
 ## 동일한 표준, 다른 구현 - 완벽 비교 가이드
 

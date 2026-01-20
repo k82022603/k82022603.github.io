@@ -1,11 +1,10 @@
 ---
 title: "Claude Code 하위 에이전트 활용 개발자 가이드"
 date: 2025-10-19 01:00:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  claude-code,  sub-agents,  Developer,  Claude.write]
 ---
-
 
 ## 들어가며: 컨텍스트 포화 문제와 하위 에이전트의 탄생
 

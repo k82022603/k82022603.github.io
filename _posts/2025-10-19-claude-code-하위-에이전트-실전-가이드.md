@@ -1,11 +1,10 @@
 ---
 title: "Claude Code 하위 에이전트 실전 가이드"
 date: 2025-10-19 01:10:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Claude Code]
 mermaid: [True]
 tags: [AI,  claude-code,  sub-agents,  Developer,  Guide,  Claude.write]
 ---
-
 
 ## 빠른 시작: 5분 만에 하위 에이전트 활용하기
 

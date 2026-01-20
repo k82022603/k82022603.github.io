@@ -1,10 +1,11 @@
 ---
 title: "Claude Code + Antigravity 완전 통합 마스터 가이드"
 date: 2026-01-09 23:30:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Claude Code & Google Antigravity]
 mermaid: [True]
 tags: [AI,  claude-code,  Antigravity,  vibe-coding,  coding-agents,  Developer,  Claude.write]
 ---
+
 
 **2026년 최고의 AI 개발 환경 구축 완전판**
 ---
