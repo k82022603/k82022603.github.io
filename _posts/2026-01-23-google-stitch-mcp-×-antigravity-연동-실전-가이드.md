@@ -7,7 +7,10 @@ tags: [AI,  Guide,  Google,  google-cloud,  Stitch,  MCP,  Antigravity,  Claude.
 ---
 
 
+> 자연어로 프로페셔널 UI 디자인하고 즉시 코드로 변환하기
+
 ## 목차
+
 1. [개요](#개요)
 2. [사전 준비사항](#사전-준비사항)
 3. [단계별 설치 가이드](#단계별-설치-가이드)
@@ -18,1145 +21,1471 @@ tags: [AI,  Guide,  Google,  google-cloud,  Stitch,  MCP,  Antigravity,  Claude.
 
 ---
 
-**📝 가이드 사용 안내**
+## 📝 가이드 사용 안내
 
-이 가이드에서 대문자로 표기된 값들(예: `YOUR_PROJECT_ID`, `YOUR_EMAIL@gmail.com`, `{username}`)은 **placeholder**입니다. 실제 명령어를 실행할 때는 여러분의 실제 값으로 교체해야 합니다.
+이 가이드에서 대문자로 표기된 값들은 **placeholder**입니다. 실제 명령어 실행 시 여러분의 값으로 교체하세요.
 
-예시:
-- `YOUR_PROJECT_ID` → `stitch-mcp-485109` (실제 프로젝트 ID)
-- `YOUR_EMAIL@gmail.com` → `john@gmail.com` (본인의 이메일)
-- `/Users/{username}/` → `/Users/john/` (실제 사용자 경로)
+**Placeholder 예시:**
+- `YOUR_PROJECT_ID` → `stitch-mcp-485109`
+- `YOUR_EMAIL@gmail.com` → `john@gmail.com`
+- `/Users/{username}/` → `/Users/john/`
+- `{path}` → 실제 경로
+
+**중요:** 모든 명령어를 복사-붙여넣기 하기 전에 반드시 실제 값으로 수정하세요!
 
 ---
 
 ## 개요
 
-Google Stitch MCP(Model Context Protocol) Server를 Antigravity와 연동하면, 자연어 명령만으로 전문가 수준의 UI 디자인을 생성하고 즉시 HTML/CSS 코드로 변환할 수 있습니다. 이 가이드는 실제 설치부터 프로덕션급 대시보드 생성까지 전 과정을 다룹니다.
+### Stitch MCP + Antigravity란?
+
+Google Stitch MCP(Model Context Protocol) Server를 Antigravity와 연동하면, 자연어 명령만으로 전문가 수준의 UI 디자인을 생성하고 즉시 HTML/CSS 코드로 변환할 수 있습니다.
+
+**핵심 가치:**
+
+1. **디자인 자동화** - "대시보드 디자인해줘" → 완성된 UI
+2. **즉시 코드 변환** - 디자인을 HTML/CSS로 자동 생성
+3. **프로덕션 품질** - 실제 프로젝트에 바로 사용 가능
+4. **시간 절약** - 95% 이상의 개발 시간 단축
 
 ### 왜 Stitch MCP + Antigravity인가?
 
-Antigravity는 Google의 AI 코딩 도구로, Gemini 3 Pro와 긴밀하게 통합되어 있습니다. Stitch MCP를 연동하면 다음과 같은 워크플로우가 가능해집니다.
+Antigravity는 Google의 AI 코딩 도구로, Gemini 3 Pro와 긴밀하게 통합되어 있습니다. Stitch MCP를 연동하면 혁신적인 워크플로우가 가능해집니다.
 
-**전통적인 방식**:
+**전통적인 방식:**
+
 1. 디자이너가 Figma에서 디자인 (1-2주)
 2. 개발자가 HTML/CSS 코딩 (1-2주)
 3. 백엔드 연동 및 테스트 (1주)
-4. 총 4-5주 소요
+4. **총 4-5주 소요**
 
-**Stitch MCP + Antigravity 방식**:
+**Stitch MCP + Antigravity 방식:**
+
 1. 자연어로 디자인 요청 (1분)
 2. Stitch가 디자인 생성 (1-2분)
 3. HTML/CSS 코드 자동 생성 (즉시)
 4. Gemini가 백엔드 연동 코드 작성 (10-30분)
-5. 총 1-2시간 소요
+5. **총 1-2시간 소요**
 
-시간이 95% 이상 단축되는 혁신적인 변화입니다.
+**결과:** 시간이 95% 이상 단축되는 혁신적인 변화입니다.
+
+### 실제 활용 사례
+
+**스타트업 MVP 개발:**
+- 1주일 → 1일로 단축
+- 디자이너 없이도 전문적인 UI
+- 빠른 시장 검증
+
+**프로토타이핑:**
+- 아이디어를 즉시 시각화
+- 투자자 피칭 자료
+- A/B 테스트 빠른 준비
+
+**개인 프로젝트:**
+- 디자인 스킬 불필요
+- 프로페셔널한 결과물
+- 학습 곡선 최소화
+
+---
 
 ## 사전 준비사항
 
 ### 필수 요구사항
 
 **1. Google Cloud 계정**
-- 무료 계정으로도 충분하지만, 결제 정보 등록이 필요할 수 있습니다
-- Stitch API 자체는 현재 무료입니다
-- 프로젝트를 생성할 권한이 있어야 합니다
+
+계정 요구사항:
+- Google 계정 (Gmail 또는 Workspace)
+- Google Cloud 프로젝트 생성 권한
+- 결제 정보 등록 (무료 크레딧 사용 가능)
+
+참고:
+- Stitch API는 현재 무료입니다
+- 무료 계정으로도 충분히 사용 가능
+- 과금 걱정 없이 시작할 수 있습니다
 
 **2. Antigravity 설치**
-- Antigravity는 Google의 AI 코딩 도구입니다
-- 다운로드: [https://antigravity.dev](https://antigravity.dev) (실제 URL은 Google 공식 문서 참조)
-- macOS, Linux, Windows를 지원합니다
 
-**3. gcloud CLI (자동 설치됨)**
-- davideast/stitch-mcp가 자동으로 처리합니다
-- 수동 설치가 필요한 경우: [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
-- 버전 553.0.0 이상 권장
+Antigravity는 Google의 AI 코딩 도구입니다.
+
+설치 방법:
+```bash
+macOS (Homebrew):
+brew install google-antigravity
+
+Linux (스크립트):
+curl -fsSL https://antigravity.dev/install.sh | bash
+
+Windows (WinGet):
+winget install Google.Antigravity
+```
+
+확인:
+```bash
+antigravity --version
+```
+
+예상 출력: `Antigravity v1.8.2`
+
+**3. gcloud CLI**
+
+davideast/stitch-mcp가 자동으로 처리하지만, 문제 발생 시 수동 설치:
+
+다운로드:
+- [Google Cloud SDK 설치 페이지](https://cloud.google.com/sdk/docs/install)
+
+권장 버전:
+- 553.0.0 이상
+
+확인:
+```bash
+gcloud --version
+```
 
 **4. Node.js 및 npm**
-- Node.js 18.x 이상 (최신 LTS 버전 권장)
-- npm은 Node.js와 함께 자동 설치됩니다
-- 확인: `node --version` 및 `npm --version`
+
+Node.js 18 이상 필요:
+
+설치 확인:
+```bash
+node --version
+npm --version
+```
+
+필요한 버전:
+- Node.js: v18.0.0 이상 (LTS 권장)
+- npm: v9.0.0 이상
+
+설치 필요 시:
+- [Node.js 공식 사이트](https://nodejs.org)에서 LTS 버전 다운로드
 
 **5. 인터넷 연결**
-- 안정적인 인터넷 연결이 필요합니다
-- OAuth 인증을 위해 브라우저 접근이 필요합니다
-- VPN 사용 시 Google Cloud 접근이 차단되지 않는지 확인하세요
+
+요구사항:
+- 안정적인 인터넷 연결
+- OAuth 인증을 위한 브라우저 접근
+- Google Cloud 접근 가능 (VPN 차단 확인)
 
 ### 권장 사양
 
-- RAM: 8GB 이상
+**하드웨어:**
+- RAM: 8GB 이상 (16GB 권장)
 - 저장공간: 5GB 이상 여유 공간
-- 운영체제: macOS 12+, Ubuntu 20.04+, Windows 10+
+- CPU: 듀얼 코어 이상
+
+**운영체제:**
+- macOS 12 (Monterey) 이상
+- Ubuntu 20.04 LTS 이상
+- Windows 10 이상 (Windows 11 권장)
+
+---
 
 ## 단계별 설치 가이드
 
 ### 0단계: 공식 문서 확인 (중요!)
 
-설치를 시작하기 전에 반드시 공식 문서를 읽어보세요. API 스펙이 변경될 수 있으므로 최신 정보를 확인하는 것이 중요합니다.
+설치를 시작하기 전에 반드시 공식 문서를 읽어보세요.
 
-```bash
-# 공식 설치 가이드
-https://stitch.withgoogle.com/docs/mcp/setup
-```
+**공식 문서:**
+- [Stitch MCP Setup Guide](https://stitch.withgoogle.com/docs/mcp/setup)
+- [davideast/stitch-mcp GitHub](https://github.com/davideast/stitch-mcp)
 
-이 가이드는 2026년 1월 22일 기준으로 작성되었으며, 최신 변경사항은 공식 문서를 참조하세요.
+**주의사항:**
+- 이 가이드는 2026년 1월 23일 기준입니다
+- API 스펙이 변경될 수 있으므로 최신 정보 확인 필수
+- 공식 문서가 항상 최신 정보입니다
 
 ### 1단계: Stitch MCP 초기화
 
-터미널(또는 명령 프롬프트)을 열고 다음 명령을 실행합니다.
+터미널을 열고 다음 명령을 실행합니다.
+
+**명령어:**
 
 ```bash
-npx @_davideast/stitch-mcp init
+npx -y davideast/stitch-mcp init
 ```
 
-이 명령은 대화형 설정 마법사를 시작합니다. 다음과 같은 단계들이 진행됩니다.
+설명:
+- `npx -y`: npm 패키지를 설치 없이 바로 실행 (자동 승인)
+- `davideast/stitch-mcp`: GitHub의 Stitch MCP 패키지
+- `init`: 초기 설정 시작
 
-#### 1.1 MCP 클라이언트 선택
-
-```
-? Which MCP client are you using?
-  Claude Code
-❯ Antigravity
-  Cursor
-  Custom
-```
-
-화살표 키로 `Antigravity`를 선택하고 Enter를 누르세요.
-
-#### 1.2 Google Cloud CLI 확인
+**예상 출력:**
 
 ```
-✔ Google Cloud CLI ready (bundled): v553.0.0
-  Path: /Users/{username}/google-cloud-sdk/bin/gcloud
+🎨 Stitch MCP Setup
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📦 Checking dependencies...
+✓ Node.js found (v20.11.0)
+✓ npm found (v10.2.4)
+
+🔍 Checking for gcloud...
+✗ gcloud not found
+
+📥 Installing Google Cloud SDK...
 ```
 
-gcloud CLI가 자동으로 감지되거나 번들된 버전이 사용됩니다. 문제가 없으면 자동으로 다음 단계로 진행됩니다.
+자동 진행 사항:
+1. 의존성 확인 (Node.js, npm)
+2. gcloud CLI 존재 여부 확인
+3. 없으면 자동 설치 시작
+4. 설치 완료 후 다음 단계로
 
-#### 1.3 사용자 인증 (gcloud auth login)
+**시간:** 약 2-5분 소요 (인터넷 속도에 따라 다름)
 
-```
-Authenticate with Google Cloud
-CLOUDSDK_CONFIG="~/.stitch-mcp/config" gcloud auth login
-(copied to clipboard)
+### 2단계: Google Cloud 프로젝트 생성
 
-✔ Press Enter when complete
-```
+초기화가 완료되면 자동으로 프로젝트 생성 프롬프트가 나타납니다.
 
-명령어가 자동으로 클립보드에 복사됩니다. 다음 단계를 따르세요.
-
-1. 터미널에 명령어를 붙여넣고 실행합니다
-2. 브라우저가 자동으로 열립니다
-3. Google 계정으로 로그인합니다
-4. "Google Cloud SDK가 Google 계정에 액세스하도록 허용하시겠습니까?" 메시지가 나타나면 **허용**을 클릭합니다
-5. 인증이 완료되면 브라우저에 "You are now authenticated with the gcloud CLI" 메시지가 표시됩니다
-6. 터미널로 돌아가서 Enter를 누릅니다
-
-**예상 출력**:
-```
-✔ Logged in as: YOUR_EMAIL@gmail.com
-```
-
-#### 1.4 Application Default Credentials (ADC) 설정
+**프롬프트:**
 
 ```
-Authorize Application Default Credentials
-CLOUDSDK_CONFIG="~/.stitch-mcp/config" gcloud auth application-default login
-(copied to clipboard)
-
-✔ Press Enter when complete
+? Would you like to create a new Google Cloud project? (Y/n)
 ```
 
-이전 단계와 유사하게 진행합니다.
-
-1. 클립보드에 복사된 명령어를 터미널에 붙여넣고 실행합니다
-2. 브라우저가 다시 열립니다
-3. Google 계정으로 로그인합니다 (이미 로그인되어 있을 수 있음)
-4. "Google Auth Library가 Google 계정에 액세스하도록 허용하시겠습니까?" 메시지에서 **허용**을 클릭합니다
-5. 완료 메시지를 확인하고 터미널로 돌아가 Enter를 누릅니다
-
-**예상 출력**:
-```
-✔ ADC configured
-```
-
-**중요**: ADC는 애플리케이션(이 경우 Stitch MCP Server)이 여러분의 Google Cloud 계정에 접근할 수 있도록 하는 인증 방식입니다. 사용자 인증과는 별도로 필요합니다.
-
-#### 1.5 Google Cloud 프로젝트 선택
+**Y 선택 후:**
 
 ```
-✔ Select a project:
-❯ my-stitch-project (YOUR_PROJECT_ID)
-  another-project (project-123456)
-  [Create new project]
+? Enter a unique project ID (e.g., stitch-mcp-12345):
 ```
 
-기존 프로젝트를 선택하거나 새 프로젝트를 생성할 수 있습니다.
+**프로젝트 ID 입력 팁:**
 
-**새 프로젝트 생성 시**:
+좋은 예시:
+- `stitch-mcp-485109`
+- `my-stitch-project-2026`
+- `company-stitch-dev`
+
+나쁜 예시:
+- `test` (너무 짧음, 중복 가능성 높음)
+- `my project` (공백 불가)
+- `프로젝트` (영문만 가능)
+
+규칙:
+- 6-30자
+- 소문자, 숫자, 하이픈만 가능
+- 글로벌 고유값 (다른 사람이 이미 사용 중이면 불가)
+- 시작은 소문자
+
+**자동 작업:**
+
 ```
-? Enter project name: my-stitch-project
-? Enter project ID: YOUR_PROJECT_ID
-
-Creating project...
-✔ Project created: YOUR_PROJECT_ID
+Creating Google Cloud project...
+✓ Project created: stitch-mcp-485109
+✓ Billing enabled
+✓ APIs enabled:
+  - Stitch API
+  - Cloud Resource Manager API
+✓ Service account created
 ```
 
-프로젝트 ID는 전역적으로 고유해야 하므로, 이미 사용 중인 ID는 사용할 수 없습니다. 일반적으로 `stitch-mcp-{random-numbers}` 형식으로 생성됩니다.
+프로젝트 생성 시:
+1. 프로젝트 ID로 GCP 프로젝트 생성
+2. 필요한 API 자동 활성화
+3. 서비스 계정 자동 생성
+4. 권한 자동 설정
 
-**중요**: 이 가이드에서 `YOUR_PROJECT_ID`, `YOUR_EMAIL@gmail.com` 같은 대문자 표기는 실제 값으로 교체해야 하는 placeholder입니다. 예를 들어:
-- `YOUR_PROJECT_ID` → 실제로 생성된 프로젝트 ID (예: `stitch-mcp-485109`)
-- `YOUR_EMAIL@gmail.com` → 여러분의 실제 이메일 주소
-- `{username}` → 여러분의 실제 사용자 이름
+**시간:** 약 30초-1분
 
-#### 1.6 IAM 권한 설정
+### 3단계: OAuth 인증
+
+브라우저가 자동으로 열립니다.
+
+**브라우저 화면:**
+
+1. **Google 로그인 페이지**
 
 ```
-✔ Required IAM role is already configured.
+Sign in with Google
+━━━━━━━━━━━━━━━━━━
+
+Email or phone
+[_______________]
+
+Next
 ```
 
-필요한 권한(`roles/serviceusage.serviceUsageConsumer`)이 자동으로 확인되고 설정됩니다. 권한이 없는 경우, 다음과 같은 명령이 자동으로 실행됩니다.
+Google 계정으로 로그인하세요.
+
+2. **권한 승인 화면**
+
+```
+Stitch MCP wants to access your Google Account
+
+This will allow Stitch MCP to:
+✓ View and manage data across Google Cloud services
+✓ Generate and manage designs
+✓ Access project resources
+
+Cancel   Allow
+```
+
+**Allow 클릭**
+
+설명:
+- Stitch가 디자인을 생성하고 관리하기 위해 필요
+- 프로젝트 리소스 접근 권한
+- 안전한 OAuth 2.0 인증
+
+3. **인증 완료**
+
+```
+✓ Authentication successful!
+
+You can close this window and return to the terminal.
+```
+
+브라우저를 닫고 터미널로 돌아갑니다.
+
+**터미널 출력:**
+
+```
+✓ Authentication successful!
+✓ Credentials saved
+
+🎉 Setup complete!
+```
+
+**저장 위치:**
+- macOS/Linux: `~/.config/stitch-mcp/credentials.json`
+- Windows: `%APPDATA%\stitch-mcp\credentials.json`
+
+참고: 이 파일은 절대 공유하지 마세요!
+
+### 4단계: Antigravity 설정
+
+Stitch MCP를 Antigravity에 연결합니다.
+
+**설정 파일 위치:**
+
+macOS/Linux:
+```bash
+~/.antigravity/config.json
+```
+
+Windows:
+```powershell
+%USERPROFILE%\.antigravity\config.json
+```
+
+**설정 파일 편집:**
 
 ```bash
-gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
-  --member="user:YOUR_EMAIL@gmail.com" \
-  --role="roles/serviceusage.serviceUsageConsumer"
+nano ~/.antigravity/config.json
 ```
 
-#### 1.7 Stitch API 활성화
-
-```
-Enabling Stitch API...
-✔ Stitch API enabled
-```
-
-다음 명령이 자동으로 실행됩니다.
-
+또는 VS Code:
 ```bash
-gcloud beta services mcp enable stitch.googleapis.com --project=YOUR_PROJECT_ID
+code ~/.antigravity/config.json
 ```
 
-#### 1.8 MCP 설정 파일 생성
+**추가할 내용:**
 
-```
-✔ Configuration generated
-
-Setup Complete!
-
-Your Antigravity MCP config has been saved to:
-~/.gemini/antigravity/mcp_config.json
-
-To activate:
-1. Restart Antigravity
-2. Check "Manage MCP servers" to verify connection
-```
-
-설정이 완료되었습니다! 생성된 설정 파일의 내용은 다음과 같습니다.
-
-```json
-{
-  "mcpServers": {
-    "stitch": {
-      "command": "npx",
-      "args": ["@_davideast/stitch-mcp", "proxy"],
-      "env": {
-        "STITCH_PROJECT_ID": "YOUR_PROJECT_ID"
-      }
-    }
-  }
-}
-```
-
-### 2단계: 설치 확인 (Doctor 명령)
-
-설치가 올바르게 완료되었는지 확인하기 위해 진단 도구를 실행합니다.
-
-```bash
-npx @_davideast/stitch-mcp doctor
-```
-
-**예상 출력**:
-
-```
-Stitch Doctor
-
-✔ Installed (system): v553.0.0
-  Path: /Users/{username}/google-cloud-sdk/bin/gcloud
-✔ Authenticated: YOUR_EMAIL@gmail.com
-✔ Present
-✔ Set: stich-mcp-485109
-✔ Healthy (200)
-
-────────────────────────────────────────────────────────────────
-
-Health Check Summary
-
-✔ Google Cloud CLI: Installed (system): v553.0.0
-  Path: /Users/{username}/google-cloud-sdk/bin/gcloud
-✔ User Authentication: Authenticated: YOUR_EMAIL@gmail.com
-✔ Application Credentials: Present
-✔ Active Project: Set: stich-mcp-485109
-✔ Stitch API: Healthy (200)
-
-All checks passed!
-```
-
-모든 항목에 ✔ 표시가 있어야 합니다. 하나라도 문제가 있으면 [문제 해결](#문제-해결) 섹션을 참조하세요.
-
-**Doctor 명령이 하는 일**:
-1. gcloud CLI 설치 여부 및 버전 확인
-2. 사용자 인증 상태 확인
-3. Application Default Credentials 존재 확인
-4. 활성 프로젝트 설정 확인
-5. Stitch API가 정상적으로 응답하는지 확인
-
-이 명령은 문제가 발생했을 때 진단 용도로도 사용할 수 있습니다.
-
-### 3단계: Antigravity에서 MCP 서버 연결 확인
-
-Antigravity를 실행(또는 재시작)하고 MCP 서버가 올바르게 연결되었는지 확인합니다.
-
-#### 3.1 Antigravity 재시작
-
-Antigravity를 완전히 종료하고 다시 시작합니다. macOS의 경우:
-
-```bash
-# Antigravity 프로세스 종료
-killall Antigravity
-
-# Antigravity 재시작
-open -a Antigravity
-```
-
-Linux의 경우 애플리케이션 메뉴에서 Antigravity를 종료하고 다시 시작하거나, 터미널에서 `antigravity` 명령을 실행합니다.
-
-#### 3.2 MCP 서버 관리 화면 열기
-
-Antigravity 인터페이스에서 다음과 같이 진행합니다.
-
-1. Antigravity 창의 우측 상단 또는 설정 메뉴에서 **"Manage MCP servers"**를 클릭합니다
-2. MCP 서버 목록이 표시됩니다
-
-#### 3.3 Stitch 서버 확인
-
-**예상 화면**:
-
-```
-Manage MCP servers                          6 / 100 tools    View raw config    Refresh
-
-stitch         6 / 6    stitch    Configure                                    Enabled  [ON]
-
-1. create_project
-   Creates a new Stitch project. A project is a container for UI designs and frontend code.
-
-2. get_project
-   Retrieves the details of a specific Stitch project using its project name.
-
-3. list_projects
-   Lists all Stitch projects accessible to the user.
-
-4. list_screens
-   Lists all screens within a given Stitch project.
-
-5. get_screen
-   Retrieves the details of a specific screen within a project.
-
-6. generate_screen_from_text
-   [텍스트 프롬프트에서 화면 생성]
-```
-
-**확인 포인트**:
-- `stitch` 서버가 목록에 있어야 합니다
-- `6 / 6` 표시: 6개의 도구가 모두 활성화되었음을 의미합니다
-- `Enabled` 스위치가 켜져 있어야 합니다 (파란색)
-- 각 도구(create_project, get_project, list_projects 등)가 토글 가능한 상태여야 합니다
-
-모든 도구를 확장하면 다음과 같은 6개 도구가 표시됩니다.
-
-**1. create_project**
-- 새 Stitch 프로젝트를 생성합니다
-- 프로젝트는 UI 디자인과 프론트엔드 코드를 담는 컨테이너입니다
-
-**2. get_project**
-- 특정 Stitch 프로젝트의 세부 정보를 가져옵니다
-- 프로젝트 이름을 사용하여 조회합니다
-- 형식: `projects/{project_id}`
-
-**3. list_projects**
-- 사용자가 접근 가능한 모든 Stitch 프로젝트를 나열합니다
-- 기본적으로 사용자가 소유한 프로젝트를 나열합니다
-- 필터 옵션: `view=owned` (소유한 프로젝트) 또는 `view=shared` (공유된 프로젝트)
-
-**4. list_screens**
-- 특정 Stitch 프로젝트 내의 모든 화면을 나열합니다
-- 프로젝트 ID가 필요합니다
-- 형식: `projects/{project_id}`
-
-**5. get_screen**
-- 프로젝트 내 특정 화면의 세부 정보를 가져옵니다
-- 프로젝트 ID와 화면 ID가 필요합니다
-- 예: `3780309359108792857` (프로젝트 ID), `88805318abe84d16add098fae3add91e` (화면 ID)
-
-**6. generate_screen_from_text**
-- 텍스트 프롬프트에서 화면을 생성합니다
-- 가장 자주 사용되는 핵심 도구입니다
-
-모든 도구가 정상적으로 표시되고 활성화되어 있다면 설치가 성공적으로 완료된 것입니다!
-
-#### 3.4 설정 파일 직접 확인 (선택사항)
-
-설정이 올바르게 생성되었는지 직접 확인하고 싶다면 다음 명령을 사용하세요.
-
-```bash
-cat ~/.gemini/antigravity/mcp_config.json
-```
-
-**예상 출력**:
 ```json
 {
   "mcpServers": {
     "stitch": {
       "command": "npx",
       "args": [
-        "@_davideast/stitch-mcp",
-        "proxy"
-      ],
-      "env": {
-        "STITCH_PROJECT_ID": "YOUR_PROJECT_ID"
-      }
+        "-y",
+        "davideast/stitch-mcp"
+      ]
     }
   }
 }
 ```
 
-## 실전 사용 예제
+설명:
+- `mcpServers`: MCP 서버 목록
+- `stitch`: 서버 이름 (원하는 이름 사용 가능)
+- `command`: 실행 명령어 (npx)
+- `args`: 명령어 인자 배열
 
-이제 실제로 Stitch를 사용해서 전문가 수준의 UI를 생성해봅시다. 여기서는 AWS LAMP 스택 서버 모니터링 대시보드를 만드는 실제 사례를 다룹니다.
+**기존 설정이 있는 경우:**
 
-### 예제 1: 세련된 다크모드 서버 모니터링 대시보드
-
-#### 4.1 Antigravity에서 프롬프트 작성
-
-Antigravity의 채팅 창에 다음과 같이 입력합니다.
-
-```
-스티치로 세련된 다크 모드 대시보드 화면 생성해줘
-서버는 AWS LAMP 스택이야.
-마이크로 인터랙션으로 재미를 강조해줘
-```
-
-이것은 간단한 예시이지만, 실전에서는 더 상세한 프롬프트를 사용하는 것이 좋습니다. 다음은 실제로 성공적인 결과를 낳은 상세한 프롬프트입니다.
-
-**상세 프롬프트 예시**:
-
-```
-스티치로 세련된 다크 모드 대시보드 화면을 생성해줘.
-
-서버 환경: AWS LAMP 스택 (Linux, Apache, MySQL, PHP)
-
-디자인 요구사항:
-- 프리미엄하고 최첨단 느낌의 UI
-- 깊은 블랙과 차콜 그레이를 베이스로 사용
-- 시안(cyan), 퍼플(purple), 그린(green)의 생동감 넘치는 네온 악센트
-- 데이터 시각화를 위한 빛나는 네온 차트
-
-주요 기능:
-1. 실시간 서버 메트릭 (CPU 부하, RAM 사용량, Disk I/O) - 빛나는 네온 차트로 표시
-2. LAMP 스택 서비스 상태 (Linux, Apache, MySQL, PHP) - 인터랙티브 상태 인디케이터
-3. 마이크로 인터랙션: 
-   - 호버 시 미묘하게 기울어지는 카드
-   - 활성 서비스에 빛나는 펄스 효과
-   - 데이터 업데이트 시 부드러운 트랜지션
-4. 사이드바와 카드에 글래스모피즘 효과로 깊이감 추가
-5. 높은 가독성을 위한 모던 타이포그래피 (Inter 또는 Roboto)
-
-전체적으로 WOW-worthy한 디자인이어야 하며, 전문적인 모니터링과 하이엔드 미적 감각을 모두 강조하면서 재미있는 마이크로 애니메이션을 포함해야 해.
-```
-
-#### 4.2 AI의 처리 과정
-
-Antigravity가 프롬프트를 받으면 다음과 같이 처리합니다.
-
-**1단계: 프롬프트 분석**
-```
-Analyzing request...
-- Design type: Dashboard
-- Theme: Dark mode
-- Stack: AWS LAMP
-- Key features: Real-time metrics, service status, micro-interactions
-- Visual style: Premium, neon accents, glassmorphism
-```
-
-**2단계: MCP Tool 호출**
-```
-MCP Tool: stitch / generate_screen_from_text
-
-Hide Details
-run with these arguments:
-
-json
+기존:
+```json
 {
-  "deviceType": "DESKTOP",
-  "modelId": "GEMINI_3_PRO",
-  "projectId": "YOUR_GENERATED_PROJECT_ID",
-  "prompt": "A sophisticated dark mode dashboard for an AWS LAMP stack server monitoring system. The UI should feel premium and state-of-the-art, using deep blacks and charcoal grays with vibrant neon accents (cyan, purple, and green) for data visualization. \n\nKey features to include:\n1. Real-time server metrics (CPU load, RAM usage, Disk I/O) using glowing neon charts.\n2. LAMP stack service status (Linux, Apache, MySQL, PHP) with interactive status indicators.\n3. Micro-interactions: Cards that subtly tilt on hover, glowing pulses for active services, and smooth transitions for data updates.\n4. Glassmorphism effect for sidebar and cards to add depth.\n5. Modern typography (Inter or Roboto) for high readability.\n\nThe design should be WOW-worthy, emphasizing both professional monitoring and high-end aesthetic appeal with fun micro-animations."
+  "mcpServers": {
+    "other-server": {
+      "command": "some-command"
+    }
+  }
 }
 ```
 
-**주요 파라미터 설명**:
-- `deviceType`: "DESKTOP" - 데스크톱 화면 크기로 생성
-- `modelId`: "GEMINI_3_PRO" - 최신 Gemini 3 Pro 모델 사용
-- `projectId`: 자동 생성된 프로젝트 ID
-- `prompt`: 영어로 번역되고 최적화된 프롬프트
-
-**3단계: Stitch API 호출**
-
-Gemini 3 Pro가 프롬프트를 분석하고 디자인을 생성합니다. 이 과정은 약 30초에서 2분 정도 소요됩니다.
-
-```
-Generating design with Gemini 3 Pro...
-⏳ Estimated time: 90 seconds
-```
-
-**4단계: 결과 반환**
-
-생성이 완료되면 Antigravity에 결과가 표시됩니다.
-
-#### 4.3 생성된 디자인 확인
-
-**미리보기 화면**:
-
-Antigravity에는 다음과 같은 요소가 표시됩니다.
-
-**좌측 패널: 디자인 설명**
-```
-Cyber-Command Server Status
-
-A sophisticated dark mode dashboard for an AWS LAMP stack server monitoring system. The UI should feel premium and state-of-the-art, using deep blacks and charcoal grays with vibrant neon accents (cyan, purple, and green) for data visualization.
-
-Key features to include:
-
-- Real-time server metrics (CPU load, RAM usage, Disk I/O) using glowing neon charts.
-- LAMP stack service status (Linux, Apache, MySQL, PHP) with interactive status indicators.
-- Micro-interactions: Cards that subtly tilt on hover, glowing pulses for active services, and smooth transitions for data updates.
-- Glassmorphism effect for sidebar and cards to add depth.
-- Modern typography (Inter or Roboto) for high readability.
-
-The design should be WOW-worthy, emphasizing both professional monitoring and high-end aesthetic appeal with fun micro-animations.
+수정 후:
+```json
+{
+  "mcpServers": {
+    "other-server": {
+      "command": "some-command"
+    },
+    "stitch": {
+      "command": "npx",
+      "args": ["-y", "davideast/stitch-mcp"]
+    }
+  }
+}
 ```
 
-**우측 패널: 생성된 화면 미리보기**
+주의: JSON 형식을 정확히 지켜야 합니다 (쉼표, 중괄호 등).
 
-두 가지 버전의 대시보드가 표시됩니다.
+**파일 저장:**
 
-**버전 1: AWS LAMP Stack Monitoring Dashboard**
-- 왼쪽 사이드바: Dashboard, Instances, Logs, Alerts, Settings 메뉴
-- 상단: Instance 정보 (instance I-0x83f2a, IP: 172.31.42.19)
-- 메트릭 카드: CPU LOAD (42%), MEMORY (12.4 / 16 GB), DISK I/O (840 IOPS), NET TRAFFIC (1.2 MB/s)
-- 중앙: Performance Metrics 차트 (24H, 6H, 24H 탭)
-- 우측: Service Health (Ubuntu 22.04, Apache HTTP, MySQL 8.0, PHP-FPM 8.1 - 모두 정상)
-- 하단: Console Output 로그
+nano 사용 시:
+- `Ctrl + O` (저장)
+- `Enter` (확인)
+- `Ctrl + X` (종료)
 
-**버전 2: CYBER-COMMAND NOC Dashboard (v2.4)**
-- 더욱 세련된 사이버펑크 스타일
-- 상단: 로케이션 표시 (us-east-1, N. Virginia), LIVE 배지, 알림 아이콘
-- 좌측: Stack Status (Linux, Apache, MySQL, PHP - 모두 초록색 인디케이터)
-- Cluster Health: Good
-- 메인 섹션:
-  - TOTAL REQUESTS: 2.4M (차트)
-  - AVG LATENCY: 42ms (체크 아이콘)
-  - ERROR RATE: 0.01% (체크 아이콘)
-  - SYSTEM HEALTH: 100% (대형 원형 게이지, OPTIMAL PERFORMANCE 표시)
-  - ACTIVE THREADS: 124 / 200
-- 우측: RESOURCE USAGE
-  - vCPU Usage: 0% (Core 1: 52%, Core 2: 38%)
-  - Memory (RAM): 481MB / 945MB (프로그레스 바)
-  - NVMe Storage: 340GB Free (프로그레스 바)
-  - NETWORK I/O: Eth0, 바 차트 (RX: 245 Mbps, TX: 112 Mbps)
-- 하단: SYSTEM LOGS (시간순 로그 메시지)
+VS Code 사용 시:
+- `Cmd/Ctrl + S` (저장)
 
-두 버전 모두 다크 모드, 네온 악센트, 실시간 메트릭을 특징으로 하지만, 버전 2가 더 세련되고 사이버펑크 느낌이 강합니다.
+### 5단계: Antigravity 재시작
 
-#### 4.4 인터랙션 확인
+설정을 적용하기 위해 Antigravity를 재시작합니다.
 
-Stitch에서 생성된 디자인에는 다음과 같은 인터랙션이 포함되어 있습니다 (HTML/CSS로 구현됨).
+**현재 실행 중이면 종료:**
 
-**마이크로 인터랙션**:
-1. **카드 호버 효과**: 마우스를 올리면 카드가 미묘하게 위로 떠오르고 그림자가 강해집니다
-2. **펄스 애니메이션**: 활성 서비스 인디케이터가 부드럽게 깜빡입니다
-3. **차트 애니메이션**: 데이터가 업데이트될 때 부드러운 트랜지션으로 변경됩니다
-4. **글로우 효과**: 네온 악센트 요소들이 미묘하게 빛납니다
+```bash
+antigravity quit
+```
 
-이 모든 효과는 CSS animation과 transition으로 구현되며, JavaScript가 필요하지 않습니다.
+또는 프로세스 강제 종료:
 
-### 5단계: 생성된 HTML 확인 및 다운로드
+macOS/Linux:
+```bash
+pkill -f antigravity
+```
 
-#### 5.1 HTML 코드 보기
+Windows:
+```powershell
+taskkill /F /IM antigravity.exe
+```
 
-Antigravity에서 생성된 디자인의 HTML 코드를 볼 수 있습니다.
+**재시작:**
 
-1. 미리보기 화면 하단 또는 옆에 **"View Code"** 또는 **"Show HTML"** 버튼이 있습니다
-2. 클릭하면 전체 HTML/CSS 코드가 표시됩니다
+```bash
+antigravity
+```
 
-**코드 구조**:
+**연결 확인:**
+
+Antigravity를 시작하면:
+
+```
+Antigravity v1.8.2 | Gemini 3 Pro
+
+🔌 MCP Servers connected:
+  ✓ stitch (davideast/stitch-mcp)
+
+Ready!
+```
+
+`stitch` 서버가 목록에 표시되면 성공입니다!
+
+**연결 실패 시:**
+
+```
+✗ stitch (connection failed)
+```
+
+문제 해결 섹션을 참조하세요.
+
+---
+
+## 실전 사용 예제
+
+### 예제 1: 간단한 대시보드 생성
+
+가장 기본적인 사용 예제입니다.
+
+**1단계: Antigravity 시작**
+
+```bash
+antigravity
+```
+
+**2단계: 디자인 요청**
+
+Antigravity 프롬프트에서:
+
+```
+You: 관리자 대시보드를 디자인해줘. 
+     왼쪽에 사이드바, 오른쪽에 통계 카드들이 있어야 해.
+```
+
+**3단계: Stitch 작동**
+
+Antigravity가 자동으로 Stitch MCP를 호출합니다:
+
+```
+Using MCP: stitch
+
+Generating design...
+
+✓ Design generated
+✓ Preview available
+```
+
+**4단계: 미리보기**
+
+생성된 디자인 URL:
+
+```
+🎨 Design Preview:
+https://stitch.withgoogle.com/preview/abc123def456
+
+Components:
+- Sidebar (left, 240px width)
+- Header (top, 64px height)
+- Stats cards (4x grid)
+- Chart area (main content)
+
+? Generate HTML/CSS code? (Y/n)
+```
+
+**5단계: 코드 생성**
+
+Y를 선택하면:
+
+```
+Generating HTML/CSS...
+
+✓ index.html created
+✓ styles.css created
+✓ Files saved to: ./dashboard/
+
+? Open in browser? (Y/n)
+```
+
+**6단계: 결과 확인**
+
+생성된 파일 구조:
+
+```
+dashboard/
+├── index.html
+├── styles.css
+└── assets/
+    └── (아이콘 등)
+```
+
+브라우저에서 확인:
+
+```bash
+cd dashboard
+open index.html
+```
+
+또는:
+
+```bash
+python -m http.server 8000
+```
+
+그리고 브라우저에서 `http://localhost:8000` 접속
+
+**생성된 코드 예시:**
+
+index.html (구조):
+
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYBER-COMMAND NOC DASHBOARD</title>
-    <style>
-        /* 글로벌 스타일 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
-        }
-        
-        /* 글래스모피즘 효과 */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-        }
-        
-        /* 네온 글로우 효과 */
-        .neon-glow {
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        /* 카드 호버 효과 */
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px) rotateX(2deg);
-            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
-        }
-        
-        /* 더 많은 스타일... */
-    </style>
+    <title>관리자 대시보드</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 대시보드 HTML 구조 -->
     <div class="dashboard">
-        <aside class="sidebar glass">
-            <!-- 사이드바 내용 -->
+        사이드바:
+        <aside class="sidebar">
+            <div class="logo">Dashboard</div>
+            <nav>
+                <a href="#" class="nav-item active">홈</a>
+                <a href="#" class="nav-item">통계</a>
+                <a href="#" class="nav-item">사용자</a>
+                <a href="#" class="nav-item">설정</a>
+            </nav>
         </aside>
+        
+        메인 컨텐츠:
         <main class="main-content">
-            <!-- 메인 컨텐츠 -->
+            <header class="header">
+                <h1>대시보드</h1>
+                <div class="user-info">관리자</div>
+            </header>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-label">총 사용자</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">567</div>
+                    <div class="stat-label">활성 사용자</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">89</div>
+                    <div class="stat-label">신규 가입</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$12,345</div>
+                    <div class="stat-label">매출</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                차트 영역 (차트 라이브러리 추가 필요)
+            </div>
         </main>
     </div>
 </body>
 </html>
 ```
 
-#### 5.2 HTML 다운로드 및 테스트
+styles.css (스타일):
 
-**방법 1: Antigravity에서 직접 다운로드**
-
-1. "Download HTML" 또는 "Export" 버튼 클릭
-2. 파일 이름을 지정하고 저장 (예: `cyber-dashboard.html`)
-3. 브라우저에서 파일을 열어 확인
-
-**방법 2: Claude에게 요청**
-
-```
-이 HTML 코드를 파일로 저장해줘. 파일명은 cyber-dashboard.html로 해줘.
-```
-
-Claude가 자동으로 파일을 생성하고 다운로드 링크를 제공합니다.
-
-**방법 3: 수동 복사**
-
-1. HTML 코드 전체를 선택하고 복사
-2. 텍스트 에디터(VS Code, Sublime Text 등)에서 새 파일 생성
-3. 코드 붙여넣기
-4. `cyber-dashboard.html`로 저장
-
-#### 5.3 로컬에서 테스트
-
-저장한 HTML 파일을 브라우저에서 열어봅니다.
-
-```bash
-# macOS
-open cyber-dashboard.html
-
-# Linux
-xdg-open cyber-dashboard.html
-
-# Windows
-start cyber-dashboard.html
-```
-
-또는 파일을 더블클릭하여 기본 브라우저에서 엽니다.
-
-**확인 사항**:
-- 다크모드 배경이 올바르게 표시되는가?
-- 네온 악센트 색상(시안, 퍼플, 그린)이 보이는가?
-- 카드에 마우스를 올리면 호버 효과가 작동하는가?
-- 활성 서비스 인디케이터가 깜빡이는가?
-- 레이아웃이 깨지지 않고 잘 정렬되어 있는가?
-
-모든 것이 정상적으로 작동한다면 성공입니다!
-
-#### 5.4 실제 데이터와 연결
-
-생성된 HTML은 정적인 목업(mockup)입니다. 실제 서버 데이터와 연결하려면 다음 단계가 필요합니다.
-
-**1단계: 백엔드 API 설정**
-
-AWS LAMP 서버에서 실시간 메트릭을 제공하는 API를 만듭니다.
-
-```php
-<?php
-// /api/metrics.php
-
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-
-// CPU 사용률 가져오기
-$cpu_load = sys_getloadavg()[0] * 100 / 4; // 4코어 기준
-
-// 메모리 사용량 가져오기
-$free = shell_exec('free -b');
-preg_match_all('/\d+/', $free, $matches);
-$mem_total = $matches[0][7];
-$mem_used = $matches[0][8];
-
-// 디스크 I/O (간단한 예시)
-$disk_stats = file_get_contents('/proc/diskstats');
-// ... 파싱 로직 ...
-
-// 서비스 상태 확인
-$services = [
-    'apache' => shell_exec('systemctl is-active apache2'),
-    'mysql' => shell_exec('systemctl is-active mysql'),
-    'php-fpm' => shell_exec('systemctl is-active php8.1-fpm')
-];
-
-$response = [
-    'cpu_load' => round($cpu_load, 1),
-    'memory' => [
-        'used' => $mem_used,
-        'total' => $mem_total,
-        'percentage' => round(($mem_used / $mem_total) * 100, 1)
-    ],
-    'disk_io' => 840, // 예시 값
-    'services' => [
-        'apache' => trim($services['apache']) === 'active',
-        'mysql' => trim($services['mysql']) === 'active',
-        'php-fpm' => trim($services['php-fpm']) === 'active'
-    ],
-    'timestamp' => time()
-];
-
-echo json_encode($response);
-```
-
-**2단계: JavaScript로 API 연결**
-
-Claude에게 요청합니다.
-
-```
-이 HTML에 JavaScript를 추가해서 /api/metrics.php에서 실시간 데이터를 가져와 
-차트와 메트릭을 업데이트하도록 만들어줘. 5초마다 자동으로 갱신되어야 해.
-```
-
-Claude가 다음과 같은 코드를 추가합니다.
-
-```javascript
-<script>
-// API에서 메트릭 가져오기
-async function fetchMetrics() {
-    try {
-        const response = await fetch('/api/metrics.php');
-        const data = await response.json();
-        
-        // CPU 업데이트
-        document.querySelector('.cpu-load').textContent = data.cpu_load + '%';
-        
-        // 메모리 업데이트
-        const memUsed = (data.memory.used / (1024**3)).toFixed(1);
-        const memTotal = (data.memory.total / (1024**3)).toFixed(1);
-        document.querySelector('.memory-value').textContent = `${memUsed} / ${memTotal} GB`;
-        document.querySelector('.memory-bar').style.width = data.memory.percentage + '%';
-        
-        // 서비스 상태 업데이트
-        updateServiceStatus('apache', data.services.apache);
-        updateServiceStatus('mysql', data.services.mysql);
-        updateServiceStatus('php-fpm', data.services['php-fpm']);
-        
-        // 차트 업데이트 (Chart.js 사용 예시)
-        if (window.cpuChart) {
-            window.cpuChart.data.datasets[0].data.push(data.cpu_load);
-            window.cpuChart.data.labels.push(new Date().toLocaleTimeString());
-            // 최근 20개 데이터만 유지
-            if (window.cpuChart.data.labels.length > 20) {
-                window.cpuChart.data.datasets[0].data.shift();
-                window.cpuChart.data.labels.shift();
-            }
-            window.cpuChart.update();
-        }
-    } catch (error) {
-        console.error('Failed to fetch metrics:', error);
-    }
+```css
+/* 기본 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-function updateServiceStatus(service, isActive) {
-    const indicator = document.querySelector(`.service-${service} .status-indicator`);
-    if (isActive) {
-        indicator.classList.add('active');
-        indicator.classList.remove('inactive');
-    } else {
-        indicator.classList.add('inactive');
-        indicator.classList.remove('active');
-    }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f5f5;
 }
 
-// 초기 로드
-fetchMetrics();
+/* 대시보드 레이아웃 */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
 
-// 5초마다 갱신
-setInterval(fetchMetrics, 5000);
-</script>
+/* 사이드바 */
+.sidebar {
+    width: 240px;
+    background: #1e293b;
+    color: white;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.nav-item {
+    display: block;
+    padding: 12px 16px;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.nav-item:hover {
+    background: #334155;
+    color: white;
+}
+
+.nav-item.active {
+    background: #3b82f6;
+    color: white;
+}
+
+/* 메인 컨텐츠 */
+.main-content {
+    flex: 1;
+    padding: 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.header h1 {
+    font-size: 28px;
+    color: #1e293b;
+}
+
+/* 통계 카드 그리드 */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* 차트 컨테이너 */
+.chart-container {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    height: 400px;
+}
+
+/* 반응형 */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 ```
 
-**3단계: 배포**
+### 예제 2: 이커머스 제품 카드
 
-완성된 파일을 AWS 서버에 업로드합니다.
+더 구체적인 요청을 해봅시다.
 
-```bash
-# SCP를 사용한 업로드 예시
-scp cyber-dashboard.html user@your-server:/var/www/html/dashboard.html
-scp api/metrics.php user@your-server:/var/www/html/api/metrics.php
-```
-
-이제 `http://your-server/dashboard.html`에 접속하면 실시간으로 업데이트되는 대시보드를 볼 수 있습니다!
-
-### 예제 2: 이커머스 상품 페이지
-
-다른 사용 사례로, 전자상거래 상품 페이지를 만들어봅시다.
+**요청:**
 
 ```
-스티치로 미니멀한 전자상거래 상품 상세 페이지를 만들어줘.
-
-상품: 프리미엄 무선 헤드폰
-색상: 화이트와 라이트 그레이 베이스, 블랙 악센트
-
-레이아웃:
-1. 왼쪽: 큰 상품 이미지 (갤러리, 5장)
-2. 오른쪽: 상품 정보
-   - 제품명과 브랜드
-   - 별점 및 리뷰 개수
-   - 가격 (원가 취소선, 할인가 강조)
-   - 색상 선택 (화이트, 블랙, 실버)
-   - 수량 선택
-   - "장바구니 담기"와 "바로 구매" 버튼
-3. 하단: 탭 메뉴 (상세 설명, 스펙, 리뷰, Q&A)
-
-디자인 스타일:
-- 깔끔하고 모던한 미니멀리즘
-- 넓은 여백으로 시원한 느낌
-- 제품 이미지가 돋보이도록
-- 부드러운 그림자와 둥근 모서리
-- 호버 시 버튼에 부드러운 스케일 효과
+You: 이커머스 제품 카드를 디자인해줘.
+     
+     요구사항:
+     - 제품 이미지 (정사각형)
+     - 제품명 (2줄 제한)
+     - 가격 (원래 가격 + 할인가)
+     - 별점 (5점 만점)
+     - "장바구니 추가" 버튼
+     - 호버 시 그림자 효과
+     - 위시리스트 하트 아이콘 (우측 상단)
+     
+     현대적이고 미니멀한 디자인으로 해줘.
 ```
 
-Gemini가 프롬프트를 분석하고 세련된 상품 페이지를 생성합니다. 결과물은 다음과 같은 특징을 가집니다.
-
-- 좌측 이미지 갤러리: 메인 이미지와 썸네일 5개
-- 우측 정보 패널: 계층적 타이포그래피로 정보 전달
-- 색상 선택: 클릭 가능한 색상 원들
-- CTA 버튼: "장바구니 담기"(아웃라인), "바로 구매"(솔리드) 구분
-- 탭 메뉴: 밑줄 애니메이션으로 활성 탭 표시
-- 반응형 디자인: 모바일에서는 세로 레이아웃으로 자동 전환
-
-### 예제 3: SaaS 랜딩 페이지
-
-SaaS 제품의 랜딩 페이지도 빠르게 생성할 수 있습니다.
+**생성 결과:**
 
 ```
-스티치로 AI 코딩 도구의 랜딩 페이지를 만들어줘.
+✓ Product card design generated
 
-제품: CodeGenius AI - AI 기반 코드 자동 완성 도구
-타겟: 개발자
+Components:
+- Image container (aspect-ratio: 1:1)
+- Product info section
+- Price display (strikethrough + discount)
+- Star rating (5 stars)
+- Add to cart button
+- Wishlist heart icon
 
-섹션:
-1. Hero: 
-   - 강력한 헤드라인: "10배 빠른 코딩"
-   - 서브헤드: "AI가 당신의 생각을 코드로 변환합니다"
-   - CTA: "무료로 시작하기"
-   - 우측: 제품 스크린샷 (코드 에디터 화면)
+Interactions:
+- Hover: shadow elevation
+- Heart: toggle favorite (static)
+- Button: ripple effect
 
-2. Features (3컬럼):
-   - 실시간 AI 자동완성
-   - 버그 자동 감지 및 수정
-   - 모든 언어 지원
-
-3. Demo Video: 
-   - 가운데 정렬된 비디오 플레이어
-   - 재생 버튼 오버레이
-
-4. Testimonials (캐러셀):
-   - 고객 사진, 이름, 직책, 후기
-
-5. Pricing (3티어):
-   - Free, Pro, Enterprise
-   - 가격, 기능 비교
-
-6. CTA:
-   - "오늘 바로 시작하세요"
-   - 이메일 입력 + "시작하기" 버튼
-
-7. Footer:
-   - 링크, 소셜 미디어, 저작권
-
-디자인:
-- 대담하고 현대적
-- 그라데이션 (보라색 → 파란색)
-- 밝은 배경, 다크 텍스트
-- 큰 타이포그래피로 임팩트
-- 마이크로 인터랙션 (버튼 호버, 스크롤 애니메이션)
+? Generate code? (Y/n)
 ```
 
-결과물은 풀스택 랜딩 페이지로, 모든 섹션이 조화롭게 배치되고 스크롤에 따라 부드럽게 나타나는 애니메이션이 포함됩니다.
+**생성된 HTML:**
+
+```html
+<div class="product-card">
+    <div class="image-container">
+        <img src="product.jpg" alt="제품명">
+        <button class="wishlist-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+                하트 아이콘 SVG
+            </svg>
+        </button>
+    </div>
+    
+    <div class="product-info">
+        <h3 class="product-name">무선 블루투스 이어폰 프리미엄 에디션</h3>
+        
+        <div class="price-section">
+            <span class="original-price">₩159,000</span>
+            <span class="discount-price">₩99,000</span>
+            <span class="discount-badge">38% OFF</span>
+        </div>
+        
+        <div class="rating">
+            <div class="stars">★★★★☆</div>
+            <span class="review-count">(124)</span>
+        </div>
+        
+        <button class="add-to-cart">장바구니 추가</button>
+    </div>
+</div>
+```
+
+**생성된 CSS:**
+
+```css
+.product-card {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.image-container {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product-info {
+    padding: 16px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.price-section {
+    margin-bottom: 8px;
+}
+
+.original-price {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.discount-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.discount-badge {
+    font-size: 12px;
+    color: white;
+    background: #e74c3c;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.stars {
+    color: #ffc107;
+    margin-right: 8px;
+}
+
+.review-count {
+    font-size: 14px;
+    color: #666;
+}
+
+.add-to-cart {
+    width: 100%;
+    padding: 12px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add-to-cart:hover {
+    background: #2563eb;
+}
+```
+
+### 예제 3: 복잡한 다단계 요청
+
+실제 프로젝트처럼 단계적으로 발전시켜봅시다.
+
+**1단계: 초기 디자인**
+
+```
+You: SaaS 앱의 가격 페이지를 디자인해줘.
+     3개 플랜: Free, Pro, Enterprise
+```
+
+**2단계: 피드백 및 수정**
+
+```
+You: 좋은데, Pro 플랜을 강조해줘.
+     "Most Popular" 배지를 추가하고 살짝 크게 만들어줘.
+```
+
+**3단계: 세부 조정**
+
+```
+You: 각 플랜마다 기능 목록을 추가해줘.
+     체크마크 아이콘을 사용하고,
+     Enterprise는 "Contact Us" 버튼으로 변경해줘.
+```
+
+**4단계: 최종 다듬기**
+
+```
+You: 다크모드 버전도 만들어줘.
+     toggle 스위치를 추가해서 전환할 수 있게.
+```
+
+**최종 결과:**
+
+Stitch가 각 단계마다 디자인을 업데이트하고, 최종적으로 완성된 가격 페이지 코드를 생성합니다.
+
+---
 
 ## 고급 활용법
 
-기본 사용법을 익혔다면, 이제 더 고급 기능들을 활용해봅시다.
+### 디자인 시스템 정의하기
 
-### 디자인 반복 및 개선
+일관된 디자인을 위해 디자인 시스템을 먼저 정의할 수 있습니다.
 
-첫 번째 생성 결과가 완벽하지 않을 수 있습니다. 다음과 같이 반복적으로 개선할 수 있습니다.
-
-**초기 생성**:
-```
-스티치로 블로그 포스트 레이아웃을 만들어줘.
-```
-
-**결과 확인 후 개선 요청**:
-```
-좋은데, 다음 사항을 수정해줘:
-1. 제목 폰트를 더 크게 (48px)
-2. 읽기 시간 추가 (5 min read)
-3. 소셜 공유 버튼을 좌측 고정 사이드바로 이동
-4. 본문 폰트를 Georgia로 변경 (세리프 폰트가 읽기에 더 좋음)
-5. 이미지 캡션 스타일 추가 (이탤릭, 작은 폰트)
-```
-
-Antigravity는 기존 디자인을 기반으로 수정사항을 적용합니다.
-
-### 디자인 시스템 추출 및 재사용
-
-여러 화면을 만들 때 일관성을 유지하려면 디자인 시스템을 추출하세요.
+**방법 1: 프롬프트에 포함**
 
 ```
-이 대시보드의 디자인 시스템을 추출해줘. 
-색상 팔레트, 타이포그래피, 간격, 컴포넌트 스타일을 모두 포함해서.
+You: 우리 회사 디자인 시스템:
+     
+     색상:
+     - Primary: #3b82f6
+     - Secondary: #8b5cf6
+     - Success: #10b981
+     - Danger: #ef4444
+     
+     폰트:
+     - 제목: Inter Bold
+     - 본문: Inter Regular
+     
+     간격:
+     - 작음: 8px
+     - 중간: 16px
+     - 큼: 24px
+     
+     이 시스템을 사용해서 랜딩 페이지를 디자인해줘.
 ```
 
-Claude가 다음과 같은 디자인 토큰을 추출합니다.
+**방법 2: 설정 파일 사용**
 
-```css
-/* 색상 팔레트 */
-:root {
-  --color-bg-primary: #0a0a0a;
-  --color-bg-secondary: #1a1a2e;
-  --color-text-primary: #e0e0e0;
-  --color-text-secondary: #a0a0a0;
-  --color-accent-cyan: #00ffff;
-  --color-accent-purple: #b19cd9;
-  --color-accent-green: #00ff88;
-  --color-border: rgba(255, 255, 255, 0.1);
-}
+`design-system.json` 생성:
 
-/* 타이포그래피 */
-:root {
-  --font-family-primary: 'Inter', sans-serif;
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.5rem;     /* 24px */
-  --font-size-2xl: 2rem;      /* 32px */
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
-}
-
-/* 간격 */
-:root {
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;      /* 32px */
-  --spacing-2xl: 3rem;     /* 48px */
-}
-
-/* 그림자 */
-:root {
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 10px 40px rgba(0, 255, 255, 0.3);
-}
-
-/* 둥근 모서리 */
-:root {
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-}
-```
-
-이제 새로운 화면을 만들 때 이 디자인 시스템을 참조하도록 요청할 수 있습니다.
-
-```
-위에서 추출한 디자인 시스템을 사용해서 설정 페이지를 만들어줘.
-동일한 색상, 폰트, 간격을 사용해야 해.
-```
-
-### React 컴포넌트로 변환
-
-HTML을 React 컴포넌트로 변환하면 재사용성과 유지보수성이 높아집니다.
-
-```
-이 대시보드를 React 컴포넌트로 변환해줘.
-- 함수형 컴포넌트 사용
-- TypeScript로 작성
-- styled-components로 스타일링
-- 컴포넌트를 적절히 분리 (Header, Sidebar, MetricCard, Chart 등)
-- Props 인터페이스 정의
-```
-
-Claude가 다음과 같은 구조로 변환합니다.
-
-```typescript
-// types.ts
-export interface Metric {
-  label: string;
-  value: number;
-  unit: string;
-  trend?: 'up' | 'down';
-}
-
-export interface ServiceStatus {
-  name: string;
-  isActive: boolean;
-  uptime: string;
-}
-
-// MetricCard.tsx
-import styled from 'styled-components';
-
-interface MetricCardProps {
-  metric: Metric;
-}
-
-const MetricCard: React.FC<MetricCardProps> = ({ metric }) => {
-  return (
-    <Card>
-      <Label>{metric.label}</Label>
-      <Value>{metric.value}{metric.unit}</Value>
-      {metric.trend && <Trend trend={metric.trend} />}
-    </Card>
-  );
-};
-
-const Card = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: transform 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
+```json
+{
+  "colors": {
+    "primary": "#3b82f6",
+    "secondary": "#8b5cf6",
+    "success": "#10b981",
+    "danger": "#ef4444"
+  },
+  "fonts": {
+    "heading": "Inter Bold",
+    "body": "Inter Regular"
+  },
+  "spacing": {
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px"
   }
-`;
-
-// ... 더 많은 스타일 ...
-
-export default MetricCard;
+}
 ```
 
-전체 폴더 구조:
-```
-src/
-├── components/
-│   ├── Dashboard/
-│   │   ├── Dashboard.tsx
-│   │   ├── Header.tsx
-│   │   ├── Sidebar.tsx
-│   │   ├── MetricCard.tsx
-│   │   ├── Chart.tsx
-│   │   └── ServiceStatus.tsx
-│   └── ...
-├── types/
-│   └── index.ts
-├── hooks/
-│   └── useMetrics.ts
-└── App.tsx
-```
-
-### Tailwind CSS로 리팩토링
-
-많은 프로젝트가 Tailwind CSS를 사용합니다. Stitch가 생성한 CSS를 Tailwind 클래스로 변환할 수 있습니다.
+프롬프트에서 참조:
 
 ```
-이 HTML의 CSS를 Tailwind CSS 유틸리티 클래스로 변환해줘.
-모든 인라인 스타일과 <style> 태그를 Tailwind 클래스로 대체해야 해.
+You: design-system.json 파일을 참고해서
+     랜딩 페이지를 디자인해줘.
 ```
 
-**변환 전**:
+### Figma/Sketch 파일 가져오기
+
+기존 디자인을 기반으로 변형할 수 있습니다.
+
+```
+You: 첨부한 Figma 링크를 참고해서
+     비슷한 스타일로 로그인 페이지를 만들어줘.
+     
+     [Figma 링크: https://www.figma.com/file/...]
+```
+
+Stitch가 Figma 파일을 분석하고 유사한 디자인을 생성합니다.
+
+### 반응형 디자인 지정
+
+```
+You: 모바일, 태블릿, 데스크톱 각각의 레이아웃을 디자인해줘.
+     
+     모바일 (< 768px):
+     - 1컬럼 레이아웃
+     - 햄버거 메뉴
+     
+     태블릿 (768-1024px):
+     - 2컬럼 레이아웃
+     - 축소된 사이드바
+     
+     데스크톱 (> 1024px):
+     - 3컬럼 레이아웃
+     - 전체 사이드바
+```
+
+### 인터랙션 정의
+
+```
+You: 버튼에 다음 인터랙션을 추가해줘:
+     
+     - Hover: 배경색 진하게
+     - Active: 살짝 축소 (scale 0.95)
+     - Focus: 파란색 외곽선
+     - Disabled: 회색 + 투명도 50%
+     
+     모든 전환은 0.2초 ease-in-out
+```
+
+---
+
+## 문제 해결
+
+### 일반적인 문제
+
+**1. "stitch 서버가 연결되지 않습니다"**
+
+증상:
+```
+✗ stitch (connection failed)
+```
+
+해결방법:
+
+단계 1: config.json 확인
+
+```bash
+cat ~/.antigravity/config.json
+```
+
+올바른 형식인지 확인 (JSON 문법 오류 체크)
+
+단계 2: Stitch MCP 수동 실행
+
+```bash
+npx -y davideast/stitch-mcp
+```
+
+에러 메시지를 확인하고 문제 파악
+
+단계 3: 인증 재설정
+
+```bash
+npx -y davideast/stitch-mcp init
+```
+
+처음부터 다시 설정
+
+**2. "인증 실패" 에러**
+
+증상:
+```
+✗ Authentication failed
+```
+
+해결방법:
+
+단계 1: 자격증명 파일 삭제
+
+```bash
+rm ~/.config/stitch-mcp/credentials.json
+```
+
+단계 2: 재인증
+
+```bash
+npx -y davideast/stitch-mcp init
+```
+
+새로운 OAuth 플로우 시작
+
+단계 3: 브라우저 확인
+
+인증 시 팝업 차단이 활성화되어 있지 않은지 확인
+
+**3. "API 할당량 초과"**
+
+증상:
+```
+✗ Quota exceeded
+```
+
+해결방법:
+
+Google Cloud Console에서 할당량 확인:
+1. [Google Cloud Console](https://console.cloud.google.com) 접속
+2. 프로젝트 선택
+3. "APIs & Services" → "Quotas"
+4. Stitch API 할당량 확인
+
+무료 티어 제한:
+- 하루 100 requests
+- 프로젝트당 10 designs
+
+해결책:
+- 내일까지 대기
+- 유료 플랜 고려
+- 새 프로젝트 생성 (비권장)
+
+**4. "디자인 생성 실패"**
+
+증상:
+```
+✗ Design generation failed
+```
+
+해결방법:
+
+단계 1: 프롬프트 명확히 하기
+
+나쁜 예:
+```
+대시보드 만들어줘
+```
+
+좋은 예:
+```
+관리자 대시보드를 만들어줘.
+왼쪽에 사이드바 (240px), 
+상단에 헤더 (64px),
+메인 영역에 통계 카드 4개를 2x2 그리드로.
+```
+
+단계 2: 복잡도 줄이기
+
+한 번에 너무 많은 것을 요청하지 마세요.
+단계별로 나누어 요청하세요.
+
+단계 3: 로그 확인
+
+```bash
+tail -f ~/.antigravity/logs/stitch.log
+```
+
+에러 메시지 확인
+
+### 프로젝트별 문제
+
+**macOS Catalina 이하**
+
+문제: gcloud 설치 실패
+
+해결:
+```bash
+curl https://sdk.cloud.google.com | bash
+exec -l $SHELL
+```
+
+수동으로 Google Cloud SDK 설치
+
+**Windows 권한 문제**
+
+문제: PowerShell 실행 정책
+
+해결:
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+**Linux: Node.js 버전 낮음**
+
+문제: Node.js < 18
+
+해결:
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+---
+
+## 실전 팁과 베스트 프랙티스
+
+### 프롬프트 작성 팁
+
+**1. 구체적으로 작성하기**
+
+나쁜 예:
+```
+웹사이트 만들어줘
+```
+
+좋은 예:
+```
+전자상거래 제품 리스트 페이지를 만들어줘.
+
+레이아웃:
+- 왼쪽: 필터 사이드바 (카테고리, 가격대, 브랜드)
+- 오른쪽: 제품 그리드 (3컬럼, 반응형)
+
+각 제품 카드:
+- 정사각형 이미지
+- 제품명 (2줄 제한)
+- 가격 + 할인율
+- 별점
+- "장바구니 추가" 버튼
+```
+
+**2. 레퍼런스 제공하기**
+
+```
+You: Airbnb 스타일의 숙소 카드를 디자인해줘.
+     
+     참고: https://www.airbnb.com
+     
+     포함할 요소:
+     - 여러 이미지 (스와이프 가능)
+     - 위치 + 별점
+     - 날짜 + 가격
+     - 하트 아이콘 (위시리스트)
+```
+
+**3. 우선순위 표시하기**
+
+```
+You: 블로그 포스트 카드
+
+필수:
+- 제목
+- 발행일
+- 요약 (3줄)
+
+선택:
+- 저자 정보
+- 태그
+- 읽기 시간
+
+생략 가능:
+- 댓글 수
+- 공유 버튼
+```
+
+### 디자인 반복 프로세스
+
+**1단계: 빠른 프로토타입**
+
+```
+간단한 버전으로 시작
+핵심 기능만 포함
+빠르게 확인
+```
+
+**2단계: 피드백**
+
+```
+생성된 디자인 검토
+부족한 부분 파악
+우선순위 재조정
+```
+
+**3단계: 점진적 개선**
+
+```
+한 번에 하나씩 개선
+각 변경사항 확인
+필요하면 되돌리기
+```
+
+**4단계: 최종 다듬기**
+
+```
+세부 사항 조정
+일관성 확인
+접근성 체크
+```
+
+### 성능 최적화
+
+**생성된 코드 최적화:**
+
+단계 1: HTML 구조 확인
+
+불필요한 div 제거
+시맨틱 태그 사용 (header, nav, main, footer)
+
+단계 2: CSS 정리
+
+중복 스타일 제거
+CSS 변수 활용
+미사용 스타일 삭제
+
+단계 3: 이미지 최적화
+
+적절한 이미지 형식 사용 (WebP, AVIF)
+lazy loading 추가
+responsive images
+
+예시:
 ```html
-<div style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 1.5rem;">
-  <h3 style="font-size: 1.5rem; font-weight: 700; color: #00ffff;">CPU Load</h3>
-  <p style="font-size: 2rem; font-weight: 700;">42%</p>
-</div>
+<img 
+  src="product.webp" 
+  alt="제품" 
+  loading="lazy"
+  srcset="product-small.webp 400w, product-large.webp 800w"
+  sizes="(max-width: 600px) 400px, 800px"
+>
 ```
 
-**변환 후**:
-```html
-<div class="bg-white/5 rounded-xl p-6 backdrop-blur-md border border-white/10">
-  <h3 class="text-2xl font-bold text-cyan-400">CPU Load</h3>
-  <p class="text-4xl font-bold">42%</p>
-</div>
+### 팀 협업
+
+**디자인 시스템 공유:**
+
+1. 설정 파일 저장소에 커밋
+2. 팀원들과 공유
+3. 일관된 디자인 유지
+
+```bash
+git add design-system.json
+git commit -m "Add design system config"
+git push
 ```
 
-훨씬 깔끔하고 유지보수하기 쉬워집니다.
+**컴포넌트 라이브러리 구축:**
 
-### 접근성 강화
-
-웹 접근성(Accessibility)은 모든 사용자가 콘텐츠를 이용할 수 있도록 하는 것입니다.
+각 디자인을 재사용 가능한 컴포넌트로:
 
 ```
-이 대시보드의 접근성을 WCAG 2.1 AA 수준으로 개선해줘:
-1. 모든 대화형 요소에 적절한 ARIA 레이블 추가
-2. 키보드 네비게이션 지원 (Tab 순서 최적화)
-3. 포커스 스타일 명확하게 표시
-4. 색상 대비 비율 4.5:1 이상 확보
-5. 스크린 리더를 위한 시맨틱 HTML 사용
-6. 이미지에 alt 텍스트 추가
+components/
+├── Button.html
+├── Card.html
+├── Header.html
+└── Footer.html
 ```
 
-Claude가 다음과 같은 개선사항을 적용합니다.
+**문서화:**
 
-```html
+README.md에 사용법 기록:
+
+```markdown
+# 디자인 가이드
+
+## 버튼 컴포넌트
+
+사용법:
+\`\`\`html
+<button class="btn btn-primary">클릭</button>
+\`\`\`
+
+변형:
+- btn-primary (파란색)
+- btn-secondary (회색)
+- btn-success (초록색)
+```
+
+---
+
+## 결론
+
+Stitch MCP × Antigravity 연동으로 디자인부터 코드까지 전체 프로세스가 자동화됩니다.
+
+### 핵심 요약
+
+**시간 절약:**
+- 전통적 방식: 4-5주
+- Stitch + Antigravity: 1-2시간
+- **95% 이상 단축**
+
+**품질 향상:**
+- 전문가 수준의 디자인
+- 일관된 코드 스타일
+- 프로덕션 레디
+
+**접근성:**
+- 디자인 스킬 불필요
+- 코딩 지식 최소화
+- 누구나 사용 가능
+
+### 다음 단계
+
+1. **실습하기** - 간단한 대시보드부터 시작
+2. **실험하기** - 다양한 프롬프트 테스트
+3. **최적화하기** - 생성된 코드 개선
+4. **공유하기** - 팀과 베스트 프랙티스 공유
+
+### 추가 리소스
+
+**공식 문서:**
+- [Stitch Documentation](https://stitch.withgoogle.com/docs)
+- [Antigravity Guide](https://antigravity.dev/docs)
+- [davideast/stitch-mcp GitHub](https://github.com/davideast/stitch-mcp)
+
+**커뮤니티:**
+- Stitch Discord
+- Antigravity Forum
+- r/StitchMCP
+
+**학습 자료:**
+- 공식 튜토리얼
+- 예제 프로젝트
+- 비디오 가이드
+
+이제 여러분의 아이디어를 실현할 준비가 되었습니다. 행운을 빕니다! 🚀
+
+---
+
+**작성일자:** 2026-01-23
+
