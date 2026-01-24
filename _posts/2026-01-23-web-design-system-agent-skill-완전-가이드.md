@@ -2089,7 +2089,7 @@ AI는 기존 디자인 시스템의 패턴을 학습하여, 새 컴포넌트를 
 
 사람이 읽을 문서입니다:
 
-```markdown
+~~~markdown
 # [Skill 이름]
 
 ## 설치
@@ -2107,7 +2107,7 @@ npx skills add [your-username]/[skill-name]
 
 ## FAQ
 ...
-```
+~~~
 
 **Step 5: GitHub에 공개**
 
