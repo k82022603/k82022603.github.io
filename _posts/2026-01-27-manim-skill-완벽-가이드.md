@@ -3,8 +3,9 @@ title: "Manim Skill 완벽 가이드"
 date: 2026-01-27 06:30:00 +0900
 categories: [AI,  Agent Skills]
 mermaid: [True]
-tags: [AI,   skills.sh,  add-skill,  claude-code,  Manim-Skill,  Claude.write]
+tags: [AI,  Skills.sh,  add-skill,  claude-code,  Manim-Skill,  Claude.write]
 ---
+
 
 ## 3Blue1Brown 스타일 수학 애니메이션을 코드 한 줄로 만드는 시대
 
