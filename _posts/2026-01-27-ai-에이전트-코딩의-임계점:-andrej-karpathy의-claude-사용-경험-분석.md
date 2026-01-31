@@ -3,9 +3,8 @@ title: "AI 에이전트 코딩의 임계점: Andrej Karpathy의 Claude 사용 �
 date: 2026-01-27 07:20:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  Material,   agentic-coding,  AndrejKarpathy,  Claude,  claude-coding,  Claude.write]
+tags: [AI,  Material,   agentic-coding,  AndrejKarpathy,  Claude,  claude-code,  Claude.write]
 ---
-
 
 ## 관련글
 

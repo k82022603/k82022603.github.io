@@ -1,11 +1,10 @@
 ---
 title: "AI 코딩(Vibecoding)의 환상과 현실: 2년간의 실험이 말해주는 것"
 date: 2026-01-28 02:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Vibe Coding]
 mermaid: [True]
 tags: [AI,  Material,  vibe-coding,  Claude.write]
 ---
-
 
 ## 관련글
 
