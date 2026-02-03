@@ -10,10 +10,6 @@ tags: [AI,  Material,  claude-code,  BorisCherny,  Claude.write]
 > Claude Code 창시자 Boris Cherny와 개발팀이 직접 공유하는 실전 생산성 향상 전략  
 > 작성일: 2026-02-01
 
-## 관련글
-
-[https://www.threads.com/@boris_cherny/post/DUMZr4VElyb](https://www.threads.com/@boris_cherny/post/DUMZr4VElyb)
-
 ## 목차
 
 1. [핵심 요약](#핵심-요약)
