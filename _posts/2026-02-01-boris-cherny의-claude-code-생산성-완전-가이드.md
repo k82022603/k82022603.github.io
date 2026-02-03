@@ -394,7 +394,7 @@ CLAUDE.md는 단순한 스타일 가이드가 아닙니다. 이는 **"실수 교
 
 ### 실제 CLAUDE.md 예시 1: Node.js API 서버
 
-````markdown
+~~~markdown
 # E-Commerce API Server - Claude Guidelines
 
 ## 프로젝트 컨텍스트
@@ -686,11 +686,11 @@ logger.warn('stock.low', { productId, currentStock, threshold });
 - API 문서: `/docs/api.md`
 - 데이터베이스 스키마: `/docs/schema.md`
 - 배포 가이드: `/docs/deployment.md`
-```
+~~~
 
 ### 실제 CLAUDE.md 예시 2: React 프론트엔드
 
-````markdown
+~~~markdown
 # Dashboard App - Claude Guidelines
 
 ## 프로젝트 구조
@@ -1082,7 +1082,7 @@ function WindowSize() {
     }, []);
 }
 ```
-```
+~~~
 
 ### Notes 디렉토리 패턴
 
@@ -1111,14 +1111,14 @@ EOF
 
 ### 실수 교정 워크플로우
 
-````markdown
+~~~markdown
 # 실수 발생 시 프로세스
 
 1. **Claude가 실수를 함**
    예: Transaction 없이 재고를 업데이트
 
 2. **즉시 CLAUDE.md 업데이트 요청**
-````
+   ```
    이 실수를 다시 하지 않도록 CLAUDE.md를 업데이트해줘.
    
    다음 내용을 포함해:
@@ -1179,6 +1179,7 @@ EOF
    git add CLAUDE.md
    git commit -m "docs: Add inventory management rules to prevent concurrency issues"
    ```
+~~~
 
 ### 팀 차원의 CLAUDE.md 관리
 
