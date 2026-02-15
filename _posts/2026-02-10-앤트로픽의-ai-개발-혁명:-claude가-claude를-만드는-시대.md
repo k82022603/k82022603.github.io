@@ -1,19 +1,20 @@
 ---
 title: "앤트로픽의 AI 개발 혁명: Claude가 Claude를 만드는 시대"
 date: 2026-02-10 20:00:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Material]
 mermaid: [True]
 tags: [AI,  Material,  Anthropic,  claude-code,  Claude.write]
 ---
-
 
 ## 관련기사
 
 [**앤트로픽 "클로드로 내부 코드 100% 작성...엔지니어 역할도 변화"**](https://www.aitimes.com/news/articleView.html?idxno=206581)
 
+
 ## 관련영상
 
-[**Enterprise & AI | Mike Krieger, Chief Product Officer, Anthropic & Jeetu Patel**](https://www.youtube.com/watch?v=JO9yTr81Juw)
+
+[**Enterprise & AI - Mike Krieger, Chief Product Officer, Anthropic & Jeetu Patel**](https://www.youtube.com/watch?v=JO9yTr81Juw)
 
 ## 서론: 소프트웨어 개발의 근본적 전환
 
