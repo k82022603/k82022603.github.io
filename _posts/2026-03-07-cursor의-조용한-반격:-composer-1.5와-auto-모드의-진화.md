@@ -7,6 +7,17 @@ tags: [AI,   Cursor,  ai-coding-platforms,  Composer,  Claude.write]
 ---
 
 
+>
+>진짜 길고 복잡한 작업만 Claude Code Opus 모델을 사용하고 그 외에 90% 가량은 Cursor의 Auto 모드를 쓴다.
+>
+>몇개월 전만해도 Cursor의 Auto 모드는 마치 gpt4-mini 수준으로 한 페이지 스크립트 외에는 조악한 결과를 냈는데, 이제는 거의 모든 작업에도 문제없이 만족하고 예측가능한 결과를 내놓는다. 
+>
+>Auto 모드는 Cursor에서 얼마전 내놓은 Composer 1.5를 주로 활용한다는데, 확실히 근 1개월 사이에 품질이 좋아진게 느껴진다.
+>
+>https://www.facebook.com/share/p/187P2GdrJx/
+>
+
+
 ## 관련글
 
 [**Cursor의 "War Time" 선언: AI 코딩 도구 패권 전쟁의 내막**](https://k82022603.github.io/posts/cursor%EC%9D%98-war-time-%EC%84%A0%EC%96%B8-ai-%EC%BD%94%EB%94%A9-%EB%8F%84%EA%B5%AC-%ED%8C%A8%EA%B6%8C-%EC%A0%84%EC%9F%81%EC%9D%98-%EB%82%B4%EB%A7%89/)
