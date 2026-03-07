@@ -7,7 +7,7 @@ tags: [AI,  claude-code-hook,  cluade-code,  Codex,  Claude.write]
 ---
 
 
-![image](https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/649217338_17868888162573521_5399100506975971153_n.jpg?stp=cp6_dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InRocmVhZHMuRkVFRC5pbWFnZV91cmxnZW4uMTQzMHgxOTg2LnNkci5mODI3ODcuZGVmYXVsdF9pbWFnZS5jMiJ9&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2QFs4JzqFBcX7oYgQVq1d_2XGcmd_vBOwHcQqLutqX0oopXCOMR1YEbDQb6RVxHsV-o&_nc_ohc=D6-RUqczj6AQ7kNvwFO0AKn&_nc_gid=BOROCwJOSTo9OBshpCqdlQ&edm=AKr904kBAAAA&ccb=7-5&ig_cache_key=Mzg0NzE5NzA2NjE5NjQ4OTkzNQ%3D%3D.3-ccb7-5&oh=00_AfxWHaL3s7HbGh6d-0ChRzC3eE6xaCDTuZdhX_xCvIaFCQ&oe=69B1F368&_nc_sid=23467f)
+![image](https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/649217338_17868888162573521_5399100506975971153_n.jpg?stp=cp6_dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InRocmVhZHMuRkVFRC5pbWFnZV91cmxnZW4uMTQzMHgxOTg2LnNkci5mODI3ODcuZGVmYXVsdF9pbWFnZS5jMiJ9&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2QFs4JzqFBcX7oYgQVq1d_2XGcmd_vBOwHcQqLutqX0oopXCOMR1YEbDQb6RVxHsV-o&_nc_ohc=D6-RUqczj6AQ7kNvwFO0AKn&_nc_gid=BOROCwJOSTo9OBshpCqdlQ&edm=AKr904kBAAAA&ccb=7-5&ig_cache_key=Mzg0NzE5NzA2NjE5NjQ4OTkzNQ%3D%3D.3-ccb7-5&oh=00_AfxWHaL3s7HbGh6d-0ChRzC3eE6xaCDTuZdhX_xCvIaFCQ&oe=69B1F368&_nc_sid=23467f){: .w-50}
 
 >
 >codex 5.4 열심히 돌려봤는데 첨엔 막 우와!! 하다가 결국 또 기승전 클코를 쓰게됨..
