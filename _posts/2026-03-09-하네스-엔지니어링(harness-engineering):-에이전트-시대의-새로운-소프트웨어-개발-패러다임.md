@@ -1,10 +1,11 @@
 ---
 title: "하네스 엔지니어링(Harness Engineering): 에이전트 시대의 새로운 소프트웨어 개발 패러다임"
 date: 2026-03-09 20:30:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  AI Agent]
 mermaid: [True]
 tags: [AI,  harness-engineering,  OpenAI,  Codex,  context-engineering,  architectural-constraints,  garbage-collection,  Claude.write]
 ---
+
 
 
 > **참고 자료**
