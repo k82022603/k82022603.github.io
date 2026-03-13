@@ -32,13 +32,15 @@ tags: [AI,  Gemini,  Grok,  Claude.write]
 >작은 디오라마와 하루의 시간 흐름으로 살아납니다.
 >AI로 여행하는 기분, 한 번 만들어 보세요. 🎥✨￼
 >
->![image](https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/649655574_17946598161109915_6128978391792473173_n.jpg?stp=dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InRocmVhZHMuQ0FST1VTRUxfSVRFTS5pbWFnZV91cmxnZW4uMjE2MHgxMTc4LnNkci5mODI3ODcuZGVmYXVsdF9pbWFnZS5jMiJ9&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2QEKc-ShUsX8IPVeFac1a2QJMMJnNLoR4XUBc9haujH4-79rMrHdZfOr0L36OWfRgts&_nc_ohc=kdtmCBkhsi8Q7kNvwEoSg69&_nc_gid=s2dav69Bo6nuEpRzSHpvUQ&edm=AKr904kBAAAA&ccb=7-5&ig_cache_key=Mzg0ODkwOTI1MjE5MTY5NzczNg%3D%3D.3-ccb7-5&oh=00_AfxDIW7vA5-c6oOZov6SAkn6v0viyHJav20wbv69Xkwkng&oe=69B9E1E3&_nc_sid=23467f)
+>![image](https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/649655574_17946598161109915_6128978391792473173_n.jpg?stp=dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InRocmVhZHMuQ0FST1VTRUxfSVRFTS5pbWFnZV91cmxnZW4uMjE2MHgxMTc4LnNkci5mODI3ODcuZGVmYXVsdF9pbWFnZS5jMiJ9&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2QEKc-ShUsX8IPVeFac1a2QJMMJnNLoR4XUBc9haujH4-79rMrHdZfOr0L36OWfRgts&_nc_ohc=kdtmCBkhsi8Q7kNvwEoSg69&_nc_gid=s2dav69Bo6nuEpRzSHpvUQ&edm=AKr904kBAAAA&ccb=7-5&ig_cache_key=Mzg0ODkwOTI1MjE5MTY5NzczNg%3D%3D.3-ccb7-5&oh=00_AfxDIW7vA5-c6oOZov6SAkn6v0viyHJav20wbv69Xkwkng&oe=69B9E1E3&_nc_sid=23467f){: width="700" height="400" }
 >
 >[https://www.threads.com/@jh_aicafe/post/DVqEpRBGc_b](https://www.threads.com/@jh_aicafe/post/DVqEpRBGc_b)
 
 ## 개요
 
 AI 이미지·영상 생성 기술이 2026년 현재 크리에이터 영역을 완전히 재편하고 있다. 특히 구글의 **Gemini** 이미지 생성 모델과 xAI의 **Grok Imagine** 영상 생성 모델을 조합하면, 전문 디자이너 수준의 도시 비주얼 콘텐츠를 단 몇 분 안에 만들어낼 수 있다. 이 가이드는 그 두 가지 방법을 도구 소개부터 실전 프롬프트까지 상세히 정리한다.
+
+
 
 ---
 
