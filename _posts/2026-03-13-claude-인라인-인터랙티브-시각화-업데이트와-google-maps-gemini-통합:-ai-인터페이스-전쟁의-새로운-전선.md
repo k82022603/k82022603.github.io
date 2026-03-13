@@ -15,7 +15,9 @@ tags: [AI,  Claude,  claude-code,  Gemini,  Claude.ai,  immersive-navigation,  g
 
 ## 출처
 
-- Anthropic 공식 블로그, The New Stack, Digital Trends, TechCrunch, [Google 공식 블로그](https://blog.google/products-and-platforms/products/maps/ask-maps-immersive-navigation/) 등
+- [Anthropic 공식 블로그](https://claude.com/blog/claude-builds-visuals), The New Stack, Digital Trends, TechCrunch, [Google 공식 블로그](https://blog.google/products-and-platforms/products/maps/ask-maps-immersive-navigation/) 등
+
+
 
 ---
 
