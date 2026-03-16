@@ -7,6 +7,8 @@ tags: [AI,  claude-code,  vibe-coding,  Claude.write]
 ---
 
 
+
+
 > 루미큐브(Rummikub) 보드게임 기반 **멀티 LLM 전략 실험 플랫폼**  
 > Human + AI 혼합 2~4인 실시간 대전 지원 · 다양한 LLM 모델 전략 비교/분석
 
