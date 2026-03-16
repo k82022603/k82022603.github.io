@@ -1,6 +1,6 @@
 ---
 title: "🎮 RummiArena — 프로젝트 기술 가이드"
-date: 2026-03-16 13:00:00 +0900
+date: 2026-03-16 07:00:00 +0900
 categories: [AI,  RummiArena]
 mermaid: [True]
 tags: [AI,  claude-code,  vibe-coding,  Claude.write]
