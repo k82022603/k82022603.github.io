@@ -1,8 +1,9 @@
 ---
 title: "Claude Cowork Dispatch 완전 가이드"
-date: 2026-03-18 02:33:33 +0900
-categories: [Wiki]
+date: 2026-03-18 07:20:00 +0900
+categories: [AI,  Claude]
 mermaid: [True]
+tags: [AI,  Dispatch,  Cowork,  Claude.write]
 ---
 
 > **"어디서든 작업을 맡기고, 완성된 결과물로 돌아오세요"**  
