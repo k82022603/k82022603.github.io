@@ -1,12 +1,14 @@
 ---
 title: "Claude Cowork 완전 가이드"
 date: 2026-03-18 08:30:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Cowork]
 mermaid: [True]
 tags: [AI,  Cowork,  Guide,  claude-skills,  Connectors,  Plugins,  scheduled-tasks,  global-instructions,  sub-agents,  Claude.write]
 ---
 
+
 > **최종 업데이트: 2026년 3월 18일** | [유튜브 영상](https://www.youtube.com/watch?v=vMo-yRCN3QM) + 최신 공식 문서 기반
+
 
 ---
 

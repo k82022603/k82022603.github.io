@@ -1,7 +1,7 @@
 ---
 title: "Claude Cowork 완전 가이드: 2026년 지식 노동자를 위한 AI 에이전트"
 date: 2026-03-16 19:10:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  Claude Cowork]
 mermaid: [True]
 tags: [AI,  claude-code,  Cowork,  Anthropic,  Claude.write]
 ---
@@ -10,6 +10,8 @@ tags: [AI,  claude-code,  Cowork,  Anthropic,  Claude.write]
 > **원문 출처**: "Ultimate Claude Cowork Starter Pack: Every Plugin, Skill, and Workflow You Need"  
 > **작성자**: Corey Ganim (X: [@coreyganim](https://x.com/coreyganim/status/2033206539595461070))  
 > **정리 및 해설**: 원문 + 추가 리서치 기반 상세 해설
+
+
 
 ---
 

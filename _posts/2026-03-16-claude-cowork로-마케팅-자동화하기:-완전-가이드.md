@@ -1,7 +1,7 @@
 ---
 title: "Claude Cowork로 마케팅 자동화하기: 완전 가이드"
 date: 2026-03-16 19:20:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  Claude Cowork]
 mermaid: [True]
 tags: [AI,  claude-code,  Cowork,  agent-skills,  LinkedIn,  MCP,  Claude.write]
 ---
@@ -9,6 +9,8 @@ tags: [AI,  claude-code,  Cowork,  agent-skills,  LinkedIn,  MCP,  Claude.write]
 
 > **출처:** Ben AI 유튜브 채널 | 2026년 3월 14일 공개  
 > **원본 영상:** https://www.youtube.com/watch?v=FAEKF-nr3D0
+
+
 
 ---
 
