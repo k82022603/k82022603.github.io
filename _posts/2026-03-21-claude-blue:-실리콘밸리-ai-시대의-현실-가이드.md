@@ -3,10 +3,12 @@ title: "Claude Blue: 실리콘밸리 AI 시대의 현실 가이드"
 date: 2026-03-21 07:10:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  Meta,  claude-blue,  Claude,  claude-depression,  ai-native,  vibe-coding,  agent-orchestration,  specification-document,  Claude.write]
+tags: [AI,  Meta,  claude-blue,  Claude,  claude-depression,  ai-native,  vibe-coding,  agent-orchestration,  specification-document,  Obsidian,  Claude.write]
 ---
 
 > 메타 시니어 AI 엔지니어, 실리콘밸리 스타트업 창업자와의 대화를 바탕으로 정리한 2026년 봄의 기록
+
+
 
 ---
 
