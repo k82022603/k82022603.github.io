@@ -3,7 +3,7 @@ title: "Jensen Huang: Nvidia의 미래, 물리적 AI, 에이전트의 부상, �
 date: 2026-03-24 07:30:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  JensenHuang,  Groq,  disaggregated-inference,  Nvidia,  physical-ai,  OpenClaw,  Anthropic,  OpenAI,  Autoresearch,  Claude.write]
+tags: [AI,  JensenHuang,  Groq,  disaggregated-inference,  NVIDIA,  physical-ai,  OpenClaw,  Anthropic,  OpenAI,  Autoresearch,  Claude.write]
 ---
 
 
@@ -13,6 +13,8 @@ tags: [AI,  JensenHuang,  Groq,  disaggregated-inference,  Nvidia,  physical-ai,
 **게스트:** Jensen Huang (Nvidia CEO)
 
 ---
+
+
 
 ## 목차
 
