@@ -220,7 +220,7 @@ AI는 경쟁사 광고들을 분석하여 다음을 도출했습니다:
 **영상 제목**: *I Built An Entire AI Marketing Team With Claude Code In 16 Minutes*  
 **공개일**: 2026년 3월 3일
 
-이 영상은 더 체계적이고 기술적인 접근법을 취합니다. **GitHub에 공개된 오픈소스 AI 마케팅 툴킷**을 소개하며, 이를 설치하고 활용하는 전 과정을 16분 만에 시연합니다.
+이 영상은 더 체계적이고 기술적인 접근법을 취합니다. **GitHub에 공개된 오픈소스 AI 마케팅 툴킷** [ai-marketing-claude](https://github.com/zubair-trabzada/ai-marketing-claude) 을 소개하며, 이를 설치하고 활용하는 전 과정을 16분 만에 시연합니다.
 
 ---
 
