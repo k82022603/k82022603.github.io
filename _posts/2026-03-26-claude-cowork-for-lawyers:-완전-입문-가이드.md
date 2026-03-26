@@ -13,6 +13,9 @@ tags: [AI,  Cowork,  Lawyers,  Guide,  agentic-ai,  claude-code-plugin,  NDA,  S
 
 ---
 
+
+
+
 ## 목차
 
 1. [Claude Cowork란 무엇인가?](#1-claude-cowork란-무엇인가)
@@ -126,7 +129,7 @@ Claude Cowork는 Anthropic이 2026년 1월에 출시한 에이전틱(Agentic) AI
 Cowork 입력창에 `/triage-nda` 입력  
 → 자동완성으로 명령어 즉시 인식
 
-### Step 2: NDA 제출 방식 선택 (이미지 2 참조)
+### Step 2: NDA 제출 방식 선택 
 ```
 How do you want to submit the NDA for triage?
 1. Paste the NDA text directly
@@ -136,7 +139,7 @@ How do you want to submit the NDA for triage?
 ```
 → "Skip" 선택하여 연결된 폴더에서 자동 탐색
 
-### Step 3: 플레이북 로드 (이미지 3 참조)
+### Step 3: 플레이북 로드 
 Claude가 워크스페이스에서 자동으로:
 1. NDA 트리아지 워크플로 스킬 로드
 2. 회사 NDA 플레이북 파일 탐색 및 로드
@@ -149,7 +152,7 @@ Claude가 워크스페이스에서 자동으로:
 - 준거법: California 필수; 다른 주법이면 Yellow; NY 또는 TX이면 Red
 - 기밀정보 정의 필수
 
-### Step 4: 분석 결과 출력 (이미지 4 참조)
+### Step 4: 분석 결과 출력
 
 **분류 결과: RED — 서명 불가**
 
