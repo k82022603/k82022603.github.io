@@ -65,6 +65,7 @@ Remotion의 가장 중요한 기술적 특성은 **프레임 결정론**이다. 
 
 Remotion이 제공하는 주요 API들은 애니메이션 제작의 기반이 된다.
 
+{% raw %}
 ```typescript
 import { useCurrentFrame, interpolate, spring, useVideoConfig } from 'remotion';
 
@@ -85,6 +86,7 @@ const MyAnimation = () => {
   );
 };
 ```
+{% endraw %}
 
 `useCurrentFrame()`은 현재 렌더링 중인 프레임 번호를 반환한다. `interpolate()`는 프레임 범위를 임의의 값 범위로 선형 또는 비선형 보간한다. `spring()`은 질량, 강성, 감쇠 계수로 제어되는 물리 기반 애니메이션을 만든다. 이 세 가지 API가 Remotion 애니메이션의 99%를 구성한다.
 
@@ -421,6 +423,7 @@ Claude Code는 Skills를 로드하고, 올바른 Remotion 패턴으로 코드를
 
 생성되는 코드는 대략 이런 구조다.
 
+{% raw %}
 ```tsx
 import { AbsoluteFill, useCurrentFrame, interpolate } from 'remotion';
 
@@ -443,6 +446,7 @@ export const HelloWorld: React.FC = () => {
   );
 };
 ```
+{% endraw %}
 
 ### 7.2 Remotion Studio에서 미리보기
 
