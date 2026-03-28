@@ -1,17 +1,15 @@
 ---
-title: "Claude Code & Remotion 완전 가이드"
+title: "Claude Code + Remotion 완전 가이드"
 date: 2026-03-28 11:10:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  Claude.write]
+tags: [AI,  claude-code,  Remotion,  agent-skills,  frame-determinism,  claude-skills,  Sora,  remotion-studio,  Opus-4.6,  React,  Claude.write]
 ---
 
 ## 자연어로 영상을 만드는 시대 — 코드가 곧 영상이다
 
 > **작성 기준:** 2026년 3월 28일  
 > **대상 독자:** Claude Code 사용자, 영상 콘텐츠 제작자, 개발자, AI 도구 탐구자
-
-
 
 ---
 
