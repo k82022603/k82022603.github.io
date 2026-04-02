@@ -3,7 +3,7 @@ title: "Martin Fowler Fragments 2026년 1월 22일 분석: AI 개발 도구 실�
 date: 2026-01-22 22:20:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  Material,  Martin-Fowler,  Thoughtworks,  agentic-coding,  AI-First ,  Claude.write]
+tags: [AI,  Material,  MartinFowler,  Thoughtworks,  agentic-coding,  AI-First ,  Claude.write]
 ---
 
 

@@ -3,7 +3,7 @@ title: "Martin Fowler Fragments: 2026년 1월 22일"
 date: 2026-01-22 22:10:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  Material,  Martin-Fowler,  Extreme-Programming,  Claude.write]
+tags: [AI,  Material,  MartinFowler,  Extreme-Programming,  Claude.write]
 ---
 
 

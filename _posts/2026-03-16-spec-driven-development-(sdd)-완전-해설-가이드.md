@@ -3,7 +3,7 @@ title: "Spec Driven Development (SDD) 완전 해설 가이드"
 date: 2026-03-16 19:00:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [True]
-tags: [AI,  coding-agents,  SDD,  spec-driven-development,  agent-agnosticism,  Parallelism,  Harness,  spec-first,  Claude.write]
+tags: [AI,  coding-agents,  SDD,  spec-driven-development,  agent-agnosticism,  Parallelism,  Harness,  spec-first,  MartinFowler,  Claude.write]
 ---
 
 
