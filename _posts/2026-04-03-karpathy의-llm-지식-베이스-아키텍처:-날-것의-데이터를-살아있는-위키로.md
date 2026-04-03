@@ -1,7 +1,7 @@
 ---
 title: "Karpathy의 LLM 지식 베이스 아키텍처: 날 것의 데이터를 살아있는 위키로"
 date: 2026-04-03 20:10:00 +0900
-categories: [AI,  Material]
+categories: [AI,  RAG]
 mermaid: [True]
 tags: [AI,  AndrejKarpathy,  RAG,  WIKI,  Obsidian,  Lint,  Heal,  cli-tools,  Autoresearch,  Markdown,  single-source-of-truth,  compounding-structure,  Inspectability,  tool-agnosticism,  deep-research,  llm-knowledge-base-system,  Claude.write]
 ---
