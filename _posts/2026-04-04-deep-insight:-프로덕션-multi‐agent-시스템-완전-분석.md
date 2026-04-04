@@ -3,11 +3,12 @@ title: "Deep Insight: 프로덕션 Multi-Agent 시스템 완전 분석"
 date: 2026-04-04 11:00:00 +0900
 categories: [AI,  AI Agent]
 mermaid: [True]
-tags: [AI,  multi-agent,  Amazon,  Bedrock,  agentic-ai,  Claude.write]
+tags: [AI,  AWS,  deep-insight,  multi-agent,  Amazon,  Bedrock,  agentic-ai,  agents-as-tools,  human-in-the-loop,  strands-agents-sdk,  Claude.write]
 ---
 
 > AWS Korea SA Team이 개발한 프로덕션급 멀티에이전트 데이터 분석 시스템  
 > 출처: AWS Tech Blog (2026.04.01) | LG전자 사례 블로그 (2025.08.28)
+
 
 ---
 
