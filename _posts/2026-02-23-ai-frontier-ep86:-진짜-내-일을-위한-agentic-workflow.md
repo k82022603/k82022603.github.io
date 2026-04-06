@@ -3,10 +3,11 @@ title: "AI Frontier EP86: 진짜 내 일을 위한 Agentic Workflow"
 date: 2026-02-23 19:30:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  claude-code,  Codex,  agentic-workflow,  Harness,  bio-token,  CLAUDE.md,  Claude.write]
+tags: [AI,  claude-code,  Codex,  agentic-workflow,  Harness,  bio-token,  CLAUDE.md,  BFactory,  Claude.write]
 ---
 
 ## Lablup 신정규 대표 × 노정석 × 최승준
+
 
 > **원본 영상**: https://www.youtube.com/watch?v=EQ-Rnx-k-Ec  
 > **블로그 포스트**: https://aifrontier.kr/ko/episodes/ep86  
