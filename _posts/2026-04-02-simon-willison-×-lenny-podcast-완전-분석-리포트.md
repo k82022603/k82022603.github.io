@@ -3,10 +3,12 @@ title: "Simon Willison × Lenny's Podcast 완전 분석 리포트"
 date: 2026-04-02 21:10:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  claude-code,  reasoning-model,  vibe-coding,  agentic-engineering,  dark-factory,  software-engineer,  10x-developer,  TDD,  prompt-injection,  lethal-trifecta,  OpenClaw,  cognitive-debt,  Claude.write]
+tags: [AI,  claude-code,  reasoning-model,  vibe-coding,  agentic-engineering,  dark-factory,  software-engineer,  10x-developer,  TDD,  prompt-injection,  lethal-trifecta,  OpenClaw,  cognitive-debt,  SimonWillison,  Claude.write]
 ---
 
 ### "Why AI came for coders first, automation timelines, and how we're inside the AI inflection"
+
+
 > **출처**: Lenny's Podcast | **게스트**: Simon Willison | **발행일**: 2026년 4월 2일  
 > **원본 영상**: https://www.youtube.com/watch?v=wc8FBhQtdsA  
 > **Simon의 블로그**: https://simonwillison.net | **Agentic Engineering Guide**: https://simonwillison.net/guides/agentic-engineering-patterns/
