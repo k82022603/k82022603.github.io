@@ -3,8 +3,9 @@ title: "Microsoft GraphRAG와 Neo4j 통합 설계 가이드"
 date: 2026-01-12 23:45:00 +0900
 categories: [AI,  RAG]
 mermaid: [True]
-tags: [AI,  RAG,  graph-rag,  Neo4j,  Microsoft-GraphRAG,  hybrid-rag,  PostgreSQL,  Elasticsearch,  BGE-M3,  DeepSeek,  Guide,  Claude.write]
+tags: [AI,  RAG,  graph-rag,  Neo4j,  microsoft-graph,  hybrid-rag,  PostgreSQL,  Elasticsearch,  BGE-M3,  DeepSeek,  Guide,  Claude.write]
 ---
+
 
 ## 엔터프라이즈 지식 검색을 위한 실무 중심 아키텍처
 

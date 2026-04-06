@@ -3,8 +3,9 @@ title: "GraphRAG와 Neo4j 통합 Hybrid RAG 시스템 설계 가이드"
 date: 2026-01-12 23:35:00 +0900
 categories: [AI,  RAG]
 mermaid: [true]
-tags: [AI,  RAG,  graph-rag,  Neo4j,  Microsoft-GraphRAG,  hybrid-rag,  Guide,  Claude.write]
+tags: [AI,  RAG,  graph-rag,  Neo4j,  microsoft-graph,  hybrid-rag,  Guide,  Claude.write]
 ---
+
 
 
 ## 문서 정보

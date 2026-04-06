@@ -3,8 +3,9 @@ title: "Microsoft GraphRAG 커뮤니티 기반 Global Search 구현 가이드"
 date: 2026-01-13 20:30:00 +0900
 categories: [AI,  RAG]
 mermaid: [True]
-tags: [AI,  RAG,  graph-rag,  Neo4j,  Microsoft-GraphRAG,  community-based-global-search,  Material,  Medium,  Claude.write]
+tags: [AI,  RAG,  graph-rag,  Neo4j,  microsoft-graph,  community-based-global-search,  Material,  Medium,  Claude.write]
 ---
+
 
 
 ## 문서 정보
