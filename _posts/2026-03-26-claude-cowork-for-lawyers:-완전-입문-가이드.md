@@ -3,7 +3,7 @@ title: "Claude Cowork for Lawyers: 완전 입문 가이드"
 date: 2026-03-26 21:30:00 +0900
 categories: [AI,  Claude Cowork]
 mermaid: [True]
-tags: [AI,  Cowork,  Lawyers,  Guide,  agentic-ai,  claude-code-plugin,  NDA,  Skills,  Plugins,  Claude.write]
+tags: [AI,  Cowork,  ai-lawyer,  Guide,  agentic-ai,  claude-code-plugin,  NDA,  Skills,  legal-plugin,  Claude.write]
 ---
 
 > **원본 영상**: "Claude Co-work for Lawyers: What Works (Beginner's Guide)"  
