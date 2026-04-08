@@ -1,7 +1,7 @@
 ---
 title: "MISO-R GraphRAG: Hop 제한과 스키마 절제의 원칙"
 date: 2026-01-22 18:40:00 +0900
-categories: [AI,  RAG]
+categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [true]
 tags: [AI,  Material,  RAG,  graph-rag,  hop-limits,  schema-abstraction,  MISO‐R,  Claude.write]
 ---

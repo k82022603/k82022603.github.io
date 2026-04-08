@@ -1,7 +1,7 @@
 ---
 title: "Google Gemini Embeddings 2 × Claude Code: RAG의 완전한 패러다임 전환"
 date: 2026-03-14 15:00:00 +0900
-categories: [AI,  RAG]
+categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [True]
 tags: [AI,  google-gemini-embeddings-2,  claude-code,  RAG,  native-multimodal-embedding-model,  Claude.write]
 ---
@@ -9,6 +9,7 @@ tags: [AI,  google-gemini-embeddings-2,  claude-code,  RAG,  native-multimodal-e
 
 > **출처**: YouTube — Nate Herk | 2026년 3월 12일 공개  
 > **주제**: [Gemini Embeddings 2와 Claude Code를 활용한 완전한 멀티모달 RAG 파이프라인 구축](https://www.youtube.com/watch?v=hem5D1uvy-w)
+
 
 ---
 

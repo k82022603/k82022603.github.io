@@ -1,7 +1,7 @@
 ---
 title: "Microsoft GraphRAG와 Neo4j 통합 설계 가이드"
 date: 2026-01-12 23:45:00 +0900
-categories: [AI,  RAG]
+categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [True]
 tags: [AI,  RAG,  graph-rag,  Neo4j,  microsoft-graph,  hybrid-rag,  PostgreSQL,  Elasticsearch,  BGE-M3,  DeepSeek,  Guide,  Claude.write]
 ---

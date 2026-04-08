@@ -1,7 +1,7 @@
 ---
 title: "Microsoft GraphRAG와 Neo4j 통합이란 무엇인가?"
 date: 2026-01-13 21:00:00 +0900
-categories: [AI,  RAG]
+categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [True]
 tags: [AI,  RAG,  graph-rag,  Neo4j,  Guide,  Claude.write]
 ---
@@ -10,6 +10,7 @@ tags: [AI,  RAG,  graph-rag,  Neo4j,  Guide,  Claude.write]
 
 **작성일**: 2026-01-13  
 **대상**: Graph RAG를 처음 접하는 분들
+
 
 ---
 

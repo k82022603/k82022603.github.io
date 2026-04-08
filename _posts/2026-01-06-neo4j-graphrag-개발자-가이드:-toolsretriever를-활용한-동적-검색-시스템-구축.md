@@ -1,7 +1,7 @@
 ---
 title: "Neo4j GraphRAG 개발자 가이드: ToolsRetriever를 활용한 동적 검색 시스템 구축"
 date: 2026-01-06 14:50:00 +0900
-categories: [AI,  RAG]
+categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [True]
 tags: [AI,  RAG,  graph-rag,  Neo4j,  tools-retriever,  Developer,  Guide,  Claude.write,  Gemini.write]
 ---

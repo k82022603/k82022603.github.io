@@ -1,7 +1,7 @@
 ---
 title: "MISO-R GraphRAG 분석"
 date: 2026-01-22 18:30:00 +0900
-categories: [AI,  RAG]
+categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [true]
 tags: [AI,  Material,  RAG,  graph-rag,  MISO‐R,  Claude.write]
 ---

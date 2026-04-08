@@ -1,7 +1,7 @@
 ---
 title: "Context Graphs: 진정으로 이해하는 AI를 위한 차세대 지식 표현"
 date: 2026-02-05 22:00:00 +0900
-categories: [AI,  RAG]
+categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [True]
 tags: [AI,  RAG,  LLM,  knowledge-graph,  context-graph,  multi-hop-reasoning,  graph-rag,  MISO‐R,  Medium,  Claude.write]
 ---
