@@ -13,6 +13,8 @@ tags: [AI,  Anthropic,  managed-agents,  ai-agent,  Claude.write]
 >
 >- **관련글 1** : [Anthropic이 방금 Claude Managed Agents를 출시했습니다](https://www.threads.com/@geumverse_ai/post/DW483kCE1yK)
 >- **관련글 2** : [거대한 폭탄을 Anthropic 이 오늘 새벽에 떨어뜨렸습니다](https://www.threads.com/@gonnector/post/DW47Nlfk92t)
+>
+
 ---
 
 ## 1. 무엇이 발표되었나
