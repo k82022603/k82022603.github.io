@@ -3,8 +3,9 @@ title: "추론 모델(Reasoning Model) 프롬프트 엔지니어링 가이드"
 date: 2026-04-06 20:30:00 +0900
 categories: [AI,  RummiArena]
 mermaid: [True]
-tags: [AI,  system-prompt,  prompt-engineering,  Claude.write]
+tags: [AI,  system-prompt,  prompt-engineering,  reasoning-model,  Claude.write]
 ---
+
 
 
 - **작성일**: 2026-04-06

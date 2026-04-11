@@ -1,6 +1,6 @@
 ---
 title: "Agent Harness 아키텍처 심층 분석"
-date: 2026-04-10 22:10:00 +0900
+date: 2026-04-10 22:30:00 +0900
 categories: [AI,  AI Agent]
 mermaid: [True]
 tags: [AI,  agent-harness,  Harness,  LangChain,  claude-agent-sdk,  Anthropic,  OpenAI,  CrewAI,  LangGraph,  Manus,  Scaffolding,  orchestration-loop,  tool-integration,  context-management,  Model,  MCP,  Claude.write]
