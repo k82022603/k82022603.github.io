@@ -446,7 +446,7 @@ flowchart TD
     
     B["🧭 Comet CDP<br/>활동 수집 시작"]
     
-    subgraph 수집 ["데이터 수집"]
+    subgraph 수집["데이터 수집"]
         C1["Claude 스레드 캡처"]
         C2["ChatGPT 스레드 캡처"]
         C3["Gemini 스레드 캡처"]
@@ -460,7 +460,7 @@ flowchart TD
     
     F["🔄 동시 업데이트"]
     
-    subgraph 업데이트 ["동시 처리"]
+    subgraph 업데이트["동시 처리"]
         G1["📖 index.md 갱신"]
         G2["📋 log.md 갱신"]
         G3["⚡ Supermemory 동기화"]
@@ -472,16 +472,28 @@ flowchart TD
     J["✅ 작업 완료<br/>탭 닫기"]
     
     Start --> A
-    A -->|없음| Skip
-    A -->|있음| B
-    B --> C1 & C2 & C3 & C4 & C5
-    C1 & C2 & C3 & C4 & C5 --> D
+    A -- "없음" --> Skip
+    A -- "있음" --> B
+    B --> C1
+    B --> C2
+    B --> C3
+    B --> C4
+    B --> C5
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    C5 --> D
     D --> E
     E --> F
-    F --> G1 & G2 & G3
-    G1 & G2 & G3 --> H
-    H -->|Yes| I
-    H -->|No| J
+    F --> G1
+    F --> G2
+    F --> G3
+    G1 --> H
+    G2 --> H
+    G3 --> H
+    H -- "Yes" --> I
+    H -- "No" --> J
     I --> J
     
     style Start fill:#37474F,color:#fff
