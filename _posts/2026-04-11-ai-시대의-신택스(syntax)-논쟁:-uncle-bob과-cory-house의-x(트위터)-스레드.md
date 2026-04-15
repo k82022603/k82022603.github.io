@@ -1,7 +1,7 @@
 ---
 title: "AI 시대의 신택스(Syntax) 논쟁: Uncle Bob과 Cory House의 X(트위터) 스레드"
 date: 2026-04-11 21:00:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Material]
 mermaid: [True]
 tags: [AI,  Uncle-Bob-Martin,  syntax-liberation,  end-of-machine-language,  developer-identity,  junior-developer-crisis,  technical-debt,  extended-cognition,  Claude.write]
 ---
