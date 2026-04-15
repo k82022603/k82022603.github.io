@@ -3,7 +3,7 @@ title: "Duolingo CEO가 AI 시대 직원들에게 말하는 것 — Luis von Ahn
 date: 2026-04-15 20:00:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  ai-first,  vibe-coding,  chess-course-story,  ai-performance,  Claude.write]
+tags: [AI,  AI-First,  vibe-coding,  chess-course-story,  ai-performance,  Claude.write]
 ---
 
 
