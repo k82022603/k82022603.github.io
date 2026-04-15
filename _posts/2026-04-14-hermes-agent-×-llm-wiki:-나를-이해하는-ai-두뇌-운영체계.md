@@ -435,6 +435,7 @@ cron 스케줄: 0 20-23,0-7 * * *
 
 ### 파이프라인 흐름도
 
+{% raw %}
 ```mermaid
 flowchart TD
     Start(["⏰ Cron 트리거\n(매시간 정각)"])
@@ -487,6 +488,7 @@ flowchart TD
     style I fill:#E65100,color:#fff
     style J fill:#2E7D32,color:#fff
 ```
+{% endraw %}
 
 ### 처리 원칙
 
