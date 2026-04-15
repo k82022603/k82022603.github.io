@@ -343,23 +343,23 @@ C4Context
     Rel(vault, hermes, "맥락 주입")
     Rel(honcho, hermes, "")
     Rel(supermemory, hermes, "")
-    Rel(hermes, user, "개인화된 응답\n(Pulse 큐레이션)")
+    Rel(hermes, user, "개인화된 응답<br\>(Pulse 큐레이션)")
 
-    UpdateRelStyle(hermes, comet, $textColor="darkgray", $lineColor="darkgray", $offsetY="100", $offsetX="20")
-    UpdateRelStyle(hermes, brave, $textColor="darkgray", $lineColor="darkgray", $offsetY="100", $offsetX="120")
-    UpdateRelStyle(hermes, parallel, $textColor="darkgray", $lineColor="darkgray", $offsetY="200", $offsetX="0")
+    UpdateRelStyle(hermes, comet, $textColor="gray", $lineColor="lightgray", $offsetY="100", $offsetX="20")
+    UpdateRelStyle(hermes, brave, $textColor="gray", $lineColor="lightgray", $offsetY="100", $offsetX="120")
+    UpdateRelStyle(hermes, parallel, $textColor="gray", $lineColor="lightgray", $offsetY="200", $offsetX="0")
 
 
     UpdateRelStyle(vault, hermes, $textColor="red", $lineColor="red", $offsetY="-90", $offsetX="-200")
     UpdateRelStyle(honcho, hermes, $textColor="red", $lineColor="red", $offsetY="0", $offsetX="0")
     UpdateRelStyle(supermemory, hermes, $textColor="red", $lineColor="red", $offsetY="0", $offsetX="0")
 
-    UpdateRelStyle(hermes, supermemory, $textColor="navy", $lineColor="navy", $offsetY="200", $offsetX="100")
-    UpdateRelStyle(hermes, vault, $textColor="navy", $lineColor="navy", $offsetY="90", $offsetX="130")
-    UpdateRelStyle(hermes, honcho, $textColor="navy", $lineColor="navy", $offsetY="140", $offsetX="140")
+    UpdateRelStyle(hermes, supermemory, $textColor="goldenrod", $lineColor="goldenrod", $offsetY="200", $offsetX="100")
+    UpdateRelStyle(hermes, vault, $textColor="goldenrod", $lineColor="goldenrod", $offsetY="90", $offsetX="130")
+    UpdateRelStyle(hermes, honcho, $textColor="goldenrod", $lineColor="goldenrod", $offsetY="140", $offsetX="140")
 
-    UpdateRelStyle(user, comet, $textColor="red", $lineColor="red", $offsetY="0", $offsetX="20")
-
+    UpdateRelStyle(user, comet, $textColor="goldenrod", $lineColor="goldenrod", $offsetY="-200", $offsetX="-150")
+    UpdateRelStyle(hermes, user, $textColor="red", $lineColor="red", $offsetY="90", $offsetX="20")
 
 ```
 
