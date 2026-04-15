@@ -6,8 +6,6 @@ mermaid: [True]
 tags: [AI,  hermes-agent,  Skills,  WIKI,  Honcho,  Supermemory,  brave-search,  Parallel,  comet-cdp,  Perplexity,  Claude.write]
 ---
 
-
-
 > **작성일**: 2025년 4월 15일  
 > **출처**: Threads [@dayum_gud](https://www.threads.com/@dayum_gud/post/DW_Bdpxj2On) 포스팅 + 최신 공식 문서 기반  
 > **핵심 주제**: Hermes Agent를 중심으로 한 자기 학습형 개인 AI 지식 운영체계
@@ -439,14 +437,14 @@ cron 스케줄: 0 20-23,0-7 * * *
 
 ```mermaid
 flowchart TD
-    Start(["⏰ Cron 트리거<br/>(매시간 정각)"])
+    Start(["⏰ Cron 트리거\n(매시간 정각)"])
     
     A{{"기록 있는 날인가?"}}
-    Skip["⏭️ 즉시 스킵<br/>다음 실행 대기"]
+    Skip["⏭️ 즉시 스킵\n다음 실행 대기"]
     
-    B["🧭 Comet CDP<br/>활동 수집 시작"]
+    B["🧭 Comet CDP\n활동 수집 시작"]
     
-    subgraph 수집["데이터 수집"]
+    subgraph collect["데이터 수집"]
         C1["Claude 스레드 캡처"]
         C2["ChatGPT 스레드 캡처"]
         C3["Gemini 스레드 캡처"]
@@ -454,46 +452,34 @@ flowchart TD
         C5["웹 브라우징 / SNS 아카이빙"]
     end
     
-    D["📝 raw/ 저장<br/>(원문 보존 원칙)"]
+    D["📝 raw/ 저장\n(원문 보존 원칙)"]
     
-    E["⚙️ LLM Wiki 컴파일<br/>entities/concepts/comparisons/queries 분류"]
+    E["⚙️ LLM Wiki 컴파일\nentities/concepts/comparisons/queries 분류"]
     
     F["🔄 동시 업데이트"]
     
-    subgraph 업데이트["동시 처리"]
+    subgraph update["동시 처리"]
         G1["📖 index.md 갱신"]
         G2["📋 log.md 갱신"]
         G3["⚡ Supermemory 동기화"]
     end
     
-    H{{"4시간 경과?"}}
-    I["🧬 Honcho<br/>사용자 모델 업데이트"]
+    H{{"4시간 경과??"}}
+    I["🧬 Honcho\n사용자 모델 업데이트"]
     
-    J["✅ 작업 완료<br/>탭 닫기"]
+    J["✅ 작업 완료\n탭 닫기"]
     
     Start --> A
-    A -- "없음" --> Skip
-    A -- "있음" --> B
-    B --> C1
-    B --> C2
-    B --> C3
-    B --> C4
-    B --> C5
-    C1 --> D
-    C2 --> D
-    C3 --> D
-    C4 --> D
-    C5 --> D
+    A -->|없음| Skip
+    A -->|있음| B
+    B --> collect
+    collect --> D
     D --> E
     E --> F
-    F --> G1
-    F --> G2
-    F --> G3
-    G1 --> H
-    G2 --> H
-    G3 --> H
-    H -- "Yes" --> I
-    H -- "No" --> J
+    F --> update
+    update --> H
+    H -->|Yes| I
+    H -->|No| J
     I --> J
     
     style Start fill:#37474F,color:#fff
