@@ -3,7 +3,7 @@ title: "LLM Wiki × Obsidian으로 세컨드 브레인 만들기"
 date: 2026-04-12 10:30:00 +0900
 categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [True]
-tags: [AI,  WIKI,  Obsidian,  claude-code,  Claudian,  Claude.write]
+tags: [AI,  llm-wiki,  Obsidian,  claude-code,  Claudian,  Claude.write]
 ---
 
 > Andrej Karpathy의 LLM Wiki 패턴 + Claude Code + Claudian 플러그인 완전 해설

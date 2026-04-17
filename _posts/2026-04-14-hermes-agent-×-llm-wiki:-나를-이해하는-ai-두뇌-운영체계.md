@@ -1,14 +1,15 @@
 ---
 title: "Hermes Agent × LLM Wiki: 나를 이해하는 AI 두뇌 운영체계"
 date: 2026-04-14 22:10:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  hermes-agent,  Skills,  WIKI,  Honcho,  Supermemory,  brave-search,  Parallel,  comet-cdp,  Perplexity,  Claude.write]
+tags: [AI,  hermes-agent,  Skills,  llm-wiki,  Honcho,  Supermemory,  brave-search,  Parallel,  comet-cdp,  Perplexity,  Claude.write]
 ---
 
 > **작성일**: 2025년 4월 15일  
 > **출처**: Threads [@dayum_gud](https://www.threads.com/@dayum_gud/post/DW_Bdpxj2On) 포스팅 + 최신 공식 문서 기반  
 > **핵심 주제**: Hermes Agent를 중심으로 한 자기 학습형 개인 AI 지식 운영체계
+
 
 ---
 ## 관련문서
