@@ -1,7 +1,7 @@
 ---
 title: "☤ Hermes Agent 완전정복 가이드"
 date: 2026-04-13 22:30:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Harness]
 mermaid: [True]
 tags: [AI,  hermes-agent,  harness-engineering,  memory-architecture,  Skills,  agent-skills,  MCP,  Toolset,  sub-agents,  OpenClaw,  claude-code,  Claude.write]
 ---
@@ -54,7 +54,7 @@ tags: [AI,  hermes-agent,  harness-engineering,  memory-architecture,  Skills,  
 
 ## 2. Hermes Agent란 무엇인가
 
-Hermes Agent는 **Nous Research**가 2026년 2월 25일 오픈소스로 공개한 자율 AI 에이전트 프레임워크다. MIT 라이선스로 완전 오픈소스이며, 공식 슬로건은 *"The agent that grows with you"*다.
+Hermes Agent는 **Nous Research**가 2026년 2월 25일 오픈소스로 공개한 자율 AI 에이전트 프레임워크다. MIT 라이선스로 완전 오픈소스이며, 공식 슬로건은 *"The agent that grows with you"* 다.
 
 ### 전체 아키텍처 개요
 

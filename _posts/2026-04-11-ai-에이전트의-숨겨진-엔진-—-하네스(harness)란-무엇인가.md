@@ -1,7 +1,7 @@
 ---
 title: "AI 에이전트의 숨겨진 엔진 — '하네스(Harness)'란 무엇인가"
 date: 2026-04-11 19:00:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Harness]
 mermaid: [True]
 tags: [AI,  Harness,  harness-engineering,  Anthropic,  claude-code,  claude-code-source-leak,  KAIROS,  Capybara,  anti-distillation,  context-engineering,  verification-loops,  state-management,  tool-orchestration,  human-in-the-loop-controls,  lifecycle-management,  Claude.write]
 ---

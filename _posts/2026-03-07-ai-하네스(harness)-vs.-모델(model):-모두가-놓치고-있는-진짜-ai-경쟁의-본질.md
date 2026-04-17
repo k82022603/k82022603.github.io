@@ -1,7 +1,7 @@
 ---
 title: "AI 하네스(Harness) vs. 모델(Model): 모두가 놓치고 있는 진짜 AI 경쟁의 본질"
 date: 2026-03-07 04:20:00 +0900
-categories: [AI,  Model]
+categories: [AI,  Harness]
 mermaid: [True]
 tags: [AI,  Harness,  Model,  Codex,  claude-code,  multi-agent,  Claude.write]
 ---

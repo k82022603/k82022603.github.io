@@ -27,17 +27,17 @@ tags: [AI,  harness-engineering,  llm-wiki,  gstack,  GBrain,  hermes-agent,  Op
 
 ```mermaid
 graph TD
-    A[**gstack**<br/>Garry Tan's 워크플로우 레이어<br/>23개 전문 스킬 / 8개 파워툴] --> B[**Claude Code**<br/>터미널 기반 코딩 에이전트]
-    A --> C[**OpenClaw**<br/>Peter Steinberger<br/>메신저 연동 개인 에이전트]
-    A --> D[**Hermes Agent**<br/>Nous Research<br/>자기학습 에이전트]
-    A --> E[**Codex CLI**<br/>OpenAI 코딩 에이전트]
+    A[<b>gstack</b><br/>Garry Tan's 워크플로우 레이어<br/>23개 전문 스킬 / 8개 파워툴] --> B[<b>Claude Code</b><br/>터미널 기반 코딩 에이전트]
+    A --> C[<b>OpenClaw</b><br/>Peter Steinberger<br/>메신저 연동 개인 에이전트]
+    A --> D[<b>Hermes Agent</b><br/>Nous Research<br/>자기학습 에이전트]
+    A --> E[<b>Codex CLI</b><br/>OpenAI 코딩 에이전트]
 
-    F[**GBrain**<br/>Garry Tan's 지식 레이어<br/>장기 기억 + 엔티티 관리] --> C
+    F[<b>GBrain</b><br/>Garry Tan's 지식 레이어<br/>장기 기억 + 엔티티 관리] --> C
     F --> D
 
-    G[**LLM-Wiki**<br/>Karpathy 패턴<br/>LLM 유지 마크다운 위키] -.->|영감| F
+    G[<b>LLM-Wiki</b><br/>Karpathy 패턴<br/>LLM 유지 마크다운 위키] -.->|영감| F
 
-    H[**하네스 엔지니어링**<br/>에이전트 = 모델 + 하네스<br/>Mitchell Hashimoto 2026.02 명명] --> A
+    H[<b>하네스 엔지니어링</b><br/>에이전트 = 모델 + 하네스<br/>Mitchell Hashimoto 2026.02 명명] --> A
     H --> F
     H --> G
 
@@ -279,14 +279,14 @@ graph TD
 ```mermaid
 graph TD
     subgraph 3계층["에이전트 3계층 모델"]
-        L1["**런타임 레이어**<br/>OpenClaw · Hermes Agent<br/>에이전트 실행 환경"]
-        L2["**워크플로우 레이어**<br/>gstack · Claude Code<br/>태스크 오케스트레이션"]
-        L3["**지식 레이어**<br/>GBrain · LLM-Wiki<br/>장기 기억 + 누적 지식"]
+        L1["<b>런타임 레이어</b><br/>OpenClaw · Hermes Agent<br/>에이전트 실행 환경"]
+        L2["<b>워크플로우 레이어</b><br/>gstack · Claude Code<br/>태스크 오케스트레이션"]
+        L3["<b>지식 레이어</b><br/>GBrain · LLM-Wiki<br/>장기 기억 + 누적 지식"]
     end
 
     L3 --> L2 --> L1
 
-    M["**하네스 엔지니어링**<br/>모델 + 하네스 = 에이전트<br/>가이드 + 센서 = 신뢰"]
+    M["<b>하네스 엔지니어링</b><br/>모델 + 하네스 = 에이전트<br/>가이드 + 센서 = 신뢰"]
 
     M --> L1
     M --> L2

@@ -1,7 +1,7 @@
 ---
 title: "에이전트 하네스(Agent Harness): LLM의 시대에서 인프라의 시대로"
 date: 2026-04-14 07:00:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Harness]
 mermaid: [True]
 tags: [AI,  ai-agent,  cognitive-artifacts,  memory-architecture,  Skills,  Protocols,  Harness,  HarrisonChase,  managed-agents,  harness-engineering,  HyperAgents,  open-harness,  Claude.write]
 ---

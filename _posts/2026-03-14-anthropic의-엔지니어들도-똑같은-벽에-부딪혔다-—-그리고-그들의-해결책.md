@@ -1,7 +1,7 @@
 ---
 title: "Anthropic의 엔지니어들도 똑같은 벽에 부딪혔다 — 그리고 그들의 해결책"
 date: 2026-03-14 13:00:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Harness]
 mermaid: [True]
 tags: [AI,   Anthropic,  claude-code,   Harness,  harness-engineering,  Claude.write]
 ---

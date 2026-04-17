@@ -1,7 +1,7 @@
 ---
 title: "Agent Harness의 해부학: 모델을 작동하는 엔진으로 만드는 모든 것"
 date: 2026-03-11 19:30:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Harness]
 mermaid: [True]
 tags: [AI,  ai-agent,  harness-engineering,  Bash,  context-rot,  Claude.write]
 ---
