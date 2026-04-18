@@ -1,7 +1,7 @@
 ---
 title: "Codex는 빅게임에 강한 걸까 — 한 Threads 글을 읽고 느낀 것"
 date: 2026-02-18 10:10:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Codex]
 mermaid: [True]
 tags: [AI,  ai-agent,  Codex,  Claude.write]
 ---

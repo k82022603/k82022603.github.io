@@ -1,7 +1,7 @@
 ---
 title: "카파시의 Auto-Research Loop를 Codex에 붙이자, 0점이 100점이 됐다"
 date: 2026-03-28 08:00:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Codex]
 mermaid: [True]
 tags: [AI,  AndrejKarpathy,  Autoresearch,  agentic-engineering,  Codex,  agent-skills,  claude-code,  Claude.write]
 ---

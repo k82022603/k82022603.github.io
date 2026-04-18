@@ -1,7 +1,7 @@
 ---
 title: "Uncle Bob의 Codex 경고 + GPT-5.4 출시: AI 코딩 에이전트 시대의 명암"
 date: 2026-03-07 06:00:00 +0900
-categories: [AI,  Model]
+categories: [AI,  Codex]
 mermaid: [True]
 tags: [AI,  Model,  Codex,  Uncle-Bob-Martin,  GPT-5,  coding-agents,  tool-search,  Playwright,  Electron,  context-window,  Claude.write]
 ---

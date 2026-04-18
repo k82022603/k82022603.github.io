@@ -1,7 +1,7 @@
 ---
 title: "\"Something Big Is Happening\"을 읽고 느낀 것"
 date: 2026-02-18 10:30:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Codex]
 mermaid: [True]
 tags: [AI,  ai-agent,  Codex,  Claude.write]
 ---
