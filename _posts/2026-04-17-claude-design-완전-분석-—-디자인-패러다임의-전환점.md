@@ -8,7 +8,6 @@ tags: [AI,  claude-design,  Opus-4.7,  design-system,  Handoff,  Export,  Canva,
 
 
 > **출처 기반 분석** | Anthropic 공식 발표 (2026-04-17) + 다수 미디어 취재 종합  
-> **작성일**: 2026-04-18  
 > **분류**: Anthropic Labs / Research Preview / X [阿绎 AYi](https://x.com/ayi_ainotes/status/2045176951292219770)
 
 ---
@@ -498,4 +497,3 @@ Claude Design은 여러 의미에서 주목할 만한 출시다.
 
 ---
 
-*작성일: 2026-04-18*
