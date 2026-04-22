@@ -7,6 +7,7 @@ tags: [AI,  Neo4j,  WSL2,  docker-desktop,  Guide,  Claude.write]
 ---
 
 
+
 > [OWL 온톨로지 기반 Graph 설계 가이드](https://k82022603.github.io/posts/owl-%EC%98%A8%ED%86%A8%EB%A1%9C%EC%A7%80-%EA%B8%B0%EB%B0%98-graph-%EC%84%A4%EA%B3%84-%EA%B0%80%EC%9D%B4%EB%93%9C/)에서 정의한 OWL 온톨로지를 **신규 WSL2 환경**에 Neo4j로 구축하는 단계별 가이드입니다.
 
 | 항목 | 내용 |
