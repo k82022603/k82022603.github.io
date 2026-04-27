@@ -3,7 +3,7 @@ title: "Claude Code 품질 저하 사태 완전 분석"
 date: 2026-04-23 07:00:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  claude-code-quality-regression,  extended-thinking,  Claude.write]
+tags: [AI,  claude-code-quality-regression,  extended-thinking,  Opus-4.7,  Claude.write]
 ---
 
 ## — Extended Thinking 삭감이 복잡한 엔지니어링 워크플로우를 무너뜨린 방식 —
@@ -12,6 +12,7 @@ tags: [AI,  claude-code-quality-regression,  extended-thinking,  Claude.write]
 > **원본 이슈:** [GitHub anthropics/claude-code #42796](https://github.com/anthropics/claude-code/issues/42796)  
 > **제보자:** Stella Laurenzo (AMD AI 시니어 디렉터, MLIR/IREE 엔지니어)  
 > **데이터 규모:** 6,852개 세션 파일 / 17,871개 thinking block / 234,760개 tool call
+
 
 ---
 

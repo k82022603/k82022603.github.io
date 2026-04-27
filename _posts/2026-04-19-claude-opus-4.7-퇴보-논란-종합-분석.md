@@ -3,7 +3,7 @@ title: "Claude Opus 4.7 퇴보 논란 종합 분석"
 date: 2026-04-19 22:00:00 +0900
 categories: [AI,  Claude]
 mermaid: [True]
-tags: [AI,  Anthropic,  Opus-4.7,  MRCR,  multi-round-context-recall,  claude-code,  Claude.ai,  Claude.write]
+tags: [AI,  Anthropic,  Opus-4.7,  MRCR,  multi-round-context-recall,  claude-code,  Claude.ai,  claude-code-quality-regression,  Claude.write]
 ---
 
 > **파워유저들의 만장일치 실망, MRCR 충돌, 그리고 Anthropic의 대응**  

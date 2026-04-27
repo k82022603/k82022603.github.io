@@ -3,7 +3,7 @@ title: "Claude Code Effort 파라미터 완전 가이드"
 date: 2026-04-24 21:00:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  claude-code,  Effort,  Opus-4.7,  adaptive-thinking,  prompt-engineering,  Claude.write]
+tags: [AI,  claude-code,  reasoning-effort,  Opus-4.7,  adaptive-thinking,  prompt-engineering,  claude-code-quality-regression,  Claude.write]
 ---
 
 ### "무조건 높은 게 좋을까?" — @jaewontfix의 실전 인사이트에서 출발하는 Opus 4.7 Effort 심층 분석

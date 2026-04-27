@@ -3,7 +3,7 @@ title: "Claude Code 책임 보고서 분석 및 평가"
 date: 2026-04-21 19:00:00 +0900
 categories: [AI,  RummiArena]
 mermaid: [True]
-tags: [AI,  Anthropic,  Opus-4.7,  accountability-report,  Claude.write]
+tags: [AI,  Anthropic,  Opus-4.7,  accountability-report,  claude-code-quality-regression,  Claude.write]
 ---
 
 > **분석 대상**: [Accountability Report — Claude Code Session Failures (2026-04-21)](https://github.com/k82022603/RummiArena/blob/main/ACCOUNTABILITY_REPORT_2026-04-21.md)
