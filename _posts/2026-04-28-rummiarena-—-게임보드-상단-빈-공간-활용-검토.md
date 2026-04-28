@@ -28,7 +28,7 @@ tags: [AI,  RummiArena,  claude-design,  Claude.write]
 
 ### 현재 레이아웃 (Before)
 
-![Before — 현재 레이아웃](https://019dd2b6-aba0-7a23-a96b-92f101c312fa.claudeusercontent.com/v1/design/projects/019dd2b6-aba0-7a23-a96b-92f101c312fa/serve/docs/wireframe-before.svg?t=e423e060f25904b60dcc3bda887db6178a943011c209f2e2e9a49e2be88a0087.9d0f6dc0-1203-42b7-be68-bff019d4db6c.e88c564b-978d-4ba4-979c-c8827daa5e4c.1777360281)
+![Before — 현재 레이아웃](https://raw.githubusercontent.com/k82022603/k82022603.github.io/refs/heads/main/assets/img/wireframe-before.svg)
 
 빈 공간이 보라색 점선 박스로 표시된 두 영역입니다. 보드 위쪽의 가로 띠와 좌측 컬럼 하단이 핵심입니다.
 
@@ -56,7 +56,7 @@ tags: [AI,  RummiArena,  claude-design,  Claude.write]
 
 ### 안 A. 턴 상태 + 라운드 타임라인 스트립 *(추천: 1차 출시)*
 
-![After A](https://019dd2b6-aba0-7a23-a96b-92f101c312fa.claudeusercontent.com/v1/design/projects/019dd2b6-aba0-7a23-a96b-92f101c312fa/serve/docs/wireframe-after-a.svg?t=e423e060f25904b60dcc3bda887db6178a943011c209f2e2e9a49e2be88a0087.9d0f6dc0-1203-42b7-be68-bff019d4db6c.e88c564b-978d-4ba4-979c-c8827daa5e4c.1777360281)
+![After A](https://raw.githubusercontent.com/k82022603/k82022603.github.io/refs/heads/main/assets/img/wireframe-after-a.svg)
 
 상단 빈 띠를 **80px 안팎의 "턴 상태 스트립"** 으로 채웁니다. 좌→우로 정보 위계가 명확하게 흐릅니다.
 
@@ -77,7 +77,7 @@ tags: [AI,  RummiArena,  claude-design,  Claude.write]
 
 ### 안 B. 행동 코치 카드 + 보드 확장
 
-![After B](https://019dd2b6-aba0-7a23-a96b-92f101c312fa.claudeusercontent.com/v1/design/projects/019dd2b6-aba0-7a23-a96b-92f101c312fa/serve/docs/wireframe-after-b.svg?t=e423e060f25904b60dcc3bda887db6178a943011c209f2e2e9a49e2be88a0087.9d0f6dc0-1203-42b7-be68-bff019d4db6c.e88c564b-978d-4ba4-979c-c8827daa5e4c.1777360281)
+![After B](https://raw.githubusercontent.com/k82022603/k82022603.github.io/refs/heads/main/assets/img/wireframe-after-b.svg)
 
 빈 띠를 **"YOUR MOVE — 행동 코치 카드"** 로 만들어, 더 적극적으로 사용자의 다음 행동을 가이드합니다. 동시에 룸 헤더의 정보(차례·타이머·라운드)를 상단 바에 압축해 넣어 **세로 공간을 절약**, 보드 자체도 살짝 위로 확장합니다.
 
