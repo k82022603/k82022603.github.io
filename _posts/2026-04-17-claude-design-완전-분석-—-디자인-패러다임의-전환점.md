@@ -1,7 +1,7 @@
 ---
 title: "Claude Design 완전 분석 — 디자인 패러다임의 전환점"
 date: 2026-04-17 21:00:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Design]
 mermaid: [True]
 tags: [AI,  claude-design,  Opus-4.7,  design-system,  Handoff,  Export,  Canva,  Claude.write]
 ---
@@ -9,6 +9,7 @@ tags: [AI,  claude-design,  Opus-4.7,  design-system,  Handoff,  Export,  Canva,
 
 > **출처 기반 분석** | Anthropic 공식 발표 (2026-04-17) + 다수 미디어 취재 종합  
 > **분류**: Anthropic Labs / Research Preview / X [阿绎 AYi](https://x.com/ayi_ainotes/status/2045176951292219770)
+
 
 ---
 

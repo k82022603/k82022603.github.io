@@ -1,7 +1,7 @@
 ---
 title: "Claude Design 완전 해설: Agentic Designing 시대의 개막"
 date: 2026-04-19 08:00:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Design]
 mermaid: [True]
 tags: [AI,  claude-code,  claude-design,  design-system,  Claude.write]
 ---

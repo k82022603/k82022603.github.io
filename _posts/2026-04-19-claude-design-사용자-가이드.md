@@ -1,7 +1,7 @@
 ---
 title: "Claude Design 사용자 가이드"
 date: 2026-04-19 21:10:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Design]
 mermaid: [True]
 tags: [AI,  claude-code,  claude-design,  design-system,  Guide,  Claude.write]
 ---

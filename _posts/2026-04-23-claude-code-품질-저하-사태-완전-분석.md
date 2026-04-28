@@ -3,7 +3,7 @@ title: "Claude Code 품질 저하 사태 완전 분석"
 date: 2026-04-23 07:00:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  claude-code-quality-regression,  extended-thinking,  Opus-4.7,  Claude.write]
+tags: [AI,  RummiArena,  claude-code-quality-regression,  extended-thinking,  Opus-4.7,  Claude.write]
 ---
 
 ## — Extended Thinking 삭감이 복잡한 엔지니어링 워크플로우를 무너뜨린 방식 —

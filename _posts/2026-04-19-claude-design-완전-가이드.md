@@ -1,7 +1,7 @@
 ---
 title: "🎨 Claude Design 완전 가이드"
 date: 2026-04-19 21:00:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Design]
 mermaid: [True]
 tags: [AI,  claude-code,  claude-design,  design-system,  Guide,  Claude.write]
 ---

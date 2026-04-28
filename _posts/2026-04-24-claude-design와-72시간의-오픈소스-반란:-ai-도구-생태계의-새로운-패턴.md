@@ -1,9 +1,9 @@
 ---
 title: "Claude Design와 72시간의 오픈소스 반란: AI 도구 생태계의 새로운 패턴"
 date: 2026-04-24 21:30:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  Claude Design]
 mermaid: [True]
-tags: [AI,  claude-design,  Opus-4.7,  huashu-design,  open-codesign,  awesome-claude-design,  Claude.write]
+tags: [AI,  claude-design,  Opus-4.7,  open-source,  Claude.write]
 ---
 
 
