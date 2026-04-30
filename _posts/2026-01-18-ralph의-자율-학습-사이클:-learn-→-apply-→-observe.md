@@ -1,9 +1,9 @@
 ---
 title: "Ralph의 자율 학습 사이클: Learn → Apply → Observe"
 date: 2026-01-18 10:00:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  AI Agent]
 mermaid: [True]
-tags: [AI,   ai-agent,  ralph-playbook,  software-engineering,  Claude.write]
+tags: [AI,  Ralph,  ai-agent,  ralph-playbook,  software-engineering,  Claude.write]
 ---
 
 

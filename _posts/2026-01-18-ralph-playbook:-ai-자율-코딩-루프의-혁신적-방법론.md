@@ -1,9 +1,9 @@
 ---
 title: "Ralph Playbook: AI 자율 코딩 루프의 혁신적 방법론"
 date: 2026-01-18 09:00:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  AI Agent]
 mermaid: [True]
-tags: [AI,   claude-code,  ralph-playbook,  software-engineering,  Claude.write]
+tags: [AI,  Ralph,  ralph-playbook,  software-engineering,  Claude.write]
 ---
 
 
