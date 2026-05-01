@@ -13,6 +13,7 @@ tags: [AI,  AndrejKarpathy,  vibe-coding,  agentic-engineering,  software-3.0,  
 > **진행자:** Stephanie Zhan (Sequoia Capital 파트너)  
 > **행사:** AI Ascent 2026
 
+
 ---
 
 ## 목차
@@ -88,7 +89,7 @@ graph LR
 
 ## 4. 에이전트가 인스톨러가 된다 — OpenClaw 사례
 
-Software 3.0 패러다임이 실제로 어떻게 다른지를 보여주는 첫 번째 구체적 사례가 OpenClaw(Claude Code의 내부 코드명으로 추정) 설치 방식이다.
+Software 3.0 패러다임이 실제로 어떻게 다른지를 보여주는 첫 번째 구체적 사례가 [OpenClaw](https://openclaw.ai/)(컴퓨터의 OS 권한을 바탕으로 파일 관리, 웹 브라우징, 터미널 명령 등 실제 작업을 자율적으로 수행하는 오픈소스 AI 에이전트 프레임워크) 설치 방식이다.
 
 전통적인 소프트웨어 설치는 셸 스크립트로 이루어진다. 다양한 플랫폼과 환경을 지원하다 보면 이 스크립트가 거대하게 부풀어 오르고 복잡해진다. 개발자는 모든 경우의 수를 명시적으로 코드에 담아야 한다. 이것은 전형적인 Software 1.0 방식이다.
 

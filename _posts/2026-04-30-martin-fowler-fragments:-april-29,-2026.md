@@ -51,7 +51,7 @@ Parsons가 내놓은 가장 핵심적인 통찰은 소프트웨어 개발의 경
 
 ### 개념의 등장
 
-Fowler는 4월 초 Birgitta Böckeler가 쓴 하네스 엔지니어링(Harness Engineering) 아티클을 "훌륭하다"고 소개하며, 그 글이 엄청난 트래픽을 끌어모았다는 점을 덧붙인다. 그러면서 Böckeler가 Chris Ford와 함께 녹화한 영상 토론도 추천한다. 이 영상에서 두 사람은 하네스 내의 **컴퓨테이셔널 센서(computational sensors)**, 예를 들어 정적 분석(static analysis)이나 테스트 같은 도구들의 역할에 집중해서 논의한다.
+Fowler는 4월 초 Birgitta Böckeler가 쓴 [하네스 엔지니어링(Harness Engineering) 아티클](https://martinfowler.com/articles/harness-engineering.html)을 "훌륭하다"고 소개하며, 그 글이 엄청난 트래픽을 끌어모았다는 점을 덧붙인다. 그러면서 [Böckeler가 Chris Ford와 함께 녹화한 영상 토론](https://www.youtube.com/watch?v=uLWOLmeHOSE)도 추천한다. 이 영상에서 두 사람은 하네스 내의 **컴퓨테이셔널 센서(computational sensors)**, 예를 들어 정적 분석(static analysis)이나 테스트 같은 도구들의 역할에 집중해서 논의한다.
 
 하네스 엔지니어링이라는 개념은 2026년 초 하나의 분야로 명명됐다. 그 계기는 OpenAI의 엔지니어 Ryan Lopopolo가 쓴 내부 에이전트 인프라 관련 글이었고, 이후 Terraform과 Ghostty를 만든 Mitchell Hashimoto가 그 핵심 통찰을 공식으로 정리했다. 공식은 간단하다.
 
