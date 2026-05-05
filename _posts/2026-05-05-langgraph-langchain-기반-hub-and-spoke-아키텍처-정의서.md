@@ -555,9 +555,9 @@ flowchart TD
 
     Supervisor["🎯 Supervisor\n태스크 분석 + 라우팅 결정"]
 
-    Supervisor --> Safety{{"iteration_count\n≥ max_iterations?"}}
+    Supervisor --> Safety{"iteration_count\n≥ max_iterations?"}
     Safety -->|"YES"| END1(["END\n(안전 상한선 초과)"])
-    Safety -->|"NO"| Router{{"route_to_agent()\n조건부 엣지"}}
+    Safety -->|"NO"| Router{"route_to_agent()\n조건부 엣지"}
 
     Router -->|"FINISH"| END2(["END\n(정상 완료)"])
     Router -->|"research_agent"| R["🔍 Research Agent\n(동기)"]
