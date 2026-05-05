@@ -8,6 +8,7 @@ tags: [AI,  Designer,  Prompt,  Codex,  claude-code,  Cowork,  Claude.write]
 
 > AI를 쓸수록 왜 기획 품질은 그대로인가, 그리고 어떻게 바꿀 것인가
 
+
 ## 관련문서
 
 [**AI를 잘 쓰는 기획자는 왜 질문부터 다를까?**](https://k82022603.github.io/posts/ai%EB%A5%BC-%EC%9E%98-%EC%93%B0%EB%8A%94-%EA%B8%B0%ED%9A%8D%EC%9E%90%EB%8A%94-%EC%99%9C-%EC%A7%88%EB%AC%B8%EB%B6%80%ED%84%B0-%EB%8B%A4%EB%A5%BC%EA%B9%8C/)
