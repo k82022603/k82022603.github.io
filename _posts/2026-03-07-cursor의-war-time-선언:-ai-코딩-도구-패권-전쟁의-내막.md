@@ -1,9 +1,9 @@
 ---
 title: "Cursor의 \"War Time\" 선언: AI 코딩 도구 패권 전쟁의 내막"
 date: 2026-03-07 22:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Cursor]
 mermaid: [True]
-tags: [AI,   Cursor,  ai-coding-platforms,  Claude.write]
+tags: [AI,  Cursor,  ai-coding-platforms,  Claude.write]
 ---
 
 

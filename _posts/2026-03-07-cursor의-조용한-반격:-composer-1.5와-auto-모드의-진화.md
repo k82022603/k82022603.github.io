@@ -1,7 +1,7 @@
 ---
 title: "Cursor의 조용한 반격: Composer 1.5와 Auto 모드의 진화"
 date: 2026-03-07 22:10:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Cursor]
 mermaid: [True]
 tags: [AI,   Cursor,  ai-coding-platforms,  Composer,  Claude.write]
 ---
