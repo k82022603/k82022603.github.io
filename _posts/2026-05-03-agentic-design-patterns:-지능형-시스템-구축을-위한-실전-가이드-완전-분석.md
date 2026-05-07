@@ -148,7 +148,7 @@ flowchart TD
 flowchart LR
     Task["작업 요청"] --> Generator["생성 에이전트\n초안 작성"]
     Generator --> |"초안"| Critic["비평 에이전트\n품질 평가"]
-    Critic --> |"피드백"| Check{{"목표 달성?"}}
+    Critic --> |"피드백"| Check{"목표 달성?"}
     Check --> |"미달"| Generator
     Check --> |"충족"| Output["최종 출력"]
     style Check fill:#fff3cd
