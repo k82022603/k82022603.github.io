@@ -3,13 +3,14 @@ title: "하네스 엔지니어링 · LLM-Wiki · gstack · GBrain · Hermes Agen
 date: 2026-04-16 07:20:00 +0900
 categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  harness-engineering,  llm-wiki,  gstack,  GBrain,  hermes-agent,  OpenClaw,  Claude.write]
+tags: [AI,  harness-engineering,  llm-wiki,  GStack,  GBrain,  hermes-agent,  OpenClaw,  Claude.write]
 ---
 
 ## 일주일 체험 후 7가지 깨달음
 
 > 2026년 4월 | 박승순 (@park__seungsoon) Threads 포스트 기반  
 > 최신 정보 보강 및 분석 정리
+
 
 ---
 
