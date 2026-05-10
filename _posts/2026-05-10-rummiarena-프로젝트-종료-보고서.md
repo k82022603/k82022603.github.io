@@ -382,5 +382,5 @@ RummiArena는 "LLM이 전략 게임을 얼마나 잘 플레이하는가?"라는 
 
 ---
 
-*이 보고서는 프로젝트 종료일(2026-05-10)에 작성되었습니다.*
-*관련 문서: [최종 회고](../../work_logs/retrospectives/final-2026-05-10/) | [운영 이관 계획](./02-operation-handover-plan.md)*
+- *이 보고서는 프로젝트 종료일(2026-05-10)에 작성되었습니다.*
+- *관련 문서: [최종 회고](https://github.com/k82022603/RummiArena/tree/main/work_logs/retrospectives/final-2026-05-10) | [운영 이관 계획](https://github.com/k82022603/RummiArena/blob/main/docs/07-closure/02-operation-handover-plan.md) | [RummiArena 프로젝트종료보고서](https://docs.google.com/presentation/d/11N06a1DsmAjPdf5fGND6ioqZBucl-qBW/edit?usp=sharing&ouid=109074496488614296405&rtpof=true&sd=true)*
