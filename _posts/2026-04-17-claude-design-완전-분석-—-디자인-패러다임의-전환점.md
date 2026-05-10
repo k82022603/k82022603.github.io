@@ -3,7 +3,7 @@ title: "Claude Design 완전 분석 — 디자인 패러다임의 전환점"
 date: 2026-04-17 21:00:00 +0900
 categories: [AI,  Claude Design]
 mermaid: [True]
-tags: [AI,  claude-design,  Opus-4.7,  design-system,  Handoff,  Export,  Canva,  Claude.write]
+tags: [AI,  claude-design,  Opus-4.7,  design-system,  Handoff,  Export,  Canva,  Figma,  Claude.write]
 ---
 
 

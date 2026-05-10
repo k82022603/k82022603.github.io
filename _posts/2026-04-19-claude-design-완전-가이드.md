@@ -3,7 +3,7 @@ title: "🎨 Claude Design 완전 가이드"
 date: 2026-04-19 21:00:00 +0900
 categories: [AI,  Claude Design]
 mermaid: [True]
-tags: [AI,  claude-code,  claude-design,  design-system,  Guide,  Claude.write]
+tags: [AI,  claude-code,  claude-design,  design-system,  Figma,  Guide,  Claude.write]
 ---
 
 > **출시일**: 2026년 4월 17일 | **모델**: Claude Opus 4.7 | **상태**: Research Preview  
