@@ -3,7 +3,7 @@ title: "Harness-as-a-Service: AI 에이전트 시대의 새로운 인프라 혁�
 date: 2026-05-02 17:30:00 +0900
 categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  Harness,  harness-as-a-service,  cursor-sdk,  Codex,  codex-harness-engineering,  Claude.write]
+tags: [AI,  Harness,  harness-as-a-service,  cursor-sdk,  Codex,  harness-engineering,  Claude.write]
 ---
 
 
