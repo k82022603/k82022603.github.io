@@ -3,7 +3,7 @@ title: "RAG 기술 아키텍처 세미나 - (5) 엔터프라이즈 Hybrid RAG �
 date: 2026-05-11 21:40:00 +0900
 categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [True]
-tags: [AI,  GraphRAG,  knowledge-graph,  hybrid-search,  RRF,  adaptive-gleaning,  knowledge-based-GraphRAG,  RAGAS,  DeepSeek,  LangGraph,  Neo4j,  Ontology,  Claude.write]
+tags: [AI,  GraphRAG,  knowledge-graph,  hybrid-search,  RRF,  adaptive-gleaning,  knowledge-based-GraphRAG,  RAGAS,  DeepSeek,  LangGraph,  Neo4j,  Ontology,  hybrid-rag-knowledge-ops,  Claude.write]
 ---
 
 ## 4-Way Hybrid Search × Knowledge Graph × Triple-Store 아키텍처

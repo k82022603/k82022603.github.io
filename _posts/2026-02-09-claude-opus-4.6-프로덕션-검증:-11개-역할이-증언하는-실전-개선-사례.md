@@ -3,7 +3,7 @@ title: "Claude Opus 4.6 프로덕션 검증: 11개 역할이 증언하는 실전
 date: 2026-02-09 20:00:00 +0900
 categories: [AI,  HRKP (Hybrid RAG Knowledge Platform)]
 mermaid: [True]
-tags: [AI,  Material,  claude-code,  Opus-4.6,  claude-agent,  Claude.write]
+tags: [AI,  Material,  claude-code,  Opus-4.6,  claude-agent,  hybrid-rag-knowledge-ops,  Claude.write]
 ---
 
 ## 관련문서

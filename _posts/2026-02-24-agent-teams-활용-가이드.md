@@ -3,7 +3,7 @@ title: "Agent Teams 활용 가이드"
 date: 2026-02-24 08:00:00 +0900
 categories: [AI,  HRKP (Hybrid RAG Knowledge Platform)]
 mermaid: [True]
-tags: [AI,  claude-code,  agent-teams,  claude-teams,  Claude.write]
+tags: [AI,  claude-code,  agent-teams,  claude-teams,  hybrid-rag-knowledge-ops,  Claude.write]
 ---
 
 
