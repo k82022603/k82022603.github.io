@@ -273,9 +273,11 @@ sudo usermod -aG docker neo4j
 
 ### A.5.1 실행 중인 Neo4j 컨테이너 확인
 
+{% raw %}  
 ```bash
 docker ps --filter "name=neo4j" --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"
 ```
+{% endraw %}
 
 **예상 출력 (본 프로젝트 가동 중인 경우)**:
 ```
@@ -302,6 +304,8 @@ ss -tlnp 2>/dev/null | grep -E ":(7474|7475|7687|7688)\s" || echo "모두 비어
 
 ### A.5.3 컨테이너 이름 충돌 확인
 
+{% raw %}
+
 ```bash
 # serag-neo4j가 이미 있는지 (있으면 안 됨)
 docker ps -a --filter "name=serag-neo4j" --format "{{.Names}}"
@@ -310,6 +314,7 @@ docker ps -a --filter "name=serag-neo4j" --format "{{.Names}}"
 docker stop serag-neo4j 2>/dev/null
 docker rm serag-neo4j 2>/dev/null
 ```
+{% endraw %}
 
 ### A.5.4 네트워크 이름 충돌 확인
 
@@ -340,6 +345,8 @@ docker images neo4j
 
 ### A.6.2 이미지 검증
 
+{% raw %}
+
 ```bash
 # 메타데이터 확인
 docker inspect neo4j:5.18-community --format '{{.Config.Env}}' | tr ',' '\n' | head -20
@@ -348,6 +355,8 @@ docker inspect neo4j:5.18-community --format '{{.Config.Env}}' | tr ',' '\n' | h
 docker run --rm neo4j:5.18-community neo4j --version
 # 5.18.x
 ```
+
+{% endraw %}
 
 ### A.6.3 버전 호환성 표
 
@@ -549,6 +558,8 @@ docker logs serag-neo4j 2>&1 | head -50
 
 ### A.9.4 헬스체크 대기 (스크립트)
 
+{% raw %}
+
 ```bash
 for i in {1..24}; do
   status=$(docker inspect -f '{{.State.Health.Status}}' serag-neo4j 2>/dev/null)
@@ -557,12 +568,16 @@ for i in {1..24}; do
   sleep 5
 done
 ```
+{% endraw %}
 
 ### A.9.5 두 컨테이너 공존 확인
+
+{% raw %}
 
 ```bash
 docker ps --filter "name=neo4j" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 ```
+{% endraw %}
 
 **예상 출력**:
 ```

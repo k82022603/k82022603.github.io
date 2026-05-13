@@ -62,6 +62,8 @@ tags: [AI,  Neo4j,  WSL2,  docker-desktop,  Guide,  Claude.write]
 
 ### 1.2 사전 확인 명령
 
+{% raw %}
+
 ```bash
 # WSL2 진입 후 작업 디렉토리 이동
 cd /home/neo4j/SearcheRAGWithGraphRAG
@@ -77,6 +79,7 @@ docker ps --filter "name=neo4j" --format "table {{.Names}}\t{{.Status}}\t{{.Port
 # 사용 중인 포트 확인
 ss -tlnp 2>/dev/null | grep -E "7474|7475|7687|7688" || echo "포트 비어있음"
 ```
+{% endraw %}
 
 > ⚠️ **중요**: `kp-neo4j`가 7474/7687을 점유 중이면 **신규 컨테이너는 7475/7688로 분리**합니다 (§2 참조).
 
@@ -350,6 +353,8 @@ ls -la /home/neo4j/SearcheRAGWithGraphRAG/ontology/
 
 ### 6.1 `scripts/start.sh`
 
+{% raw %}  
+
 ```bash
 cat > /home/neo4j/SearcheRAGWithGraphRAG/scripts/start.sh <<'EOF'
 #!/bin/bash
@@ -378,6 +383,7 @@ EOF
 
 chmod +x /home/neo4j/SearcheRAGWithGraphRAG/scripts/start.sh
 ```
+{% endraw %}
 
 ### 6.2 `scripts/stop.sh`
 
@@ -394,6 +400,8 @@ chmod +x /home/neo4j/SearcheRAGWithGraphRAG/scripts/stop.sh
 
 ### 6.3 첫 기동
 
+{% raw %}  
+
 ```bash
 cd /home/neo4j/SearcheRAGWithGraphRAG
 ./scripts/start.sh
@@ -404,6 +412,8 @@ docker ps --filter "name=neo4j" --format "table {{.Names}}\t{{.Status}}\t{{.Port
 # kp-neo4j      Up    0.0.0.0:7474->7474/tcp, 0.0.0.0:7687->7687/tcp
 # serag-neo4j   Up    0.0.0.0:7475->7474/tcp, 0.0.0.0:7688->7687/tcp
 ```
+
+{% endraw %}
 
 ### 6.4 플러그인 설치 검증
 
@@ -942,6 +952,8 @@ serag-cypher
 
 ### 12.2 healthcheck 스크립트
 
+{% raw %}
+
 ```bash
 cat > /home/neo4j/SearcheRAGWithGraphRAG/scripts/healthcheck.sh <<'EOF'
 #!/bin/bash
@@ -966,6 +978,7 @@ EOF
 
 chmod +x /home/neo4j/SearcheRAGWithGraphRAG/scripts/healthcheck.sh
 ```
+{% endraw %}
 
 ### 12.3 전체 흐름 요약
 

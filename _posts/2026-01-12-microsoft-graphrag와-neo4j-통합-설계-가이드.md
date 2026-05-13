@@ -2815,6 +2815,8 @@ class DocumentProcessor:
 
 **검색 엔진**:
 
+{% raw %}
+
 ```python
 # search_engine.py
 class SearchEngine:
@@ -2896,6 +2898,9 @@ class SearchEngine:
             
             return [dict(record) for record in result]
 ```
+
+{% endraw %}
+
 
 **메인 애플리케이션**:
 
