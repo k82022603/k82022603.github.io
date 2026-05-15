@@ -3,7 +3,7 @@ title: "PostgreSQL 하나로 다 되는가 — pgvector + pg_search(BM25) 단일
 date: 2026-03-07 22:30:00 +0900
 categories: [TechStack,  Backend Architecture]
 mermaid: [True]
-tags: [BM25,  PostgreSQL,  Elasticsearch,  MongoDB,  pgvector,  pg_search,  Pinecone,  Claude.write]
+tags: [BM25,  PostgreSQL,  Elasticsearch,  MongoDB,  PGVector,  pg_search,  Pinecone,  Claude.write]
 ---
 
 
