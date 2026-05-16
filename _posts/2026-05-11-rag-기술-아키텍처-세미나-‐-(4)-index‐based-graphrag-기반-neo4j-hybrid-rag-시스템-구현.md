@@ -3,1241 +3,1041 @@ title: "RAG 기술 아키텍처 세미나 - (4) Index-based GraphRAG 기반 Neo4
 date: 2026-05-11 21:30:00 +0900
 categories: [AI,  RAG & Knowledge Retrieval]
 mermaid: [True]
-tags: [AI,  GraphRAG,  index-based-GraphRAG,  microsoft-graph,  Neo4j,  LazyGraphRAG,  Parquet,  hybrid-rag,  Claude.write]
+tags: [AI,  GraphRAG,  index-based-GraphRAG,  Neo4j,  LazyGraphRAG,  hybrid-rag,  Chunking,  chunking-strategies,  Claude.write]
 ---
 
-## Microsoft GraphRAG × Neo4j × BM25 통합 아키텍처
+## HippoRAG 방식 엔터티 링크 그래프 × Neo4j × BM25 통합 아키텍처
 
-> **아키텍처팀 기술 세미나 — 보조 자료**  
-> 원본 문서: Neo4j 기반 GraphRAG를 활용한 Hybrid RAG 시스템 구현  
-> 참조 문서: Index-based GraphRAG 심화 이해  
-> 작성일: 2026-05-11
-
+> **아키텍처팀 기술 세미나 — 구현 가이드**  
+> 선행 문서: (2) Index-based GraphRAG 심화 이해, (3) Knowledge-based GraphRAG 심화 이해  
+> 작성일: 2026-05-15  
+>
 ---
 
 ## 관련글
 
-- [**RAG 기술 아키텍처 세미나 - (1) Neo4j 기반 GraphRAG를 활용한 Hybrid RAG 시스템 구현**](https://k82022603.github.io/posts/rag-%EA%B8%B0%EC%88%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EC%84%B8%EB%AF%B8%EB%82%98-(1)-neo4j-%EA%B8%B0%EB%B0%98-graphrag%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-hybrid-rag-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%ED%98%84/)
-- [**RAG 기술 아키텍처 세미나 - (2) Index-based GraphRAG 심화 이해**](https://k82022603.github.io/posts/rag-%EA%B8%B0%EC%88%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EC%84%B8%EB%AF%B8%EB%82%98-(2)-index-based-graphrag-%EC%8B%AC%ED%99%94-%EC%9D%B4%ED%95%B4/)
-- [**RAG 기술 아키텍처 세미나 - (3) Knowledge-based GraphRAG 심화 이해**](https://k82022603.github.io/posts/rag-%EA%B8%B0%EC%88%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EC%84%B8%EB%AF%B8%EB%82%98-(3)-knowledge-based-graphrag-%EC%8B%AC%ED%99%94-%EC%9D%B4%ED%95%B4/)
+- [**RAG 기술 아키텍처 세미나 - (1) Neo4j 기반 GraphRAG를 활용한 Hybrid RAG 시스템 구현**](https://k82022603.github.io/posts/rag-기술-아키텍처-세미나-(1)/)
+- [**RAG 기술 아키텍처 세미나 - (2) Index-based GraphRAG 심화 이해**](https://k82022603.github.io/posts/rag-기술-아키텍처-세미나-(2)/)
+- [**RAG 기술 아키텍처 세미나 - (3) Knowledge-based GraphRAG 심화 이해**](https://k82022603.github.io/posts/rag-기술-아키텍처-세미나-(3)/)
 - **RAG 기술 아키텍처 세미나 - (4) Index-based GraphRAG 기반 Neo4j Hybrid RAG 시스템 구현**
-- [**RAG 기술 아키텍처 세미나 - (5) 엔터프라이즈 Hybrid RAG 지식 플랫폼 구축 전략**](https://k82022603.github.io/posts/rag-%EA%B8%B0%EC%88%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EC%84%B8%EB%AF%B8%EB%82%98-(5)-%EC%97%94%ED%84%B0%ED%94%84%EB%9D%BC%EC%9D%B4%EC%A6%88-hybrid-rag-%EC%A7%80%EC%8B%9D-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EA%B5%AC%EC%B6%95-%EC%A0%84%EB%9E%B5/)
-- [**RAG 기술 아키텍처 세미나 - (6) 온톨로지로 Knowledge Graph 설계하기**](https://k82022603.github.io/posts/rag-%EA%B8%B0%EC%88%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EC%84%B8%EB%AF%B8%EB%82%98-(6)-%EC%98%A8%ED%86%A8%EB%A1%9C%EC%A7%80%EB%A1%9C-knowledge-graph-%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/)
-- [**RAG 기술 아키텍처 세미나 - (7) GraphRAG와 Neo4j로 만드는 지능형 지식 검색**](https://k82022603.github.io/posts/rag-%EA%B8%B0%EC%88%A0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EC%84%B8%EB%AF%B8%EB%82%98-(7)-graphrag%EC%99%80-neo4j%EB%A1%9C-%EB%A7%8C%EB%93%9C%EB%8A%94-%EC%A7%80%EB%8A%A5%ED%98%95-%EC%A7%80%EC%8B%9D-%EA%B2%80%EC%83%89/)
+- [**RAG 기술 아키텍처 세미나 - (5) 엔터프라이즈 Hybrid RAG 지식 플랫폼 구축 전략**](https://k82022603.github.io/posts/rag-기술-아키텍처-세미나-(5)/)
+- [**RAG 기술 아키텍처 세미나 - (6) 온톨로지로 Knowledge Graph 설계하기**](https://k82022603.github.io/posts/rag-기술-아키텍처-세미나-(6)/)
+- [**RAG 기술 아키텍처 세미나 - (7) GraphRAG와 Neo4j로 만드는 지능형 지식 검색**](https://k82022603.github.io/posts/rag-기술-아키텍처-세미나-(7)/)
 
 ---
 
 ## 목차
 
-1. [이 문서의 목적 — Index-based + Neo4j의 결합](#1-이-문서의-목적--index-based--neo4j의-결합)
+1. [이 문서의 목적 — Index-based + Neo4j의 결합 이유](#1-이-문서의-목적--index-based--neo4j의-결합-이유)
 2. [전체 시스템 개념 지도](#2-전체-시스템-개념-지도)
-3. [인덱싱 파이프라인 아키텍처](#3-인덱싱-파이프라인-아키텍처)
-4. [Neo4j 내부 그래프 데이터 모델](#4-neo4j-내부-그래프-데이터-모델)
-5. [질의 파이프라인 아키텍처 — 세 가지 탐색 방식](#5-질의-파이프라인-아키텍처--세-가지-탐색-방식)
-6. [Hybrid RAG 통합 아키텍처 — BM25 + Vector + Community](#6-hybrid-rag-통합-아키텍처--bm25--vector--community)
-7. [LazyGraphRAG 변형 아키텍처](#7-lazygraphrag-변형-아키텍처)
-8. [질의 유형별 라우팅 설계](#8-질의-유형별-라우팅-설계)
-9. [운영 아키텍처 설계](#9-운영-아키텍처-설계)
-10. [단계별 구현 전략 — PoC에서 운영까지](#10-단계별-구현-전략--poc에서-운영까지)
-11. [Knowledge-based GraphRAG와 병행 활용](#11-knowledge-based-graphrag와-병행-활용)
-12. [결론](#12-결론)
+3. [Neo4j 그래프 데이터 모델 설계](#3-neo4j-그래프-데이터-모델-설계)
+4. [인덱싱 파이프라인 — 문서에서 Neo4j 그래프까지](#4-인덱싱-파이프라인--문서에서-neo4j-그래프까지)
+5. [질의 파이프라인 — 세 가지 검색 경로의 통합](#5-질의-파이프라인--세-가지-검색-경로의-통합)
+6. [Neo4j GDS PageRank 기반 다중 홉 탐색](#6-neo4j-gds-pagerank-기반-다중-홉-탐색)
+7. [BM25 + Vector + Graph 통합 — Hybrid Scoring](#7-bm25--vector--graph-통합--hybrid-scoring)
+8. [구현 스택 및 핵심 코드 구조](#8-구현-스택-및-핵심-코드-구조)
+9. [질의 유형별 동작 방식 상세](#9-질의-유형별-동작-방식-상세)
+10. [운영 아키텍처 설계](#10-운영-아키텍처-설계)
+11. [단계별 구현 전략 — PoC에서 운영까지](#11-단계별-구현-전략--poc에서-운영까지)
+12. [Knowledge-based GraphRAG와의 병행 활용](#12-knowledge-based-graphrag와의-병행-활용)
+13. [한계와 고려사항](#13-한계와-고려사항)
+14. [결론](#14-결론)
 
 ---
 
-## 1. 이 문서의 목적 — Index-based + Neo4j의 결합
+## 1. 이 문서의 목적 — Index-based + Neo4j의 결합 이유
 
 ### 1.1 왜 Index-based GraphRAG에 Neo4j를 더하는가
 
-Microsoft GraphRAG는 기본적으로 결과물을 **Parquet 파일** 형태로 로컬 디스크에 저장합니다. 인덱싱이 끝나면 엔터티, 관계, 커뮤니티 리포트, 텍스트 청크 등이 모두 Parquet 파일 묶음으로 존재합니다. 이 상태에서도 Microsoft 제공 CLI로 질의를 실행할 수 있지만, 엔터프라이즈 환경에서 실제 운영 시스템으로 통합하려면 여러 한계가 있습니다.
+세미나 시리즈 (2)편에서 설명한 것처럼, Index-based GraphRAG(RAPTOR, HippoRAG 계열)의 기본 구현체들은 대부분 **인메모리 그래프(NetworkX) 또는 경량 파일 기반 저장소**를 사용합니다. HippoRAG의 공식 오픈소스 구현(github.com/OSU-NLP-Group/HippoRAG)은 NetworkX 라이브러리로 그래프를 구성하고, Python 프로세스 메모리 안에서 Personalized PageRank(PPR)를 실행합니다.
 
-- Parquet 파일 기반 저장은 **동시 접근, 분산 조회, 실시간 갱신**에 적합하지 않습니다.
-- 그래프 구조의 **시각화 및 탐색** 도구가 제한됩니다.
-- BM25나 벡터 검색 결과와 **통합하는 질의 계층**을 별도로 구성해야 합니다.
-- 기존 애플리케이션과의 **API 통합**이 어렵습니다.
+이 방식은 연구용 프로토타입에서는 충분하지만, 엔터프라이즈 환경에서의 실제 운영 시스템으로 확장하려면 다음과 같은 구조적 한계에 부딪힙니다.
 
-이 문제를 해결하는 것이 **MS GraphRAG 인덱싱 결과물을 Neo4j로 가져와 그래프 DB를 질의 백엔드로 활용**하는 방식입니다. Neo4j가 그래프 저장소, 벡터 인덱스, 전문 검색 인덱스를 모두 단일 플랫폼에서 제공하기 때문에 Hybrid RAG 통합 지점으로서 자연스럽게 기능합니다.
+수만 개 이상의 청크와 수십만 개 이상의 엔터티를 인메모리로 처리하면 메모리 요구량이 급격히 증가하고, 서버 재시작마다 그래프를 다시 로드해야 합니다. 또한 여러 서비스 인스턴스에서 동시에 그래프를 조회하려면 별도의 공유 저장소가 필요합니다. BM25 검색 시스템, 벡터 DB, 그래프 저장소가 세 개의 별개 시스템으로 분리되면 운영 복잡도가 높아지고 질의 시점에 여러 시스템을 연계하는 오케스트레이션이 복잡해집니다.
 
-### 1.2 이 문서에서 다루는 시스템의 전체 정의
+Neo4j는 이 문제들을 하나의 플랫폼으로 해결합니다. 영속적인 그래프 저장(재시작 후에도 그래프 유지), 다중 클라이언트 동시 접근, 네이티브 벡터 인덱스(5.x 이후), 전문 검색 인덱스(BM25 호환), 그래프 알고리즘 라이브러리(GDS 플러그인)를 단일 DB에서 제공합니다.
 
-이 문서에서 구현하려는 시스템의 정의는 다음과 같습니다.
+### 1.2 이 문서에서 구현하는 시스템의 정의
+
+이 문서에서 구현하는 시스템은 다음과 같이 정의됩니다.
 
 ```
-[Index-based GraphRAG 기반 Hybrid RAG 시스템]
-
-= Microsoft GraphRAG 인덱싱 파이프라인
-  (자유 엔터티 추출 → Leiden 커뮤니티 탐지 → 커뮤니티 요약 생성)
-
-+ Neo4j 그래프 데이터베이스
-  (그래프 저장소 + 벡터 인덱스 + 전문 검색 인덱스 통합)
-
-+ BM25 키워드 검색
-  (Neo4j Full-text Index 또는 Elasticsearch)
-
-+ 질의 라우터
-  (Local Search / Global Search / DRIFT Search / BM25 동적 선택)
-
-+ LLM 응답 생성
-  (커뮤니티 요약 + 그래프 탐색 결과 + 문서 청크 결합)
+Index-based GraphRAG 기반 Neo4j Hybrid RAG =
+  [HippoRAG 방식 엔터티 링크 그래프 인덱스] (Neo4j 저장)
+  + [원문 텍스트 청크 보존] (Neo4j 저장)
+  + [벡터 유사도 검색] (Neo4j 벡터 인덱스)
+  + [BM25 키워드 검색] (Neo4j 전문 검색 인덱스)
+  + [PPR 기반 그래프 탐색] (Neo4j GDS PageRank)
+  + [RRF 기반 결과 통합]
+  + [LLM 컨텍스트 구성 및 답변 생성]
 ```
 
-Knowledge-based GraphRAG(Neo4j 기반, 온톨로지 사전 설계)와 달리, 이 시스템은 **도메인 온톨로지 없이도 대규모 비정형 문서에서 커뮤니티 기반 지식 구조를 자동으로 추출**하는 것이 핵심입니다.
+핵심을 강조하면, LLM에 제공되는 것은 **언제나 원문 텍스트 청크**입니다. 그래프(엔터티 링크 인덱스)는 어떤 청크를 가져올지 안내하는 역할만 합니다. 이것이 Knowledge-based GraphRAG와의 근본적 차이입니다.
+
+### 1.3 HippoRAG 방식을 주요 구현 대상으로 선택한 이유
+
+이 문서는 RAPTOR(계층적 트리)와 HippoRAG(엔터티 링크 그래프) 중 **HippoRAG 방식**을 중심 구현 대상으로 선택했습니다. 그 이유는 세 가지입니다.
+
+**첫째**, Neo4j의 강점인 **그래프 탐색과 PageRank 알고리즘**을 가장 잘 활용하는 방식이 엔터티 링크 그래프 구조이기 때문입니다. RAPTOR의 계층적 트리는 Neo4j로 구현할 수 있지만, PostgreSQL + pgvector로도 충분히 구현 가능합니다. 반면 HippoRAG의 엔터티 링크 그래프와 PPR 기반 다중 홉 탐색은 Neo4j의 그래프 네이티브 아키텍처에서 특히 이점이 큽니다.
+
+**둘째**, 아키텍처팀의 업무 특성상 원문의 정확한 표현(규정 원문, 시스템 명세)이 중요한데, HippoRAG는 원문 청크를 완전히 보존합니다.
+
+**셋째**, (6)편에서 다루는 Knowledge-based GraphRAG의 Neo4j 온톨로지 기반 구현과 병행 운용 시, 두 시스템이 같은 Neo4j 인스턴스를 공유하는 구조가 가능하여 운영 효율이 높습니다.
 
 ---
 
 ## 2. 전체 시스템 개념 지도
 
-아래 다이어그램은 이 문서에서 다루는 전체 시스템을 한눈에 나타냅니다. 크게 **인덱싱 영역**과 **질의 영역**으로 구분되고, Neo4j가 두 영역을 연결하는 중앙 저장소 역할을 합니다.
-
 ```mermaid
 flowchart TB
-    subgraph IndexingZone["인덱싱 영역 (사전 수행 / 배치)"]
-        direction LR
-        subgraph MSGraphRAG["MS GraphRAG 파이프라인"]
-            DOCS["원본 문서"]
-            CHUNK["청크 분할"]
-            EXTRACT["LLM 엔터티/관계 추출"]
-            LEIDEN["Leiden 커뮤니티 탐지"]
-            SUMMARIZE["LLM 커뮤니티 요약 생성"]
-            EMBED_IDX["임베딩 생성"]
-            PARQUET["Parquet 파일 출력"]
-
-            DOCS --> CHUNK --> EXTRACT --> LEIDEN --> SUMMARIZE --> EMBED_IDX --> PARQUET
-        end
-
-        subgraph Neo4jLoad["Neo4j 적재"]
-            IMPORT["Parquet → CSV 변환 및 Neo4j LOAD"]
-            NEO4J_STORE[("Neo4j\nGraph DB")]
-
-            IMPORT --> NEO4J_STORE
-        end
-
-        subgraph IndexBuild["인덱스 구축"]
-            VEC_IDX["벡터 인덱스 생성\n(엔터티·청크·커뮤니티 임베딩)"]
-            FT_IDX["전문 검색 인덱스 생성\n(BM25 / Full-text)"]
-
-            NEO4J_STORE --> VEC_IDX
-            NEO4J_STORE --> FT_IDX
-        end
-
-        PARQUET --> IMPORT
+    subgraph Client["사용자 계층"]
+        U["👤 사용자 질의\n자연어 입력"]
     end
 
-    subgraph QueryZone["질의 영역 (실시간)"]
-        direction LR
-        USER["사용자 질의"]
-        ROUTER["질의 라우터\n(유형 분류)"]
-
-        subgraph SearchPaths["검색 경로"]
-            LOCAL["Local Search\n벡터 + 그래프 탐색"]
-            GLOBAL["Global Search\n커뮤니티 요약 Map-Reduce"]
-            DRIFT["DRIFT Search\n글로벌 + 로컬 혼합"]
-            BM25_Q["BM25 키워드 검색\n(전문 검색 인덱스)"]
-        end
-
-        MERGE_Q["결과 통합 / Reranking"]
-        CTX["컨텍스트 구성"]
-        LLM_GEN["LLM 응답 생성"]
-        ANSWER["최종 응답"]
-
-        USER --> ROUTER
-        ROUTER --> LOCAL
-        ROUTER --> GLOBAL
-        ROUTER --> DRIFT
-        ROUTER --> BM25_Q
-
-        LOCAL --> MERGE_Q
-        GLOBAL --> MERGE_Q
-        DRIFT --> MERGE_Q
-        BM25_Q --> MERGE_Q
-
-        MERGE_Q --> CTX --> LLM_GEN --> ANSWER
+    subgraph Orchestration["오케스트레이션 계층 (LangChain / LlamaIndex)"]
+        QA["질의 분석기\nQuery Analyzer"]
+        QE["엔터티 인식기\n질의에서 핵심 개념 추출"]
+        CTX["컨텍스트 빌더\nContext Builder"]
+        GEN["LLM\n(GPT-4o / Claude)"]
+        ANS["📝 최종 응답"]
     end
 
-    NEO4J_STORE --> LOCAL
-    NEO4J_STORE --> GLOBAL
-    NEO4J_STORE --> DRIFT
-    FT_IDX --> BM25_Q
-    VEC_IDX --> LOCAL
-    VEC_IDX --> DRIFT
+    subgraph RetrievalLayer["검색 계층 — 세 경로 병렬 실행"]
+        BM25R["BM25 검색\n(Neo4j 전문 검색 인덱스)"]
+        VECR["Vector 검색\n(Neo4j 벡터 인덱스)"]
+        GRPR["Graph 탐색\n(PPR 기반 엔터티 링크 그래프)"]
+        RRF["결과 통합\n(RRF + Reranker)"]
+    end
+
+    subgraph Neo4jLayer["Neo4j — 단일 저장 플랫폼"]
+        subgraph GraphModel["그래프 데이터 모델"]
+            PN["Passage 노드\n(원문 청크 보존)"]
+            EN["Entity 노드\n(엔터티 허브)"]
+            EL["엣지: APPEARS_IN\nCO_OCCURS"]
+        end
+        VI["벡터 인덱스\n(Passage + Entity 임베딩)"]
+        FTI["전문 검색 인덱스\n(Passage 전문 BM25)"]
+        GDS["GDS 플러그인\n(PageRank, PPR)"]
+    end
+
+    subgraph Ingestion["데이터 수집 파이프라인"]
+        SRC["원본 문서\n(PDF, DOCX, MD 등)"]
+        CHUNK["청크 분할기"]
+        OIEEXT["OpenIE 추출기\n(LLM 기반 트리플 추출)"]
+        ERES["엔터티 해소기\n(임베딩 유사도 기반)"]
+        LOAD["Neo4j 적재기"]
+    end
+
+    U --> QA --> QE
+    QE --> BM25R & VECR & GRPR
+    BM25R & VECR & GRPR --> RRF --> CTX --> GEN --> ANS
+
+    BM25R --> FTI
+    VECR --> VI
+    GRPR --> GDS
+    GDS --> GraphModel
+
+    SRC --> CHUNK --> OIEEXT --> ERES --> LOAD --> Neo4jLayer
+```
+
+전체 시스템은 **인덱싱 파이프라인**과 **질의 파이프라인**으로 나뉩니다. 인덱싱은 오프라인 배치 작업이고, 질의는 사용자 요청이 들어올 때마다 실시간으로 수행됩니다. Neo4j는 두 파이프라인 모두에서 단일 저장 플랫폼으로 기능합니다.
+
+---
+
+## 3. Neo4j 그래프 데이터 모델 설계
+
+### 3.1 핵심 원칙: 원문 청크는 반드시 보존한다
+
+Index-based GraphRAG의 본질적 특성에 따라, 모든 원문 텍스트 청크는 Neo4j 안에 온전히 보존됩니다. 엔터티 노드는 어떤 청크에 어떤 개체가 등장하는지를 연결하는 **인덱스 역할**만 합니다.
+
+### 3.2 노드 유형
+
+```
+// Passage 노드 (원문 청크 - 핵심)
+(:Passage {
+    id: String,          // 청크 고유 ID
+    content: String,     // 원문 텍스트 그대로
+    source: String,      // 원본 문서명
+    chunk_index: Integer,// 문서 내 청크 순번
+    embedding: List<Float> // 벡터 임베딩
+})
+
+// Entity 노드 (엔터티 허브 - 인덱스)
+(:Entity {
+    id: String,          // 엔터티 고유 ID
+    name: String,        // 정규화된 엔터티 명칭
+    type: String,        // 유형 (선택적, 스키마 프리)
+    embedding: List<Float> // 엔터티명 임베딩
+})
+```
+
+### 3.3 엣지(관계) 유형
+
+```
+// 엔터티-청크 연결 (핵심 연결 엣지)
+(:Entity)-[:APPEARS_IN {
+    frequency: Integer,  // 해당 청크에서의 등장 횟수
+    context: String      // 등장 맥락 (선택적)
+}]->(:Passage)
+
+// 엔터티-엔터티 공출현 연결 (PPR 탐색의 경로)
+(:Entity)-[:CO_OCCURS {
+    weight: Float,       // 공출현 강도 (빈도 기반)
+    source_passages: List<String> // 공출현한 청크 ID 목록
+}]->(:Entity)
+
+// 청크-청크 순서 연결 (문서 내 연속성)
+(:Passage)-[:NEXT_IN_DOC]->(:Passage)
+```
+
+### 3.4 전체 그래프 모델 시각화
+
+```mermaid
+graph LR
+    subgraph 원문보존["Passage 노드 (원문 보존)"]
+        P1["Passage\nid: p-001\ncontent: '...Log4j는 Apache 재단의\nJava 로깅 라이브러리...'"]
+        P2["Passage\nid: p-002\ncontent: '...CVE-2021-44228은\nLog4j v2.x에서...'"]
+        P3["Passage\nid: p-003\ncontent: '...결제서비스는 Log4j\nv2.14.1을 사용하며...'"]
+    end
+
+    subgraph 엔터티인덱스["Entity 노드 (인덱스)"]
+        E1["Entity\nname: 'Apache Log4j'\ntype: 'Library'"]
+        E2["Entity\nname: 'CVE-2021-44228'\ntype: 'Vulnerability'"]
+        E3["Entity\nname: '결제서비스'\ntype: 'Application'"]
+    end
+
+    E1 -->|"APPEARS_IN"| P1
+    E1 -->|"APPEARS_IN"| P3
+    E2 -->|"APPEARS_IN"| P2
+    E3 -->|"APPEARS_IN"| P3
+
+    E1 -->|"CO_OCCURS\n(p-002)"| E2
+    E1 -->|"CO_OCCURS\n(p-003)"| E3
+    E2 -->|"CO_OCCURS\n(p-003)"| E3
+
+    P1 -->|"NEXT_IN_DOC"| P2
+    P2 -->|"NEXT_IN_DOC"| P3
+```
+
+이 구조에서 그래프 탐색의 흐름은 다음과 같습니다. 질의에서 "Log4j 취약점"이라는 키워드가 인식되면, "Apache Log4j"와 "CVE-2021-44228" 엔터티 노드가 씨앗(seed)으로 선택됩니다. PPR이 이 두 씨앗에서 출발하여 그래프를 따라 확산되면, CO_OCCURS 엣지를 통해 "결제서비스" 엔터티도 높은 점수를 받습니다. 마지막으로 높은 PPR 점수를 받은 엔터티들과 연결된 Passage 노드들이 수집되어 LLM에 **원문 텍스트 그대로** 제공됩니다.
+
+### 3.5 Neo4j 인덱스 설계
+
+Neo4j에서 성능을 보장하기 위해 다음 인덱스가 필요합니다.
+
+```cypher
+// 벡터 인덱스 (Passage 임베딩 — 시맨틱 검색용)
+CREATE VECTOR INDEX passage_vector_index IF NOT EXISTS
+FOR (p:Passage) ON (p.embedding)
+OPTIONS {indexConfig: {
+  `vector.dimensions`: 1536,
+  `vector.similarity_function`: 'cosine'
+}};
+
+// 벡터 인덱스 (Entity 임베딩 — 엔터티 유사도 검색용)
+CREATE VECTOR INDEX entity_vector_index IF NOT EXISTS
+FOR (e:Entity) ON (e.embedding)
+OPTIONS {indexConfig: {
+  `vector.dimensions`: 1536,
+  `vector.similarity_function`: 'cosine'
+}};
+
+// 전문 검색 인덱스 (BM25 스타일 키워드 검색)
+CREATE FULLTEXT INDEX passage_fulltext_index IF NOT EXISTS
+FOR (p:Passage) ON EACH [p.content];
+
+// 범위 인덱스 (ID 기반 빠른 조회)
+CREATE INDEX passage_id_index IF NOT EXISTS
+FOR (p:Passage) ON (p.id);
+
+CREATE INDEX entity_name_index IF NOT EXISTS
+FOR (e:Entity) ON (e.name);
 ```
 
 ---
 
-## 3. 인덱싱 파이프라인 아키텍처
+## 4. 인덱싱 파이프라인 — 문서에서 Neo4j 그래프까지
 
-인덱싱은 질의가 들어오기 전에 사전에 수행하는 배치 작업입니다. 이 단계의 품질이 이후 모든 검색 결과의 기반이 됩니다.
-
-### 3.1 MS GraphRAG 인덱싱 단계 상세
+인덱싱 파이프라인은 전체 시스템에서 가장 비용이 많이 들고 시간이 오래 걸리는 단계입니다. 오프라인 배치로 수행되며, 일반적으로 새로운 문서가 대량으로 추가될 때 실행됩니다.
 
 ```mermaid
 flowchart TB
-    subgraph Phase1["Phase 1: 문서 처리"]
-        D["원본 문서\n(PDF, TXT, MD, DOCX)"]
-        C["텍스트 청크\n(기본 300토큰, 오버랩 포함)"]
-        D --> |"청크 분할"| C
+    subgraph Step1["① 문서 수집 및 청크 분할"]
+        A["원본 문서\n(PDF, DOCX, TXT, MD)"]
+        B["청크 분할\n기본: 512 토큰\n오버랩: 64 토큰\n메타데이터 부여"]
+        A --> B
     end
 
-    subgraph Phase2["Phase 2: LLM 기반 추출 (비용 집중 구간)"]
-        direction TB
-        E_TYPES["엔터티 유형 설정\n(GRAPHRAG_ENTITY_EXTRACTION_ENTITY_TYPES\n예: organization, system, person, event)"]
-        GLEANING["다중 추출 패스\n(Gleaning: LLM을 N회 반복 호출\n→ 누락 엔터티 보완)"]
-        ENT["엔터티 노드\n(이름, 유형, 설명, 청크 참조)"]
-        REL["관계 엣지\n(출발 엔터티, 도착 엔터티, 관계 설명, 가중치)"]
-        COV["공변량\n(엔터티 관련 주요 클레임)"]
-
-        C --> E_TYPES
-        E_TYPES --> GLEANING
-        GLEANING --> ENT
-        GLEANING --> REL
-        GLEANING --> COV
+    subgraph Step2["② Passage 노드 Neo4j 적재 (즉시)"]
+        C["각 청크를 Passage 노드로 적재\ncontent: 원문 그대로\n임베딩 생성 및 저장\n전문 검색 인덱스 반영"]
+        B --> C
     end
 
-    subgraph Phase3["Phase 3: 그래프 통합"]
-        MERGE_E["동명 엔터티 병합\n(String Matching 기반)"]
-        MERGE_R["다중 소스 관계 통합\n(관계 설명 집계)"]
-        KG["통합 지식그래프"]
-
-        ENT --> MERGE_E --> KG
-        REL --> MERGE_R --> KG
+    subgraph Step3["③ OpenIE 엔터티·관계 추출 (LLM)"]
+        D["각 Passage에 대해 LLM 호출\ntriple 추출:\n(subject, relation, object)\n+ 엔터티 유형 (선택적)"]
+        C --> D
     end
 
-    subgraph Phase4["Phase 4: Leiden 커뮤니티 탐지 (비LLM)"]
-        LEIDEN_ALG["Leiden 알고리즘 실행\n(모듈성 최적화)"]
-        L0["Level 0 커뮤니티\n(리프, 가장 세밀)"]
-        L1["Level 1 커뮤니티\n(중간)"]
-        L2["Level 2 커뮤니티\n(루트, 가장 광범위)"]
-
-        KG --> LEIDEN_ALG
-        LEIDEN_ALG --> L0 --> L1 --> L2
+    subgraph Step4["④ 엔터티 해소 (Deduplication)"]
+        E["신규 엔터티 vs 기존 엔터티 비교\n임베딩 유사도 계산 (ANN 인덱스)\n임계값 이상이면 기존 노드로 통합\n임계값 미만이면 신규 노드 생성"]
+        D --> E
     end
 
-    subgraph Phase5["Phase 5: 커뮤니티 요약 생성 (LLM)"]
-        SUM_L0["Level 0 커뮤니티 리포트 생성"]
-        SUM_L1["Level 1 커뮤니티 리포트 생성\n(하위 요약 참조)"]
-        SUM_L2["Level 2 커뮤니티 리포트 생성\n(전체 데이터셋 요약)"]
-
-        L0 --> SUM_L0
-        L1 --> SUM_L1
-        L2 --> SUM_L2
-        SUM_L0 --> SUM_L1 --> SUM_L2
+    subgraph Step5["⑤ Entity 노드 및 엣지 Neo4j 적재"]
+        F["Entity 노드 생성 또는 업데이트\nAPPEARS_IN 엣지 추가\n(Entity → Passage)"]
+        G["CO_OCCURS 엣지 계산 및 추가\n같은 Passage에 등장한\n엔터티 쌍마다 CO_OCCURS 생성\nweight = 공출현 빈도"]
+        E --> F --> G
     end
 
-    subgraph Phase6["Phase 6: 임베딩 및 Parquet 출력"]
-        EMBED_E["엔터티 설명 임베딩"]
-        EMBED_C["텍스트 청크 임베딩"]
-        EMBED_CR["커뮤니티 리포트 임베딩"]
-        PARQUET_OUT["Parquet 파일 세트\n(entities, relations, communities\ntext_units, community_reports)"]
-
-        SUM_L0 --> EMBED_CR
-        SUM_L1 --> EMBED_CR
-        SUM_L2 --> EMBED_CR
-        ENT --> EMBED_E
-        C --> EMBED_C
-
-        EMBED_E --> PARQUET_OUT
-        EMBED_C --> PARQUET_OUT
-        EMBED_CR --> PARQUET_OUT
-        KG --> PARQUET_OUT
+    subgraph Step6["⑥ GDS 그래프 프로젝션 갱신"]
+        H["Neo4j GDS 그래프 카탈로그 업데이트\nPPR 실행을 위한\n인메모리 그래프 프로젝션 준비"]
+        G --> H
     end
 ```
 
-### 3.2 비용 최적화 설정 포인트
+### 4.1 청크 분할 전략
 
-인덱싱에서 비용이 집중되는 구간은 Phase 2(엔터티 추출)와 Phase 5(커뮤니티 요약)입니다. 이 두 단계의 비용을 제어하는 주요 설정값은 다음과 같습니다.
+청크 분할은 단순히 고정 크기로 자르는 것보다 의미 경계를 존중하는 것이 중요합니다. 실무에서 효과적인 전략은 **문단 기반 분할**입니다. 먼저 문단 경계(빈 줄, 헤더)에서 분리한 후, 512 토큰이 넘는 문단은 문장 경계에서 추가로 분리합니다. 이렇게 하면 청크 중간에서 문장이 잘리는 경우를 최소화할 수 있습니다.
 
-| 설정 항목 | 역할 | 권장 방향 |
-|---|---|---|
-| `chunk_size` | 청크 크기 (기본 300토큰) | 도메인에 따라 200~600 조정 |
-| `chunk_overlap` | 청크 오버랩 | 보통 chunk_size의 10~30% |
-| `entity_types` | 추출할 엔터티 유형 목록 | 도메인 특화 유형으로 좁힐수록 품질↑ 비용↓ |
-| `max_gleanings` | 추출 반복 횟수 | 0이면 단일 패스, 클수록 품질↑ 비용↑ |
-| `community_level` | 질의에 사용할 계층 (기본 2) | 낮을수록 광범위하고 저렴 |
-| `extraction_model` | 추출에 사용할 LLM | gpt-4o-mini 등 저렴한 모델 권장 |
-| `summarization_model` | 요약에 사용할 LLM | 추출보다 상위 모델 권장 |
+또한 각 청크에는 원본 문서 경로, 문서 내 위치(섹션명, 페이지 번호), 생성 타임스탬프 같은 메타데이터를 함께 저장합니다. 이 메타데이터는 나중에 출처를 제시하거나 특정 문서만 검색할 때 필터 조건으로 활용됩니다.
 
-### 3.3 Parquet → Neo4j 적재 흐름
+### 4.2 OpenIE 기반 엔터티·관계 추출
 
-MS GraphRAG 인덱싱 결과물인 Parquet 파일을 Neo4j에 적재하는 과정입니다.
+각 청크에 대해 LLM에 다음과 같은 프롬프트로 트리플을 추출합니다.
+
+```
+[시스템 프롬프트]
+당신은 텍스트에서 엔터티와 관계를 추출하는 전문가입니다.
+아래 텍스트를 읽고, 명확한 개체들과 그 관계를 (주어, 관계, 목적어) 형태의
+트리플로 추출하세요.
+
+규칙:
+- 트리플은 최대 {max_triples}개로 제한합니다
+- 가장 정보가 풍부한 트리플을 우선 추출하세요
+- 주어와 목적어는 구체적인 명사구여야 합니다
+- 모호한 대명사(it, they 등)는 실제 개체명으로 대체하세요
+
+출력 형식: JSON 배열
+[{"subject": "...", "relation": "...", "object": "..."}]
+
+[텍스트]
+{chunk_content}
+```
+
+이 추출 방식은 HippoRAG 원논문에서 사용한 OpenIE 방식과 유사합니다. 도메인 온톨로지를 강제하지 않으므로 임의의 문서에 적용 가능합니다. 관계 유형이 자유 형식인 만큼, 추출 후에 관계 표현을 정규화하는 단계(예: "사용한다", "uses", "활용한다"를 모두 "USES"로)를 추가하면 그래프 품질이 높아집니다.
+
+### 4.3 엔터티 해소 상세
+
+엔터티 해소는 인덱싱 품질에 가장 결정적인 영향을 미치는 단계입니다. 다음과 같은 3단계 접근이 현실적입니다.
+
+**1단계 — 정규화**: 대소문자를 통일하고, 전치사·조사를 제거하며, 약어를 확장합니다. "log4j", "Log4j", "LOG4J"를 모두 "Apache Log4j"로 통일하는 것이 이 단계입니다.
+
+**2단계 — 임베딩 유사도**: 정규화된 엔터티명을 임베딩하고, 기존 Entity 노드들과 코사인 유사도를 계산합니다. 유사도가 0.92 이상(임계값은 도메인에 따라 조정)이면 기존 노드와 동일 개체로 판단하고 병합합니다.
+
+**3단계 — LLM 최종 판단**: 2단계에서 0.85~0.92 사이의 애매한 케이스에 대해 LLM에게 두 엔터티명과 각각이 등장한 컨텍스트 문장을 제공하여 동일 여부를 판단합니다. 비용이 높으므로 경계 케이스에만 적용합니다.
+
+### 4.4 증분 업데이트 처리
+
+새로운 문서가 추가될 때는 전체 재인덱싱이 아니라 증분 업데이트가 효율적입니다. 새로운 Passage 노드는 즉시 추가하고, 신규 트리플에서 추출된 엔터티가 기존 Entity 노드와 매칭되면 `APPEARS_IN` 및 `CO_OCCURS` 엣지만 추가합니다. 완전히 새로운 엔터티라면 신규 Entity 노드를 생성합니다. LightRAG의 증분 업데이트 알고리즘(arXiv:2410.05779)이 이 접근 방식의 효율성을 검증한 바 있습니다.
+
+---
+
+## 5. 질의 파이프라인 — 세 가지 검색 경로의 통합
+
+사용자 질의가 들어오면 세 가지 검색 경로가 **병렬로 실행**되고, 결과는 RRF(Reciprocal Rank Fusion)로 통합됩니다.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant QA as 질의 분석기
+    participant BM25 as BM25 검색<br/>(Neo4j Fulltext)
+    participant VEC as Vector 검색<br/>(Neo4j Vector)
+    participant GRAPH as Graph 탐색<br/>(PPR)
+    participant RRF as 결과 통합<br/>(RRF)
+    participant CTX as 컨텍스트 빌더
+    participant LLM as LLM
+
+    User->>QA: 자연어 질의 입력
+
+    QA->>QA: 질의에서 핵심 엔터티 추출<br/>(LLM 또는 NER)
+    QA->>QA: 질의 임베딩 생성
+
+    par 세 경로 병렬 실행
+        QA->>BM25: 키워드 토큰 전달
+        BM25->>BM25: Neo4j Fulltext Index 검색<br/>CALL db.index.fulltext.queryNodes(...)
+        BM25-->>RRF: Passage 목록 + BM25 점수
+
+        QA->>VEC: 질의 임베딩 전달
+        VEC->>VEC: Neo4j Vector Index 검색<br/>db.index.vector.queryNodes(...)
+        VEC-->>RRF: Passage 목록 + 유사도 점수
+
+        QA->>GRAPH: 핵심 엔터티 목록 전달
+        GRAPH->>GRAPH: Entity 노드에서 씨앗 선택<br/>Neo4j GDS PPR 실행
+        GRAPH->>GRAPH: 높은 PPR 점수 엔터티의<br/>APPEARS_IN Passage 수집
+        GRAPH-->>RRF: Passage 목록 + PPR 점수
+    end
+
+    RRF->>RRF: RRF 스코어 계산<br/>score = Σ 1/(k + rank_i)
+    RRF->>RRF: 선택적: Reranker 모델 적용
+    RRF->>CTX: 상위 N개 Passage 전달
+
+    CTX->>CTX: Passage 원문 수집 (Neo4j 조회)
+    CTX->>CTX: 출처 메타데이터 첨부
+    CTX->>CTX: 프롬프트 구성
+
+    CTX->>LLM: 구성된 컨텍스트 전달
+    LLM->>User: 원문 근거 기반 답변 생성
+```
+
+### 5.1 BM25 검색 경로
+
+Neo4j의 전문 검색 인덱스는 Apache Lucene 기반으로 동작하며, BM25 스코어링을 지원합니다. 아래 Cypher 쿼리로 키워드 검색을 수행합니다.
+
+```cypher
+CALL db.index.fulltext.queryNodes(
+    'passage_fulltext_index',
+    $query_text
+) YIELD node, score
+WHERE score > 0.1
+RETURN node.id AS passage_id,
+       node.content AS content,
+       node.source AS source,
+       score AS bm25_score
+ORDER BY score DESC
+LIMIT 20
+```
+
+BM25 검색은 "Log4j 2.14.1", "CVE-2021-44228" 같이 정확한 식별자나 버전 번호가 포함된 질의에서 특히 효과적입니다. 벡터 유사도 검색이 놓칠 수 있는 정확한 키워드 매칭을 보완합니다.
+
+### 5.2 Vector 검색 경로
+
+Neo4j 5.x의 네이티브 벡터 인덱스를 활용하여 의미론적 유사도 기반 검색을 수행합니다.
+
+```cypher
+CALL db.index.vector.queryNodes(
+    'passage_vector_index',
+    20,              -- 상위 K개
+    $query_embedding
+) YIELD node, score
+RETURN node.id AS passage_id,
+       node.content AS content,
+       node.source AS source,
+       score AS vector_score
+```
+
+벡터 검색은 질의의 표현과 다르더라도 의미가 유사한 청크를 찾습니다. "데이터베이스 접속 문제"로 질의해도 "DB 연결 오류"가 담긴 청크를 검색합니다.
+
+---
+
+## 6. Neo4j GDS PageRank 기반 다중 홉 탐색
+
+Graph 탐색 경로는 세 경로 중 가장 독특하며, Index-based GraphRAG의 핵심 가치를 제공합니다. HippoRAG의 Personalized PageRank를 Neo4j Graph Data Science(GDS) 플러그인으로 구현합니다.
+
+### 6.1 GDS 그래프 프로젝션 생성
+
+PPR을 실행하기 전에 Neo4j의 인메모리 그래프 카탈로그에 프로젝션을 만들어야 합니다.
+
+```cypher
+-- Entity-Entity CO_OCCURS 그래프 프로젝션 생성
+CALL gds.graph.project(
+    'entity_cooccurrence_graph',    -- 프로젝션 이름
+    'Entity',                       -- 노드 레이블
+    {
+        CO_OCCURS: {
+            type: 'CO_OCCURS',
+            orientation: 'UNDIRECTED',
+            properties: {weight: {defaultValue: 1.0}}
+        }
+    }
+) YIELD graphName, nodeCount, relationshipCount;
+```
+
+이 프로젝션은 Entity 노드들과 CO_OCCURS 엣지만을 인메모리로 로드합니다. PPR은 이 프로젝션 위에서 실행됩니다.
+
+### 6.2 Personalized PageRank 실행
+
+```cypher
+-- 씨앗 엔터티 목록을 기반으로 PPR 실행
+CALL gds.pageRank.stream(
+    'entity_cooccurrence_graph',
+    {
+        maxIterations: 20,
+        dampingFactor: 0.85,
+        sourceNodes: $seed_entity_ids,  -- 질의 관련 엔터티 노드 ID 목록
+        relationshipWeightProperty: 'weight'
+    }
+) YIELD nodeId, score
+ORDER BY score DESC
+LIMIT 50  -- 상위 50개 엔터티
+```
+
+PPR에서 `sourceNodes`는 질의에서 식별된 핵심 엔터티들입니다. 이 씨앗 노드들에서 출발한 확률 질량이 CO_OCCURS 엣지를 따라 퍼져나가며, 씨앗과 직접 연결되거나 간접적으로 여러 경로로 연결된 엔터티들이 높은 점수를 받습니다. 이것이 단일 벡터 검색으로는 달성할 수 없는 **다중 홉 탐색**의 원리입니다.
+
+### 6.3 PPR 결과에서 Passage 수집
+
+높은 PPR 점수를 받은 엔터티들이 등장하는 Passage를 수집합니다.
+
+```cypher
+-- PPR 상위 엔터티들이 등장하는 Passage 수집
+MATCH (e:Entity)-[:APPEARS_IN]->(p:Passage)
+WHERE e.id IN $top_ppr_entity_ids
+WITH p, count(distinct e) AS entity_coverage,
+     sum(CASE WHEN e.id IN $seed_entity_ids THEN 2 ELSE 1 END) AS relevance_score
+RETURN p.id AS passage_id,
+       p.content AS content,   -- 원문 텍스트 그대로
+       p.source AS source,
+       relevance_score
+ORDER BY relevance_score DESC
+LIMIT 20
+```
+
+이 쿼리의 결과로 수집되는 것은 **원문 텍스트 청크**입니다. 그래프는 어느 청크를 가져올지 안내했고, 최종적으로 LLM에 제공되는 컨텍스트는 변환되지 않은 원문입니다.
+
+### 6.4 씨앗 엔터티 선택 방법
+
+PPR의 출발점이 되는 씨앗 엔터티 선택은 검색 품질에 큰 영향을 미칩니다. 두 가지 방식을 조합합니다.
+
+**방식 1 — 벡터 유사도 기반 엔터티 선택**: 질의 임베딩과 Entity 노드의 임베딩을 비교하여 유사도 상위 엔터티를 씨앗으로 선택합니다.
+
+```cypher
+CALL db.index.vector.queryNodes(
+    'entity_vector_index',
+    10,
+    $query_embedding
+) YIELD node AS entity, score
+RETURN entity.id AS entity_id, entity.name AS name, score
+```
+
+**방식 2 — 전문 검색 기반 엔터티 선택**: 질의 키워드와 정확히 일치하는 엔터티 이름을 검색합니다.
+
+```cypher
+MATCH (e:Entity)
+WHERE toLower(e.name) CONTAINS toLower($keyword)
+RETURN e.id AS entity_id, e.name AS name
+LIMIT 10
+```
+
+두 방식의 결과를 합집합으로 취하면, 의미적으로 유사한 엔터티와 정확히 일치하는 엔터티를 모두 씨앗으로 활용할 수 있습니다. HippoRAG2(arXiv:2502.14802)는 이러한 밀집·희소 씨앗 혼합 방식이 단일 방식보다 다중 홉 추론에서 유의미하게 더 높은 성능을 보인다는 것을 검증했습니다.
+
+---
+
+## 7. BM25 + Vector + Graph 통합 — Hybrid Scoring
+
+세 경로의 결과를 어떻게 통합할지가 전체 검색 품질을 결정합니다.
+
+### 7.1 RRF (Reciprocal Rank Fusion)
+
+RRF는 각 검색 결과 목록에서 항목의 순위(rank)를 기반으로 통합 점수를 계산합니다. 점수 스케일이 다른 여러 검색 방식의 결과를 통합할 때 특히 효과적입니다.
+
+RRF 점수 계산식: `rrf_score(d) = Σ 1 / (k + rank_i(d))`
+
+여기서 `k`는 상수(일반적으로 60), `rank_i(d)`는 i번째 검색 결과 목록에서 문서 d의 순위입니다.
+
+```python
+def reciprocal_rank_fusion(
+    bm25_results: list[tuple[str, float]],
+    vector_results: list[tuple[str, float]],
+    graph_results: list[tuple[str, float]],
+    k: int = 60,
+    weights: dict = None
+) -> list[tuple[str, float]]:
+    """
+    세 검색 결과를 RRF로 통합합니다.
+    
+    Args:
+        bm25_results: [(passage_id, bm25_score), ...]
+        vector_results: [(passage_id, vector_score), ...]
+        graph_results: [(passage_id, graph_relevance_score), ...]
+        k: RRF 상수 (기본값: 60)
+        weights: 각 검색 방식의 가중치 (기본값: 균등)
+    """
+    if weights is None:
+        weights = {'bm25': 1.0, 'vector': 1.0, 'graph': 1.0}
+    
+    rrf_scores = {}
+    
+    for result_list, weight_key in [
+        (bm25_results, 'bm25'),
+        (vector_results, 'vector'),
+        (graph_results, 'graph')
+    ]:
+        w = weights[weight_key]
+        for rank, (passage_id, _) in enumerate(result_list, 1):
+            rrf_scores[passage_id] = rrf_scores.get(passage_id, 0)
+            rrf_scores[passage_id] += w * (1.0 / (k + rank))
+    
+    return sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)
+```
+
+### 7.2 질의 유형별 가중치 조정
+
+모든 질의에 동일한 가중치를 적용하기보다, 질의의 성격에 따라 가중치를 동적으로 조정하면 성능을 높일 수 있습니다.
 
 ```mermaid
 flowchart LR
-    subgraph ParquetFiles["Parquet 파일 (인덱싱 출력)"]
-        P1["entities.parquet\n(id, name, type, description, text_unit_ids)"]
-        P2["relationships.parquet\n(source, target, description, weight)"]
-        P3["communities.parquet\n(id, level, title, entity_ids)"]
-        P4["community_reports.parquet\n(id, level, summary, full_content, rank)"]
-        P5["text_units.parquet\n(id, text, document_ids, entity_ids)"]
-        P6["embeddings\n(entity, chunk, community 임베딩 벡터)"]
-    end
-
-    subgraph Transform["변환 단계"]
-        CSV["Parquet → CSV 변환\n(pandas 활용)"]
-        CYPHER_LOAD["Cypher LOAD CSV 또는\nneo4j-admin import"]
-    end
-
-    subgraph Neo4jDB["Neo4j 그래프 DB"]
-        N1["Entity 노드"]
-        N2["Relationship 엣지"]
-        N3["Community 노드"]
-        N4["CommunityReport 노드"]
-        N5["TextUnit 노드"]
-        N6["벡터 인덱스\n(ANN)"]
-        N7["전문 검색 인덱스\n(Full-text)"]
-    end
-
-    P1 --> CSV
-    P2 --> CSV
-    P3 --> CSV
-    P4 --> CSV
-    P5 --> CSV
-    P6 --> CSV
-    CSV --> CYPHER_LOAD
-
-    CYPHER_LOAD --> N1
-    CYPHER_LOAD --> N2
-    CYPHER_LOAD --> N3
-    CYPHER_LOAD --> N4
-    CYPHER_LOAD --> N5
-    CYPHER_LOAD --> N6
-    CYPHER_LOAD --> N7
-```
-
----
-
-## 4. Neo4j 내부 그래프 데이터 모델
-
-Index-based GraphRAG로 구축된 Neo4j 그래프의 노드와 관계 구조는 Knowledge-based GraphRAG와 다릅니다. 도메인 온톨로지 대신 MS GraphRAG의 고유 데이터 모델이 사용됩니다.
-
-### 4.1 노드 유형 및 관계 구조
-
-```mermaid
-graph TD
-    subgraph DocumentLayer["문서 계층 (렉시컬 그래프)"]
-        DOC["Document\n원본 문서"]
-        TU["TextUnit\n텍스트 청크\n+ 임베딩 벡터"]
-        DOC --"CONTAINS"--> TU
-        TU --"NEXT"--> TU
-    end
-
-    subgraph EntityLayer["엔터티 계층"]
-        E1["Entity\n이름: Log4j\n유형: Library\n설명: ...\n임베딩 벡터: [...]"]
-        E2["Entity\n이름: 결제서비스\n유형: Application\n설명: ..."]
-        E3["Entity\n이름: CVE-2021-44228\n유형: Vulnerability\n설명: ..."]
-
-        E1 --"RELATED\n(weight, description)"-->E2
-        E2 --"RELATED\n(weight, description)"--> E3
-        E1 --"RELATED"--> E3
-    end
-
-    subgraph CommunityLayer["커뮤니티 계층"]
-        CL0["Community\nlevel=0 (리프)\nid: C-001"]
-        CL1["Community\nlevel=1 (중간)\nid: C-010"]
-        CL2["Community\nlevel=2 (루트)\nid: C-100"]
-
-        CL2 --"PARENT_OF"--> CL1
-        CL1 --"PARENT_OF"--> CL0
-    end
-
-    subgraph ReportLayer["커뮤니티 리포트 계층"]
-        CR0["CommunityReport\nlevel=0\nsummary: '...\n보안 취약점 관련 라이브러리...'\nrank: 8.5\n임베딩 벡터: [...]"]
-        CR1["CommunityReport\nlevel=1\nsummary: '...인프라 시스템과\n보안 관리 체계...'\nrank: 7.2"]
-        CR2["CommunityReport\nlevel=2\nsummary: '전체 데이터셋은\n주로 엔터프라이즈\nIT 시스템 운영에 관한...'\nrank: 9.1"]
-
-        CL0 --"HAS_REPORT"--> CR0
-        CL1 --"HAS_REPORT"--> CR1
-        CL2 --"HAS_REPORT"--> CR2
-    end
-
-    E1 --"IN_COMMUNITY"--> CL0
-    E2 --"IN_COMMUNITY"--> CL0
-    E3 --"IN_COMMUNITY"--> CL0
-
-    TU --"MENTIONS"--> E1
-    TU --"MENTIONS"--> E2
-    TU --"MENTIONS"--> E3
-```
-
-### 4.2 인덱스 구성
-
-Neo4j 내부에 세 종류의 인덱스가 구성됩니다.
-
-```mermaid
-flowchart LR
-    subgraph VectorIndexes["벡터 인덱스 (ANN 검색)"]
-        VI_E["entity-embedding-index\n대상: Entity 노드의 embedding 속성"]
-        VI_T["textunit-embedding-index\n대상: TextUnit 노드의 embedding 속성"]
-        VI_C["community-report-index\n대상: CommunityReport 노드의 embedding 속성"]
-    end
-
-    subgraph FulltextIndexes["전문 검색 인덱스 (BM25)"]
-        FT_E["entity-fulltext-index\n대상: Entity.name + Entity.description"]
-        FT_T["textunit-fulltext-index\n대상: TextUnit.text"]
-        FT_C["communityreport-fulltext-index\n대상: CommunityReport.summary"]
-    end
-
-    subgraph GraphIndex["그래프 인덱스 (Cypher 탐색)"]
-        GI["RELATED 관계 인덱스\nIN_COMMUNITY 관계 인덱스\nCONTAINS 관계 인덱스"]
-    end
-
-    VI_E --> |"Local Search\nDRIFT Search"| QUERY["질의 처리"]
-    VI_C --> |"DRIFT Search"| QUERY
-    FT_E --> |"BM25 검색"| QUERY
-    FT_T --> |"BM25 검색"| QUERY
-    GI --> |"그래프 탐색 확장"| QUERY
-```
-
-### 4.3 커뮤니티 계층 구조 예시
-
-```mermaid
-graph TB
-    subgraph Level2["Level 2 커뮤니티 (루트)"]
-        C2A["C2-A: 엔터프라이즈 IT 시스템 운영\n엔터티 수: 287개\n커뮤니티 리포트 rank: 9.1"]
-    end
-
-    subgraph Level1["Level 1 커뮤니티 (중간)"]
-        C1A["C1-A: 보안 및 취약점 관리\n엔터티 수: 84개\nrank: 8.5"]
-        C1B["C1-B: 애플리케이션 배포 인프라\n엔터티 수: 102개\nrank: 7.8"]
-        C1C["C1-C: 서비스 운영 체계\n엔터티 수: 101개\nrank: 7.2"]
-    end
-
-    subgraph Level0["Level 0 커뮤니티 (리프)"]
-        C0A["C0-A: Java 라이브러리 취약점\n엔터티: Log4j, CVE-2021-44228\nrank: 8.9"]
-        C0B["C0-B: 결제 시스템 스택\n엔터티: 결제서비스, 운영서버-001\nrank: 7.4"]
-        C0C["C0-C: 인증 서비스 그룹\n엔터티: 인증서버, OAuth2 Provider\nrank: 6.8"]
-        C0D["C0-E: 알림 발송 인프라\n엔터티: 알림서버, SES, Kafka\nrank: 6.1"]
-    end
-
-    C2A --"PARENT_OF"--> C1A
-    C2A --"PARENT_OF"--> C1B
-    C2A --"PARENT_OF"--> C1C
-    C1A --"PARENT_OF"--> C0A
-    C1B --"PARENT_OF"--> C0B
-    C1B --"PARENT_OF"--> C0C
-    C1C --"PARENT_OF"--> C0D
-```
-
----
-
-## 5. 질의 파이프라인 아키텍처 — 세 가지 탐색 방식
-
-### 5.1 Local Search 아키텍처 — 엔터티 중심 탐색
-
-```mermaid
-flowchart TB
-    Q["사용자 질의\n예: 'Log4j 관련 취약점 정보'"]
-
-    subgraph LocalSearch["Local Search 처리 흐름"]
-        direction TB
-        EMBED_Q["질의 임베딩 생성"]
-        VEC_SEARCH["Entity 벡터 인덱스 검색\n→ 유사 엔터티 Top-K 반환\n(Log4j, CVE-2021-44228 등)"]
-
-        subgraph GraphExpansion["Neo4j 그래프 확장 (Cypher)"]
-            direction LR
-            HOP1["1홉 확장\n인접 엔터티 수집\n(RELATED 관계 탐색)"]
-            HOP2["커뮤니티 연결\n(IN_COMMUNITY → HAS_REPORT)"]
-            CHUNKS["원본 청크 수집\n(MENTIONS 역방향 탐색)"]
-        end
-
-        GATHER["컨텍스트 수집\n엔터티 설명 + 관계 설명\n+ 커뮤니티 요약 + 원본 청크"]
-        RANK_LOCAL["관련도 기반 컨텍스트 정렬\n(LLM 토큰 한도 내 구성)"]
-        LLM_LOCAL["LLM 응답 생성"]
-
-        EMBED_Q --> VEC_SEARCH --> GraphExpansion
-        HOP1 --> GATHER
-        HOP2 --> GATHER
-        CHUNKS --> GATHER
-        GATHER --> RANK_LOCAL --> LLM_LOCAL
-    end
-
-    Q --> EMBED_Q
-    LLM_LOCAL --> ANS_LOCAL["구체적 엔터티 중심 응답\n(근거: 원본 청크 + 관계 설명)"]
-```
-
-**Local Search의 컨텍스트 구성 요소:**
-
-| 컨텍스트 항목 | 출처 | 역할 |
-|---|---|---|
-| 엔터티 설명 | Entity.description | 핵심 개체 정보 |
-| 관계 설명 | RELATED.description | 개체 간 연결 맥락 |
-| 커뮤니티 요약 | CommunityReport.summary | 더 넓은 주제 맥락 |
-| 원본 텍스트 청크 | TextUnit.text | 실제 근거 문장 |
-| 공변량 정보 | Covariate | 엔터티 관련 클레임 |
-
-### 5.2 Global Search 아키텍처 — Map-Reduce 패턴
-
-```mermaid
-flowchart TB
-    Q_G["사용자 질의 (글로벌)\n예: '이 문서 집합의 주요 보안 이슈 패턴은?'"]
-
-    subgraph GlobalSearch["Global Search 처리 흐름"]
-        direction TB
-
-        FETCH_CR["지정 레벨 커뮤니티 리포트 전체 조회\n(기본: Level 2, Dynamic Selection 시 필터링)"]
-
-        subgraph MapPhase["Map 단계 (병렬 LLM 처리)"]
-            direction LR
-            MAP1["CR-A 처리\n→ 부분 답변 A\n→ 관련도 점수"]
-            MAP2["CR-B 처리\n→ 부분 답변 B\n→ 관련도 점수"]
-            MAP3["CR-C 처리\n→ 부분 답변 C\n→ 관련도 점수"]
-            MAPN["CR-N 처리\n..."]
-        end
-
-        subgraph ReducePhase["Reduce 단계"]
-            SORT["관련도 점수 기반 정렬\n(하위 점수 필터 가능)"]
-            REDUCE_LLM["최종 통합 LLM 호출\n(상위 부분 답변들 통합)"]
-        end
-
-        FETCH_CR --> MapPhase
-        MAP1 --> SORT
-        MAP2 --> SORT
-        MAP3 --> SORT
-        MAPN --> SORT
-        SORT --> REDUCE_LLM
-    end
-
-    Q_G --> FETCH_CR
-    REDUCE_LLM --> ANS_G["전체 데이터 조망 응답\n(커뮤니티 구조 기반)"]
-```
-
-**Dynamic Community Selection (동적 커뮤니티 선택)**
-
-전체 커뮤니티 리포트를 모두 LLM에 통과시키는 기본 Global Search는 비용이 큽니다. 2025년 1월 도입된 Dynamic Community Selection은 이를 개선합니다.
-
-```mermaid
-flowchart LR
-    ALL_CR["전체 커뮤니티 리포트"]
-
-    subgraph DCS["Dynamic Community Selection"]
-        CHEAP_LLM["저비용 LLM으로\n관련도 점수만 계산\n(gpt-4o-mini 등)"]
-        THRESHOLD["관련도 임계값 필터링\n(낮은 점수 커뮤니티 제거)"]
-        MAIN_LLM["관련 커뮤니티만\n고품질 LLM 처리"]
-    end
-
-    ALL_CR --> CHEAP_LLM --> THRESHOLD --> MAIN_LLM --> FINAL["최종 응답"]
-
-    NOTE["토큰 비용 최대 79% 절감\n(2025년 1월 업데이트)"]
-```
-
-### 5.3 DRIFT Search 아키텍처 — 글로벌과 로컬의 통합
-
-```mermaid
-flowchart TB
-    Q_D["사용자 질의\n예: '결제 관련 시스템의 보안 취약점 영향은?'"]
-
-    subgraph DRIFTSearch["DRIFT Search 처리 흐름"]
-        direction TB
-
-        HYDE["HyDE\n(Hypothetical Document Embeddings)\n→ 가상 이상 문서 생성 후 임베딩"]
-
-        VEC_COMM["커뮤니티 벡터 검색\n→ 관련 커뮤니티 리포트 Top-K"]
-
-        subgraph Primer["1차: 글로벌 컨텍스트 수집"]
-            COMM_CTX["커뮤니티 요약 → 초기 컨텍스트\n초기 응답 생성 + 신뢰도 점수"]
-            FOLLOW_UP["LLM이 팔로업 질문 자동 생성\n(예: '결제서비스는 어떤 버전 사용?'\n'CVE-2021-44228 영향 범위는?')"]
-        end
-
-        subgraph Iteration["2차~N차: 로컬 탐색 반복"]
-            direction LR
-            LOCAL_1["팔로업 질문 1\n→ Local Search 실행"]
-            LOCAL_2["팔로업 질문 2\n→ Local Search 실행"]
-            LOCAL_N["팔로업 질문 N\n→ Local Search 실행"]
-            CONF_CHECK["신뢰도 평가\n(충분한가? → 종료\n부족한가? → 추가 팔로업)"]
-        end
-
-        HIERARCHY["계층적 Q&A 구조 구성\n(최상위 질의 + 팔로업 + 답변 트리)"]
-        FINAL_GEN["최종 통합 응답 생성"]
-
-        HYDE --> VEC_COMM --> Primer
-        COMM_CTX --> FOLLOW_UP --> Iteration
-        LOCAL_1 --> CONF_CHECK
-        LOCAL_2 --> CONF_CHECK
-        LOCAL_N --> CONF_CHECK
-        CONF_CHECK --> HIERARCHY --> FINAL_GEN
-    end
-
-    Q_D --> HYDE
-    FINAL_GEN --> ANS_D["구조화된 종합 응답\n(글로벌 맥락 + 로컬 근거)"]
-```
-
----
-
-## 6. Hybrid RAG 통합 아키텍처 — BM25 + Vector + Community
-
-세 가지 MS GraphRAG 탐색 방식에 BM25 키워드 검색을 더하면 완전한 Hybrid RAG 시스템이 됩니다. 각 검색 방식은 서로 다른 강점을 가지며 상호 보완합니다.
-
-### 6.1 네 가지 검색 경로의 역할
-
-```mermaid
-flowchart TB
     Q["사용자 질의"]
 
-    subgraph FourPaths["네 가지 검색 경로"]
-        direction TB
+    Q --> T1{"질의 유형 분류"}
 
-        subgraph P_BM25["① BM25 키워드 검색"]
-            BM25_DESC["강점: 정확한 용어 매칭\n예: CVE ID, 버전 번호, 시스템 이름\n약점: 표현 변화에 취약"]
-            BM25_SRC["소스: Neo4j Full-text Index\n또는 Elasticsearch"]
-        end
+    T1 --> |"정확한 식별자 포함\n'Log4j 2.14.1', 'CVE-2021-44228'\n버전 번호, 오류 코드"| W1["가중치:\nBM25: 0.5\nVector: 0.3\nGraph: 0.2"]
 
-        subgraph P_LOCAL["② Local Search (벡터 + 그래프)"]
-            LOCAL_DESC["강점: 특정 엔터티 중심 탐색\n멀티홉 관계 확장\n약점: 전체 맥락 파악 제한"]
-            LOCAL_SRC["소스: Entity 벡터 인덱스\n+ Neo4j 그래프 탐색"]
-        end
+    T1 --> |"자연어 중심\n'보안 취약점 관련 서비스'\n'데이터베이스 연결 문제'"| W2["가중치:\nBM25: 0.2\nVector: 0.5\nGraph: 0.3"]
 
-        subgraph P_GLOBAL["③ Global Search (커뮤니티 요약)"]
-            GLOBAL_DESC["강점: 전체 데이터 조망\n주제 파악, 패턴 발견\n약점: 구체적 사실 응답 약함"]
-            GLOBAL_SRC["소스: CommunityReport 노드\n+ Map-Reduce LLM"]
-        end
-
-        subgraph P_DRIFT["④ DRIFT Search (혼합)"]
-            DRIFT_DESC["강점: 글로벌 + 로컬 균형\n복합적 질의 대응\n약점: 가장 높은 LLM 비용"]
-            DRIFT_SRC["소스: Community 벡터 인덱스\n+ 반복적 Local 탐색"]
-        end
-    end
-
-    MERGE_ALL["결과 통합 레이어\n(RRF + 가중치 조정)"]
-    CTX_BUILD["컨텍스트 구성"]
-    LLM_FINAL["LLM 최종 응답"]
-
-    Q --> P_BM25
-    Q --> P_LOCAL
-    Q --> P_GLOBAL
-    Q --> P_DRIFT
-
-    P_BM25 --> MERGE_ALL
-    P_LOCAL --> MERGE_ALL
-    P_GLOBAL --> MERGE_ALL
-    P_DRIFT --> MERGE_ALL
-
-    MERGE_ALL --> CTX_BUILD --> LLM_FINAL --> RESPONSE["최종 응답"]
+    T1 --> |"관계·영향도 질의\n'A가 B에 미치는 영향'\n'어떤 시스템이 연관되는가'"| W3["가중치:\nBM25: 0.2\nVector: 0.2\nGraph: 0.6"]
 ```
 
-### 6.2 질의 특성별 검색 경로 가중치
+### 7.3 Reranker 적용 (선택적)
 
-모든 질의에 네 가지 경로를 동일 비중으로 사용하는 것은 비효율적입니다. 질의 특성에 따라 가중치를 동적으로 조정합니다.
-
-| 질의 유형 | BM25 | Local | Global | DRIFT | 예시 |
-|---|---|---|---|---|---|
-| 정확한 용어 기반 | **높음** | 중간 | 낮음 | 낮음 | "CVE-2021-44228 상세 정보" |
-| 특정 엔터티 탐색 | 중간 | **높음** | 낮음 | 낮음 | "Log4j 사용 애플리케이션 목록" |
-| 전체 패턴 분석 | 낮음 | 낮음 | **높음** | 중간 | "문서 전체의 보안 이슈 패턴" |
-| 복합 관계 분석 | 낮음 | 중간 | 중간 | **높음** | "결제 시스템 보안 취약점 영향 전체" |
-
-### 6.3 Hybrid RAG 통합 아키텍처 전체도
-
-```mermaid
-flowchart LR
-    subgraph InputLayer["입력 계층"]
-        USER_Q["사용자 질의"]
-        EMBED_SVC["임베딩 서비스\n(질의 → 벡터)"]
-        USER_Q --> EMBED_SVC
-    end
-
-    subgraph RouterLayer["라우터 계층"]
-        QROUTER["질의 라우터\n(유형 분류 + 가중치 결정)"]
-        EMBED_SVC --> QROUTER
-    end
-
-    subgraph RetrievalLayer["검색 계층"]
-        subgraph BM25_PATH["BM25 경로"]
-            BM25_E["엔터티 전문 검색\n(Neo4j Full-text)"]
-            BM25_T["청크 전문 검색\n(Neo4j Full-text)"]
-        end
-
-        subgraph LOCAL_PATH["Local Search 경로"]
-            VEC_E["엔터티 벡터 검색\n(Neo4j ANN)"]
-            CYPHER_EXPAND["Cypher 그래프 확장\n(RELATED / IN_COMMUNITY\nHAS_REPORT / MENTIONS)"]
-            VEC_E --> CYPHER_EXPAND
-        end
-
-        subgraph GLOBAL_PATH["Global Search 경로"]
-            ALL_CR_FETCH["커뮤니티 리포트 조회\n(지정 Level)"]
-            DYN_SEL["Dynamic Selection\n(저비용 LLM 필터링)"]
-            MAP_REDUCE["Map-Reduce LLM 처리"]
-            ALL_CR_FETCH --> DYN_SEL --> MAP_REDUCE
-        end
-
-        subgraph DRIFT_PATH["DRIFT Search 경로"]
-            HYDE_GEN["HyDE 생성"]
-            COMM_VEC["커뮤니티 벡터 검색"]
-            ITER_LOCAL["반복 Local 탐색"]
-            HYDE_GEN --> COMM_VEC --> ITER_LOCAL
-        end
-
-        QROUTER --> BM25_PATH
-        QROUTER --> LOCAL_PATH
-        QROUTER --> GLOBAL_PATH
-        QROUTER --> DRIFT_PATH
-    end
-
-    subgraph FusionLayer["결합 계층"]
-        RRF["RRF\n(Reciprocal Rank Fusion)"]
-        WEIGHT["가중 통합\n(라우터 가중치 적용)"]
-        RERANK["Reranker 모델\n(Cross-encoder 선택적 적용)"]
-
-        BM25_E --> RRF
-        BM25_T --> RRF
-        CYPHER_EXPAND --> RRF
-        MAP_REDUCE --> RRF
-        ITER_LOCAL --> RRF
-        RRF --> WEIGHT --> RERANK
-    end
-
-    subgraph GenerationLayer["생성 계층"]
-        CTX_ASSEMBLE["컨텍스트 조립\n(토큰 한도 내 최적 구성)"]
-        PROMPT_BUILD["프롬프트 구성\n(시스템 지시 + 컨텍스트 + 질의)"]
-        GEN_LLM["생성 LLM\n(GPT-4o / Claude Sonnet)"]
-        PROV["근거 추적\n(Provenance)"]
-
-        RERANK --> CTX_ASSEMBLE --> PROMPT_BUILD --> GEN_LLM
-        GEN_LLM --> PROV --> FINAL_ANS["최종 응답"]
-    end
-
-    subgraph Neo4jStorage["Neo4j 데이터 저장소"]
-        GRAPH_STORE["그래프 저장\n(Entity, Relation, Community\nCommunityReport, TextUnit)"]
-        VEC_STORE["벡터 인덱스\n(ANN)"]
-        FT_STORE["전문 검색 인덱스\n(Full-text / BM25)"]
-    end
-
-    LOCAL_PATH --> GRAPH_STORE
-    LOCAL_PATH --> VEC_STORE
-    BM25_PATH --> FT_STORE
-    GLOBAL_PATH --> GRAPH_STORE
-    DRIFT_PATH --> VEC_STORE
-    DRIFT_PATH --> GRAPH_STORE
-```
+RRF 통합 후 상위 20~30개 결과에 Cross-Encoder 기반 Reranker 모델을 적용하면 최종 순위의 정확도를 높일 수 있습니다. BGE-Reranker, Cohere Rerank API 등을 사용할 수 있습니다. 단, Reranker는 후보 각각에 대해 모델을 실행하므로 응답 지연이 증가합니다. 지연 허용 수준에 따라 적용 여부를 결정합니다.
 
 ---
 
-## 7. LazyGraphRAG 변형 아키텍처
+## 8. 구현 스택 및 핵심 코드 구조
 
-### 7.1 LazyGraphRAG가 인덱싱 단계를 어떻게 바꾸는가
+### 8.1 기술 스택
 
-```mermaid
-flowchart TB
-    subgraph TraditionalIndexing["전통적 GraphRAG 인덱싱"]
-        direction LR
-        TI1["LLM 엔터티/관계 추출\n(모든 청크)"]
-        TI2["Leiden 커뮤니티 탐지"]
-        TI3["LLM 커뮤니티 요약 생성\n(모든 커뮤니티)"]
-        TI4["임베딩 생성"]
-        TI5["Neo4j 적재"]
-
-        TI1 --> TI2 --> TI3 --> TI4 --> TI5
-
-        COST1["비용: LLM 추출 + 요약\n= 전체의 ~99%\n상대 비용: 100%"]
-    end
-
-    subgraph LazyIndexing["LazyGraphRAG 인덱싱"]
-        direction LR
-        LI1["NLP 명사구 추출\n(LLM 없음, spaCy 등)"]
-        LI2["공유 명사구 기반\n그래프 구성"]
-        LI3["Leiden 커뮤니티 탐지\n(LLM 없음)"]
-        LI4["청크 임베딩 생성만"]
-        LI5["Neo4j 적재"]
-
-        LI1 --> LI2 --> LI3 --> LI4 --> LI5
-
-        COST2["비용: 임베딩만\n상대 비용: 0.1%\n(LLM 호출 없음)"]
-    end
-
-    subgraph LazyQuery["LazyGraphRAG 질의 시점 처리"]
-        direction LR
-        LQ1["벡터 검색\n(관련 청크 후보)"]
-        LQ2["저비용 LLM으로\n관련도 테스트\n(Budget 설정)"]
-        LQ3["커뮤니티 기반\n지식 확장"]
-        LQ4["최종 응답 생성\n(고품질 LLM)"]
-
-        LQ1 --> LQ2 --> LQ3 --> LQ4
-
-        COST3["비용: 질의당 발생\n예산 제어 가능"]
-    end
-
-    TraditionalIndexing --> |"대비"| LazyIndexing
-    LazyIndexing --> LazyQuery
-```
-
-### 7.2 LazyGraphRAG 적용 시 Neo4j 저장 구조 변화
-
-```mermaid
-flowchart LR
-    subgraph TraditionalNeo4j["전통적 GraphRAG Neo4j 구조"]
-        T_ENT["Entity 노드\n(LLM 추출, 설명 포함)"]
-        T_REL["RELATED 관계\n(LLM 추출)"]
-        T_COMM["Community 노드\n(Leiden)"]
-        T_RPT["CommunityReport 노드\n(LLM 생성 요약)"]
-        T_TU["TextUnit 노드\n(청크 + 임베딩)"]
-        T_ENT --- T_REL
-        T_ENT --- T_COMM --- T_RPT
-        T_TU --- T_ENT
-    end
-
-    subgraph LazyNeo4j["LazyGraphRAG Neo4j 구조"]
-        L_NOUN["NounPhrase 노드\n(NLP 추출 명사구)"]
-        L_CO["COOCCURS_IN 관계\n(동일 청크 내 공출현)"]
-        L_COMM["Community 노드\n(Leiden, 요약 없음)"]
-        L_TU["TextUnit 노드\n(청크 + 임베딩 필수)"]
-        L_NOUN --- L_CO
-        L_NOUN --- L_COMM
-        L_TU --- L_NOUN
-
-        NOTE_L["커뮤니티 요약은\n질의 시점에\n온디맨드 생성"]
-    end
-```
-
-### 7.3 LazyGraphRAG 질의 파이프라인
-
-```mermaid
-flowchart TB
-    Q_LAZY["사용자 질의"]
-
-    subgraph LazyQueryPipeline["LazyGraphRAG 질의 파이프라인"]
-        direction TB
-
-        BEST_FIRST["Best-first 탐색\n(벡터 유사도 기반\n청크 후보 수집)"]
-
-        subgraph BudgetedTest["관련도 테스트 (Budget 제어)"]
-            CHEAP["저비용 LLM\n(gpt-4o-mini)\n→ 각 청크 관련도 0~1 점수"]
-            BUDGET_CHECK["Budget 소진 여부 확인\n(relevance_test_budget 파라미터)"]
-            EXPAND["관련 청크 → 커뮤니티 확장"]
-
-            CHEAP --> BUDGET_CHECK --> EXPAND
-        end
-
-        subgraph BreadthFirst["Breadth-first 확장"]
-            COMM_EXPAND["커뮤니티 노드 탐색\n→ 추가 관련 청크 발견"]
-            ITER_CHECK["반복 계속 여부 결정\n(품질 vs 비용 trade-off)"]
-            COMM_EXPAND --> ITER_CHECK
-        end
-
-        FINAL_GEN["최종 응답 생성\n(고품질 LLM)"]
-
-        BEST_FIRST --> BudgetedTest
-        EXPAND --> BreadthFirst
-        ITER_CHECK --> FINAL_GEN
-    end
-
-    Q_LAZY --> BEST_FIRST
-    FINAL_GEN --> ANS_LAZY["비용 효율적 응답\n(Traditional GraphRAG 대비\n로컬: 동등 이상\n글로벌: 700배 낮은 비용)"]
-```
-
----
-
-## 8. 질의 유형별 라우팅 설계
-
-### 8.1 라우터 판단 기준
-
-질의 라우터는 들어오는 질의를 분석하여 최적의 검색 경로를 선택합니다. 분류는 두 가지 차원으로 이루어집니다.
-
-```mermaid
-flowchart TB
-    Q_INPUT["사용자 질의 입력"]
-
-    subgraph Dim1["차원 1: 범위 (Scope)"]
-        direction LR
-        SPEC["구체적\n(특정 엔터티/사실)"]
-        BROAD["광범위\n(전체 데이터 조망)"]
-    end
-
-    subgraph Dim2["차원 2: 관계 복잡성"]
-        direction LR
-        SIMPLE["단순\n(직접 검색)"]
-        COMPLEX["복잡\n(멀티홉 추론)"]
-    end
-
-    subgraph RoutingMatrix["라우팅 매트릭스"]
-        direction TB
-
-        CELL_SS["구체적 + 단순\n→ BM25 우선\n+ Local Search 보완"]
-        CELL_SC["구체적 + 복잡\n→ Local Search 우선\n+ DRIFT 보완"]
-        CELL_BS["광범위 + 단순\n→ Global Search 우선\n+ BM25 보완"]
-        CELL_BC["광범위 + 복잡\n→ DRIFT Search 우선\n+ Global 보완"]
-    end
-
-    Q_INPUT --> Dim1
-    Q_INPUT --> Dim2
-    Dim1 --> RoutingMatrix
-    Dim2 --> RoutingMatrix
-```
-
-### 8.2 라우팅 판단 흐름도
-
-```mermaid
-flowchart TD
-    Q["질의 입력"]
-
-    A{"명시적 식별자 포함?\n(CVE ID, 버전, 코드명 등)"}
-    B{"전체 데이터 분석 요구?\n('전체', '패턴', '모든', '요약' 등 키워드)"}
-    C{"관계 추적 필요?\n('영향', '의존', '연결', '경로' 등)"}
-    D{"복합 질의?\n(다중 엔터티, 조건 결합)"}
-
-    R1["BM25 우선\n+ Local 보완\n(정확한 키워드 매칭)"]
-    R2["Global Search 우선\n+ BM25 보완\n(전체 조망)"]
-    R3["Local Search 우선\n+ DRIFT 보완\n(관계 탐색)"]
-    R4["DRIFT Search 우선\n+ Global + Local\n(종합 분석)"]
-    R5["Local Search 기본\n+ BM25 보완\n(일반적 탐색)"]
-
-    Q --> A
-    A --> |"예"| R1
-    A --> |"아니오"| B
-    B --> |"예"| R2
-    B --> |"아니오"| C
-    C --> |"예"| D
-    C --> |"아니오"| R5
-    D --> |"예"| R4
-    D --> |"아니오"| R3
-```
-
-### 8.3 라우팅 예시 — 아키텍처팀 실무 질의
-
-| 질의 예시 | 분류 | 선택 경로 |
+| 계층 | 컴포넌트 | 선택 이유 |
 |---|---|---|
-| "CVE-2021-44228 영향받는 버전은?" | 구체적+단순 | **BM25** → Local 보완 |
-| "Log4j 사용 애플리케이션의 배포 서버는?" | 구체적+복잡 | **Local Search** → DRIFT 보완 |
-| "장애 보고서 전체에서 반복되는 원인 패턴은?" | 광범위+단순 | **Global Search** |
-| "결제 시스템과 연관된 보안 취약점의 전체 영향 범위는?" | 광범위+복잡 | **DRIFT Search** |
-| "우리 아키텍처 문서의 주요 의존성 리스크는?" | 광범위+복잡 | **DRIFT Search** |
+| 오케스트레이션 | LangChain 또는 LlamaIndex | Neo4j 공식 통합 지원, GraphRAG 패턴 내장 |
+| 그래프 DB | Neo4j 5.x | 벡터 인덱스 + 전문 검색 + GDS 통합 |
+| 그래프 알고리즘 | Neo4j GDS 플러그인 | PageRank, PPR 공식 지원 |
+| 임베딩 모델 | text-embedding-3-small (OpenAI) 또는 BGE-M3 | 한국어 포함 다국어 지원 |
+| 생성 LLM | GPT-4o 또는 Claude Sonnet | OpenIE 추출 및 답변 생성 |
+| 모니터링 | Prometheus + Grafana | 검색 지연, 인덱싱 처리량 모니터링 |
+
+### 8.2 LlamaIndex + Neo4j PropertyGraphIndex 기반 구현
+
+LlamaIndex의 `PropertyGraphIndex`와 `Neo4jPropertyGraphStore`를 조합하면 엔터티 링크 그래프를 Neo4j에 구축하는 인덱싱 파이프라인을 빠르게 구성할 수 있습니다(LlamaIndex 공식 문서, 2025).
+
+```python
+from llama_index.core import SimpleDirectoryReader, PropertyGraphIndex
+from llama_index.core.indices.property_graph import SimpleLLMPathExtractor
+from llama_index.graph_stores.neo4j import Neo4jPropertyGraphStore
+from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.llms.openai import OpenAI
+
+# Neo4j 연결 설정
+graph_store = Neo4jPropertyGraphStore(
+    username="neo4j",
+    password="your-password",
+    url="bolt://localhost:7687",
+)
+
+# LLM 및 임베딩 모델 설정
+llm = OpenAI(model="gpt-4o-mini", temperature=0)
+embed_model = OpenAIEmbedding(model="text-embedding-3-small")
+
+# 문서 로드 및 인덱싱
+documents = SimpleDirectoryReader("./data/").load_data()
+
+# 엔터티·관계 추출기 설정 (Index-based: 스키마 없음)
+kg_extractor = SimpleLLMPathExtractor(
+    llm=llm,
+    max_paths_per_chunk=10,  # 청크당 최대 트리플 수
+    num_workers=4,           # 병렬 처리 워커 수
+)
+
+# PropertyGraphIndex 구축 (Neo4j에 저장)
+index = PropertyGraphIndex.from_documents(
+    documents,
+    kg_extractors=[kg_extractor],
+    embed_model=embed_model,
+    property_graph_store=graph_store,
+    show_progress=True,
+)
+```
+
+`PropertyGraphIndex`는 내부적으로 각 청크를 Neo4j에 Passage(청크 노드)로 저장하고, 추출된 엔터티와 관계를 Entity 노드와 엣지로 저장합니다. 임베딩은 Neo4j 벡터 인덱스에 자동으로 추가됩니다.
+
+### 8.3 검색 파이프라인 구성
+
+```python
+from llama_index.core.retrievers import (
+    VectorContextRetriever,
+    TextToCypherRetriever,
+)
+from llama_index.core.query_engine import RetrieverQueryEngine
+
+# 벡터 기반 검색 (Neo4j 벡터 인덱스 활용)
+vector_retriever = VectorContextRetriever(
+    index.property_graph_store,
+    embed_model=embed_model,
+    similarity_top_k=20,
+    # 엔터티와 연결된 Passage까지 확장 검색
+    path_depth=1,
+)
+
+# Cypher 기반 키워드/그래프 검색
+cypher_retriever = TextToCypherRetriever(
+    index.property_graph_store,
+    llm=llm,
+)
+
+# 쿼리 엔진 구성 (두 retriever 조합)
+from llama_index.core.retrievers import BaseRetriever
+from llama_index.core import QueryBundle
+from llama_index.core.schema import NodeWithScore
+
+class HybridGraphRetriever(BaseRetriever):
+    """BM25 + Vector + Graph PPR 통합 검색기"""
+    def _retrieve(self, query_bundle: QueryBundle):
+        # 1. 벡터 검색
+        vector_nodes = vector_retriever.retrieve(query_bundle)
+        
+        # 2. Neo4j 전문 검색 (BM25)
+        bm25_results = self._fulltext_search(
+            query_bundle.query_str
+        )
+        
+        # 3. Graph PPR 탐색 (씨앗 엔터티에서 출발)
+        seed_entities = self._extract_seed_entities(
+            query_bundle.query_str
+        )
+        graph_nodes = self._ppr_retrieval(seed_entities)
+        
+        # 4. RRF 통합
+        return self._rrf_merge(
+            vector_nodes, bm25_results, graph_nodes
+        )
+```
+
+### 8.4 GDS PPR 직접 호출 (LangChain Neo4j 드라이버)
+
+LlamaIndex 추상화 외에, Neo4j Python 드라이버로 GDS PPR을 직접 호출하는 방식도 가능합니다.
+
+```python
+from neo4j import GraphDatabase
+
+class PPRRetriever:
+    def __init__(self, uri, username, password):
+        self.driver = GraphDatabase.driver(uri, auth=(username, password))
+    
+    def get_seed_entity_ids(self, query_embedding: list, top_k: int = 10):
+        """질의 임베딩과 유사한 엔터티 노드 ID 반환"""
+        with self.driver.session() as session:
+            result = session.run("""
+                CALL db.index.vector.queryNodes(
+                    'entity_vector_index', $top_k, $embedding
+                ) YIELD node, score
+                WHERE score > 0.7
+                RETURN node.id AS entity_id, node.name AS name, score
+                """,
+                top_k=top_k,
+                embedding=query_embedding
+            )
+            return [record["entity_id"] for record in result]
+    
+    def run_ppr(self, seed_entity_ids: list, top_n: int = 50):
+        """씨앗 엔터티에서 PPR 실행 후 상위 엔터티 반환"""
+        with self.driver.session() as session:
+            # 씨앗 노드 Neo4j 내부 ID 조회
+            seed_nodes_result = session.run("""
+                MATCH (e:Entity)
+                WHERE e.id IN $seed_ids
+                RETURN id(e) AS internal_id
+                """, seed_ids=seed_entity_ids)
+            seed_internal_ids = [r["internal_id"] for r in seed_nodes_result]
+            
+            if not seed_internal_ids:
+                return []
+            
+            # PPR 실행
+            ppr_result = session.run("""
+                CALL gds.pageRank.stream(
+                    'entity_cooccurrence_graph',
+                    {
+                        maxIterations: 20,
+                        dampingFactor: 0.85,
+                        sourceNodes: $source_nodes,
+                        relationshipWeightProperty: 'weight'
+                    }
+                ) YIELD nodeId, score
+                WITH gds.util.asNode(nodeId) AS entity, score
+                WHERE score > 0.001
+                RETURN entity.id AS entity_id, score
+                ORDER BY score DESC
+                LIMIT $top_n
+                """,
+                source_nodes=seed_internal_ids,
+                top_n=top_n
+            )
+            return [(r["entity_id"], r["score"]) for r in ppr_result]
+    
+    def get_passages_by_entities(self, entity_ids: list, top_n: int = 20):
+        """엔터티 ID 목록에서 관련 Passage(원문 청크) 수집"""
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (e:Entity)-[:APPEARS_IN]->(p:Passage)
+                WHERE e.id IN $entity_ids
+                WITH p,
+                     count(distinct e) AS coverage,
+                     collect(distinct e.name) AS entities_found
+                RETURN p.id AS passage_id,
+                       p.content AS content,    -- 원문 그대로
+                       p.source AS source,
+                       coverage,
+                       entities_found
+                ORDER BY coverage DESC
+                LIMIT $top_n
+                """,
+                entity_ids=entity_ids,
+                top_n=top_n
+            )
+            return [dict(r) for r in result]
+```
 
 ---
 
-## 9. 운영 아키텍처 설계
+## 9. 질의 유형별 동작 방식 상세
 
-### 9.1 전체 운영 컴포넌트 구성
+아키텍처팀 관점에서 자주 등장하는 질의 유형별로 시스템이 어떻게 동작하는지를 살펴봅니다.
+
+### 9.1 단일 사실 질의 — "Log4j 2.14.1의 주요 취약점은?"
+
+```mermaid
+flowchart LR
+    Q["Log4j 2.14.1의\n주요 취약점은?"] --> B["BM25\n'Log4j 2.14.1' 정확 매칭\n높은 점수"]
+    Q --> V["Vector\n의미 유사 청크 검색"]
+    Q --> G["Graph PPR\n씨앗: Apache Log4j, v2.14.1\n연결: CVE-2021-44228 발견"]
+
+    B & V & G --> R["RRF 통합\nBM25 가중치 높임"]
+    R --> L["LLM → 답변\n(원문 청크 기반)"]
+```
+
+이 질의에서 BM25가 가장 효과적입니다. "Log4j 2.14.1"이라는 정확한 버전 번호가 원문에 등장하는 청크를 정확히 찾습니다. Graph PPR은 추가로 취약점 관련 청크를 보완합니다.
+
+### 9.2 다중 홉 질의 — "Log4j 취약점에 영향받는 서비스의 담당 팀은?"
+
+이 질의는 벡터 검색만으로는 답할 수 없습니다. "Log4j" + "담당 팀"이라는 두 주제를 연결하는 정보가 단일 청크에 없을 수 있기 때문입니다.
+
+PPR이 이 상황에서 핵심 역할을 합니다. "Apache Log4j" 엔터티에서 출발한 확률이 CO_OCCURS 엣지를 따라 "결제서비스" 엔터티로 퍼지고, 다시 "결제개발팀" 엔터티로 전파됩니다. 결과적으로 "결제개발팀을 언급한 청크"까지 수집되어 LLM이 연결 고리를 완성할 수 있습니다. 단일 벡터 검색은 이 연쇄 탐색 경로를 따라가지 못하지만, 엔터티 링크 그래프의 PPR은 이를 자연스럽게 처리합니다.
+
+### 9.3 비교 질의 — "장애 보고서에서 반복되는 근본 원인 패턴은?"
+
+이 질의는 Index-based GraphRAG의 약점 영역입니다. 전체 코퍼스를 조망해야 하는 글로벌 질의이기 때문입니다.
+
+이 경우에는 Graph 탐색 가중치를 높이되, PPR의 씨앗으로 질의에서 추출된 "장애 보고서", "근본 원인"과 같은 일반적 엔터티를 사용합니다. 여러 청크가 수집되고, LLM이 이 청크들을 종합하여 패턴을 발견하는 역할을 합니다. 단, 이 유형의 질의는 Knowledge-based GraphRAG(커뮤니티 요약 방식)가 근본적으로 더 적합합니다. 본 문서의 12절에서 두 방식의 병행 활용을 설명합니다.
+
+---
+
+## 10. 운영 아키텍처 설계
+
+### 10.1 소프트웨어 컴포넌트 구성도
 
 ```mermaid
 flowchart TB
-    subgraph ExternalSystems["외부 데이터 소스"]
-        direction LR
-        CONFLU["Confluence\n(기술 문서)"]
-        JIRA["Jira\n(장애/이슈 이력)"]
-        GIT["Git Repo\n(README, ADR)"]
-        SHARE["SharePoint\n(보고서, 메뉴얼)"]
+    subgraph Client["클라이언트 계층"]
+        WEB["웹 UI / 챗봇"]
+        APIC["API 클라이언트"]
     end
 
-    subgraph IngestionPipeline["수집 및 인덱싱 파이프라인"]
-        direction TB
-        COLLECTOR["문서 수집기\n(커넥터별 API)"]
-        NORMALIZER["문서 정규화\n(포맷 통일 / 메타데이터)"]
-        MSRAG_RUNNER["MS GraphRAG 인덱서\n(graphrag index CLI)"]
-        PARQUET_STAGE["Parquet 스테이징\n(S3 / MinIO)"]
-        NEO4J_LOADER["Neo4j 로더\n(Parquet → Cypher)"]
-        IDX_BUILDER["인덱스 구축\n(벡터 + 전문 검색)"]
-
-        COLLECTOR --> NORMALIZER --> MSRAG_RUNNER --> PARQUET_STAGE --> NEO4J_LOADER --> IDX_BUILDER
+    subgraph Gateway["API Gateway"]
+        GW["Kong / Nginx\n인증 · Rate Limit · 라우팅"]
     end
 
-    subgraph OrchestrationLayer["오케스트레이션 계층"]
-        AIRFLOW["Apache Airflow\n(배치 스케줄링)"]
-        MONITOR["모니터링\n(Prometheus / Grafana)"]
-        ALERT["알림\n(품질 이상 / 오류)"]
+    subgraph App["애플리케이션 계층"]
+        ORCH["RAG 오케스트레이터\n(LangChain / LlamaIndex)"]
+        QP["질의 프로세서\n엔터티 추출 · 임베딩 · 라우팅"]
+        CTX["컨텍스트 빌더\nRRF · 프롬프트 구성"]
     end
 
-    subgraph CoreServices["핵심 서비스"]
-        direction TB
-        API_GW["API Gateway\n(인증 / 라우팅)"]
-
-        subgraph QueryService["질의 서비스"]
-            Q_ROUTER["질의 라우터"]
-            LOCAL_SVC["Local Search 서비스"]
-            GLOBAL_SVC["Global Search 서비스"]
-            DRIFT_SVC["DRIFT Search 서비스"]
-            BM25_SVC["BM25 검색 서비스"]
-            FUSION_SVC["결과 통합 서비스\n(RRF + Reranker)"]
-        end
-
-        LLM_PROXY["LLM 프록시\n(모델 선택 / 비용 제어)"]
-        CACHE["응답 캐시\n(Redis)"]
-    end
-
-    subgraph StorageLayer["저장 계층"]
-        NEO4J_PROD["Neo4j\n(Graph + Vector + Full-text)"]
-        RAW_STORE["원본 문서 저장\n(S3 / MinIO)"]
-        METADATA_DB["메타데이터 DB\n(PostgreSQL)"]
+    subgraph Neo4jCluster["Neo4j 클러스터 (Enterprise)"]
+        PRIMARY["Primary 노드\n읽기/쓰기"]
+        READ1["Read Replica 1\n읽기 전용"]
+        READ2["Read Replica 2\n읽기 전용"]
+        PRIMARY -.->|복제| READ1 & READ2
     end
 
     subgraph LLMLayer["LLM 계층"]
-        EMBED_MODEL["임베딩 모델\n(text-embedding-3-large)"]
-        EXT_MODEL["추출 LLM\n(gpt-4o-mini: 비용 절감)"]
-        GEN_MODEL["생성 LLM\n(gpt-4o / Claude Sonnet)"]
+        EMB["임베딩 모델\n(BGE-M3 / OpenAI)"]
+        GLLM["생성 LLM\n(GPT-4o / Claude)"]
+        ELLM["추출 LLM\n(GPT-4o-mini)"]
     end
 
-    subgraph ClientLayer["클라이언트"]
-        WEB_UI["웹 챗봇 UI"]
-        API_CLI["API 클라이언트"]
+    subgraph Ingestion["수집 파이프라인"]
+        AIRFLOW["Apache Airflow\n스케줄 관리"]
+        EXTPIPE["추출 서비스\n(OpenIE + 엔터티 해소)"]
+        DOCSTORE["문서 저장소\n(S3 / MinIO)"]
     end
 
-    ExternalSystems --> COLLECTOR
-    AIRFLOW --> IngestionPipeline
-    IDX_BUILDER --> NEO4J_PROD
+    subgraph Monitoring["모니터링"]
+        PROM["Prometheus"]
+        GRAF["Grafana"]
+    end
 
-    WEB_UI --> API_GW
-    API_CLI --> API_GW
-    API_GW --> Q_ROUTER
+    WEB & APIC --> GW --> ORCH
+    ORCH --> QP
+    QP --> PRIMARY
+    QP --> READ1
+    QP --> EMB
+    CTX --> GLLM
 
-    Q_ROUTER --> LOCAL_SVC
-    Q_ROUTER --> GLOBAL_SVC
-    Q_ROUTER --> DRIFT_SVC
-    Q_ROUTER --> BM25_SVC
+    AIRFLOW --> DOCSTORE
+    AIRFLOW --> EXTPIPE
+    EXTPIPE --> ELLM
+    EXTPIPE --> PRIMARY
 
-    LOCAL_SVC --> FUSION_SVC
-    GLOBAL_SVC --> FUSION_SVC
-    DRIFT_SVC --> FUSION_SVC
-    BM25_SVC --> FUSION_SVC
-
-    FUSION_SVC --> LLM_PROXY --> GEN_MODEL
-    LOCAL_SVC --> NEO4J_PROD
-    GLOBAL_SVC --> NEO4J_PROD
-    DRIFT_SVC --> NEO4J_PROD
-    BM25_SVC --> NEO4J_PROD
-
-    EMBED_MODEL --> NEO4J_PROD
-    EXT_MODEL --> MSRAG_RUNNER
-
-    LLM_PROXY --> CACHE
-    MONITOR --> CoreServices
-    ALERT --> MONITOR
+    PRIMARY --> PROM --> GRAF
+    ORCH --> PROM
 ```
 
-### 9.2 데이터 갱신 주기 설계
+Neo4j Enterprise의 Read Replica 구성은 검색 질의(읽기)를 분산 처리하고, 인덱싱(쓰기)은 Primary 노드에서 수행합니다. Community Edition은 클러스터링을 지원하지 않으므로, 고가용성이 필요한 운영 환경에서는 Enterprise 또는 Neo4j Aura(클라우드 서비스)를 고려해야 합니다.
 
-Index-based GraphRAG의 갱신 전략은 재인덱싱 비용을 고려하여 설계해야 합니다.
+### 10.2 Neo4j Aura를 사용하는 경우
 
-```mermaid
-flowchart LR
-    subgraph UpdateStrategy["갱신 전략"]
-        direction TB
+온프레미스 Neo4j 클러스터 운영이 부담스럽다면, Neo4j의 완전 관리형 클라우드 서비스인 **Neo4j Aura**를 대안으로 사용할 수 있습니다. Aura는 AWS, GCP, Azure를 지원하며, 벡터 인덱스와 GDS 기능을 포함합니다. LlamaIndex와 LangChain 모두 Aura에 대한 공식 연결 설정을 지원합니다.
 
-        subgraph Strategy1["전략 1: 전체 재인덱싱 (Full Reindex)"]
-            FR_WHEN["주기: 월 1회 또는 대규모 문서 변경 시"]
-            FR_HOW["방식: 전체 MS GraphRAG 인덱싱 재실행\n→ Neo4j 전체 교체"]
-            FR_COST["비용: 가장 높음\n품질: 가장 일관됨"]
-        end
+### 10.3 모니터링 핵심 지표
 
-        subgraph Strategy2["전략 2: 증분 인덱싱 (Incremental)"]
-            INC_WHEN["주기: 주 1회 또는 신규 문서 발생 시"]
-            INC_HOW["방식: 신규/변경 문서만 인덱싱\n→ 그래프에 병합 (MERGE)"]
-            INC_COST["비용: 중간\n주의: 커뮤니티 구조 불일치 가능"]
-        end
+운영 중 추적해야 할 핵심 지표는 다음과 같습니다.
 
-        subgraph Strategy3["전략 3: LazyGraphRAG + 실시간 청크 갱신"]
-            LZ_WHEN["주기: 문서 변경 즉시"]
-            LZ_HOW["방식: 임베딩만 갱신\n→ 커뮤니티 요약은 질의 시 생성"]
-            LZ_COST["비용: 가장 낮음\n단점: 고정 커뮤니티 구조 활용 불가"]
-        end
-    end
-
-    Strategy1 --> |"권장 시나리오"| S1_REC["대규모 문서 집합\n일관성 중요한 운영 환경"]
-    Strategy2 --> |"권장 시나리오"| S2_REC["지속적 문서 추가 환경\n커뮤니티 재계산 허용 가능"]
-    Strategy3 --> |"권장 시나리오"| S3_REC["실시간성 요구\n초기 도입 / PoC 단계"]
-```
+| 지표 | 목표 기준 | 측정 방법 |
+|---|---|---|
+| 검색 응답 시간 (P95) | < 2초 | Prometheus histogram |
+| PPR 실행 시간 | < 500ms | GDS 쿼리 시간 |
+| BM25 검색 시간 | < 100ms | Neo4j 쿼리 시간 |
+| 엔터티 해소 정확도 | > 95% | 샘플 수작업 검증 |
+| Neo4j 메모리 사용률 | < 80% | JVM 힙 모니터링 |
+| 인덱싱 처리량 | > 10 청크/분 | Airflow 태스크 메트릭 |
 
 ---
 
-## 10. 단계별 구현 전략 — PoC에서 운영까지
+## 11. 단계별 구현 전략 — PoC에서 운영까지
 
-### 10.1 4단계 구현 로드맵
+한 번에 모든 것을 구축하려 하면 리스크가 커집니다. 작게 시작하여 가치를 검증하고 점진적으로 확장하는 전략이 현실적입니다.
 
 ```mermaid
-flowchart LR
-    subgraph Stage1["Stage 1: PoC\n(2~4주)"]
-        S1A["소규모 문서 선정\n(50~200개)"]
-        S1B["MS GraphRAG CLI로\n인덱싱 실행"]
-        S1C["Parquet → Neo4j 적재\n(기본 Import 스크립트)"]
-        S1D["Local + Global 검색\n직접 테스트"]
-        S1E["질의 품질 평가\n(BenchmarkQED 활용)"]
-        S1A --> S1B --> S1C --> S1D --> S1E
-    end
-
-    subgraph Stage2["Stage 2: Pilot\n(1~2개월)"]
-        S2A["BM25 전문 검색\n인덱스 추가"]
-        S2B["질의 라우터 구현\n(규칙 기반 초안)"]
-        S2C["DRIFT Search 통합"]
-        S2D["결과 통합 레이어\n(RRF 구현)"]
-        S2E["소수 사용자 시범 서비스"]
-        S2A --> S2B --> S2C --> S2D --> S2E
-    end
-
-    subgraph Stage3["Stage 3: 운영 전환\n(2~3개월)"]
-        S3A["자동화 인덱싱\n파이프라인 구축\n(Airflow)"]
-        S3B["API Gateway 통합\n+ 인증 체계"]
-        S3C["LazyGraphRAG 검토\n(비용 최적화)"]
-        S3D["모니터링 대시보드\n구축"]
-        S3E["전체 문서 적재\n+ 품질 검증"]
-        S3A --> S3B --> S3C --> S3D --> S3E
-    end
-
-    subgraph Stage4["Stage 4: 고도화\n(지속)"]
-        S4A["Knowledge-based 병행\n(Neo4j 온톨로지 추가)"]
-        S4B["도메인 특화 프롬프트\n(auto-tuning 활용)"]
-        S4C["멀티모달 확장\n(다이어그램, 표 등)"]
-        S4D["에이전트 워크플로우\n(LangGraph 통합)"]
-        S4A --> S4B --> S4C --> S4D
-    end
-
-    Stage1 --> Stage2 --> Stage3 --> Stage4
+gantt
+    title Index-based GraphRAG + Neo4j 단계별 구현 로드맵
+    dateFormat YYYY-MM
+    section 1단계: PoC
+    소규모 문서셋 선정 (50~100건)     :a1, 2026-06, 2w
+    Neo4j 로컬 설치 및 스키마 검증    :a2, 2026-06, 2w
+    HippoRAG 인덱싱 파이프라인 구축   :a3, 2026-07, 3w
+    3가지 검색 경로 단독 테스트       :a4, 2026-07, 2w
+    RRF 통합 및 품질 평가            :a5, 2026-07, 2w
+    section 2단계: Pilot
+    전체 문서셋 인덱싱               :b1, 2026-08, 3w
+    엔터티 해소 파이프라인 고도화     :b2, 2026-08, 2w
+    Hybrid 검색 통합 완성            :b3, 2026-09, 3w
+    사내 베타 사용자 테스트           :b4, 2026-09, 3w
+    section 3단계: 운영 전환
+    Neo4j Enterprise / Aura 전환     :c1, 2026-10, 2w
+    증분 업데이트 파이프라인 구축     :c2, 2026-10, 3w
+    모니터링 대시보드 구축            :c3, 2026-11, 2w
+    API 게이트웨이 통합               :c4, 2026-11, 2w
+    section 4단계: 확장
+    Knowledge-based 병행 구성        :d1, 2026-12, 1M
+    질의 라우터 구현                  :d2, 2027-01, 3w
+    도메인 확장 (규정, 장애 보고서 등):d3, 2027-01, 2M
 ```
 
-### 10.2 단계별 핵심 의사결정 포인트
+### 1단계 PoC에서 검증해야 할 핵심 질문
+
+PoC의 목표는 "Index-based GraphRAG + Neo4j 방식이 기존 벡터 RAG보다 실제로 더 나은 결과를 내는가?"를 소규모 데이터로 빠르게 검증하는 것입니다. 구체적인 성공 기준은 다음 세 가지입니다.
+
+첫째, 다중 홉 질의에서 Graph PPR 탐색이 벡터 검색만 사용했을 때보다 더 관련성 높은 청크를 포함하는가를 확인합니다. 둘째, RRF 통합 결과가 단일 검색 방식보다 다양한 질의 유형에서 일관되게 더 좋은 성능을 보이는가를 확인합니다. 셋째, 엔터티 해소의 정확도가 수용 가능한 수준(95% 이상)인가를 확인합니다.
+
+---
+
+## 12. Knowledge-based GraphRAG와의 병행 활용
+
+Index-based GraphRAG(원문 보존, 그래프는 인덱스)와 Knowledge-based GraphRAG(지식 그래프, 커뮤니티 요약)는 서로 다른 강점을 가지며, 아키텍처팀의 업무 환경에서는 두 방식을 병행하는 것이 이상적입니다.
 
 ```mermaid
 flowchart TD
-    D1{"LazyGraphRAG vs\n전통적 GraphRAG?"}
-    D2{"Neo4j AuraDB(클라우드) vs\n자체 호스팅?"}
-    D3{"엔터티 유형 설정\n자동 vs 수동?"}
-    D4{"커뮤니티 레벨\n몇 단계까지?"}
-    D5{"LLM 모델 선택\n추출 vs 생성 분리?"}
+    Q["사용자 질의 입력"]
 
-    D1 --> |"PoC / 비용 제약"| LAZY_CHOICE["LazyGraphRAG 선택\n인덱싱 비용 0.1%"]
-    D1 --> |"품질 우선 / 예산 여유"| FULL_CHOICE["전통적 GraphRAG 선택\n더 풍부한 커뮤니티 요약"]
+    Q --> ROUTER["질의 라우터\n(Query Router)"]
 
-    D2 --> |"빠른 시작 / 소규모"| AURA["Neo4j AuraDB\n(관리형, 월정액)"]
-    D2 --> |"대규모 / 보안 요구"| SELF["자체 Neo4j 클러스터\n(Kubernetes 권장)"]
+    ROUTER --> |"원문 정확성 중요\n비구조화 문서 검색\n다중 홉 사실 추적\n구축 비용 최소화"| INDEX["Index-based GraphRAG\n(본 문서 — 4편)\nHippoRAG 방식 Neo4j"]
 
-    D3 --> |"도메인 불명확 / PoC"| AUTO_TYPES["자동 추론 (기본 유형 사용)\n나중에 도메인 특화로 정제"]
-    D3 --> |"도메인 명확"| MANUAL_TYPES["수동 설정 권장\n(2~4시간 auto-tuning 활용)"]
+    ROUTER --> |"시스템 관계 탐색\n의존성/영향도 분석\n명확한 도메인 구조\n정밀한 Cypher 탐색"| KNOWLEDGE["Knowledge-based GraphRAG\n(세미나 시리즈 1편)\nNeo4j 온톨로지 기반"]
 
-    D4 --> |"소규모 문서"| L2["Level 2까지 (기본)\n속도 빠름 / 커뮤니티 수 적음"]
-    D4 --> |"대규모 복잡 문서"| L3["Level 3+ 고려\n더 세밀한 커뮤니티 구조"]
+    ROUTER --> |"전체 코퍼스 주제 분석\n반복 패턴 발견\n글로벌 질의"| MSRAG["Knowledge-based GraphRAG\n(MS GraphRAG 방식)\nLightRAG / LazyGraphRAG"]
 
-    D5 --> |"비용 최적화"| SPLIT_MODEL["추출: gpt-4o-mini\n생성: gpt-4o 또는 Claude Sonnet\n비용 절감 효과 큼"]
-    D5 --> |"단순 구성 선호"| SINGLE_MODEL["단일 모델 사용\n(gpt-4o / Claude Sonnet)"]
+    INDEX & KNOWLEDGE & MSRAG --> MERGE["결과 통합\n최종 LLM 컨텍스트 구성"]
+    MERGE --> ANS["최종 응답"]
 ```
+
+같은 Neo4j 인스턴스 안에서 Index-based(Passage + Entity 노드)와 Knowledge-based(Application, Library, Vulnerability 등 온톨로지 노드)를 공존시킬 수 있습니다. 두 서브그래프는 서로 다른 노드 레이블과 관계 유형을 사용하여 독립적으로 운영되면서도, 필요할 때 연결할 수 있습니다. 예를 들어 Knowledge-based의 Application 노드와 Index-based의 Passage 노드를 `DESCRIBED_IN` 관계로 연결하면, 구조화된 시스템 정보와 비구조화 문서를 함께 검색하는 것이 가능합니다.
 
 ---
 
-## 11. Knowledge-based GraphRAG와 병행 활용
+## 13. 한계와 고려사항
 
-Index-based와 Knowledge-based GraphRAG는 각자 잘하는 영역이 다릅니다. 두 방식을 Neo4j라는 단일 플랫폼에서 병행 운영하는 것이 이상적입니다.
+### 13.1 Neo4j GDS의 Enterprise 의존성
 
-### 11.1 같은 Neo4j에서 두 방식 공존
+Neo4j GDS(Graph Data Science) 플러그인은 PPR을 포함한 고급 그래프 알고리즘을 제공합니다. 그러나 GDS의 일부 알고리즘은 **Neo4j Enterprise Edition에서만 전체 기능을 사용**할 수 있습니다. Community Edition에서는 알고리즘 사용이 제한되며, 운영 환경에 적합한 클러스터링(Read Replica) 기능도 Community에서는 지원되지 않습니다. 비용 계획 수립 시 Neo4j Enterprise 라이선스 비용을 반드시 고려해야 합니다. 대안으로 Neo4j Aura(클라우드 완전 관리형)는 GDS를 포함하여 제공합니다.
 
-```mermaid
-flowchart TB
-    subgraph Neo4j["Neo4j 단일 인스턴스 (또는 클러스터)"]
-        subgraph IndexGraph["Index-based 그래프\n(MS GraphRAG 산출물)"]
-            I_ENT["Entity 노드\n(자유 추출)"]
-            I_REL["RELATED 관계"]
-            I_COMM["Community 노드"]
-            I_RPT["CommunityReport 노드"]
-            I_TU["TextUnit 노드"]
-            I_ENT --- I_REL
-            I_ENT --- I_COMM --- I_RPT
-            I_TU --- I_ENT
-        end
+Community Edition에서 PPR을 사용하려면 Python의 NetworkX 라이브러리로 Neo4j에서 그래프를 읽어와 인메모리로 PPR을 계산하는 방식을 취할 수 있습니다. 규모가 크지 않은 PoC 단계에서는 이 방식으로 시작하고, 운영 전환 시 Enterprise로 업그레이드하는 전략이 현실적입니다.
 
-        subgraph KBGraph["Knowledge-based 그래프\n(온톨로지 기반)"]
-            K_APP["Application 노드"]
-            K_LIB["Library 노드"]
-            K_VULN["Vulnerability 노드"]
-            K_SRV["Server 노드"]
-            K_SVC["Service 노드"]
-            K_APP --"USES"--> K_LIB
-            K_VULN --"AFFECTS"--> K_LIB
-            K_APP --"DEPLOYED_ON"--> K_SRV
-            K_APP --"PROVIDES"--> K_SVC
-        end
+### 13.2 엔터티 해소 품질의 지속적 관리
 
-        subgraph CrossLink["두 그래프 연결"]
-            BRIDGE["SAME_AS 관계\n(엔터티 매핑)\n예: I_ENT(Log4j) SAME_AS K_LIB(Log4j)"]
-        end
+인덱싱이 진행될수록 그래프에 노드가 축적되며, 엔터티 해소의 복잡도도 증가합니다. "오래된 엔터티와 신규 추출 엔터티 사이의 해소"가 시간이 지날수록 어려워집니다. 정기적인 엔터티 해소 감사(Entity Resolution Audit)와 인간 검수 프로세스를 운영 체계에 포함해야 합니다.
 
-        I_ENT -.->|"SAME_AS"| K_LIB
-    end
+### 13.3 글로벌 질의의 구조적 한계
 
-    QUERY_ROUTER["질의 라우터"]
-    QUERY_ROUTER --> |"패턴 분석 / 글로벌 질의"| IndexGraph
-    QUERY_ROUTER --> |"관계 탐색 / 영향도 분석"| KBGraph
-    QUERY_ROUTER --> |"복합 질의"| CrossLink
-```
+앞서 언급한 바와 같이, Index-based GraphRAG는 전체 코퍼스를 아우르는 글로벌 질의에 구조적으로 취약합니다. 이 유형의 질의가 아키텍처팀 업무에서 빈번하게 발생한다면, 별도의 Knowledge-based GraphRAG(LightRAG 또는 LazyGraphRAG)를 함께 운영하는 하이브리드 구성을 고려해야 합니다.
 
-### 11.2 두 방식의 역할 분담
+### 13.4 한계 요약
 
-```mermaid
-flowchart LR
-    subgraph Questions["질의 유형별 담당"]
-        Q1["'이 문서 집합의 핵심 주제는?'"]
-        Q2["'반복되는 장애 패턴은?'"]
-        Q3["'Log4j 취약점 영향 서비스는?'"]
-        Q4["'결제팀이 관리하는 외부 서비스는?'"]
-        Q5["'보안 이슈 전반의 맥락과\n특정 시스템의 영향 범위는?'"]
-    end
-
-    IB["Index-based GraphRAG\n(글로벌 패턴, 테마 분석)"]
-    KB["Knowledge-based GraphRAG\n(정밀 관계 탐색, 영향도 분석)"]
-    HYBRID_Q["두 방식 결합\n(복합 질의)"]
-
-    Q1 --> IB
-    Q2 --> IB
-    Q3 --> KB
-    Q4 --> KB
-    Q5 --> HYBRID_Q
-```
+| 한계 | 영향도 | 완화 방안 |
+|---|---|---|
+| GDS Enterprise 의존성 | 중간 | PoC는 NetworkX 인메모리, 운영은 Enterprise |
+| 엔터티 해소 품질 관리 | 높음 | 정기 감사 + 인간 검수 프로세스 |
+| 글로벌 질의 취약 | 중간 | Knowledge-based GraphRAG 병행 구성 |
+| 인덱싱 LLM 비용 | 중간 | 핵심 문서 우선 인덱싱 + 증분 업데이트 |
+| Neo4j 콜드 스타트 JVM | 낮음 | 컨테이너 준비 상태 점검 및 예열 |
 
 ---
 
-## 12. 결론
+## 14. 결론
 
-### 12.1 이 시스템이 제공하는 가치
+이 문서에서 제안한 **Index-based GraphRAG 기반 Neo4j Hybrid RAG 시스템**은 세 가지 검색 경로(BM25 + Vector + Graph PPR)를 단일 Neo4j 플랫폼 위에 통합합니다.
 
-Index-based GraphRAG를 Neo4j와 통합하고 BM25를 추가한 Hybrid RAG 시스템은 기존 Vector RAG에서 출발하여 세 가지 방향으로 능력을 확장합니다.
+이 접근법의 핵심 가치를 요약하면 다음과 같습니다.
 
-**첫째, 전체 조망 능력.** 커뮤니티 기반 요약 색인을 활용하면 수천 개의 문서를 단일 Vector RAG로는 얻을 수 없는 방식으로 포괄적으로 이해할 수 있습니다. "이 문서 집합의 핵심 패턴은 무엇인가?"라는 질문에 전체 데이터를 조망하여 답할 수 있습니다.
+**원문 보존**: LLM에 항상 원문 텍스트 청크를 제공합니다. 지식의 손실 없이 원문 그대로의 정보가 답변 생성에 활용됩니다.
 
-**둘째, 관계 기반 탐색.** Neo4j의 그래프 저장 구조와 Cypher 탐색을 통해 엔터티 중심의 Local Search가 가능합니다. 특정 기술이나 시스템과 연결된 지식을 그래프를 따라가며 수집하는 능력이 Vector RAG를 초월합니다.
+**다중 홉 다중 문서 탐색**: 엔터티 링크 그래프와 PPR을 결합하여, 단일 문서 안에 담겨 있지 않더라도 여러 문서에 걸쳐 관계적으로 연결된 정보를 추적합니다.
 
-**셋째, 비용 유연성.** LazyGraphRAG 적용 시 인덱싱 비용을 전통적 GraphRAG 대비 0.1% 수준으로 낮출 수 있어, 대규모 문서 집합에서도 경제적으로 도입 가능합니다.
+**통합 플랫폼**: Neo4j 하나로 그래프 저장, 벡터 인덱스, 전문 검색 인덱스, 그래프 알고리즘을 모두 처리합니다. 여러 이종 시스템을 운영하는 복잡도를 줄입니다.
 
-### 12.2 최종 아키텍처 결정 프레임
+**점진적 구축 가능**: 소규모 PoC로 시작하여 가치를 검증하고, 데이터와 용량을 점진적으로 확장할 수 있는 구조입니다.
 
-```mermaid
-flowchart TD
-    START["Index-based GraphRAG + Neo4j\nHybrid RAG 도입 결정"]
-
-    C1{"도메인 명확한\n관계 질의 중심?"}
-    C2{"전체 데이터 조망\n/ 패턴 분석 필요?"}
-    C3{"인덱싱 비용\n허용 범위?"}
-    C4{"실시간 갱신\n필요?"}
-
-    R_KB["Knowledge-based 위주\n(온톨로지 + Neo4j)\n이 문서 참조"]
-
-    R_FULL["전통적 GraphRAG\n(Full Indexing)\nGlobal 검색 최적화"]
-
-    R_LAZY["LazyGraphRAG\n(인덱싱 최소화)\n질의 시점 처리"]
-
-    R_BOTH["두 방식 병행\n(Index + Knowledge-based)\n최고 품질 달성"]
-
-    C1 --> |"예"| R_KB
-    C1 --> |"아니오"| C2
-    C2 --> |"예"| C3
-    C2 --> |"아니오"| R_KB
-    C3 --> |"충분"| C4
-    C3 --> |"제한적"| R_LAZY
-    C4 --> |"필요"| R_LAZY
-    C4 --> |"불필요"| R_FULL
-    R_KB --> |"추가 발전"| R_BOTH
-    R_FULL --> |"추가 발전"| R_BOTH
-```
-
-세 가지 문서 — 메인 세미나 자료, Index-based 심화, Knowledge-based 심화, 그리고 이 문서 — 는 각각 독립적으로 읽을 수 있지만, 함께 읽을 때 가장 완전한 그림을 그릴 수 있습니다. 이 문서는 Index-based 관점에서 Neo4j Hybrid RAG 시스템을 실제로 어떻게 설계하고 구현할 것인지를 아키텍처 중심으로 정리한 것입니다.
+이 시스템은 완결된 솔루션이 아니라 **지속적으로 성장하는 지식 탐색 인프라의 시작점**입니다. 이 기반 위에 Knowledge-based GraphRAG를 추가하고, 도메인 온톨로지를 세밀하게 발전시키며, 새로운 문서를 지속적으로 인덱싱하면서 시스템의 지능이 함께 성장합니다.
 
 ---
 
 ## 참고 자료
 
-- Microsoft GraphRAG 공식 문서: https://microsoft.github.io/graphrag/
-- Neo4j Blog: "Integrating Microsoft GraphRAG into Neo4j" (Tomaz Bratanic, 2024)
-- Neo4j + GitHub: ms-graphrag-neo4j 공식 통합 레포지터리
-- Microsoft Research Blog: "LazyGraphRAG: Setting a New Standard for Quality and Cost" (November 2024)
-- Microsoft Research Blog: "BenchmarkQED: Automated Benchmarking of RAG Systems" (June 2025)
-- Microsoft Research Blog: "GraphRAG: Improving Global Search via Dynamic Community Selection" (January 2025)
-- Paperclipped.de: "Graph RAG in 2026: What Works in Production" (March 2026)
-- Microsoft GraphRAG GitHub CLI Reference: `--community-level`, `--dynamic-community-selection` 파라미터
-- Neo4j × Microsoft 공식 협력: Azure Marketplace AuraDB 통합
+1. **Gutiérrez, B.J. et al.** (2024). *HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models.* NeurIPS 2024. — **HippoRAG 원논문 (엔터티 링크 그래프 + PPR).**
+
+2. **Gutiérrez, B.J. et al.** (2025). *From RAG to Memory: Non-Parametric Continual Learning for Large Language Models (HippoRAG2).* arXiv:2502.14802, ICML 2025. — **HippoRAG2: 밀집·희소 씨앗 혼합 방식.**
+
+3. **GitHub.** *OSU-NLP-Group/HippoRAG.* https://github.com/osu-nlp-group/hipporag — HippoRAG 공식 오픈소스 구현체.
+
+4. **Neo4j.** *neo4j-graphrag-python User Guide.* https://neo4j.com/docs/neo4j-graphrag-python/ — Neo4j GraphRAG Python 라이브러리.
+
+5. **Neo4j Labs.** *LlamaIndex + Neo4j Integration.* https://neo4j.com/labs/genai-ecosystem/llamaindex/ — LlamaIndex PropertyGraphIndex + Neo4j 통합 가이드.
+
+6. **LlamaIndex.** *GraphRAG Implementation with Neo4j - V2.* https://docs.llamaindex.ai/en/stable/examples/cookbooks/GraphRAG_v2/ — LlamaIndex + Neo4j GraphRAG 공식 예제.
+
+7. **LlamaIndex.** *Neo4j Property Graph Index Guide.* https://developers.llamaindex.ai/python/framework/module_guides/indexing/lpg_index_guide/ — PropertyGraphIndex 공식 문서.
+
+8. **Neo4j.** *Graph Data Science (GDS) Documentation.* https://neo4j.com/docs/graph-data-science/ — PageRank, PPR 알고리즘 공식 문서.
+
+9. **Graphwise.** (2026). *From Retrieval to Reasoning: Enhancing HippoRAG with Graph-Based Semantics.* — PPR + 온톨로지 결합 실험 사례.
+
+10. **Zhang, Q. et al.** (2025). *A Survey of Graph Retrieval-Augmented Generation for Customized Large Language Models.* arXiv:2501.13958. — Index-based GraphRAG 분류 기준.
+
+11. **Sarthi, P. et al.** (2024). *RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval.* ICLR 2024. arXiv:2401.18059. — RAPTOR 계층적 트리 인덱스 (비교 참조).
+
+12. **Huang, Y. et al.** (2025). *KET-RAG: A Cost-Efficient Multi-Granular Indexing Framework for Graph-RAG.* ACM KDD 2025. arXiv:2502.09304.
 
 ---
 
-*작성일: 2026-05-11*  
+*작성일: 2026-05-15*  
 *작성자: 아키텍처팀*  
-*관련 문서: Neo4j 기반 GraphRAG를 활용한 Hybrid RAG 시스템 구현*  
-*관련 문서: Index-based GraphRAG 심화 이해*  
-*관련 문서: Knowledge-based GraphRAG 심화 이해*
+*관련 문서: RAG 기술 아키텍처 세미나 시리즈 (1)~(7)*
