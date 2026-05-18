@@ -38,14 +38,14 @@ tags: [AI,  RAG,  Microsoft-GraphRAG,  Neo4j,  Claude.write]
 
 사람들이 "GraphRAG"라고 말할 때 의미하는 것이 두 가지입니다.
 
-- **Microsoft가 정의한 GraphRAG**: LLM으로 문서 전체를 처리하여 커뮤니티 구조와 계층적 요약을 만드는 Index-based 접근법
+- **Microsoft가 정의한 GraphRAG**: LLM으로 문서 전체를 처리하여 커뮤니티 구조와 계층적 요약을 만드는 Knowledge-based 접근법 (MS는 내부적으로 "graph index"라고도 부름)
 - **그래프 DB를 활용한 GraphRAG**: 지식 그래프에 엔터티와 관계를 저장하고 Cypher 탐색으로 검색하는 Knowledge-based 접근법
 
 Neo4j GraphRAG는 주로 두 번째 의미입니다. 즉, Neo4j를 그래프 저장소로 삼아 관계 기반 검색을 수행하는 방식입니다.
 
 ```mermaid
 flowchart TB
-    subgraph MS["Microsoft GraphRAG\n(Index-based)"]
+    subgraph MS["Microsoft GraphRAG\n(Knowledge-based — 커뮤니티 방식)"]
         MS_KEY["핵심: 커뮤니티 계층 구조\n\n문서 → LLM 전체 처리\n→ Leiden 커뮤니티 탐지\n→ 계층적 요약 생성\n→ 파일(Parquet) 저장\n→ Local/Global 질의"]
     end
 
@@ -334,7 +334,7 @@ flowchart LR
     end
 ```
 
-### 6.1 저장소 선택이 운영에 미치는 영향
+### 7.1 저장소 선택이 운영에 미치는 영향
 
 Microsoft GraphRAG의 Parquet 파일 기반 저장은 데이터 분석과 일괄 처리에 적합하지만, 운영 시스템에서 실시간으로 데이터를 추가하거나 변경하는 것이 어렵습니다. 새 문서가 추가되면 전체 또는 부분 재인덱싱이 필요합니다.
 
@@ -529,4 +529,3 @@ flowchart LR
 *작성일: 2026-05-18*  
 *아키텍처팀*  
 *상위 문서: Microsoft GraphRAG — 지식 그래프 기반 차세대 RAG 시스템*
-
