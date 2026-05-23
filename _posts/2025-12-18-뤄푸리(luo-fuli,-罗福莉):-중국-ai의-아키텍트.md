@@ -3,7 +3,7 @@ title: "뤄푸리(Luo Fuli, 罗福莉): 중국 AI의 아키텍트"
 date: 2025-12-18 10:00:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  Model,  MiMo,  DeepSeek,  뤄푸리,  LuoFuli,  罗福莉,  Claude.write]
+tags: [AI,  Model,  MiMo,  DeepSeek,  뤄푸리,  LuoFuli,  罗福莉,  중국AI미래지도,  Claude.write]
 ---
 
 ## 효율성으로 하드웨어 제약을 극복한 "95허우" 천재 개발자의 궤적
