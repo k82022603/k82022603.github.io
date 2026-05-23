@@ -1,7 +1,7 @@
 ---
 title: "AI Frontier EP86: 진짜 내 일을 위한 Agentic Workflow"
 date: 2026-02-23 19:30:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AI Frontier]
 mermaid: [True]
 tags: [AI,  claude-code,  Codex,  agentic-workflow,  Harness,  bio-token,  CLAUDE.md,  BFactory,  Claude.write]
 ---

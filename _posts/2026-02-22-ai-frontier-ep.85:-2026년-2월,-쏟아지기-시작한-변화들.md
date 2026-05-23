@@ -1,7 +1,7 @@
 ---
 title: "AI Frontier EP.85: 2026년 2월, 쏟아지기 시작한 변화들"
 date: 2026-02-22 14:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AI Frontier]
 mermaid: [True]
 tags: [AI,  OpenClaw,  Moltbook,  Opus-4.6,  Codex,  vibe-coding,  tacit-knowledge,  BFactory,  Claude.write]
 ---
