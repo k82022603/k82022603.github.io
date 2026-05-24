@@ -3,7 +3,7 @@ title: "Agentic Coding is a Trap"
 date: 2026-05-05 16:00:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [True]
-tags: [AI,  agentic-coding,  SDD,  spec-driven-development,  paradox-of-supervision,  agentic-coding-trap,  claude-code-quality-regression,  cognitive-debt,  Claude.write]
+tags: [AI,  agentic-coding,  SDD,  spec-driven-development,  paradox-of-supervision,  claude-code-quality-regression,  cognitive-debt,  Claude.write]
 ---
 
 
