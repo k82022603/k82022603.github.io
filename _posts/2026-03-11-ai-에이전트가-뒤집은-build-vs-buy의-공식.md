@@ -1,7 +1,7 @@
 ---
 title: "AI 에이전트가 뒤집은 Build vs Buy의 공식"
 date: 2026-03-11 19:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Uncle Bob Martin]
 mermaid: [True]
 tags: [AI,  Material,  ai-agent,  Uncle-Bob-Martin,  Claude.write]
 ---

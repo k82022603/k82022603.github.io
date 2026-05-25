@@ -1,7 +1,7 @@
 ---
 title: "Uncle Bob Martin의 경고: AI 시대, 단순한 규율과 도구만으로는 충분하지 않다"
 date: 2026-04-28 20:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Uncle Bob Martin]
 mermaid: [True]
 tags: [AI,  Uncle-Bob-Martin,  agentic-discipline,  TDD,  skill-bifurcation,  ai-orchestrated-development,  clean-architecture,  startup-pivot,  Claude.write]
 ---

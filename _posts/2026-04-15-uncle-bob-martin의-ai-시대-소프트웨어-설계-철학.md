@@ -1,7 +1,7 @@
 ---
 title: "Uncle Bob Martin의 AI 시대 소프트웨어 설계 철학"
 date: 2026-04-15 21:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Uncle Bob Martin]
 mermaid: [True]
 tags: [AI,  Uncle-Bob-Martin,  semantic-expression-ladder,  syntax-liberation,  Gherkin,  BDD,  behavior-driven-development,  GWT,  distance-between-AIs,  semantic-distance,  Overfitting,  vibe-coding,  SOLID,  clean-code,  Claude.write]
 ---

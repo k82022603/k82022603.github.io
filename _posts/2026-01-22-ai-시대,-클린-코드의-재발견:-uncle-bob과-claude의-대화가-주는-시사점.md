@@ -1,7 +1,7 @@
 ---
 title: "AI 시대, 클린 코드의 재발견: Uncle Bob과 Claude의 대화가 주는 시사점"
 date: 2026-01-22 22:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Uncle Bob Martin]
 mermaid: [True]
 tags: [AI,  Material,  software-engineering,  clean-code,  Refactoring,  Uncle-Bob-Martin,  claude-code,  Claude.write]
 ---

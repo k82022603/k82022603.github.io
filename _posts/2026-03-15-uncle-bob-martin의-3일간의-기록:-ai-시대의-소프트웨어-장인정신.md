@@ -1,9 +1,9 @@
 ---
 title: "Uncle Bob Martin의 \"3일간의 기록\": AI 시대의 소프트웨어 장인정신"
 date: 2026-03-15 10:00:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Uncle Bob Martin]
 mermaid: [True]
-tags: [AI,  Uncle-Bob-Martin,  TDD,  ATDD,  Codex,  software-craftsmanship,  Claude.write]
+tags: [AI,  Uncle-Bob-Martin,  vibe-coding,  TDD,  ATDD,  Codex,  software-craftsmanship,  Claude.write]
 ---
 
 

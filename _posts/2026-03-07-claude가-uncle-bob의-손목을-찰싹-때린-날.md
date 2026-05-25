@@ -1,7 +1,7 @@
 ---
 title: "Claude가 Uncle Bob의 손목을 찰싹 때린 날"
 date: 2026-03-07 23:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Uncle Bob Martin]
 mermaid: [True]
 tags: [AI,  Uncle-Bob-Martin,  claude-code,  Codex,  YAGNI,  Claude.write]
 ---
