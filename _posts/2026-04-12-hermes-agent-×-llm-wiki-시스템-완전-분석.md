@@ -1,9 +1,9 @@
 ---
 title: "Hermes Agent × LLM Wiki 시스템 완전 분석"
 date: 2026-04-12 09:30:00 +0900
-categories: [AI,  Harness]
+categories: [AI,  Hermes Agent]
 mermaid: [True]
-tags: [AI,  llm-wiki,  hermes-agent,  Honcho,  Supermemory,  Claude.write]
+tags: [AI,  ai-agent,  llm-wiki,  hermes-agent,  Honcho,  Supermemory,  Claude.write]
 ---
 
 > **dayum_gud ([@dayum_gud]( https://www.threads.com/@dayum_gud/post/DW_Bdpxj2On)) Threads 포스팅 + 세팅 프롬프트 심층 해설**  

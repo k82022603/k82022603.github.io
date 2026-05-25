@@ -1,9 +1,9 @@
 ---
 title: "헤르메스(Hermes Agent) + 노션으로의 전환: AI 개인 OS 플랫폼 실험 보고서"
 date: 2026-04-28 01:00:00 +0900
-categories: [AI,  Harness]
+categories: [AI,  Hermes Agent]
 mermaid: [True]
-tags: [AI,  hermes-agent,  hermes-agent-self-evolution,  Notion,  personal-life-os-agent,  Claude.write]
+tags: [AI,  ai-agent,  hermes-agent,  hermes-agent-self-evolution,  Notion,  personal-life-os-agent,  Claude.write]
 ---
 
 

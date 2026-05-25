@@ -1,9 +1,9 @@
 ---
 title: "Hermes Agent + Ollama 완전 가이드"
 date: 2026-03-29 08:00:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Hermes Agent]
 mermaid: [True]
-tags: [AI,  Ollama,  hermes-agent,  Claude.write]
+tags: [AI,  ai-agent,  Ollama,  hermes-agent,  Claude.write]
 ---
 
 ## API 키 없이 로컬에서 자기개선형 AI 에이전트 구동하기

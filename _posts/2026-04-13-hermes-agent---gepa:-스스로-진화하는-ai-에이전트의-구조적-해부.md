@@ -1,9 +1,9 @@
 ---
 title: "Hermes Agent + GEPA: 스스로 진화하는 AI 에이전트의 구조적 해부"
 date: 2026-04-13 20:10:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Hermes Agent]
 mermaid: [True]
-tags: [AI,  GEPA,  hermes-agent,  Skills,  MEMORY.md,  periodic-nudge,  hermes-agent-self-evolution,  Claude.write]
+tags: [AI,  ai-agent,  GEPA,  hermes-agent,  Skills,  MEMORY.md,  periodic-nudge,  hermes-agent-self-evolution,  Claude.write]
 ---
 
 

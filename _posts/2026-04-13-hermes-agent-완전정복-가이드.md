@@ -1,9 +1,9 @@
 ---
 title: "☤ Hermes Agent 완전정복 가이드"
 date: 2026-04-13 22:30:00 +0900
-categories: [AI,  Harness]
+categories: [AI,  Hermes Agent]
 mermaid: [True]
-tags: [AI,  hermes-agent,  harness-engineering,  memory-architecture,  Skills,  agent-skills,  MCP,  Toolset,  sub-agents,  OpenClaw,  claude-code,  Claude.write]
+tags: [AI,  ai-agent,  hermes-agent,  harness-engineering,  memory-architecture,  Skills,  agent-skills,  MCP,  Toolset,  sub-agents,  OpenClaw,  claude-code,  Claude.write]
 ---
 
 > **Nous Research 오픈소스 AI 에이전트 프레임워크 심층 분석**  
