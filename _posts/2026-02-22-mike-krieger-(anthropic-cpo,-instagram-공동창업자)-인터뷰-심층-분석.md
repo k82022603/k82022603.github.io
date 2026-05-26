@@ -3,7 +3,7 @@ title: "Mike Krieger (Anthropic CPO, Instagram 공동창업자) 인터뷰 심층
 date: 2026-02-22 13:00:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  vibe-coding,  non-deterministic-engine,  mechanistic-interpretability,  enterprise-ai,  enterprise-data-stream,  Claude.write]
+tags: [AI,  vibe-coding,  non-deterministic,  mechanistic-interpretability,  enterprise-ai,  enterprise-data-stream,  Claude.write]
 ---
 
 

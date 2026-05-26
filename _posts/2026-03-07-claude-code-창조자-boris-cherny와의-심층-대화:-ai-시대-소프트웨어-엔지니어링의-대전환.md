@@ -3,7 +3,7 @@ title: "Claude Code 창조자 Boris Cherny와의 심층 대화: AI 시대 소프
 date: 2026-03-07 05:00:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  BorisCherny,  claude-code,  software-engineering,  Anthropic,  CLAUDE.md,  non-deterministic-engine,  RAG,  agentic-search,  CLI,  Bash,  permission-prompts,  Claude.write]
+tags: [AI,  BorisCherny,  claude-code,  software-engineering,  Anthropic,  CLAUDE.md,  non-deterministic,  RAG,  agentic-search,  CLI,  Bash,  permission-prompts,  Claude.write]
 ---
 
 
