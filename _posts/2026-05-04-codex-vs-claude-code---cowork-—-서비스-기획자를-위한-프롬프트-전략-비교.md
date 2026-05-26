@@ -1,7 +1,7 @@
 ---
 title: "Codex vs Claude Code / Cowork — 서비스 기획자를 위한 프롬프트 전략 비교"
 date: 2026-05-04 11:50:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Codex vs Claude Code]
 mermaid: [True]
 tags: [AI,  Designer,  Prompt,  Codex,  claude-code,  Cowork,  Claude.write]
 ---

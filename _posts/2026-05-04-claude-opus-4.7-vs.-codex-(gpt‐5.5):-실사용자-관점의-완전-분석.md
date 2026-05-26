@@ -1,7 +1,7 @@
 ---
 title: "Claude Opus 4.7 vs. Codex (GPT-5.5): 실사용자 관점의 완전 분석"
 date: 2026-05-04 13:00:00 +0900
-categories: [AI,  Model]
+categories: [AI,  Codex vs Claude Code]
 mermaid: [True]
 tags: [AI,  Codex,  Opus-4.7,  GPT-5.5,  workflow-smoothness,  Developer,  vibe-coding,  Claude.write]
 ---

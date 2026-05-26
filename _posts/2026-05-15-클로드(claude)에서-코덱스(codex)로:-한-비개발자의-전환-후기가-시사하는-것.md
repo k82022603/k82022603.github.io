@@ -1,7 +1,7 @@
 ---
 title: "클로드(Claude)에서 코덱스(Codex)로: 한 비개발자의 전환 후기가 시사하는 것"
 date: 2026-05-15 07:30:00 +0900
-categories: [AI,  Claude Code]
+categories: [AI,  Codex vs Claude Code]
 mermaid: [True]
 tags: [AI,  Claude,  claude-code,  Codex,  claude-code-cli,  codex-app,  Claude.write]
 ---

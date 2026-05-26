@@ -1,14 +1,14 @@
 ---
 title: "도구를 선택한다는 것은 추론 방식을 선택하는 것 — Claude Code와 Codex CLI, 두 코딩 에이전트의 거울상"
 date: 2026-04-16 07:00:00 +0900
-categories: [AI,  RummiArena]
+categories: [AI,  Codex vs Claude Code]
 mermaid: [True]
-tags: [AI,  coding-agents,  claude-code,  codex-cli,  Codex,  Model,  sub-agents,  Claude.write]
+tags: [AI,  RummiArena,  coding-agents,  claude-code,  codex-cli,  Codex,  Model,  sub-agents,  Claude.write]
 ---
 
 
+- **프로젝트**: [RummiArena - 루미큐브(Rummikub) 보드게임 기반 멀티 LLM 전략 실험 플랫폼](https://github.com/k82022603/RummiArena)
 - **작성일**: 2026-04-15 (Sprint 6 Day 4)
-- **작성자**: 애벌레 + Claude Code (협업)
 - **배경**: 본 문서는 Day 4 오후에 진행된 GPT-5-mini v4 empirical 검증 (`docs/04-testing/57`, `docs/04-testing/58`, `docs/03-development/17` 부록 A, `docs/03-development/21` §3.4.1) 의 결론이 **한 개 모델의 한 번의 턴** 에 머물지 않고, 그 모델을 품은 **도구 전체의 설계 철학** 까지 거슬러 올라간다는 관찰에서 출발했다. 애벌레가 오늘 부록 A를 읽은 뒤 던진 한 줄 — *"프롬프트 튜닝을 거부하는 일관성"* — 이 이 에세이의 실마리다.
 - **관련 문서**: `docs/03-development/15-deepseek-reasoner-analysis.md`, `docs/03-development/17-gpt5-mini-analysis.md`, `docs/03-development/18-claude-sonnet4-extended-thinking.md`, `work_logs/insights/2026-04-14-agent-teams-token-economics-essay.md`
 - **이 글에 대하여**: 이 에세이는 RummiArena 의 특정 기술적 결정을 설명하지 않는다. 그보다 **우리가 매일 쓰는 도구들이 어떤 식으로 작동하며, 왜 그렇게 작동하는지** 를 기록해두려는 글이다. 프로젝트 문서에 이런 글이 왜 필요하냐 물으면, 나는 "우리가 도구를 이해해야 도구의 결과를 해석할 수 있기 때문" 이라고 답할 것이다. 오늘의 Day 4 가 그 사실을 정면으로 증명했다.

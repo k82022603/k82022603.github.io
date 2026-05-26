@@ -1,7 +1,7 @@
 ---
 title: "클로드 코드 단독 시대의 종말 — Claude Code × Codex 완전 가이드"
 date: 2026-05-05 20:30:00 +0900
-categories: [AI,  Vibe Coding]
+categories: [AI,  Codex vs Claude Code]
 mermaid: [True]
 tags: [AI,  claude-code,  claude-code-quality-regression,  codex-plugin-cc,  Codex,  adversarial-review,  vibe-coding,  Claude.write]
 ---

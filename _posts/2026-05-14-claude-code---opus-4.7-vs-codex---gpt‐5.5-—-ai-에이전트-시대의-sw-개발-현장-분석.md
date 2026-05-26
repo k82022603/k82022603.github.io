@@ -1,7 +1,7 @@
 ---
 title: "Claude Code + Opus 4.7 vs Codex + GPT-5.5 — AI 에이전트 시대의 SW 개발 현장 분석"
 date: 2026-05-14 07:00:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Codex vs Claude Code]
 mermaid: [True]
 tags: [AI,  claude-code,  Opus-4.7,  Codex,  GPT-5.5,  harness-engineering,  managed-agents,  hybrid-multi-agent,  Claude.write]
 ---

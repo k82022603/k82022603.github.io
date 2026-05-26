@@ -1,7 +1,7 @@
 ---
 title: "Claude에서 Codex로: 한 개발자의 전환 기록과 2026년 AI 코딩 에이전트 경쟁 구도"
 date: 2026-05-19 21:00:00 +0900
-categories: [AI,  AI Agent]
+categories: [AI,  Codex vs Claude Code]
 mermaid: [True]
 tags: [AI,  Claude, claude-code-quality-regression,  Opus-4.6,  Opus-4.7,  GPT-5.5,  CLAUDE.md,  AGENTS.md,  Codex,  vibe-coding,  agentic-coding,  vibe-coder,  ADD,  agentic-driven-development,  Claude.write]
 ---
