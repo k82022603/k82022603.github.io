@@ -199,14 +199,14 @@ quadrantChart
     title GOVERN/ASSURE 4대 구성 요소
     x-axis "사전 예방" --> "사후 대응"
     y-axis "자동화" --> "인간 개입"
-    quadrant-1 인간 리뷰 큐
-    quadrant-2 신뢰 평가
-    quadrant-3 검색 가능 로그
-    quadrant-4 세분화 롤백
-    Trusted Evals: [0.2, 0.85]
-    Searchable Logs: [0.4, 0.15]
-    Granular Rollback: [0.7, 0.2]
-    Human Review Queue: [0.8, 0.9]
+    quadrant-1 "인간 리뷰 큐"
+    quadrant-2 "신뢰 평가"
+    quadrant-3 "검색 가능 로그"
+    quadrant-4 "세분화 롤백"
+    "Trusted Evals": [0.2, 0.85]
+    "Searchable Logs": [0.4, 0.15]
+    "Granular Rollback": [0.7, 0.2]
+    "Human Review Queue": [0.8, 0.9]
 ```
 
 **01. 신뢰 평가(Trusted Evals):** 고객이 이상 징후를 발견하기 전에, 시스템이 조용히 일어나는 드리프트(편차)를 사전에 포착한다. 에이전트의 행위가 기준에서 서서히 벗어나는 것을 지속적으로 감시한다.
