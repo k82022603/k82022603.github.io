@@ -3,7 +3,7 @@ title: "CodeGraph와 온톨로지 기반 바이브코딩"
 date: 2026-05-29 22:00:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [True]
-tags: [AI,  CodeGraph,  Ontology,  Knowledge-graph,  Claude.write]
+tags: [AI,  CodeGraph,  Ontology,  knowledge-graph,  Claude.write]
 ---
 
 ## AI 코딩 에이전트를 위한 코드 지식 그래프 — 완전 해설
