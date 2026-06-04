@@ -3,7 +3,7 @@ title: "OpenAI Codex CLI 완전 입문 가이드"
 date: 2026-05-09 13:00:00 +0900
 categories: [AI,  Codex]
 mermaid: [True]
-tags: [AI,  codex-cli,  sandbox-policy,  approval-policy,  codex-yolo,  git-checkpoint,  Prompt,  Memory,  Claude.write]
+tags: [AI,  codex-cli,  Sandbox,  approval-policy,  codex-yolo,  git-checkpoint,  Prompt,  Memory,  Claude.write]
 ---
 
 ## 설치부터 핵심 개념까지 — Prompting, Memories, Sandboxing, Models
