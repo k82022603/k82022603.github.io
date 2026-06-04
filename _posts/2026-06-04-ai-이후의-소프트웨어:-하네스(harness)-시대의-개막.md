@@ -3,7 +3,7 @@ title: "AI 이후의 소프트웨어: 하네스(Harness) 시대의 개막"
 date: 2026-06-04 21:00:00 +0900
 categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  Harness,  agent-harness,  Context,  Memory,  Tool,  Orchestration,  Sandbox,  Observability,  MCP,  ai-agent-framework,  Claude.write]
+tags: [AI,  Harness,  agent-harness,  Context,  Memory,  Tools,  Orchestration,  Sandbox,  Observability,  MCP,  ai-agent-framework,  Claude.write]
 ---
 
 
