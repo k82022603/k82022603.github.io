@@ -1,9 +1,9 @@
 ---
 title: "Deep Agents 하네스 프로파일: 모델별 최적화 시대의 개막"
 date: 2026-04-30 20:20:00 +0900
-categories: [AI,  Platform & Framework]
+categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  deep-agents,  harness-profiles,  agent-harness,  LangChain,  tau2-bench,  harness-engineering,  terminal-bench,  Claude.write]
+tags: [AI,  deep-agents,  harness-profiles,  agent-harness,  LangChain,  tau2-bench,  harness-engineering,  terminal-bench,  Harness,  harness-engineering,  Claude.write]
 ---
 
 
