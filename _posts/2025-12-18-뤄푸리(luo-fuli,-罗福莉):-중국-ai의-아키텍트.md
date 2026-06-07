@@ -1,7 +1,7 @@
 ---
 title: "뤄푸리(Luo Fuli, 罗福莉): 중국 AI의 아키텍트"
 date: 2025-12-18 10:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  중국 AI 미래지도]
 mermaid: [True]
 tags: [AI,  Model,  MiMo,  DeepSeek,  뤄푸리,  LuoFuli,  罗福莉,  중국AI미래지도,  Claude.write]
 ---

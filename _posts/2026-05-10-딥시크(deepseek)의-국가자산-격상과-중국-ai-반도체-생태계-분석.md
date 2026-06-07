@@ -1,7 +1,7 @@
 ---
 title: "딥시크(DeepSeek)의 국가자산 격상과 중국 AI 반도체 생태계 분석"
 date: 2026-05-10 19:00:00 +0900
-categories: [AI,  Model]
+categories: [AI,  중국 AI 미래지도]
 mermaid: [True]
 tags: [AI,  DeepSeek,  open-source-model,  China-ai-chip,  Cambricon,  중국AI미래지도,  Claude.write]
 ---
