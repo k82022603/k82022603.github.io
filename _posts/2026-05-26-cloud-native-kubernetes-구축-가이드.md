@@ -3,7 +3,7 @@ title: "Cloud Native Kubernetes 구축 가이드"
 date: 2026-05-26 19:00:00 +0900
 categories: [TechStack,  Architecture]
 mermaid: [True]
-tags: [Kubernetes,  Ingress,  istio-service-mesh,  RummiArena,  Claude.write]
+tags: [Kubernetes,  kubernetes-ingress,  istio-service-mesh,  RummiArena,  Claude.write]
 ---
 
 
