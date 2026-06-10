@@ -3,7 +3,7 @@ title: "LLM 스킬 생성의 역설 · DeepSeek-R1의 혁신 · LLM 스티어링
 date: 2026-05-19 21:30:00 +0900
 categories: [AI,  Model]
 mermaid: [True]
-tags: [AI,  Skills,  Codex,  DeepSeek-R1,  DeepSeek-V4-Flash,  Anthropic,  SAE-steering,  reinforcement-learning,  Claude.write]
+tags: [AI,  Skills,  Codex,  DeepSeek-R1,  DeepSeek-V4,  Anthropic,  SAE-steering,  reinforcement-learning,  Claude.write]
 ---
 
 

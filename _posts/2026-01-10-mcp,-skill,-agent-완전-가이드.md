@@ -3,7 +3,7 @@ title: "MCP, Skill, Agent 완전 가이드"
 date: 2026-01-10 08:00:00 +0900
 categories: [AI,  Claude Code]
 mermaid: [True]
-tags: [AI,  claude-code,  MCP,  agent-skills,  sub-agents,  agentic-engineers,  Claude.write]
+tags: [AI,  claude-code,  MCP,  agent-skills,  sub-agents,  agentic-engineers,  단상,  Claude.write]
 ---
 
 ## 누가 결정하는가: 신뢰할 수 있는 AI 시스템 설계

@@ -1,7 +1,7 @@
 ---
 title: "GS리테일 AIOps Agent 기반 운영 자동화 혁신"
 date: 2026-04-17 07:50:00 +0900
-categories: [AI,  MLOps]
+categories: [AI,  AIOps]
 mermaid: [True]
 tags: [AI,  AIOps,  FinOps,  Datadog,  AWS,  amazon-ecs-fargate,  agent-loop,  dynamic-tooling,  MCP,  RAG,  SRE,  RCA,  GraphRAG,  multi-agent,  Claude.write]
 ---

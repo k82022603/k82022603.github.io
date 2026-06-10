@@ -1,9 +1,9 @@
 ---
 title: "AgentOps 완전 가이드: AI 에이전트를 프로덕션에서 신뢰할 수 있게 운영하는 법"
 date: 2026-03-30 22:00:00 +0900
-categories: [AI,  MLOps]
+categories: [AI,  AIOps]
 mermaid: [True]
-tags: [AI,  AgentOps,  agent-operations,  ai-agent,  Claude.write]
+tags: [AI,  AIOps,  AgentOps,  agent-operations,  ai-agent,  Claude.write]
 ---
 
 
