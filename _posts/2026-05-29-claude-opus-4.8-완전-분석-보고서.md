@@ -269,16 +269,16 @@ Databricks의 CTO Hanlin Tang은 자사의 AI 에이전트 **Genie**에서 Opus 
 ```mermaid
 quadrantChart
     title 에이전틱 코딩 vs 정렬 안전성 (상대적 위치)
-    x-axis 낮은 에이전틱 코딩 성능 --> 높은 에이전틱 코딩 성능
-    y-axis 낮은 정렬 안전성 --> 높은 정렬 안전성
-    quadrant-1 고성능 고안전
-    quadrant-2 저성능 고안전
-    quadrant-3 저성능 저안전
-    quadrant-4 고성능 저안전
-    Opus 4.8: [0.85, 0.90]
-    GPT-5.5: [0.75, 0.60]
-    Gemini 3.1 Pro: [0.65, 0.55]
-    Opus 4.7: [0.78, 0.65]
+    x-axis "낮은 에이전틱 코딩 성능 --> 높은 에이전틱 코딩 성능"
+    y-axis "낮은 정렬 안전성 --> 높은 정렬 안전성"
+    quadrant-1 "고성능 고안전"
+    quadrant-2 "저성능 고안전"
+    quadrant-3 "저성능 저안전"
+    quadrant-4 "고성능 저안전"
+    "Opus 4.8": [0.85, 0.90]
+    "GPT-5.5": [0.75, 0.60]
+    "Gemini 3.1 Pro": [0.65, 0.55]
+    "Opus 4.7": [0.78, 0.65]
 ```
 
 ### 8.1 분야별 리더 정리
