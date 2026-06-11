@@ -3,7 +3,7 @@ title: "AI 에이전트 하네스(Harness) 완전 해설 - Anthropic · OpenAI �
 date: 2026-05-31 21:00:00 +0900
 categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  Harness,  harness-engineering,  ai-agent,  Anthropic,  Planner,  Generator,  Evaluator,  OpenAI,  AGENTS.md,  progressive-disclosure,  Skills,  multi-agent,  Claude.write]
+tags: [AI,  Harness,  harness-engineering,  ai-agent,  Anthropic,  Planner-Generator-Evaluator,  OpenAI,  AGENTS.md,  progressive-disclosure,  Skills,  multi-agent,  Claude.write]
 ---
 
 
