@@ -1092,20 +1092,20 @@ Loop Engineering 트윗 스레드의 가장 예리한 댓글: "a loop with nothi
 ```mermaid
 quadrantChart
     title 작업 유형에 따른 접근법 선택
-    x-axis 반복 가능성 낮음 --> 반복 가능성 높음
-    y-axis 인간 판단 필요 낮음 --> 인간 판단 필요 높음
-    quadrant-1 Architect Loop 적합
-    quadrant-2 Architect Loop 필수
-    quadrant-3 Loop Engineering 적합
-    quadrant-4 Loop Engineering 적합
-    아키텍처 설계: [0.2, 0.9]
-    기술적 부채 판정: [0.3, 0.8]
-    설계 리뷰: [0.4, 0.75]
-    테스트 작성: [0.8, 0.3]
-    코드 포맷팅: [0.9, 0.1]
-    문서 생성: [0.85, 0.25]
-    모듈 구현: [0.65, 0.5]
-    버그 수정: [0.6, 0.55]
+    x-axis "반복 가능성 낮음 --> 반복 가능성 높음"
+    y-axis "인간 판단 필요 낮음 --> 인간 판단 필요 높음"
+    quadrant-1 "Architect Loop 적합"
+    quadrant-2 "Architect Loop 필수"
+    quadrant-3 "Loop Engineering 적합"
+    quadrant-4 "Loop Engineering 적합"
+    "아키텍처 설계": [0.2, 0.9]
+    "기술적 부채 판정": [0.3, 0.8]
+    "설계 리뷰": [0.4, 0.75]
+    "테스트 작성": [0.8, 0.3]
+    "코드 포맷팅": [0.9, 0.1]
+    "문서 생성": [0.85, 0.25]
+    "모듈 구현": [0.65, 0.5]
+    "버그 수정": [0.6, 0.55]
 ```
 
 **Loop Engineering이 적합한 상황:**
