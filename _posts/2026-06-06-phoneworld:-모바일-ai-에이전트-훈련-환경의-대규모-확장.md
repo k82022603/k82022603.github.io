@@ -3,7 +3,7 @@ title: "PhoneWorld: 모바일 AI 에이전트 훈련 환경의 대규모 확장"
 date: 2026-06-06 01:00:00 +0900
 categories: [AI,  중국 AI 미래지도]
 mermaid: [True]
-tags: [AI,  중국AI미래지도,  PhoneWorld,  Tencent,  mobile-agents,  human-in-the-loop,  Claude.write]
+tags: [AI,  중국AI미래지도,  ai-research-papers,  PhoneWorld,  Tencent,  mobile-agents,  human-in-the-loop,  Claude.write]
 ---
 
 

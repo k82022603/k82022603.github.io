@@ -3,7 +3,7 @@ title: "Code as Agent Harness: 실행 가능하고 검증 가능하며 상태를
 date: 2026-05-30 21:00:00 +0900
 categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  agent-harness,  harness-engineering,  harness-interface,  harness-infrastructure,  Claude.write]
+tags: [AI,  ai-research-papers,  agent-harness,  harness-engineering,  harness-interface,  harness-infrastructure,  Claude.write]
 ---
 
 

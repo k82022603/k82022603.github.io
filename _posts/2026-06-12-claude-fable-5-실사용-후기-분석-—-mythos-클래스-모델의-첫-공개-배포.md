@@ -1,7 +1,7 @@
 ---
 title: "Claude Fable 5 실사용 후기 분석 — Mythos 클래스 모델의 첫 공개 배포"
 date: 2026-06-12 01:00:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Fable 5]
 mermaid: [True]
 tags: [AI,  claude-mythos,  Fable-5,  Anthropic,  ai-guardrails,  GPT-5.5,  Claude.write]
 ---

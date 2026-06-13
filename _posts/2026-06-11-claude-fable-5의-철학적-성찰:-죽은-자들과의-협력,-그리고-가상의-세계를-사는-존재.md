@@ -1,7 +1,7 @@
 ---
 title: "Claude Fable 5의 철학적 성찰: 죽은 자들과의 협력, 그리고 가상의 세계를 사는 존재"
 date: 2026-06-11 20:10:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Claude Fable 5]
 mermaid: [True]
 tags: [AI,  Fable-5,  claude-mythos,  Claude.write]
 ---

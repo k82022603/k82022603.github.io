@@ -1,7 +1,7 @@
 ---
 title: "Anthropic의 Mythos급 모델 Claude Fable 5 공개와 AI·인간 노동의 역전"
 date: 2026-06-12 07:50:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Fable 5]
 mermaid: [True]
 tags: [AI,  claude-code,  Fable-5,  Anthropic,  safety-classifiers,  prompt-engineering,  Harness,  Claude.write]
 ---
@@ -11,6 +11,7 @@ tags: [AI,  claude-code,  Fable-5,  Anthropic,  safety-classifiers,  prompt-engi
 > **작성일**: 2026-06-12
 >
 > **기반 자료**: Anthropic 공식 발표(2026-06-09), Threads 현장 반응([editor_soo](https://www.threads.com/@editor_soo/post/DZeW5BYk50w), [hyeyum_people]( https://www.threads.com/@hyeyum_people/post/DZeZqUFmYFW), [aychan3927]( https://www.threads.com/@aychan3927/post/DZeaAhWD9Ep)), TechCrunch, The Hacker News, IT Pro, Claude API 공식 문서, WinCentral 프롬프팅 가이드 외
+
 
 ---
 

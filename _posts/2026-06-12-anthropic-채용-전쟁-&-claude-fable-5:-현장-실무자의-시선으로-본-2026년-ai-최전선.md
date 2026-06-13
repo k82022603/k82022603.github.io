@@ -1,7 +1,7 @@
 ---
 title: "Anthropic 채용 전쟁 & Claude Fable 5: 현장 실무자의 시선으로 본 2026년 AI 최전선"
 date: 2026-06-12 07:40:00 +0900
-categories: [AI,  Material]
+categories: [AI,  Claude Fable 5]
 mermaid: [True]
 tags: [AI,  claude-code,  Fable-5,  Anthropic,  Claude.write]
 ---

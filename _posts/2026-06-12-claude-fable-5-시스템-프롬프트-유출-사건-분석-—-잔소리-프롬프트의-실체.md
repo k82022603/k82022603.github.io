@@ -1,7 +1,7 @@
 ---
 title: "Claude Fable 5 시스템 프롬프트 유출 사건 분석 — \"잔소리 프롬프트\"의 실체"
 date: 2026-06-12 01:10:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Fable 5]
 mermaid: [True]
 tags: [AI,  claude-code,  Fable-5,  Anthropic,  claude-code-source-leak,  system-prompt,  behavioral-norms,  operational-instructions,  self-referential-defense,  ai-guardrails,  Claude.write]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Claude Fable 5: 농산물 LIMS 자동화 현장과 Andrej Karpathy의 \"메이저 버전 업그레이드\" 선언"
 date: 2026-06-12 06:40:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Fable 5]
 mermaid: [True]
 tags: [AI,  claude-code,  Fable-5,  Anthropic,  AndrejKarpathy,  Claude.write]
 ---

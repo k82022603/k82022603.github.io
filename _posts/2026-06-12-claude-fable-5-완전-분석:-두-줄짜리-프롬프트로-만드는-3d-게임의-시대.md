@@ -1,7 +1,7 @@
 ---
 title: "Claude Fable 5 완전 분석: 두 줄짜리 프롬프트로 만드는 3D 게임의 시대"
 date: 2026-06-12 06:30:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Fable 5]
 mermaid: [True]
 tags: [AI,  claude-code,  Fable-5,  Anthropic,  Claude.write]
 ---

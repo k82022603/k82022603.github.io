@@ -3,7 +3,7 @@ title: "쉽게 읽는 「Code as Agent Harness」 논문 해설"
 date: 2026-05-31 10:00:00 +0900
 categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  agent-harness,  harness-engineering,  harness-interface,  harness-infrastructure,  Claude.write]
+tags: [AI,  ai-research-papers,  agent-harness,  harness-engineering,  harness-interface,  harness-infrastructure,  Claude.write]
 ---
 
 

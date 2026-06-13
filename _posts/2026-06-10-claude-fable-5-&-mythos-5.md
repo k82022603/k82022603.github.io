@@ -1,7 +1,7 @@
 ---
 title: "Claude Fable 5 & Mythos 5"
 date: 2026-06-10 07:00:00 +0900
-categories: [AI,  Claude]
+categories: [AI,  Claude Fable 5]
 mermaid: [True]
 tags: [AI,  Fable-5,  claude-mythos,  Claude.write]
 ---
