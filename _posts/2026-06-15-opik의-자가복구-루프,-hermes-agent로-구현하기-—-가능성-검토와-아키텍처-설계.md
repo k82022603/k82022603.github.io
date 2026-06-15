@@ -3,7 +3,7 @@ title: "Opik의 자가복구 루프, Hermes Agent로 구현하기 — 가능성 
 date: 2026-06-15 07:00:00 +0900
 categories: [AI,  Hermes Agent]
 mermaid: [True]
-tags: [AI,  Opik,  Ollie,  self-correction,  Comet,  Harness,  harness-engineering,  agent-harness,   ai-agent, ,  hermes-agent,  opik-mcp,  Claude.write]
+tags: [AI,  Opik,  Ollie,  self-correction,  Comet,  Harness,  harness-engineering,  agent-harness,   ai-agent,  hermes-agent,  opik-mcp,  Claude.write]
 ---
 
 
