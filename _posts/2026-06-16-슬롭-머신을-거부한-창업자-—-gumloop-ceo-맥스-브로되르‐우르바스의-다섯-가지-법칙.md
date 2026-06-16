@@ -7,7 +7,7 @@ tags: [AI,  Claude.write]
 ---
 
 
-> **출처**: EO(Entrepreneurship Organization) YouTube 인터뷰 — [*"50 AI Agents Running My Company" Is a Lie. Here's How I Build It | Gumloop, Max Brodeur-Urbas*](https://www.youtube.com/watch?v=CxFQykWiJqY) (2026년 3월 16일 공개)
+> **출처**: EO(Entrepreneurship Organization) YouTube 인터뷰 — [*"50 AI Agents Running My Company" Is a Lie. Here's How I Build It - Gumloop, Max Brodeur-Urbas*](https://www.youtube.com/watch?v=CxFQykWiJqY) (2026년 3월 16일 공개)
 >
 > **맥스 브로되르-우르바스(Max Brodeur-Urbas)**: Gumloop 공동창업자 겸 CEO. 2026년 3월 기준 Series B $5,000만 달러 조달 완료. 누적 투자 유치액 약 $7,060만 달러.
 
