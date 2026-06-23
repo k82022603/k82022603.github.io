@@ -3,7 +3,7 @@ title: "LazyCodex & Oh-My-OpenAgent(OmO)"
 date: 2026-06-22 01:00:00 +0900
 categories: [AI,  Harness]
 mermaid: [True]
-tags: [AI,  LazyCodex,  Oh-My-OpenAgent,  OmO,  codex-cli,  GPT-5.5-Codex,  Ultracode,  Claude.write]
+tags: [AI,  LazyCodex,  oh-my-openagent,  OmO,  codex-cli,  GPT-5.5-Codex,  Ultracode,  Claude.write]
 ---
 
 ## "나침반 없던 시절의 북극성" — Codex 에이전트 하네스 생태계 심층 분석
