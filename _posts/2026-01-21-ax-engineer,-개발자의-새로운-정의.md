@@ -3,7 +3,7 @@ title: "AX Engineer, 개발자의 새로운 정의"
 date: 2026-01-21 08:30:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  Material,  AX-Engineer,  Claude.write]
+tags: [AI,  Material,  ax-engineer,  Claude.write]
 ---
 
 
