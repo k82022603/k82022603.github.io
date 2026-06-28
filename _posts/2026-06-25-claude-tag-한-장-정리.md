@@ -116,6 +116,8 @@ graph LR
 
 **DM(개인 메시지) 사용 방식**: 채널 메시지 외에 개인 DM으로도 Claude와 소통할 수 있다. 이 경우 채널 레벨의 조직 설정이 아닌, 해당 사용자가 자신의 claude.ai 계정에 설정한 개인 도구·커넥터를 활용해 비공개로 응답한다. 이때의 비용은 조직이 아닌 개인 시트에서 청구된다.
 
+{% raw %}
+
 ```mermaid
 flowchart TD
     ADMIN["관리자: 워크스페이스 연결 +\n채널별 접근 권한 설정"] --> READY["Claude Tag 활성화"]
@@ -128,6 +130,9 @@ flowchart TD
     ASYNC -->|"NO"| RESULT["결과를 Slack 스레드에 게시"]
     RESULT --> CONT["팀원 누구나\n대화를 이어받아 계속 진행 가능"]
 ```
+
+{% endraw %}
+
 
 ---
 

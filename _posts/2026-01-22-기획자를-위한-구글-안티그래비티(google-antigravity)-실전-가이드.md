@@ -3,7 +3,7 @@ title: "기획자를 위한 구글 안티그래비티(Google Antigravity) 실전
 date: 2026-01-22 20:00:00 +0900
 categories: [AI,  Antigravity]
 mermaid: [True]
-tags: [AI,  Antigravity,   design-system,  Guide,  Claude.write]
+tags: [AI,  Planner,  Antigravity,  Planning,  design-system,  Guide,  Claude.write]
 ---
 
 

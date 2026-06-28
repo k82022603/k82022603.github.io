@@ -3,7 +3,7 @@ title: "웹기획·웹디자인을 위한 에센스 오브 에센스(Essence of 
 date: 2026-01-21 19:00:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  Material,  Essence-of-Essence,  Claude.write]
+tags: [AI,  web-design,  web-planning,  Material,  Essence-of-Essence,  Claude.write]
 ---
 
 
