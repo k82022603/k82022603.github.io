@@ -1,9 +1,9 @@
 ---
 title: "Oreo Enterprise Agentic AI Platform: 계약 기반 에이전트 운영 체계"
 date: 2026-06-04 20:00:00 +0900
-categories: [AI,  Platform & Framework]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
-tags: [AI,  agentic-platform,  Oreo,  ReKA,  sLLM,  LoRA,  A2A,  AgenticOps,  Ralph,  Claude.write]
+tags: [AI,  AX,  agentic-platform,  Oreo,  ReKA,  sLLM,  LoRA,  A2A,  AgenticOps,  Ralph,  단상,  Claude.write]
 ---
 
 
