@@ -3,13 +3,13 @@ title: "Claude Tag: Slack 안에 상주하는 AI 팀원, 무엇이 달라졌나"
 date: 2026-07-04 12:30:00 +0900
 categories: [AI,  Claude]
 mermaid: [True]
-tags: [AI,  claude-tag,  Slack,  Claude.write]
+tags: [AI,  claude-tag,  Slack,  BorisCherny,  Multiplayer,  Memory,  ambient-behavior,  asynchronous-work,  Claude.write]
 ---
 
 
 ## 이 문서가 다루는 내용
 
-이 문서는 2026년 7월 3일 공개된 Anthropic의 영상 "The future of work with Claude"(출연: Claude Code 총괄 Boris Cherny, Claude Code·Cowork 프로덕트 총괄 Cat Wu)의 내용을 바탕으로, 이 영상에서 소개된 신제품 **Claude Tag**가 정확히 무엇이고 어떻게 작동하며 왜 등장했는지를 Anthropic 공식 발표 자료와 언론 보도를 대조해 검증한 뒤 정리한 것이다. 영상 속 발언은 실제 제품 발표(2026년 6월 23일)와 연결되어 있으므로, 두 소스를 함께 참고해 사실관계를 최대한 정확하게 재구성했다.
+이 문서는 2026년 7월 3일 공개된 Anthropic의 영상 ["The future of work with Claude"](https://www.youtube.com/watch?v=MhfnicQVkgY)(출연: Claude Code 총괄 Boris Cherny, Claude Code·Cowork 프로덕트 총괄 Cat Wu)의 내용을 바탕으로, 이 영상에서 소개된 신제품 **Claude Tag**가 정확히 무엇이고 어떻게 작동하며 왜 등장했는지를 Anthropic 공식 발표 자료와 언론 보도를 대조해 검증한 뒤 정리한 것이다. 영상 속 발언은 실제 제품 발표(2026년 6월 23일)와 연결되어 있으므로, 두 소스를 함께 참고해 사실관계를 최대한 정확하게 재구성했다.
 
 ---
 

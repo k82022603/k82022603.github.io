@@ -3,7 +3,7 @@ title: "Claude Tag 한 장 정리"
 date: 2026-06-25 07:10:00 +0900
 categories: [AI,  Claude]
 mermaid: [True]
-tags: [AI,  claude-tag,  hermes-agent,  Slack,  Claude.write]
+tags: [AI,  claude-tag,  hermes-agent,  Slack,  ambient-behavior,  Claude.write]
 ---
 
 ### 인포그래픽 전문 분석 + 커뮤니티 반응 + 비용 구조 + 헤르메스 에이전트 비교
@@ -21,9 +21,10 @@ tags: [AI,  claude-tag,  hermes-agent,  Slack,  Claude.write]
 > 헤르메스 쓸 이유가 없다...
 > 
 
-![image_01](https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/729790972_17902005576453894_7937188297376884294_n.webp?_nc_cat=103&ig_cache_key=MzkyNjU1ODQ1NTI3Njc0OTY0MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA1NS5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=D3CvoSq8GWIQ7kNvwH0VGcF&_nc_oc=Adq6R4F44CTK_PAqT-7VyCjPNRPPFkgG6LiFetzyGRgGY36pEh7MqSRhySJNnVgEU4k&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=uttPG26cVwW_P9UNsKwoyw&_nc_ss=7a22e&oh=00_Af9HF2BwXUbNzP7Wo67KW9Vo1FiLT8ARW3jLxbqHQjchsg&oe=6A464C4F)
+![image_01](https://github.com/k82022603/k82022603.github.io/blob/6e30089a17f701ad08ec938dec30f6b40276241c/assets/img/729790972_17902005576453894_7937188297376884294_n.webp?raw=true)
 
 ---
+
 
 ## 목차
 
