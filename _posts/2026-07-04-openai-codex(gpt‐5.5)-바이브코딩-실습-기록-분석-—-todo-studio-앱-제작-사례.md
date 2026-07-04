@@ -1,7 +1,7 @@
 ---
 title: "OpenAI Codex(GPT-5.5) 바이브코딩 실습 기록 분석 — \"Todo Studio\" 앱 제작 사례"
 date: 2026-07-04 13:00:00 +0900
-categories: [AI,  Codex]
+categories: [AI,  Vibe Coding]
 mermaid: [True]
 tags: [AI,  Codex,  vibe-coding,  GPT-5.5-Codex,  Claude.write]
 ---
@@ -119,7 +119,7 @@ flowchart TD
 
 **폴더 확인과 초기 실패.** Codex는 작업을 시작하기 전에 먼저 현재 폴더에 이미 만들어진 것이 있는지부터 확인하려 했다. 첫 시도에서는 "샌드박스 실행기가 로컬에서 바로 실패"했는데, 이는 앞서 설명한 승인 모드나 샌드박스 경계와 관련이 있는 것으로 보이며, Codex는 같은 읽기 작업을 승인이 필요한 경로로 다시 실행해서 확인을 마쳤다. 확인 결과 해당 폴더에는 `outputs`와 `work` 폴더만 있었고 앱 소스 코드는 아직 없는 상태였다.
 
-**Node 실행 파일 찾기.** Vite 프로젝트를 만들려면 Node.js가 필요한데, 시스템에 등록된 PATH 환경변수에는 node가 잡혀 있지 않았다. Codex는 이 문제를 마주치자 Codex 데스크톱 앱 자체에 번들로 포함되어 있던 런타임(`C:\Users\KTDS\.cache\codex-runtimes\codex-primary-runtime\dependencies` 아래)에서 node와 pnpm 실행 파일을 찾아내 그것을 대신 사용하는 방식으로 우회했다. 이는 Codex 개발 문서에서 설명하는 것처럼, Windows 환경에서 Codex가 PowerShell 기반의 네이티브 Windows 샌드박스와 WSL2 기반의 Linux 샌드박스 중 하나를 상황에 맞게 쓴다는 사실과 맞닿아 있는 대목이다. 실제로 이 세션에서는 `/mnt/c/Users/...`처럼 WSL 방식의 경로 표기와 `cmd.exe /c "..."`처럼 Windows 배치 파일을 직접 호출하는 방식이 뒤섞여 사용되었고, 이 두 체계가 만나는 지점에서 여러 차례 사소한 오류가 발생했다.
+**Node 실행 파일 찾기.** Vite 프로젝트를 만들려면 Node.js가 필요한데, 시스템에 등록된 PATH 환경변수에는 node가 잡혀 있지 않았다. Codex는 이 문제를 마주치자 Codex 데스크톱 앱 자체에 번들로 포함되어 있던 런타임(`C:\Users\OLIVER\.cache\codex-runtimes\codex-primary-runtime\dependencies` 아래)에서 node와 pnpm 실행 파일을 찾아내 그것을 대신 사용하는 방식으로 우회했다. 이는 Codex 개발 문서에서 설명하는 것처럼, Windows 환경에서 Codex가 PowerShell 기반의 네이티브 Windows 샌드박스와 WSL2 기반의 Linux 샌드박스 중 하나를 상황에 맞게 쓴다는 사실과 맞닿아 있는 대목이다. 실제로 이 세션에서는 `/mnt/c/Users/...`처럼 WSL 방식의 경로 표기와 `cmd.exe /c "..."`처럼 Windows 배치 파일을 직접 호출하는 방식이 뒤섞여 사용되었고, 이 두 체계가 만나는 지점에서 여러 차례 사소한 오류가 발생했다.
 
 **파일 스캐폴딩.** 이후 Codex는 `package.json`, Vite 설정 파일, Tailwind 설정 파일, React 컴포넌트 등 총 12개 파일을 한 번에 생성했다. 이때 Codex는 단순한 할 일 목록에 그치지 않고 "대시보드처럼 할 일 목록과 통계 차트를 함께 볼 수 있는 형태"로 설계 방향을 스스로 정했다. 사용자가 프롬프트에서 요청한 것은 Todo 앱, Tailwind, Recharts, Lucide React였을 뿐이고 대시보드 형태나 통계 차트, 우선순위·마감일·카테고리 필드까지 요청한 것은 아니었지만, Codex는 Recharts가 포함된다는 점에서 통계 시각화를 자연스럽게 확장해 넣은 것으로 보인다.
 

@@ -7,6 +7,10 @@ tags: [AI,  Fable-5,  Higgsfield,  Kling-Video,  Figma,  MotionSites.ai,  Claude
 ---
 
 
+## 관련영상
+
+[**Claude Fable 5 Just Changed Web Design Forever!**](https://www.youtube.com/watch?v=_JF_s-ZRTyY)
+
 ## 1. 이 영상은 무엇을 다루는가
 
 이번에 살펴본 영상은 X(트위터) 계정 @viktoroddy를 운영하는 크리에이터 Viktor Oddy가 2026년 7월 2일에 공개한 튜토리얼로, 핵심 메시지는 두 가지다. 첫째, 최근 다시 사용할 수 있게 된 Anthropic의 최상위 모델 Claude Fable 5를 이용해 3D 느낌의 인터랙션과 배경 영상이 살아 있는 애니메이션 웹사이트를 처음부터 끝까지 만드는 과정이다. 둘째, 그렇게 만든 결과물을 X에 올려 노출을 늘리고 잠재 고객을 확보하는 실전 그로스 방법이다. 영상 속 예시 웹사이트는 "행성/지질학"을 콘셉트로 한 가상의 브랜드(최종적으로 Lithos라는 이름이 붙는다)이며, 히어로 섹션의 회전하는 행성 애니메이션부터 시작해 배경 영상이 스크롤에 반응하는 섹션, 요금제, FAQ, 푸터, 그리고 하위 페이지(필드 가이드, 지질학, 요금제, 라이브 투어, 회원가입)까지 순차적으로 확장해 나간다. 제작에 사용된 도구는 크게 네 가지로, 코드를 실제로 작성하는 Claude(모델: Fable 5), 정지 컷과 영상을 만드는 Higgsfield(영상 모델 Kling 3.0 포함), 색상을 추출하고 다듬는 Figma, 그리고 완성된 프롬프트와 배경 영상 소스를 모아둔 라이브러리 사이트 MotionSites.ai이다.
