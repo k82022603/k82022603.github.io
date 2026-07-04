@@ -10,6 +10,10 @@ tags: [AI,  Harness,  harness-engineering,  Medium,  Claude.write]
 - 원문: Nick T. (Ph.D.), "Harness Engineering: A deep dive into the buildable harness, via Markdown files", Medium(ai-advances), 2026-06-18
 - 원문 링크: https://medium.com/ai-advances/harness-engieering-a-deep-dive-into-the-buildable-harness-via-markdown-files-6aafd8b63669
 
+## 관련글
+
+[**하네스 엔지니어링 개념편 심층 해설: 왜 당신의 AI 에이전트는 계속 실패하는가**](https://k82022603.github.io/posts/%ED%95%98%EB%84%A4%EC%8A%A4-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A7%81-%EA%B0%9C%EB%85%90%ED%8E%B8-%EC%8B%AC%EC%B8%B5-%ED%95%B4%EC%84%A4-%EC%99%9C-%EB%8B%B9%EC%8B%A0%EC%9D%98-ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8%EB%8A%94-%EA%B3%84%EC%86%8D-%EC%8B%A4%ED%8C%A8%ED%95%98%EB%8A%94%EA%B0%80/)
+
 ---
 
 ## 이 글의 목적과 읽는 법
