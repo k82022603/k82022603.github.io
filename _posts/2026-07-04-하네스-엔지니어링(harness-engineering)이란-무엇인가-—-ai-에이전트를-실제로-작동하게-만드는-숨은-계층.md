@@ -15,11 +15,11 @@ tags: [AI,  Harness,  harness-engineering,  ai-agent,  enterprise-ai,  AX,  Medi
 
 ## 2. "Agent = Model + Harness" 공식은 어디서 왔는가
 
-2026년 2월 초, HashiCorp의 공동창업자이자 Terraform과 Ghostty의 개발자인 Mitchell Hashimoto가 자신의 블로그(개인 메모 형태)에 하나의 작업 원칙을 정리해 올렸다. 그의 표현을 풀어서 설명하면, "에이전트가 실수를 저지를 때마다, 그 실수를 다시는 반복할 수 없도록 환경 자체에 영구적인 해결책을 엔지니어링한다"는 것이었다. 그는 이것을 "하스 엔지니어링(Harness Engineering)"이라 불렀고, 이 원칙을 압축한 공식이 바로 다음과 같다.
+2026년 2월 초, HashiCorp의 공동창업자이자 Terraform과 Ghostty의 개발자인 Mitchell Hashimoto가 자신의 블로그(개인 메모 형태)에 하나의 작업 원칙을 정리해 올렸다. 그의 표현을 풀어서 설명하면, "에이전트가 실수를 저지를 때마다, 그 실수를 다시는 반복할 수 없도록 환경 자체에 영구적인 해결책을 엔지니어링한다"는 것이었다. 그는 이것을 "하네스 엔지니어링(Harness Engineering)"이라 불렀고, 이 원칙을 압축한 공식이 바로 다음과 같다.
 
 **Agent = Model + Harness**
 
-흥미로운 점은, 이 개념이 널리 퍼진 계기가 Hashimoto의 글 하나만은 아니었다는 것이다. 그로부터 불과 며칠 뒤인 2026년 2월 11일, OpenAI의 엔지니어 Ryan Lopopolo가 자사 블로그에 「Harness engineering: leveraging Codex in an agent-first world」라는 사례 보고서를 공개했다. 이 글에서 OpenAI의 소규모 팀은 Codex 에이전트를 이용해 사람이 직접 작성한 코드 없이(zero manually-written code) 약 100만 줄 규모의 프로덕션급 코드베이스를 만들어낸 과정을 설명했다. 핵심은 "에이전트가 무엇을 할 수 있느냐"가 아니라 "에이전트가 스스로 판단할 수 있도록 저장소 구조, 규칙 문서, 검증 절차를 어떻게 설계했느냐"에 있었다. 이 보고서 이후 LangChain 쪽에서 두 아이디어를 하나의 슬로건으로 압축한 것이 지금 널리 쓰이는 "Agent = Model + Harness" 공식이며, Thoughtworks의 Distinguished Engineer인 Birgitta Böckeler 역시 2026년 2월 17일 초안 메모를, 4월 2일에는 "가이드(guide)"와 "센서(sensor)"라는 개념으로 하스를 체계화한 정식 글을 Martin Fowler의 블로그에 발표하며 이론적 뼈대를 보강했다. 즉 이 용어는 한 사람의 발명이라기보다, 비슷한 시기에 여러 실무자가 같은 문제(모델은 똑똑한데 왜 실제 서비스에서는 자꾸 사고가 나는가)에 부딪히면서 거의 동시에 같은 결론에 도달해 만들어진 개념이라고 보는 것이 정확하다.
+흥미로운 점은, 이 개념이 널리 퍼진 계기가 Hashimoto의 글 하나만은 아니었다는 것이다. 그로부터 불과 며칠 뒤인 2026년 2월 11일, OpenAI의 엔지니어 Ryan Lopopolo가 자사 블로그에 「Harness engineering: leveraging Codex in an agent-first world」라는 사례 보고서를 공개했다. 이 글에서 OpenAI의 소규모 팀은 Codex 에이전트를 이용해 사람이 직접 작성한 코드 없이(zero manually-written code) 약 100만 줄 규모의 프로덕션급 코드베이스를 만들어낸 과정을 설명했다. 핵심은 "에이전트가 무엇을 할 수 있느냐"가 아니라 "에이전트가 스스로 판단할 수 있도록 저장소 구조, 규칙 문서, 검증 절차를 어떻게 설계했느냐"에 있었다. 이 보고서 이후 LangChain 쪽에서 두 아이디어를 하나의 슬로건으로 압축한 것이 지금 널리 쓰이는 "Agent = Model + Harness" 공식이며, Thoughtworks의 Distinguished Engineer인 Birgitta Böckeler 역시 2026년 2월 17일 초안 메모를, 4월 2일에는 "가이드(guide)"와 "센서(sensor)"라는 개념으로 하네스를 체계화한 정식 글을 Martin Fowler의 블로그에 발표하며 이론적 뼈대를 보강했다. 즉 이 용어는 한 사람의 발명이라기보다, 비슷한 시기에 여러 실무자가 같은 문제(모델은 똑똑한데 왜 실제 서비스에서는 자꾸 사고가 나는가)에 부딪히면서 거의 동시에 같은 결론에 도달해 만들어진 개념이라고 보는 것이 정확하다.
 
 다만 한 가지는 정직하게 밝혀둘 필요가 있다. Hashimoto가 처음 작성했다는 원문 블로그 글의 URL은 여러 후속 자료에서도 정확히 재확인되지 않고 있으며, 대부분의 2차 자료는 그의 발언을 인용하는 형태로만 존재한다. 따라서 "그가 정확히 어떤 문장으로 이 개념을 처음 소개했는가"보다는 "2026년 2월, 이 개념이 거의 동시다발적으로 등장해 업계 표준 용어로 정착했다"는 사실관계에 무게를 두는 것이 안전하다.
 
