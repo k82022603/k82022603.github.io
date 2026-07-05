@@ -1,7 +1,7 @@
 ---
 title: "헤르메스 에이전트(Hermes Agent)를 둘러싼 가장 위험한 오해 — \"알아서 똑똑해진다\"는 착각과 실제 작동 원리"
 date: 2026-07-05 09:00:00 +0900
-categories: [Hermes Agent]
+categories: [AI,  Hermes Agent]
 mermaid: [True]
 tags: [AI,  hermes-agent,  closed-learning-loop,  Claude.write]
 ---

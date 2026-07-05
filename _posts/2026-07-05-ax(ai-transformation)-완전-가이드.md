@@ -1,7 +1,7 @@
 ---
 title: "AX(AI Transformation) 완전 가이드"
 date: 2026-07-05 09:10:00 +0900
-categories: [AX (AI Transformation)]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
 tags: [AI,  Harness,  harness-engineering,  ai-talent,  Claude.write]
 ---
