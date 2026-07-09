@@ -13,7 +13,7 @@ tags: [AI,  Cowork,  claude-cowork,  ai-agent,  Claude.write]
 
 ## 1. 이 자료를 읽기 전에 — 출처를 먼저 점검합니다
 
-이 가이드는 X(트위터) 계정 @eng_khairallah1(자기소개: "angel investor | founder | vibe coding | ai & onchain research")이 작성한 장문 게시글입니다. 이 계정의 게시 이력을 살펴보면 몇 가지 반복되는 패턴이 있습니다.
+이 가이드는 X(트위터) 계정 @eng_khairallah1이 작성한 장문 게시글입니다. 이 계정의 게시 이력을 살펴보면 몇 가지 반복되는 패턴이 있습니다.
 
 - "Anthropic이 방금 OO분짜리 워크숍을 공개했다", "Anthropic 엔지니어 두 명이 24분 만에 모든 기능을 공개했다" 같은 문구가 24분, 25분, 27분, 30분, 45분 등 숫자만 바뀐 채 여러 달에 걸쳐 반복 게시되고, 매번 자신이 쓴 다른 장문 글로 연결됩니다.
 - "카르파시가 Anthropic에 합류했다"처럼 사실에 기반한 소재(실제로 Andrej Karpathy는 2026년 5월 19일 Anthropic의 프리트레이닝 팀에 합류했습니다)를 언급하면서도, "그의 팀 동료가 실제 사용하는 LOOPS.md 파일을 보여줬다"처럼 검증 불가능한 개인 일화를 덧붙여 신뢰도를 높이는 방식의 글쓰기가 반복됩니다.
