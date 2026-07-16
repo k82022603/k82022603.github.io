@@ -7,6 +7,12 @@ tags: [AI,  claude-code,  Codex,  Fable-5,  GPT-5.6-Sol,  Tokenmaxxing,  Compact
 ---
 
 
+## 관련글
+
+[**Claude Code Opus 4.x와 Fable 5로 작업한 내용들을 Codex GPT-5.6-Sol로 재검토하는 중입니다. Claude Code 개발 스타일의 문제점이 그대로 드러나네요**](https://www.facebook.com/share/p/1FXUegkDKL/)
+
+---
+
 ## 목차
 1. 이 문서의 목적과 원문 게시물 개요
 2. 원문 게시물과 댓글 스레드 요약
