@@ -1,7 +1,7 @@
 ---
 title: "Atlassian의 DESIGN.md 실험기: 포터블 디자인 컨텍스트, 실전에서는 어땠나"
 date: 2026-07-03 22:50:00 +0900
-categories: [AI,  AI Material]
+categories: [AI,  Material]
 mermaid: [True]
 tags: [AI,  Google,  DESIGN.md,  Atlassian,  Claude.write]
 ---
