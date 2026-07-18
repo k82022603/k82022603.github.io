@@ -1,7 +1,7 @@
 ---
 title: "AI 엔지니어링 필드 가이드 (AI Engineering Field Guide)"
 date: 2026-05-04 10:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
 tags: [AI,  ai-engineering,  ai-engineer,  Claude.write]
 ---
