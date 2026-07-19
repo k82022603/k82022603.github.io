@@ -1,7 +1,7 @@
 ---
 title: "AI가 너무 잘 작동해서 회사가 망가졌다: 인텐트 엔지니어링(Intent Engineering)의 등장"
 date: 2026-02-28 09:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
 tags: [AI,   prompt-engineering,  context-engineering,  intent-engineering,  enterprise-ai,  delegation-frameworks,  Claude.write]
 ---
