@@ -1,7 +1,7 @@
 ---
 title: "AI 코딩 보조가 스킬 형성에 미치는 영향: Anthropic 연구의 심층 분석"
 date: 2026-02-01 09:30:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
 tags: [AI,  Material,  Developer,  agentic-coding,  Anthropic,  Claude.write]
 ---

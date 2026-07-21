@@ -1,7 +1,7 @@
 ---
 title: "사무 자동화에서 LLM 벤치마크가 믿을 수 없는 이유 — Tool Calling 불일치, 프론티어 가격 딜레마, 그리고 굳어지는 해자 구조"
 date: 2026-07-16 00:50:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
 tags: [AI,  Automations,  DeepSeek-V4,  fine-tuning,  Claude.write]
 ---

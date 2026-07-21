@@ -1,7 +1,7 @@
 ---
 title: "내부자의 증언: Claude Code 팀이 말하는 AI 코딩의 현실"
 date: 2026-01-29 03:10:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
 tags: [AI,  Material,  BorisCherny,  Claude,  agentic-coding,  Claude.write]
 ---

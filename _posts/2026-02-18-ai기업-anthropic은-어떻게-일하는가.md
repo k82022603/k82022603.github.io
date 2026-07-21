@@ -1,7 +1,7 @@
 ---
 title: "AI기업 Anthropic은 어떻게 일하는가"
 date: 2026-02-18 08:20:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
 tags: [AI,  Material,  ai-native,  ai-literacy,  Anthropic,  Claude.write]
 ---

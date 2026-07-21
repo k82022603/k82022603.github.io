@@ -1,7 +1,7 @@
 ---
 title: "AI 시대, 개발자 역량의 재정의: Anthropic 채용 시험 사례가 던지는 근본적 질문"
 date: 2026-01-29 02:00:00 +0900
-categories: [AI,  Material]
+categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
 tags: [AI,  Material,  Anthropic,  Claude,  Developer,  Claude.write]
 ---
