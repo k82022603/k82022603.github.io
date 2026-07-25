@@ -3,7 +3,7 @@ title: "에이전트보다 모델을 먼저 마스터하라 — Andrej Karpathy 
 date: 2026-07-23 21:00:00 +0900
 categories: [AI,  Material]
 mermaid: [True]
-tags: [AI,  AndrejKarpathy,  Model,  ai-agent,  AutoResearch,  Claude.write]
+tags: [AI,  AndrejKarpathy,  Model,  ai-agent,  Autoresearch,  Claude.write]
 ---
 
 
