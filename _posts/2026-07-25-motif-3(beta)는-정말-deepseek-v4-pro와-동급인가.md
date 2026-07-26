@@ -18,7 +18,7 @@ tags: [AI,  Motif-3,  AAII,  DeepSeek-V4,  Claude.write]
 
 [**한국 AI 모델, 글로벌 성적표를 읽는 법**](https://k82022603.github.io/posts/%ED%95%9C%EA%B5%AD-ai-%EB%AA%A8%EB%8D%B8,-%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%84%B1%EC%A0%81%ED%91%9C%EB%A5%BC-%EC%9D%BD%EB%8A%94-%EB%B2%95/)
 
-[**독파모, 미토스를 잡을 수 있을까 — 국산 사이버보안 AI 공모와 프론티어 투트랙 전략**]()
+[**독파모, 미토스를 잡을 수 있을까 — 국산 사이버보안 AI 공모와 프론티어 투트랙 전략**](https://k82022603.github.io/posts/%EB%8F%85%ED%8C%8C%EB%AA%A8,-%EB%AF%B8%ED%86%A0%EC%8A%A4%EB%A5%BC-%EC%9E%A1%EC%9D%84-%EC%88%98-%EC%9E%88%EC%9D%84%EA%B9%8C-%EA%B5%AD%EC%82%B0-%EC%82%AC%EC%9D%B4%EB%B2%84%EB%B3%B4%EC%95%88-ai-%EA%B3%B5%EB%AA%A8%EC%99%80-%ED%94%84%EB%A1%A0%ED%8B%B0%EC%96%B4-%ED%88%AC%ED%8A%B8%EB%9E%99-%EC%A0%84%EB%9E%B5/)
 
 
 ---
