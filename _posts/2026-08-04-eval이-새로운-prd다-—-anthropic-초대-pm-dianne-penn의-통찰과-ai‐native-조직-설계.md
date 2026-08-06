@@ -9,7 +9,7 @@ tags: [AI,  AX,  ai-native,  Skills,  eval-driven-development,  Claude.write]
 
 > 원문 출처
 > - Threads 게시물: https://www.threads.com/share/BAV1SPREwi/
-> - 원 영상: Lenny's Podcast, "Why AI is going vertical (again) | Dianne Penn (Anthropic)" — https://youtu.be/tivaWTTVRhY
+> - 원 영상: Lenny's Podcast, "Why AI is going vertical (again) - Dianne Penn (Anthropic)" — https://youtu.be/tivaWTTVRhY
 
 ---
 
@@ -232,7 +232,7 @@ Penn의 대화와 원문 후반부의 제안 사이에는 한 가지 근본적�
 ## 7. 참고자료
 
 - Threads 게시물: https://www.threads.com/share/BAV1SPREwi/
-- 원 영상: "Why AI is going vertical (again) | Dianne Penn (Anthropic)", Lenny's Podcast — https://youtu.be/tivaWTTVRhY
+- 원 영상: "Why AI is going vertical (again) - Dianne Penn (Anthropic)", Lenny's Podcast — https://youtu.be/tivaWTTVRhY
 - BigGo Finance, "Anthropic's Dianne Penn Says the PRD Is Dead — Evals Are What Ship AI Products Now" (2026년 7월 26일) — https://finance.biggo.com/news/c7fbb618ff47fcea
 - Dianne Na Penn LinkedIn 프로필 및 게시물 — https://www.linkedin.com/in/dianne-na-penn/
 - VentureBeat, "Anthropic says it hit a $30 billion revenue run rate after 'crazy' 80x growth" (2026년 5월) — https://venturebeat.com/technology/anthropic-says-it-hit-a-30-billion-revenue-run-rate-after-crazy-80x-growth
