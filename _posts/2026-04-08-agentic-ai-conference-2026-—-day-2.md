@@ -3,7 +3,7 @@ title: "Agentic AI Conference 2026 — Day 2"
 date: 2026-04-08 21:30:00 +0900
 categories: [AI,  AI Agent]
 mermaid: [True]
-tags: [AI,  agentic-ai,  coding-agents,  docker-sandbox,  docker-mcp-gateway,  amd-gpu,  ai-agent,  ai-agent-framework,  OpenClaw,  samanova-rdu,  agentic-caching,  process-debt,  tribal-knowledge,  google-adk,  cloud-run,  multi-agent,  A2A,  DeepMind,  ai-studio,  Claude.write]
+tags: [AI,  agentic-ai,  coding-agents,  docker-sandbox,  mcp-gateway,  amd-gpu,  ai-agent,  ai-agent-framework,  OpenClaw,  samanova-rdu,  agentic-caching,  process-debt,  tribal-knowledge,  google-adk,  cloud-run,  multi-agent,  A2A,  DeepMind,  ai-studio,  Claude.write]
 ---
 
 
