@@ -3,7 +3,7 @@ title: "Astra는 정말 Fable 5.1을 넘어섰나 — OpenAI GPT-6 Astra와 Anth
 date: 2026-09-06 08:00:00 +0900
 categories: [AI,  GPT-6 Astra]
 mermaid: [True]
-tags: [AI,  GPT-6-Astra,  Fable-5,  Claude.write]
+tags: [AI,  GPT-6-Astra,  Fable-5.1,  Claude.write]
 ---
 
 
