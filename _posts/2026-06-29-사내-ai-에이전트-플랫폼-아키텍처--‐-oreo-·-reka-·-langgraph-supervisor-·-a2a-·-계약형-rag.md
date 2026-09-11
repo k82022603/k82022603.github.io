@@ -3,7 +3,7 @@ title: "사내 AI 에이전트 플랫폼 아키텍처 - Oreo · ReKA · LangGrap
 date: 2026-06-29 09:00:00 +0900
 categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
-tags: [AI,  AX,  agentic-platform,  Oreo,  ReKA,  LangGraph,  Supervisor,  A2A,  RAG,  multi-model-architecture,  LlamaIndex,  LLM-as-a-judge,  ai-observability,  LiteLLM,  SSOT,  단상,  Claude.write]
+tags: [AI,  AX,  agent-platform,  Oreo,  ReKA,  LangGraph,  Supervisor,  A2A,  RAG,  multi-model-architecture,  LlamaIndex,  LLM-as-a-judge,  ai-observability,  LiteLLM,  SSOT,  단상,  Claude.write]
 ---
 
 
