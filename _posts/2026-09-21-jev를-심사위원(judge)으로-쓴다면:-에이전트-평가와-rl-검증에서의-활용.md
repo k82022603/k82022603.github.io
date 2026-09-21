@@ -7,7 +7,7 @@ tags: [AI,  Jev,  LangChain,  Judge,  RL,  reinforcement-learning,  Claude.write
 ---
 
 
-> 이 문서는 앞서 정리한 "Jev(TypeSafe AI) 완전 해설" 문서에 이어지는 내용으로, 이번에 새로 공유된 두 가지 자료 — LangChain(LangSmith)이 발표한 "Jev를 에이전트 평가자로 써봤다"는 벤치마크 글, 그리고 강화학습(RL) 환경 검증자로 Jev를 활용하자는 제안 트윗 — 를 이해하기 쉽게 풀어 설명합니다. 앞선 문서가 Jev의 한계(언어별 편향, 압축 오남용, 분류 오탐)를 다뤘다면, 이번 문서는 반대로 Jev가 실제로 강점을 보이는 좁지만 뚜렷한 영역, 즉 "심사(judging)와 검증(verification)" 용도에서의 성능을 다룹니다. 수치는 모두 원본 자료와 이를 뒷받침하는 공개 저장소·블로그 글을 대조해 확인한 것이며, 확인이 안 되는 부분은 임의로 채우지 않았습니다.
+**이 문서는 앞서 정리한 ["Jev(TypeSafe AI) 완전 해설"](https://k82022603.github.io/posts/jev(typesafe-ai)-%EC%99%84%EC%A0%84-%ED%95%B4%EC%84%A4-%EB%AC%B4%EC%97%87%EC%9D%B4%EA%B3%A0,-%EC%99%9C-%ED%99%94%EC%A0%9C%EC%9D%B4%EB%A9%B0,-%EC%96%B4%EB%96%A4-%ED%95%A8%EC%A0%95%EC%9D%B4-%EC%9E%88%EB%8A%94%EA%B0%80/) 문서에 이어지는 내용으로, 이번에 새로 공유된 두 가지 자료 — LangChain(LangSmith)이 발표한 ["Jev를 에이전트 평가자로 써봤다"](https://x.com/LangChain/status/2101454284927959080)는 벤치마크 글, 그리고 강화학습(RL) 환경 검증자로 Jev를 활용하자는 제안 트윗 — 를 이해하기 쉽게 풀어 설명합니다. 앞선 문서가 Jev의 한계(언어별 편향, 압축 오남용, 분류 오탐)를 다뤘다면, 이번 문서는 반대로 Jev가 실제로 강점을 보이는 좁지만 뚜렷한 영역, 즉 "심사(judging)와 검증(verification)" 용도에서의 성능을 다룹니다. 수치는 모두 원본 자료와 이를 뒷받침하는 공개 저장소·블로그 글을 대조해 확인한 것이며, 확인이 안 되는 부분은 임의로 채우지 않았습니다.**
 
 > 
 > https://x.com/Vtrivedy10/status/2101688022513160700
@@ -34,9 +34,7 @@ tags: [AI,  Jev,  LangChain,  Judge,  RL,  reinforcement-learning,  Claude.write
 > but Jev has the opportunity to massively bring down verification costs (and tuning friction) for many tasks
 > 
 > which means more teams will do RL, which is great!
-> 
-> https://x.com/LangChain/status/2101454284927959080
-> 
+>
 
 ---
 
