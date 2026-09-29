@@ -3,7 +3,7 @@ title: "28턴의 침묵, 그리고 10장의 폭발 — Claude Sonnet 4 Extended 
 date: 2026-04-12 21:00:00 +0900
 categories: [AI,  RummiArena]
 mermaid: [True]
-tags: [AI,  RummiArena,  Claude-Sonnet-4,  extended-thinking,  adaptive-thinking,  Claude.write]
+tags: [AI,  RummiArena,  Sonnet-4,  extended-thinking,  adaptive-thinking,  Claude.write]
 ---
 
 
