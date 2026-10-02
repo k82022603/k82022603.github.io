@@ -3,7 +3,7 @@ title: "Claude for Outlook 베타 출시: Microsoft 365 완전 통합 시대의 
 date: 2026-06-26 07:00:00 +0900
 categories: [AI,  Claude]
 mermaid: [True]
-tags: [AI,  Copilot,  microsoft-office,  Claude,  Claude.write]
+tags: [AI,  Copilot,  microsoft-365,  Claude,  Claude.write]
 ---
 
 
