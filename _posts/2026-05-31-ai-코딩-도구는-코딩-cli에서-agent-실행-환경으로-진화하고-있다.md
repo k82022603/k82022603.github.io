@@ -3,7 +3,7 @@ title: "AI 코딩 도구는 \"코딩 CLI\"에서 \"Agent 실행 환경\"으로 �
 date: 2026-05-31 11:30:00 +0900
 categories: [AI,  Codex vs Claude Code]
 mermaid: [True]
-tags: [AI,  cluade-code,  codex-cli,  ai-agent,  MCP,  Claude.write]
+tags: [AI,  claude-code,  codex-cli,  ai-agent,  MCP,  Claude.write]
 ---
 
 ## Claude Code 2.1.152 & OpenAI Codex CLI 0.134.0 심층 분석

@@ -3,7 +3,7 @@ title: "Claude Code Hooks 보안 논쟁과 OpenAI Codex 앱의 인터페이스 �
 date: 2026-03-07 21:00:00 +0900
 categories: [AI,  Vibe Coding]
 mermaid: [True]
-tags: [AI,  claude-code-hook,  cluade-code,  Codex,  Claude.write]
+tags: [AI,  claude-code-hook,  claude-code,  Codex,  Claude.write]
 ---
 
 

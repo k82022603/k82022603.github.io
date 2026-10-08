@@ -3,7 +3,7 @@ title: "Claude Code 창시자 보리스 체르니, Opus 5 출시 직후 YC Start
 date: 2026-07-29 20:30:00 +0900
 categories: [AI,  Claude]
 mermaid: [True]
-tags: [AI,  Claude,  BorisCherny ,  Opus-5,  cluade-code,  prompt-injection,  system-prompt,  product-overhang,  prompt-engineering,  dynamic-workflows,  empirical-science,  Claude.write]
+tags: [AI,  Claude,  BorisCherny ,  Opus-5,  claude-code,  prompt-injection,  system-prompt,  product-overhang,  prompt-engineering,  dynamic-workflows,  empirical-science,  Claude.write]
 ---
 
 

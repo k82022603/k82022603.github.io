@@ -3,7 +3,7 @@ title: "Claude Cowork vs Claude Code 완전 정리 가이드"
 date: 2026-03-26 20:40:00 +0900
 categories: [AI,  Claude]
 mermaid: [True]
-tags: [AI,  cluade-code,  claude-cowork,  Cowork,  CLAUDE.md,  terminal-agent,  MCP,  agent-skills,  Dispatch,  scheduled-tasks,  Connectors,  Claude.write]
+tags: [AI,  claude-code,  claude-cowork,  Cowork,  CLAUDE.md,  terminal-agent,  MCP,  agent-skills,  Dispatch,  scheduled-tasks,  Connectors,  Claude.write]
 ---
 
 > 영상: ["Claude Code vs Cowork FINALLY Explained (which should you use?)"](https://www.youtube.com/watch?v=grh7CMl960s) — Brock (2026.03.26)  

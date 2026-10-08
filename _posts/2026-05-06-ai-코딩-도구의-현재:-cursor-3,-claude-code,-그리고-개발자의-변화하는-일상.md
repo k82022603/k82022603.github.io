@@ -3,7 +3,7 @@ title: "AI 코딩 도구의 현재: Cursor 3, Claude Code, 그리고 개발자�
 date: 2026-05-06 07:30:00 +0900
 categories: [AI,  Cursor]
 mermaid: [True]
-tags: [AI,  Cursor,  cursor-3,  cluade-code,  agent-window,  pair-programming,  SpaceX,  ai-coding-platforms,  IDE,  Claude.write]
+tags: [AI,  Cursor,  cursor-3,  claude-code,  agent-window,  pair-programming,  SpaceX,  ai-coding-platforms,  IDE,  Claude.write]
 ---
 
 

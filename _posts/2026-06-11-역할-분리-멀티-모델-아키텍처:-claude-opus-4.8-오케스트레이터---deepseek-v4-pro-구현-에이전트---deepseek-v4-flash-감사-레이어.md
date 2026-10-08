@@ -3,7 +3,7 @@ title: "역할 분리 멀티 모델 아키텍처: Claude Opus 4.8 오케스트�
 date: 2026-06-11 20:00:00 +0900
 categories: [AI,  AI Architecture]
 mermaid: [True]
-tags: [AI,  multi-model-architecture,  Opus-4.8,  DeepSeek-V4,  cluade-code,  Claude.write]
+tags: [AI,  multi-model-architecture,  Opus-4.8,  DeepSeek-V4,  claude-code,  Claude.write]
 ---
 
 
