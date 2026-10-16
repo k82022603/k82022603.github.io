@@ -3,7 +3,7 @@ title: "\"AI에게도 세상이 필요하다\" — AI Ready 단상"
 date: 2026-10-03 10:15:00 +0900
 categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
-tags: [AI,  ai-engineering,  ai-engineer,  단상,  Claude.write]
+tags: [AI,  ai-engineering,  ai-engineer,  ai-ready,  단상,  Claude.write]
 ---
 
 
