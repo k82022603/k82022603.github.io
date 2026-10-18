@@ -934,6 +934,8 @@ teammate-github-id
 
 **`github/.github/pull_request_template.md`**
 
+{% raw %}
+
 ````markdown
 ## 무엇을 바꿨나요
 
