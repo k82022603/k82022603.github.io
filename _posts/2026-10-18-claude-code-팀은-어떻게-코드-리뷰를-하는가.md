@@ -934,8 +934,14 @@ teammate-github-id
 
 **`github/.github/pull_request_template.md`**
 
-{% raw %}
-
 ````markdown
 ## 무엇을 바꿨나요
+
+// 변경의 목적과 범위를 두세 문장으로 적습니다.
+
+## Testing
+
+// 어떻게 테스트했는지 적습니다. 실행한 명령과 그 결과를 붙이면 가장 좋습니다.
+
+## Risk
 
