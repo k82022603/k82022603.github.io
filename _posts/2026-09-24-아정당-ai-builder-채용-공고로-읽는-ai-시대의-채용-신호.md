@@ -3,7 +3,7 @@ title: "아정당 'AI Builder' 채용 공고로 읽는 AI 시대의 채용 신�
 date: 2026-09-24 20:30:00 +0900
 categories: [AI,  AX (AI Transformation)]
 mermaid: [True]
-tags: [AI,  AX,  ai-builder,  FDE,  ai-native,  vibe-coding,  fullstack-engineer,  Claude.write]
+tags: [AI,  AX,  ai-builder,  FDE,  ai-native,  vibe-coding,  fullstack-engineer,  아정당,  Claude.write]
 ---
 
 
