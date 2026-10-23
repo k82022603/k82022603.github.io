@@ -3,7 +3,7 @@ title: "OpenAI DevDay 2026의 Dots·Space·Pages와 \"ChatGPT와 한달살기\" 
 date: 2026-10-02 07:10:00 +0900
 categories: [AI,  Codex]
 mermaid: [True]
-tags: [AI,  OpenAI,  dots,  Claude.write]
+tags: [AI,  OpenAI-DevDay,  dots,  Claude.write]
 ---
 
 

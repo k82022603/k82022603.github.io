@@ -3,7 +3,7 @@ title: "간밤의 OpenAI DevDay 소감, 무슨 이야기인가"
 date: 2026-09-30 07:20:00 +0900
 categories: [AI,  Codex]
 mermaid: [True]
-tags: [AI,  GPT-6.1-Sol,  Sonnet-5.5,  dots,  Ultrafast,  Claude.write]
+tags: [AI,  OpenAI-DevDay,  GPT-6.1-Sol,  Sonnet-5.5,  dots,  Ultrafast,  Claude.write]
 ---
 
 
