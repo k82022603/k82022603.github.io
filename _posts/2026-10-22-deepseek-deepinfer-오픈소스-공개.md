@@ -3,7 +3,7 @@ title: "DeepSeek DeepInfer 오픈소스 공개"
 date: 2026-10-22 20:30:00 +0900
 categories: [AI,  Model]
 mermaid: [True]
-tags: [AI,  DeepSeek,  DeepInfer,  open-source-model,  DSpark,  deepseek-recipe,  Inference,  reasoning-model,  Harness,  Claude.write]
+tags: [AI,  DeepSeek,  DeepInfer,  open-source-model,  DSpark,  deepseek-recipe,  Inference,  reasoning-model,  Harness,  DeepSeek-V4.1-Flash-1017,  Claude.write]
 ---
 
 
